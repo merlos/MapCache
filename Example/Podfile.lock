@@ -1,0 +1,27 @@
+PODS:
+  - MapCache (0.1.0)
+  - Nimble (7.0.3)
+  - Quick (1.2.0)
+
+DEPENDENCIES:
+  - MapCache (from `../`)
+  - Nimble (~> 7.0.2)
+  - Quick (~> 1.2.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Nimble
+    - Quick
+
+EXTERNAL SOURCES:
+  MapCache:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MapCache: 76de27b9be0da71ab719fc4dbd407e119c696721
+  Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
+  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+
+PODFILE CHECKSUM: 673d06a55c3f5b4e0873b95f5dab1982a2ec4ec4
+
+COCOAPODS: 1.5.3

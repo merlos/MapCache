@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'MapCache'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of MapCache.'
+  s.summary          = 'Smart map caching for iOS.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+A smart cache for iOS Map Applications.
                        DESC
 
   s.homepage         = 'https://github.com/merlos/MapCache'
@@ -26,12 +26,12 @@ TODO: Add long description of the pod here.
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'merlos' => 'merlos@gmail.com' }
   s.source           = { :git => 'https://github.com/merlos/MapCache.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  # s.social_media_url = 'https://twitter.com/merlos'
 
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'MapCache/Classes/**/*'
-  
+  s.platform = :ios
   # s.resource_bundles = {
   #   'MapCache' => ['MapCache/Assets/*.png']
   # }
