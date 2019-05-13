@@ -6,7 +6,7 @@ target 'MapCache_Example' do
   target 'MapCache_Tests' do
     inherit! :search_paths
 
-    pod 'Quick', '~> 1.2.0'
-    pod 'Nimble', '~> 7.0.2'
+    pod 'Quick', '~> 2.1.0'
+    pod 'Nimble', '~> 8.0.1'
   end
 end
