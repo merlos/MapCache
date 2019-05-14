@@ -22,7 +22,7 @@ pod 'MapCache'
 
 ## Author
 
-merlos, merlos@gmail.com
+merlos
 
 ## License
 
