@@ -14,10 +14,6 @@ import MapKit
 ///
 public class CachedTileOverlay : MKTileOverlay {
     
-    /// Tells loadTile method if the tile shall be loaded rom the app cache.
-    public var useCache: Bool = true
-    
-    
     public var config: MapCacheConfig?
     
     public init(mapCacheConfig: MapCacheConfig) {
@@ -55,10 +51,10 @@ public class CachedTileOverlay : MKTileOverlay {
     override public func loadTile(at path: MKTileOverlayPath,
                            result: @escaping (Data?, Error?) -> Void) {
         let url = self.url(forTilePath: path)
-        print ("CachedTileOverlay::loadTile() url=\(url) useCache: \(useCache)")
+        print ("CachedTileOverlay::loadTile() url=\(url) useCache: \(config?.useCache ?? true)")
     
-        if !self.useCache {
-            print("lay:: not using cache")
+        if !(config?.useCache ?? true) { // Use cache by use cache is not set.
+            print("loadTile:: not using cache")
             return super.loadTile(at: path, result: result)
         }
         // Use cache

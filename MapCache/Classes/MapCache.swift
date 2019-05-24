@@ -6,18 +6,36 @@
 //
 
 import Foundation
+import MapKit
 
 /// The real brain
 public class MapCache : NSObject {
     
-    override init() {
-        super.init()
+    public var config : MapCacheConfig
+    
+    init(config: MapCacheConfig ) {
+        self.config = config
     }
     
-    func getTile(_ tileUrl: String) {
+    func getTile(_ tilePath: MKTileOverlayPath) {
+       
+        
+    }
+    
+    func setTile(_ data: Data, forPath: MKTileOverlayPath) {
+        
     }
     
     func removeTile(_ tileUrl: String) {
         
     }
+    
+    func cacheSize() {
+        
+    }
+    
+    func clear() {
+        
+    }
+    
 }

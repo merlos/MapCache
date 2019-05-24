@@ -9,7 +9,9 @@ import Foundation
 
 public class MapCacheConfig : NSObject {
     
-    var tileUrlTemplate: String?
+    public var tileUrlTemplate: String?
+    
+    public var useCache: Bool = true
     
     override public init() {
         super.init()
