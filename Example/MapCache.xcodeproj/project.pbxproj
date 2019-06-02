@@ -126,6 +126,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				893072CA22A47D36008612A1 /* DiskCache */,
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				897DE7ED22976D7E0054A9A1 /* MapCacheTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
@@ -149,6 +150,13 @@
 				98B68CF07B3AC619DB7870E1 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		893072CA22A47D36008612A1 /* DiskCache */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DiskCache;
 			sourceTree = "<group>";
 		};
 		B6CB91938DE7FBFF8535B923 /* Pods */ = {
