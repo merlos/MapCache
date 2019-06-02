@@ -21,7 +21,7 @@ extension String {
         }
     }
     
-    func MD5String() -> String {
+    func toMD5() -> String {
         guard let data = self.data(using: String.Encoding.utf8) else {
             return self
         }
@@ -38,7 +38,7 @@ extension String {
     }
     
     func MD5Filename() -> String {
-        let MD5String = self.MD5String()
+        let MD5String = self.toMD5()
         
         // NSString.pathExtension alone could return a query string, which can lead to very long filenames.
         let pathExtension = URL(string: self)?.pathExtension ?? (self as NSString).pathExtension
