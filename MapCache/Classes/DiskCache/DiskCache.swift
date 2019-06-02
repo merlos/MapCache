@@ -23,9 +23,14 @@ open class DiskCache {
     }
     
     /// Cache URL in the filesystem
-    public let cacheURL: URL
+    public let folderURL: URL
     
-    public let path: String
+    /// A shortcut for folder.path
+    open var path: String {
+        get {
+            return self.folderURL.path
+        }
+    }
     
     open var size : UInt64 = 0
     
@@ -38,25 +43,24 @@ open class DiskCache {
     }
     
     open lazy var cacheQueue : DispatchQueue = {
-        let queueName = "DiskCache.\(cacheURL.lastPathComponent)"
+        let queueName = "DiskCache.\(folderURL.lastPathComponent)"
         let cacheQueue = DispatchQueue(label: queueName, attributes: [])
         return cacheQueue
     }()
     
     public init(cacheName: String, capacity: UInt64 = UINT64_MAX) {
-        self.cacheURL = DiskCache.baseURL().appendingPathComponent(cacheName, isDirectory: true)
-        self.path = self.cacheURL.absoluteString
+        self.folderURL = DiskCache.baseURL().appendingPathComponent(cacheName, isDirectory: true)
         do {
-            try FileManager.default.createDirectory(at: cacheURL, withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.createDirectory(at: self.folderURL, withIntermediateDirectories: true, attributes: nil)
         } catch {
-            Log.error(message: "Failed to create directory \(cacheURL.absoluteString)", error: error)
+            Log.error(message: "Failed to create directory \(folderURL.absoluteString)", error: error)
         }
         self.capacity = capacity
         self.cacheQueue.async(execute: {
             self.calculateSize()
             self.controlCapacity()
         })
-        Log.debug(message: cacheURL.absoluteString)
+        Log.debug(message: "DiskCache folderURL=\(folderURL.absoluteString)")
     }
     
     open func setData( _ getData: @autoclosure @escaping () -> Data?, key: String) {

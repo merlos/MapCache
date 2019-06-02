@@ -71,6 +71,14 @@
 		893072C522A47CBA008612A1 /* String+DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072C422A47CBA008612A1 /* String+DiskCache.swift */; };
 		893072C722A47CE2008612A1 /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072C622A47CE2008612A1 /* DiskCache.swift */; };
 		893072C922A47D15008612A1 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072C822A47D15008612A1 /* Log.swift */; };
+		893072CF22A4971A008612A1 /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072C622A47CE2008612A1 /* DiskCache.swift */; };
+		893072D022A49721008612A1 /* String+DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072C422A47CBA008612A1 /* String+DiskCache.swift */; };
+		893072D122A49724008612A1 /* FileManager+DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072C022A47C76008612A1 /* FileManager+DiskCache.swift */; };
+		893072D222A49728008612A1 /* MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072C222A47C9D008612A1 /* MD5.swift */; };
+		893072D422A4976C008612A1 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072C822A47D15008612A1 /* Log.swift */; };
+		893072D522A497B2008612A1 /* MapCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E123228A3B1B00CE3E3F /* MapCache.swift */; };
+		893072D622A497B5008612A1 /* MapCacheConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E121228A38F700CE3E3F /* MapCacheConfig.swift */; };
+		893072D722A497B9008612A1 /* CachedTileOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E11D228A320700CE3E3F /* CachedTileOverlay.swift */; };
 		89F6E11E228A320700CE3E3F /* CachedTileOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E11D228A320700CE3E3F /* CachedTileOverlay.swift */; };
 		89F6E122228A38F700CE3E3F /* MapCacheConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E121228A38F700CE3E3F /* MapCacheConfig.swift */; };
 		89F6E124228A3B1B00CE3E3F /* MapCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E123228A3B1B00CE3E3F /* MapCache.swift */; };
@@ -857,6 +865,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				03276D5BF0F7B0D46434569079786B66 /* Pods-MapCache_Tests-dummy.m in Sources */,
+				893072D222A49728008612A1 /* MD5.swift in Sources */,
+				893072D722A497B9008612A1 /* CachedTileOverlay.swift in Sources */,
+				893072D422A4976C008612A1 /* Log.swift in Sources */,
+				893072D522A497B2008612A1 /* MapCache.swift in Sources */,
+				893072D022A49721008612A1 /* String+DiskCache.swift in Sources */,
+				893072CF22A4971A008612A1 /* DiskCache.swift in Sources */,
+				893072D122A49724008612A1 /* FileManager+DiskCache.swift in Sources */,
+				893072D622A497B5008612A1 /* MapCacheConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
