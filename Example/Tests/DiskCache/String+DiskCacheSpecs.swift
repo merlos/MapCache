@@ -18,6 +18,15 @@ class String_DiskCacheSpecs: QuickSpec {
                 let hello = "Hello"
                 expect(hello.toMD5()) == "8b1a9953c4611296a827abf8c47804d7"
             }
+            it("can escape file name") {
+                let url = "http://xuz.com/c?a=1&b=2&c=1%20_"
+                print(url.escapedFilename())
+            }
+            
+            it("can calculate MD5 filename") {
+                let filename = "hello.pdf" // => MD5(hello.pdf) =  205bae5d34f9013544c01a6cf95cd7dd
+                expect(filename.MD5Filename()) == "205bae5d34f9013544c01a6cf95cd7dd.pdf"
+            }
         }
     }
 }

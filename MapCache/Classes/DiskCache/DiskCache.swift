@@ -22,16 +22,16 @@ open class DiskCache {
         return baseURL
     }
     
-    /// Cache URL in the filesystem
+    /// URL of the physical folder of the Cache in the file system
     public let folderURL: URL
     
-    /// A shortcut for folder.path
+    /// A shortcut for folderURL.path
     open var path: String {
         get {
             return self.folderURL.path
         }
     }
-    
+    /// Current cache size
     open var size : UInt64 = 0
     
     open var capacity : UInt64 = 0 {
@@ -48,97 +48,23 @@ open class DiskCache {
         return cacheQueue
     }()
     
-    public init(cacheName: String, capacity: UInt64 = UINT64_MAX) {
-        self.folderURL = DiskCache.baseURL().appendingPathComponent(cacheName, isDirectory: true)
+    public init(withName cacheName: String, capacity: UInt64 = UINT64_MAX) {
+        folderURL = DiskCache.baseURL().appendingPathComponent(cacheName, isDirectory: true)
         do {
             try FileManager.default.createDirectory(at: self.folderURL, withIntermediateDirectories: true, attributes: nil)
         } catch {
             Log.error(message: "Failed to create directory \(folderURL.absoluteString)", error: error)
         }
         self.capacity = capacity
-        self.cacheQueue.async(execute: {
-            self.calculateSize()
+        cacheQueue.async(execute: {
+            self.size = self.calculateSize()
             self.controlCapacity()
         })
         Log.debug(message: "DiskCache folderURL=\(folderURL.absoluteString)")
     }
     
-    open func setData( _ getData: @autoclosure @escaping () -> Data?, key: String) {
-        cacheQueue.async(execute: {
-            if let data = getData() {
-                self.setDataSync(data, key: key)
-            } else {
-                Log.error(message: "Failed to get data for key \(key)")
-            }
-        })
-    }
     
-    open func fetchData(key: String, failure fail: ((Error?) -> ())? = nil, success succeed: @escaping (Data) -> ()) {
-        cacheQueue.async {
-            let path = self.path(forKey: key)
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: Data.ReadingOptions())
-                DispatchQueue.main.async {
-                    succeed(data)
-                }
-                self.updateDiskAccessDate(atPath: path)
-            } catch {
-                if let block = fail {
-                    DispatchQueue.main.async {
-                        block(error)
-                    }
-                }
-            }
-        }
-    }
-    
-    open func removeData(with key: String) {
-        cacheQueue.async(execute: {
-            let path = self.path(forKey: key)
-            self.removeFile(atPath: path)
-        })
-    }
-    
-    open func removeAllData(_ completion: (() -> ())? = nil) {
-        let fileManager = FileManager.default
-        let cachePath = self.path
-        cacheQueue.async(execute: {
-            do {
-                let contents = try fileManager.contentsOfDirectory(atPath: cachePath)
-                for pathComponent in contents {
-                    let path = (cachePath as NSString).appendingPathComponent(pathComponent)
-                    do {
-                        try fileManager.removeItem(atPath: path)
-                    } catch {
-                        Log.error(message: "Failed to remove path \(path)", error: error)
-                    }
-                }
-                self.calculateSize()
-            } catch {
-                Log.error(message: "Failed to list directory", error: error)
-            }
-            if let completion = completion {
-                DispatchQueue.main.async {
-                    completion()
-                }
-            }
-        })
-    }
-    
-    open func updateAccessDate( _ getData: @autoclosure @escaping () -> Data?, key: String) {
-        cacheQueue.async(execute: {
-            let path = self.path(forKey: key)
-            let fileManager = FileManager.default
-            if (!(fileManager.fileExists(atPath: path) && self.updateDiskAccessDate(atPath: path))){
-                if let data = getData() {
-                    self.setDataSync(data, key: key)
-                } else {
-                    Log.error(message: "Failed to get data for key \(key)")
-                }
-            }
-        })
-    }
-    
+    /// Gets paths for key
     open func path(forKey key: String) -> String {
         let escapedFilename = key.escapedFilename()
         let filename = escapedFilename.count < Int(NAME_MAX) ? escapedFilename : key.MD5Filename()
@@ -146,46 +72,16 @@ open class DiskCache {
         return keyPath
     }
     
-    // MARK: Private
-    
-    fileprivate func calculateSize() {
-        let fileManager = FileManager.default
-        size = 0
-        let cachePath = self.path
-        do {
-            let contents = try fileManager.contentsOfDirectory(atPath: cachePath)
-            for pathComponent in contents {
-                let path = (cachePath as NSString).appendingPathComponent(pathComponent)
-                do {
-                    let attributes: [FileAttributeKey: Any] = try fileManager.attributesOfItem(atPath: path)
-                    if let fileSize = attributes[FileAttributeKey.size] as? UInt64 {
-                        size += fileSize
-                    }
-                } catch {
-                    Log.error(message: "Failed to list directory", error: error)
-                }
-            }
-            
-        } catch {
-            Log.error(message: "Failed to list directory", error: error)
-        }
+    /// Sets the data for the key asyncronously
+    /// Use this function for writing into the cache
+    open func setData( _ data: Data, forKey key: String) {
+        cacheQueue.async(execute: {
+                self.setDataSync(data, forKey: key)
+        })
     }
     
-    fileprivate func controlCapacity() {
-        if self.size <= self.capacity { return }
-        
-        let fileManager = FileManager.default
-        let cachePath = self.path
-        fileManager.enumerateContentsOfDirectory(
-            atPath: cachePath,
-            orderedByProperty: URLResourceKey.contentModificationDateKey.rawValue, ascending: true) {
-                (URL : URL, _, stop : inout Bool) -> Void in
-                self.removeFile(atPath: URL.path)
-                stop = self.size <= self.capacity
-        }
-    }
-    
-    fileprivate func setDataSync(_ data: Data, key: String) {
+    /// Sets the data for the key synchronously
+    open func setDataSync(_ data: Data, forKey key: String) {
         let path = self.path(forKey: key)
         let fileManager = FileManager.default
         let previousAttributes : [FileAttributeKey: Any]? = try? fileManager.attributesOfItem(atPath: path)
@@ -204,6 +100,113 @@ open class DiskCache {
         self.size += UInt64(data.count)
         self.controlCapacity()
     }
+    
+    
+    open func fetchData(forKey key: String, failure fail: ((Error?) -> ())? = nil, success succeed: @escaping (Data) -> ()) {
+        cacheQueue.async {
+            let path = self.path(forKey: key)
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: Data.ReadingOptions())
+                DispatchQueue.main.async {
+                    succeed(data)
+                }
+                self.updateDiskAccessDate(atPath: path)
+            } catch {
+                if let block = fail {
+                    DispatchQueue.main.async {
+                        block(error)
+                    }
+                }
+            }
+        }
+    }
+    
+    open func removeData(withKey key: String) {
+        cacheQueue.async(execute: {
+            let path = self.path(forKey: key)
+            self.removeFile(atPath: path)
+        })
+    }
+    
+    open func removeAllData(_ completion: (() -> ())? = nil) {
+        let fileManager = FileManager.default
+        cacheQueue.async(execute: {
+            do {
+                let contents = try fileManager.contentsOfDirectory(atPath: self.path)
+                for filename in contents {
+                    let filePath = self.folderURL.appendingPathComponent(filename).path
+                    do {
+                        try fileManager.removeItem(atPath: filePath)
+                    } catch {
+                        Log.error(message: "Failed to remove path \(filePath)", error: error)
+                    }
+                }
+                self.size = self.calculateSize()
+            } catch {
+                Log.error(message: "Failed to list directory", error: error)
+            }
+            if let completion = completion {
+                DispatchQueue.main.async {
+                    completion()
+                }
+            }
+        })
+    }
+    
+    open func updateAccessDate( _ getData: @autoclosure @escaping () -> Data?, key: String) {
+        cacheQueue.async(execute: {
+            let path = self.path(forKey: key)
+            let fileManager = FileManager.default
+            if (!(fileManager.fileExists(atPath: path) && self.updateDiskAccessDate(atPath: path))){
+                if let data = getData() {
+                    self.setDataSync(data, forKey: key)
+                } else {
+                    Log.error(message: "Failed to get data for key \(key)")
+                }
+            }
+        })
+    }
+    
+    public func calculateSize() -> UInt64 {
+        let fileManager = FileManager.default
+        var currentSize : UInt64 = 0
+        do {
+            let contents = try fileManager.contentsOfDirectory(atPath: path)
+            for pathComponent in contents {
+                let filePath = folderURL.appendingPathComponent(pathComponent).path
+                do {
+                    let attributes: [FileAttributeKey: Any] = try fileManager.attributesOfItem(atPath: filePath)
+                    if let fileSize = attributes[FileAttributeKey.size] as? UInt64 {
+                        currentSize += fileSize
+                    }
+                } catch {
+                    Log.error(message: "Failed to list directory", error: error)
+                }
+            }
+            
+        } catch {
+            Log.error(message: "Failed to list directory", error: error)
+        }
+        return currentSize
+    }
+    
+    // MARK: Private
+    
+    fileprivate func controlCapacity() {
+        if self.size <= self.capacity { return }
+        
+        let fileManager = FileManager.default
+        let cachePath = self.path
+        fileManager.enumerateContentsOfDirectory(
+            atPath: cachePath,
+            orderedByProperty: URLResourceKey.contentModificationDateKey.rawValue, ascending: true) {
+                (URL : URL, _, stop : inout Bool) -> Void in
+                self.removeFile(atPath: URL.path)
+                stop = self.size <= self.capacity
+        }
+    }
+    
+    
     
     @discardableResult fileprivate func updateDiskAccessDate(atPath path: String) -> Bool {
         let fileManager = FileManager.default
