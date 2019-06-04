@@ -50,7 +50,7 @@ public class CachedTileOverlay : MKTileOverlay {
     ///
     override public func loadTile(at path: MKTileOverlayPath,
                            result: @escaping (Data?, Error?) -> Void) {
-        let url = self.url(forTilePath: path)
+        //let url = self.url(forTilePath: path)
         //print ("CachedTileOverlay::loadTile() url=\(url) useCache: \(config?.useCache ?? true)")
     
         if !(config?.useCache ?? true) { // Use cache by use cache is not set.
