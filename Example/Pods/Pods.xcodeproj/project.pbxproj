@@ -66,7 +66,19 @@
 		85B1FD799EFCE4BB2DA10B8DF822D809 /* AdapterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BBDC3815BEC23123429E9287236DA4 /* AdapterProtocols.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		8635E1CB24B8F70D29C35BF71AD96490 /* MatcherProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F362317637CCA78CFFC2C2EC9A75769A /* MatcherProtocols.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		8859E1B40FBE9E2CF8C1BA9C4468CFEE /* QCKDSL.m in Sources */ = {isa = PBXBuildFile; fileRef = E835A82093D6DDD269ADA103B9095528 /* QCKDSL.m */; };
-		897DE7EA2294C2070054A9A1 /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897DE7E92294C2070054A9A1 /* DiskCache.swift */; };
+		893072C122A47C76008612A1 /* FileManager+DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072C022A47C76008612A1 /* FileManager+DiskCache.swift */; };
+		893072C322A47C9D008612A1 /* MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072C222A47C9D008612A1 /* MD5.swift */; };
+		893072C522A47CBA008612A1 /* String+DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072C422A47CBA008612A1 /* String+DiskCache.swift */; };
+		893072C722A47CE2008612A1 /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072C622A47CE2008612A1 /* DiskCache.swift */; };
+		893072C922A47D15008612A1 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072C822A47D15008612A1 /* Log.swift */; };
+		893072CF22A4971A008612A1 /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072C622A47CE2008612A1 /* DiskCache.swift */; };
+		893072D022A49721008612A1 /* String+DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072C422A47CBA008612A1 /* String+DiskCache.swift */; };
+		893072D122A49724008612A1 /* FileManager+DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072C022A47C76008612A1 /* FileManager+DiskCache.swift */; };
+		893072D222A49728008612A1 /* MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072C222A47C9D008612A1 /* MD5.swift */; };
+		893072D422A4976C008612A1 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072C822A47D15008612A1 /* Log.swift */; };
+		893072D522A497B2008612A1 /* MapCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E123228A3B1B00CE3E3F /* MapCache.swift */; };
+		893072D622A497B5008612A1 /* MapCacheConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E121228A38F700CE3E3F /* MapCacheConfig.swift */; };
+		893072D722A497B9008612A1 /* CachedTileOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E11D228A320700CE3E3F /* CachedTileOverlay.swift */; };
 		89F6E11E228A320700CE3E3F /* CachedTileOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E11D228A320700CE3E3F /* CachedTileOverlay.swift */; };
 		89F6E122228A38F700CE3E3F /* MapCacheConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E121228A38F700CE3E3F /* MapCacheConfig.swift */; };
 		89F6E124228A3B1B00CE3E3F /* MapCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E123228A3B1B00CE3E3F /* MapCache.swift */; };
@@ -234,7 +246,11 @@
 		82564EA199C083C906B29363A58A4FBA /* Await.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Await.swift; path = Sources/Nimble/Utils/Await.swift; sourceTree = "<group>"; };
 		8693C5545DF482F32F34771879833934 /* Pods-MapCache_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MapCache_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		883EB7C3B2F3E4CEC7FDF974A0DA21CD /* DSL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DSL.m; path = Sources/NimbleObjectiveC/DSL.m; sourceTree = "<group>"; };
-		897DE7E92294C2070054A9A1 /* DiskCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DiskCache.swift; path = MapCache/Classes/DiskCache.swift; sourceTree = "<group>"; };
+		893072C022A47C76008612A1 /* FileManager+DiskCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+DiskCache.swift"; sourceTree = "<group>"; };
+		893072C222A47C9D008612A1 /* MD5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MD5.swift; sourceTree = "<group>"; };
+		893072C422A47CBA008612A1 /* String+DiskCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DiskCache.swift"; sourceTree = "<group>"; };
+		893072C622A47CE2008612A1 /* DiskCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskCache.swift; sourceTree = "<group>"; };
+		893072C822A47D15008612A1 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Log.swift; path = MapCache/Classes/Log.swift; sourceTree = "<group>"; };
 		89F6E11D228A320700CE3E3F /* CachedTileOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CachedTileOverlay.swift; path = MapCache/Classes/CachedTileOverlay.swift; sourceTree = "<group>"; };
 		89F6E121228A38F700CE3E3F /* MapCacheConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapCacheConfig.swift; path = MapCache/Classes/MapCacheConfig.swift; sourceTree = "<group>"; };
 		89F6E123228A3B1B00CE3E3F /* MapCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapCache.swift; path = MapCache/Classes/MapCache.swift; sourceTree = "<group>"; };
@@ -465,6 +481,18 @@
 			path = "Target Support Files/Pods-MapCache_Tests";
 			sourceTree = "<group>";
 		};
+		893072BF22A47B9E008612A1 /* DiskCache */ = {
+			isa = PBXGroup;
+			children = (
+				893072C622A47CE2008612A1 /* DiskCache.swift */,
+				893072C422A47CBA008612A1 /* String+DiskCache.swift */,
+				893072C022A47C76008612A1 /* FileManager+DiskCache.swift */,
+				893072C222A47C9D008612A1 /* MD5.swift */,
+			);
+			name = DiskCache;
+			path = MapCache/Classes/DiskCache;
+			sourceTree = "<group>";
+		};
 		97F9D238A65ADDE7A4DF6948396B60E5 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
@@ -635,12 +663,13 @@
 		E7EE2E64DF7D62F15C56CF0291FC831B /* MapCache */ = {
 			isa = PBXGroup;
 			children = (
+				893072BF22A47B9E008612A1 /* DiskCache */,
 				97F9D238A65ADDE7A4DF6948396B60E5 /* Pod */,
 				04E3FCDCB62BDB35201604F04525EF79 /* Support Files */,
 				89F6E11D228A320700CE3E3F /* CachedTileOverlay.swift */,
 				89F6E121228A38F700CE3E3F /* MapCacheConfig.swift */,
 				89F6E123228A3B1B00CE3E3F /* MapCache.swift */,
-				897DE7E92294C2070054A9A1 /* DiskCache.swift */,
+				893072C822A47D15008612A1 /* Log.swift */,
 			);
 			name = MapCache;
 			path = ../..;
@@ -836,6 +865,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				03276D5BF0F7B0D46434569079786B66 /* Pods-MapCache_Tests-dummy.m in Sources */,
+				893072D222A49728008612A1 /* MD5.swift in Sources */,
+				893072D722A497B9008612A1 /* CachedTileOverlay.swift in Sources */,
+				893072D422A4976C008612A1 /* Log.swift in Sources */,
+				893072D522A497B2008612A1 /* MapCache.swift in Sources */,
+				893072D022A49721008612A1 /* String+DiskCache.swift in Sources */,
+				893072CF22A4971A008612A1 /* DiskCache.swift in Sources */,
+				893072D122A49724008612A1 /* FileManager+DiskCache.swift in Sources */,
+				893072D622A497B5008612A1 /* MapCacheConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -921,11 +958,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				893072C322A47C9D008612A1 /* MD5.swift in Sources */,
 				A0AB5460A49FEB15D966FF959B3D8E64 /* MapCache-dummy.m in Sources */,
+				893072C922A47D15008612A1 /* Log.swift in Sources */,
+				893072C522A47CBA008612A1 /* String+DiskCache.swift in Sources */,
+				893072C122A47C76008612A1 /* FileManager+DiskCache.swift in Sources */,
 				89F6E11E228A320700CE3E3F /* CachedTileOverlay.swift in Sources */,
+				893072C722A47CE2008612A1 /* DiskCache.swift in Sources */,
 				89F6E124228A3B1B00CE3E3F /* MapCache.swift in Sources */,
 				89F6E122228A38F700CE3E3F /* MapCacheConfig.swift in Sources */,
-				897DE7EA2294C2070054A9A1 /* DiskCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

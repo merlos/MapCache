@@ -24,14 +24,14 @@ A smart cache for iOS Map Applications.
   s.homepage         = 'https://github.com/merlos/MapCache'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'merlos' => 'merlos@gmail.com' }
+  s.author           = { 'merlos' => 'merlos@users.noreply.github.com' }
   s.source           = { :git => 'https://github.com/merlos/MapCache.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/merlos'
 
-  s.ios.deployment_target = '8.0'
-
+  s.ios.deployment_target = '9.0'
+  s.swift_version = '4.0'
   s.source_files = 'MapCache/Classes/**/*'
-  s.platform = :ios
+  s.platform = :ios, '9.0'
   # s.resource_bundles = {
   #   'MapCache' => ['MapCache/Assets/*.png']
   # }

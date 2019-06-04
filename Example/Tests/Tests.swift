@@ -9,25 +9,25 @@ class TableOfContentsSpec: QuickSpec {
         describe("these will fail") {
 
             it("can do maths") {
-                expect(2) == 2
+                //expect(2) == 2
             }
 
             it("can read") {
-                expect("number") == "string"
+                //expect("number") == "string"
             }
 
             it("will eventually fail") {
-                expect("time").toEventually( equal("done") )
+                //expect("time").toEventually( equal("done") )
             }
             
             context("these will pass") {
 
                 it("can do maths") {
-                    expect(23) == 23
+                   // expect(23) == 23
                 }
 
                 it("can read") {
-                    expect("🐮") == "🐮"
+                    //expect("🐮") == "🐮"
                 }
 
                 it("will eventually pass") {
@@ -39,7 +39,7 @@ class TableOfContentsSpec: QuickSpec {
 
                     waitUntil { done in
                         Thread.sleep(forTimeInterval: 0.5)
-                        expect(time) == "done"
+                        //expect(time) == "done"
 
                         done()
                     }

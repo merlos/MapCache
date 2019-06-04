@@ -38,7 +38,7 @@ public class CachedTileOverlay : MKTileOverlay {
         let rand = arc4random_uniform(UInt32(subdomains.count))
         let randIndex = subdomains.index(subdomains.startIndex, offsetBy: String.IndexDistance(rand));
         urlString = urlString?.replacingOccurrences(of: "{s}", with:String(subdomains[randIndex]))
-        print("CachedTileOverlay:: url() urlString: \(urlString ?? "no url")")
+       // print("CachedTileOverlay:: url() urlString: \(urlString ?? "no url")")
         return URL(string: urlString!)!
     }
     
@@ -50,11 +50,11 @@ public class CachedTileOverlay : MKTileOverlay {
     ///
     override public func loadTile(at path: MKTileOverlayPath,
                            result: @escaping (Data?, Error?) -> Void) {
-        let url = self.url(forTilePath: path)
-        print ("CachedTileOverlay::loadTile() url=\(url) useCache: \(config?.useCache ?? true)")
+        //let url = self.url(forTilePath: path)
+        //print ("CachedTileOverlay::loadTile() url=\(url) useCache: \(config?.useCache ?? true)")
     
         if !(config?.useCache ?? true) { // Use cache by use cache is not set.
-            print("loadTile:: not using cache")
+           // print("loadTile:: not using cache")
             return super.loadTile(at: path, result: result)
         }
         // Use cache

@@ -14,6 +14,8 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		893072CC22A47E4A008612A1 /* DiskCacheSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072CB22A47E4A008612A1 /* DiskCacheSpecs.swift */; };
+		893072CE22A47F06008612A1 /* String+DiskCacheSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893072CD22A47F06008612A1 /* String+DiskCacheSpecs.swift */; };
 		897DE7EE22976D7E0054A9A1 /* MapCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897DE7ED22976D7E0054A9A1 /* MapCacheTests.swift */; };
 		C96E40763BA125EDD01D8619 /* Pods_MapCache_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E93B0D3BBC838295972E4B6C /* Pods_MapCache_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -45,6 +47,8 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		86806D7962E8E2CA29F7E1EF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		893072CB22A47E4A008612A1 /* DiskCacheSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskCacheSpecs.swift; sourceTree = "<group>"; };
+		893072CD22A47F06008612A1 /* String+DiskCacheSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DiskCacheSpecs.swift"; sourceTree = "<group>"; };
 		897DE7ED22976D7E0054A9A1 /* MapCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCacheTests.swift; sourceTree = "<group>"; };
 		98B68CF07B3AC619DB7870E1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E93B0D3BBC838295972E4B6C /* Pods_MapCache_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapCache_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +130,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				893072CA22A47D36008612A1 /* DiskCache */,
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				897DE7ED22976D7E0054A9A1 /* MapCacheTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
@@ -149,6 +154,15 @@
 				98B68CF07B3AC619DB7870E1 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		893072CA22A47D36008612A1 /* DiskCache */ = {
+			isa = PBXGroup;
+			children = (
+				893072CB22A47E4A008612A1 /* DiskCacheSpecs.swift */,
+				893072CD22A47F06008612A1 /* String+DiskCacheSpecs.swift */,
+			);
+			path = DiskCache;
 			sourceTree = "<group>";
 		};
 		B6CB91938DE7FBFF8535B923 /* Pods */ = {
@@ -357,6 +371,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				893072CC22A47E4A008612A1 /* DiskCacheSpecs.swift in Sources */,
+				893072CE22A47F06008612A1 /* String+DiskCacheSpecs.swift in Sources */,
 				897DE7EE22976D7E0054A9A1 /* MapCacheTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
