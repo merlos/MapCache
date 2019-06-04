@@ -13,6 +13,7 @@ import Nimble
 class DiskCacheSpecs: QuickSpec {
     override func spec() {
         
+        /// Removes the cache folder
         func removeCache(cacheName: String) {
             let diskCache = DiskCache(withName: cacheName)
             do {
@@ -28,7 +29,7 @@ class DiskCacheSpecs: QuickSpec {
             it("can create the cache folder") {
                 let diskCache = DiskCache(withName: "path")
                 var isDirectory : ObjCBool = false
-                print(diskCache.folderURL)
+                //print(diskCache.folderURL)
                 let exists = FileManager.default.fileExists(atPath: diskCache.path, isDirectory: &isDirectory)
                 expect(exists) == true
                 expect(isDirectory.boolValue) == true
@@ -45,6 +46,7 @@ class DiskCacheSpecs: QuickSpec {
                 expect(exists) == false
             }
         }
+        
         describe("a DiskCache") {
             
             let cacheName = "path2"
@@ -71,11 +73,8 @@ class DiskCacheSpecs: QuickSpec {
             it("can add a file") {
                 let data = data1
                 let filename = filename1
-                
                 diskCache.setData(data!, forKey: filename)
-                let filePath = diskCache.folderURL.appendingPathComponent(filename.escapedFilename()).path
-                //Thread.sleep(forTimeInterval: 0.3)
-                //expect(FileManager.default.fileExists(atPath: filePath)) == true
+                let filePath = diskCache.folderURL.appendingPathComponent(filename.toMD5()).path
                 expect(FileManager.default.fileExists(atPath: filePath)).toEventually(equal(true))
             }
             
@@ -93,7 +92,6 @@ class DiskCacheSpecs: QuickSpec {
                 expect(size) == 0
                 diskCache.setDataSync(data1!, forKey: filename1)
                 expect(diskCache.size).toEventually(equal(10))
-    
             }
             
             it("can find a file that is in the cache") {
@@ -117,43 +115,61 @@ class DiskCacheSpecs: QuickSpec {
                 })
             }
             
+            //it("can handle weird names2") {
+            //    let diskCache2 = DiskCache(withName: "weird")
+            //   let weird1 = "ºª|!@#·$%&¬/()= ?'¿¡^`[]+*¨´{}ç;,.-<>€"
+            //    print("weird: \(diskCache2.path(forKey: weird1))")
+            //    diskCache2.setData(data1!, forKey: weird1)
+            //}
+            
+            it("can handle weird names") {
+                let weird1 = "ºª|!@#·$%&¬/()= ?'¿¡^`[]+*¨´{}ç;,.-<>€"
+                //print("weird: \(diskCache.path(forKey: weird1))")
+                expect(diskCache.size).toEventually(equal(0))
+                diskCache.setData(data1!, forKey: weird1)
+                let filePath = diskCache.path(forKey: weird1)
+                expect(FileManager.default.fileExists(atPath: filePath)).toEventually(equal(true))
+                expect(diskCache.size).toEventually(equal(10))
+                diskCache.fetchData(forKey: weird1, failure: { error in
+                    guard let error = error as NSError? else {
+                        expect(1) > 2
+                        return
+                    }
+                    expect(error.code).toNot(equal(NSFileReadNoSuchFileError))
+                    return
+                }, success: {
+                    expect($0) == data1
+                })
+            }
+            
             it("can remove the file from the cache") {
-                //expect("time").toEventually( equal("time2") )
-            }
-            
-            it("can get disk usage from the cache") {
-                //expect("time").toEventually( equal("time2") )
-            }
-            
-            it("can get the number of items from the cache") {
-               // expect("time").toEventually( equal("time2") )
-            }
-            
-            context("these will pass") {
-                
-                it("can do maths") {
-                   // expect(23) == 24
-                }
-                
-                it("can read") {
-                    //expect("🐮") == "🐮 "
-                }
-                
-                it("will eventually pass") {
-                    var time = "passing"
-                    
-                    DispatchQueue.main.async {
-                        time = "done"
+                // add the file
+                diskCache.setData(data1!, forKey: filename1)
+                expect(diskCache.size).toEventually(equal(10))
+                // remove the file
+                diskCache.removeData(withKey: filename1)
+                expect(diskCache.size).toEventually(equal(0))
+                diskCache.fetchData(forKey: filename1, failure: { error in
+                    guard let error = error as NSError? else {
+                        expect(1) > 2
+                        return
                     }
-                    
-                    waitUntil { done in
-                        Thread.sleep(forTimeInterval: 0.5)
-                        //expect(time) == "done"
-                        
-                        done()
-                    }
-                }
+                    expect(error.code).to(equal(NSFileReadNoSuchFileError))
+                    return
+                }, success: {
+                    // if the test goes right it should never come here
+                    expect($0.isEmpty) == true //make it fail
+                })
             }
+            
+            it("can remove all items from the cache") {
+                diskCache.setData(data1!, forKey: filename1)
+                diskCache.setData(dataLongFile!, forKey: longFileName)
+                expect(diskCache.size).toEventually(equal(20))
+                diskCache.removeAllData({})
+                expect(diskCache.size).toEventually(equal(0))
+            }
+            
         }
     }
 }

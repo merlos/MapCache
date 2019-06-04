@@ -60,16 +60,16 @@ open class DiskCache {
             self.size = self.calculateSize()
             self.controlCapacity()
         })
-        Log.debug(message: "DiskCache folderURL=\(folderURL.absoluteString)")
+        //Log.debug(message: "DiskCache folderURL=\(folderURL.absoluteString)")
     }
     
     
     /// Gets paths for key
     open func path(forKey key: String) -> String {
-        let escapedFilename = key.escapedFilename()
-        let filename = escapedFilename.count < Int(NAME_MAX) ? escapedFilename : key.MD5Filename()
-        let keyPath = (self.path as NSString).appendingPathComponent(filename)
-        return keyPath
+        return self.folderURL.appendingPathComponent(key.toMD5()).path
+        //let escapedFilename = key.escapedFilename()
+        //let filename = escapedFilename.count < Int(NAME_MAX) ? escapedFilename : key.MD5Filename()
+        //return self.folderURL.appendingPathComponent(filename).path
     }
     
     /// Sets the data for the key asyncronously
