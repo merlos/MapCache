@@ -18,17 +18,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Set delegate
         map.delegate = self
-        
-        //Request permissions
-        //Config
         let config = MapCacheConfig(withTileUrlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
-        
-        
-        let tileServerOverlay = CachedTileOverlay(mapCacheConfig: config)
-        tileServerOverlay.canReplaceMapContent = true
-        map.insert(tileServerOverlay, at: 0, level: .aboveLabels)
+        map.useMapCache(withConfig: config)
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,12 +31,11 @@ class ViewController: UIViewController {
 
 extension ViewController : MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if overlay.isKind(of: MKTileOverlay.self) {
-            return MKTileOverlayRenderer(overlay: overlay)
-        }
-        return MKOverlayRenderer()
+        return mapView.mapCacheRenderer(forOverlay: overlay)
     }
 }
+
+
 
 extension ViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

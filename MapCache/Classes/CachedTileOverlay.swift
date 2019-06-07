@@ -14,11 +14,16 @@ import MapKit
 ///
 public class CachedTileOverlay : MKTileOverlay {
     
-    public var config: MapCacheConfig?
+    public var config: MapCacheConfig = MapCacheConfig()
+    
+    let operationQueue = OperationQueue()
+    
+    var diskCache: DiskCache
     
     public init(mapCacheConfig: MapCacheConfig) {
+        diskCache = DiskCache(withName: config.cacheName, capacity: config.capacity)
+        config = mapCacheConfig
         super.init(urlTemplate: mapCacheConfig.tileUrlTemplate)
-        self.config = mapCacheConfig
     }
     
     ///
@@ -32,13 +37,8 @@ public class CachedTileOverlay : MKTileOverlay {
         var urlString = urlTemplate?.replacingOccurrences(of: "{z}", with: String(path.z))
         urlString = urlString?.replacingOccurrences(of: "{x}", with: String(path.x))
         urlString = urlString?.replacingOccurrences(of: "{y}", with: String(path.y))
-        
-        //get random subdomain
-        let subdomains = "abc"
-        let rand = arc4random_uniform(UInt32(subdomains.count))
-        let randIndex = subdomains.index(subdomains.startIndex, offsetBy: String.IndexDistance(rand));
-        urlString = urlString?.replacingOccurrences(of: "{s}", with:String(subdomains[randIndex]))
-       // print("CachedTileOverlay:: url() urlString: \(urlString ?? "no url")")
+        urlString = urlString?.replacingOccurrences(of: "{s}", with:config.randomSubdomain() ?? "")
+        //print("CachedTileOverlay:: url() urlString: \(urlString ?? "no url")")
         return URL(string: urlString!)!
     }
     
@@ -50,15 +50,32 @@ public class CachedTileOverlay : MKTileOverlay {
     ///
     override public func loadTile(at path: MKTileOverlayPath,
                            result: @escaping (Data?, Error?) -> Void) {
-        //let url = self.url(forTilePath: path)
-        //print ("CachedTileOverlay::loadTile() url=\(url) useCache: \(config?.useCache ?? true)")
-    
-        if !(config?.useCache ?? true) { // Use cache by use cache is not set.
+        if !(config.useCache) { // Use cache by use cache is not set.
            // print("loadTile:: not using cache")
             return super.loadTile(at: path, result: result)
         }
         // Use cache
+        // is the file alread in the system?
+        let cacheKey = "\(self.urlTemplate ?? "none")-\(path.x)-\(path.y)-\(path.z)"
         
-        return super.loadTile(at: path, result: result)
+        let fetChfailure = { (error: Error?) -> () in
+             print ("CachedTileOverlay:: Not found! cacheKey=\(cacheKey)" )
+        }
+        let fetchSuccess = {(data: Data) -> () in
+             print ("CachedTileOverlay:: found! cacheKey=\(cacheKey)" )
+            result(data, nil)
+            return
+        }
+        diskCache.fetchData(forKey: cacheKey, failure: fetChfailure, success: fetchSuccess)
+        let url = self.url(forTilePath: path)
+        print ("CachedTileOverlay::loadTile() url=\(url) useCache: \(config.useCache)")
+        print("Requesting data....");
+        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            guard let data = data else { return }
+            self.diskCache.setData(data, forKey: cacheKey)
+            print ("CachedTileOverlay:: saved cacheKey=\(cacheKey)" )
+            result(data,nil)
+        }
+        task.resume()
     }
 }

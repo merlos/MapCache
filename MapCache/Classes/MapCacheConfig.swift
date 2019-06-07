@@ -7,18 +7,30 @@
 
 import Foundation
 
-public class MapCacheConfig : NSObject {
+public struct MapCacheConfig  {
     
-    public var tileUrlTemplate: String?
+    public var tileUrlTemplate: String = "https://${s}.tile.openstreetmap.org/${z}/${x}/${y}.png"
+    
+    public var subdomains: [String] = ["a","b","c"]
     
     public var useCache: Bool = true
     
-    override public init() {
-        super.init()
+    public var cacheName: String = "MapCache"
+    
+    public var capacity: UInt64 = UINT64_MAX
+    
+    public init() {
+        
+    }
+    public init(withTileUrlTemplate: String)  {
+        tileUrlTemplate = withTileUrlTemplate
     }
     
-    public init(withTileUrlTemplate: String)  {
-        super.init()
-        tileUrlTemplate = withTileUrlTemplate
+    public func randomSubdomain() -> String? {
+        if subdomains.count == 0 {
+            return nil
+        }
+        let rand = Int(arc4random_uniform(UInt32(subdomains.count)))
+        return subdomains[rand]
     }
 }
