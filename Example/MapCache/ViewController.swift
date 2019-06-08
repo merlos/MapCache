@@ -18,51 +18,66 @@ class ViewController: UIViewController {
     @IBOutlet weak var clearCacheButton: UIButton!
     @IBOutlet weak var cacheSizeLabel: UILabel!
     
+    /// Map Cache config contains all the config options.
+    /// Initialize it before seting up the cache
     var config: MapCacheConfig = MapCacheConfig(withUrlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
-    var cache: MapCache?
     
+    /// Da Map Cache
+    var mapCache: MapCache?
+    
+    /// We can initialize our cache here.
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // See below the extension of the delegate
+        // You need to tell MKMapView to render the overlay
+        // func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer
         map.delegate = self
-        cache = MapCache(withConfig: config)
-        map.useCache(cache!)
+        
+        // initialize the cache with our config
+        mapCache = MapCache(withConfig: config)
+        // See documentation to know more about config options
+        
+        
+        // We tell the MKMapView to use our cache
+        // useCache(:) is part of MapCache extension.
+        map.useCache(mapCache!)
     }
-    
     
     @IBAction func updateSize(_ sender: Any) {
         print("update cache size")
-        let discCache = DiskCache(withName: config.cacheName)
-        cacheSizeLabel.text = String(discCache.calculateSize())
+        cacheSizeLabel.text = String(mapCache!.calculateSize())
     }
-    
     
     @IBAction func clearCache(_ sender: Any) {
         print("clear cache")
-        let discCache = DiskCache(withName: config.cacheName)
-        discCache.removeAllData({
-            self.cacheSizeLabel.text = String(discCache.calculateSize())
+        mapCache!.clear(completition: {
+            self.cacheSizeLabel.text = String(self.mapCache!.calculateSize())
         })
-        
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 }
 
+
+//
+// It is important to override this method of the MKMapViewDelegate
+//
 extension ViewController : MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+  
         return mapView.mapCacheRenderer(forOverlay: overlay)
     }
 }
-
 
 
 extension ViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //Hello
     }
-    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         // Hello 
     }
