@@ -68,7 +68,6 @@ class ViewController: UIViewController {
 //
 extension ViewController : MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-  
         return mapView.mapCacheRenderer(forOverlay: overlay)
     }
 }

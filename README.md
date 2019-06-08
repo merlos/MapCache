@@ -8,7 +8,7 @@
 [![License](https://img.shields.io/cocoapods/l/MapCache.svg?style=flat)](https://cocoapods.org/pods/MapCache)
 [![Platform](https://img.shields.io/cocoapods/p/MapCache.svg?style=flat)](https://cocoapods.org/pods/MapCache)
 
-The missing part of MapKit: A simple way to cache data.
+The missing part of MapKit: A simple way to cache map tiles.
 
 ## Example
 
@@ -30,7 +30,7 @@ In the view controller where you have the `MKMapView` import `MapCache`
 import MapCache
 ```
 
-Then wihtin the ViewController add
+Then within the ViewController add
 
 ```swift
 
@@ -46,11 +46,14 @@ class ViewController: UIViewController {
 
     ...
 
-   // First setup the your cache
+    // First setup the your cache
     let config = MapCacheConfig(withTileUrlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
 
-    // Tell the map to use MapCache with the config
-    map.useMapCache(withConfig: config)
+    // initialize the cache with our config
+    mapCache = MapCache(withConfig: config)
+
+    // We tell the MKMapView to use our cache
+    map.useCache(mapCache!)
 
     ...
 }
@@ -64,9 +67,10 @@ Finally, tell the map delegate to use mapCacheRenderer
 // add this extension:
 extension ViewController : MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        return mapView.mapCacheRenderer(for: overlay)
+        return mapView.mapCacheRenderer(forOverlay: overlay)
     }
 }
+
 ```
 
 ## Author
