@@ -34,7 +34,7 @@ public class MapCache : NSObject {
         
     }
     
-    func clear() {
+    func removeAll() {
         
     }
     
