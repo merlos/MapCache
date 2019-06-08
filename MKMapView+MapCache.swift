@@ -10,9 +10,9 @@ import MapKit
 
 extension MKMapView {
 
-    public func useMapCache(withConfig config: MapCacheConfig) {
+    public func useCache(_ cache: MapCache) {
         
-        let tileServerOverlay = CachedTileOverlay(mapCacheConfig: config)
+        let tileServerOverlay = CachedTileOverlay(withCache: cache)
         tileServerOverlay.canReplaceMapContent = true
         self.insertOverlay(tileServerOverlay, at: 0, level: .aboveLabels)
     }

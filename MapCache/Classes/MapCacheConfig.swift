@@ -9,21 +9,19 @@ import Foundation
 
 public struct MapCacheConfig  {
     
-    public var tileUrlTemplate: String = "https://${s}.tile.openstreetmap.org/${z}/${x}/${y}.png"
+    public var urlTemplate: String = "https://${s}.tile.openstreetmap.org/${z}/${x}/${y}.png"
     
     public var subdomains: [String] = ["a","b","c"]
-    
-    public var useCache: Bool = true
     
     public var cacheName: String = "MapCache"
     
     public var capacity: UInt64 = UINT64_MAX
     
     public init() {
-        
     }
-    public init(withTileUrlTemplate: String)  {
-        tileUrlTemplate = withTileUrlTemplate
+    
+    public init(withUrlTemplate urlTemplate: String)  {
+        self.urlTemplate = urlTemplate
     }
     
     public func randomSubdomain() -> String? {

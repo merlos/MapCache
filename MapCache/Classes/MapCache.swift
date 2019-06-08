@@ -12,30 +12,61 @@ import MapKit
 public class MapCache : NSObject {
     
     public var config : MapCacheConfig
+    public var diskCache : DiskCache
+    let operationQueue = OperationQueue()
     
-    init(config: MapCacheConfig ) {
+    public init(withConfig config: MapCacheConfig ) {
         self.config = config
+        diskCache = DiskCache(withName: config.cacheName, capacity: config.capacity)
     }
     
-    func getTile(_ tilePath: MKTileOverlayPath) {
-       
-        
+    public func url(forTilePath path: MKTileOverlayPath) -> URL {
+        //print("CachedTileOverlay:: url() urlTemplate: \(urlTemplate)")
+        var urlString = config.urlTemplate.replacingOccurrences(of: "{z}", with: String(path.z))
+        urlString = urlString.replacingOccurrences(of: "{x}", with: String(path.x))
+        urlString = urlString.replacingOccurrences(of: "{y}", with: String(path.y))
+        urlString = urlString.replacingOccurrences(of: "{s}", with: config.randomSubdomain() ?? "")
+        print("MapCache::url() urlString: \(urlString)")
+        return URL(string: urlString)!
     }
     
-    func setTile(_ data: Data, forPath: MKTileOverlayPath) {
+    public func loadTile(at path: MKTileOverlayPath, result: @escaping (Data?, Error?) -> Void) {
+        // Use cache
+        // is the file alread in the system?
+        let cacheKey = "\(config.urlTemplate)-\(path.x)-\(path.y)-\(path.z)"
+        let fetChfailure = { (error: Error?) -> () in
+            print ("MapCache::loadTile() Not found! cacheKey=\(cacheKey)" )
+        }
+        let fetchSuccess = {(data: Data) -> () in
+            print ("MapCache::loadTile() found! cacheKey=\(cacheKey)" )
+            result (data, nil)
+        }
         
+        diskCache.fetchData(forKey: cacheKey, failure: fetChfailure, success: fetchSuccess)
+        let url = self.url(forTilePath: path)
+        print ("MapCache::loadTile() url=\(url)")
+        print("Requesting data....");
+        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            guard let data = data else { return }
+            self.diskCache.setData(data, forKey: cacheKey)
+            print ("CachedTileOverlay:: saved cacheKey=\(cacheKey)" )
+            result(data,nil)
+        }
+        task.resume()
     }
     
-    func removeTile(_ tileUrl: String) {
-        
+    public var size: UInt64 {
+        get  {
+            return diskCache.size
+        }
     }
     
-    func cacheSize() {
-        
+    public func calculateSize() -> UInt64 {
+        return diskCache.calculateSize()
     }
     
-    func removeAll() {
-        
+    public func clear(completition: (() -> ())? ) {
+        diskCache.removeAllData(completition)
     }
     
 }

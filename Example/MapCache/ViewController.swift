@@ -18,13 +18,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var clearCacheButton: UIButton!
     @IBOutlet weak var cacheSizeLabel: UILabel!
     
-    var config: MapCacheConfig = MapCacheConfig(withTileUrlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
-
+    var config: MapCacheConfig = MapCacheConfig(withUrlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
+    var cache: MapCache?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         map.delegate = self
-        map.useMapCache(withConfig: config)
+        cache = MapCache(withConfig: config)
+        map.useCache(cache!)
     }
     
     
