@@ -14,11 +14,13 @@ import MapKit
 ///
 public class CachedTileOverlay : MKTileOverlay {
     
-    public var config: MapCacheConfig?
+    let mapCache : MapCache
     
-    public init(mapCacheConfig: MapCacheConfig) {
-        super.init(urlTemplate: mapCacheConfig.tileUrlTemplate)
-        self.config = mapCacheConfig
+    public var useCache: Bool = true
+    
+    public init(withCache cache: MapCache) {
+        mapCache = cache
+        super.init(urlTemplate: mapCache.config.urlTemplate)
     }
     
     ///
@@ -29,17 +31,7 @@ public class CachedTileOverlay : MKTileOverlay {
     ///
     override public func url(forTilePath path: MKTileOverlayPath) -> URL {
         //print("CachedTileOverlay:: url() urlTemplate: \(urlTemplate)")
-        var urlString = urlTemplate?.replacingOccurrences(of: "{z}", with: String(path.z))
-        urlString = urlString?.replacingOccurrences(of: "{x}", with: String(path.x))
-        urlString = urlString?.replacingOccurrences(of: "{y}", with: String(path.y))
-        
-        //get random subdomain
-        let subdomains = "abc"
-        let rand = arc4random_uniform(UInt32(subdomains.count))
-        let randIndex = subdomains.index(subdomains.startIndex, offsetBy: String.IndexDistance(rand));
-        urlString = urlString?.replacingOccurrences(of: "{s}", with:String(subdomains[randIndex]))
-       // print("CachedTileOverlay:: url() urlString: \(urlString ?? "no url")")
-        return URL(string: urlString!)!
+        return mapCache.url(forTilePath: path)
     }
     
     ///
@@ -50,15 +42,11 @@ public class CachedTileOverlay : MKTileOverlay {
     ///
     override public func loadTile(at path: MKTileOverlayPath,
                            result: @escaping (Data?, Error?) -> Void) {
-        //let url = self.url(forTilePath: path)
-        //print ("CachedTileOverlay::loadTile() url=\(url) useCache: \(config?.useCache ?? true)")
-    
-        if !(config?.useCache ?? true) { // Use cache by use cache is not set.
+        if !self.useCache { // Use cache by use cache is not set.
            // print("loadTile:: not using cache")
             return super.loadTile(at: path, result: result)
+        } else {
+           return mapCache.loadTile(at: path, result: result)
         }
-        // Use cache
-        
-        return super.loadTile(at: path, result: result)
     }
 }

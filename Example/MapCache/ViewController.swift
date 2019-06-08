@@ -14,43 +14,69 @@ import MapCache
 class ViewController: UIViewController {
     
     @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var updateSizeButton: UIButton!
+    @IBOutlet weak var clearCacheButton: UIButton!
+    @IBOutlet weak var cacheSizeLabel: UILabel!
     
+    /// Map Cache config contains all the config options.
+    /// Initialize it before seting up the cache
+    var config: MapCacheConfig = MapCacheConfig(withUrlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
+    
+    /// Da Map Cache
+    var mapCache: MapCache?
+    
+    /// We can initialize our cache here.
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Set delegate
+        // See below the extension of the delegate
+        // You need to tell MKMapView to render the overlay
+        // func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer
         map.delegate = self
         
-        //Request permissions
-        //Config
-        let config = MapCacheConfig(withTileUrlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
+        // initialize the cache with our config
+        mapCache = MapCache(withConfig: config)
+        // See documentation to know more about config options
         
         
-        let tileServerOverlay = CachedTileOverlay(mapCacheConfig: config)
-        tileServerOverlay.canReplaceMapContent = true
-        map.insert(tileServerOverlay, at: 0, level: .aboveLabels)
+        // We tell the MKMapView to use our cache
+        // useCache(:) is part of MapCache extension.
+        map.useCache(mapCache!)
     }
-
+    
+    @IBAction func updateSize(_ sender: Any) {
+        print("update cache size")
+        cacheSizeLabel.text = String(mapCache!.calculateSize())
+    }
+    
+    @IBAction func clearCache(_ sender: Any) {
+        print("clear cache")
+        mapCache!.clear(completition: {
+            self.cacheSizeLabel.text = String(self.mapCache!.calculateSize())
+        })
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 }
 
+
+//
+// It is important to override this method of the MKMapViewDelegate
+//
 extension ViewController : MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if overlay.isKind(of: MKTileOverlay.self) {
-            return MKTileOverlayRenderer(overlay: overlay)
-        }
-        return MKOverlayRenderer()
+        return mapView.mapCacheRenderer(forOverlay: overlay)
     }
 }
+
 
 extension ViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //Hello
     }
-    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         // Hello 
     }

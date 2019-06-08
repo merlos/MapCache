@@ -1,15 +1,18 @@
-# MapCache
+# MapCache Swift
 
-[![CI Status](https://img.shields.io/travis/merlos/MapCache.svg?style=flat)](https://travis-ci.org/merlos/MapCache)
+<p><div style="text-align:center"><img src="./images/MapCache.png"></div>
+</p>
+
+[![CI Status](https://travis-ci.com/merlos/MapCache.svg?branch=master)](https://travis-ci.org/merlos/MapCache)
 [![Version](https://img.shields.io/cocoapods/v/MapCache.svg?style=flat)](https://cocoapods.org/pods/MapCache)
 [![License](https://img.shields.io/cocoapods/l/MapCache.svg?style=flat)](https://cocoapods.org/pods/MapCache)
 [![Platform](https://img.shields.io/cocoapods/p/MapCache.svg?style=flat)](https://cocoapods.org/pods/MapCache)
 
+The missing part of MapKit: A simple way to cache map tiles.
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
 
 ## Installation
 
@@ -18,6 +21,56 @@ it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'MapCache'
+```
+## How to use the MapCache?
+
+In the view controller where you have the `MKMapView` import `MapCache`
+
+```swift
+import MapCache
+```
+
+Then within the ViewController add
+
+```swift
+
+class ViewController: UIViewController {
+  @IBOutlet weak var map: MKMapView!
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    ...
+
+    map.delegate = self
+
+    ...
+
+    // First setup the your cache
+    let config = MapCacheConfig(withTileUrlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
+
+    // initialize the cache with our config
+    mapCache = MapCache(withConfig: config)
+
+    // We tell the MKMapView to use our cache
+    map.useCache(mapCache!)
+
+    ...
+}
+```
+
+Finally, tell the map delegate to use mapCacheRenderer
+
+```swift
+
+// Assuming that ViewController is the delegate of the map
+// add this extension:
+extension ViewController : MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        return mapView.mapCacheRenderer(forOverlay: overlay)
+    }
+}
+
 ```
 
 ## Author

@@ -79,6 +79,8 @@
 		893072D522A497B2008612A1 /* MapCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E123228A3B1B00CE3E3F /* MapCache.swift */; };
 		893072D622A497B5008612A1 /* MapCacheConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E121228A38F700CE3E3F /* MapCacheConfig.swift */; };
 		893072D722A497B9008612A1 /* CachedTileOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E11D228A320700CE3E3F /* CachedTileOverlay.swift */; };
+		8992A45722A73C4700C186CA /* MKMapView+MapCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8992A45622A73C4700C186CA /* MKMapView+MapCache.swift */; };
+		8992A45822A73FF300C186CA /* MKMapView+MapCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8992A45622A73C4700C186CA /* MKMapView+MapCache.swift */; };
 		89F6E11E228A320700CE3E3F /* CachedTileOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E11D228A320700CE3E3F /* CachedTileOverlay.swift */; };
 		89F6E122228A38F700CE3E3F /* MapCacheConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E121228A38F700CE3E3F /* MapCacheConfig.swift */; };
 		89F6E124228A3B1B00CE3E3F /* MapCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E123228A3B1B00CE3E3F /* MapCache.swift */; };
@@ -251,6 +253,7 @@
 		893072C422A47CBA008612A1 /* String+DiskCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DiskCache.swift"; sourceTree = "<group>"; };
 		893072C622A47CE2008612A1 /* DiskCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskCache.swift; sourceTree = "<group>"; };
 		893072C822A47D15008612A1 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Log.swift; path = MapCache/Classes/Log.swift; sourceTree = "<group>"; };
+		8992A45622A73C4700C186CA /* MKMapView+MapCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+MapCache.swift"; sourceTree = "<group>"; };
 		89F6E11D228A320700CE3E3F /* CachedTileOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CachedTileOverlay.swift; path = MapCache/Classes/CachedTileOverlay.swift; sourceTree = "<group>"; };
 		89F6E121228A38F700CE3E3F /* MapCacheConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapCacheConfig.swift; path = MapCache/Classes/MapCacheConfig.swift; sourceTree = "<group>"; };
 		89F6E123228A3B1B00CE3E3F /* MapCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapCache.swift; path = MapCache/Classes/MapCache.swift; sourceTree = "<group>"; };
@@ -670,6 +673,7 @@
 				89F6E121228A38F700CE3E3F /* MapCacheConfig.swift */,
 				89F6E123228A3B1B00CE3E3F /* MapCache.swift */,
 				893072C822A47D15008612A1 /* Log.swift */,
+				8992A45622A73C4700C186CA /* MKMapView+MapCache.swift */,
 			);
 			name = MapCache;
 			path = ../..;
@@ -832,6 +836,9 @@
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
 				TargetAttributes = {
+					5B380AFBBEC5617967AAEC298044F559 = {
+						LastSwiftMigration = 1020;
+					};
 					92EA04FE59B547425AA581B4088A2F17 = {
 						LastSwiftMigration = 1020;
 					};
@@ -871,6 +878,7 @@
 				893072D522A497B2008612A1 /* MapCache.swift in Sources */,
 				893072D022A49721008612A1 /* String+DiskCache.swift in Sources */,
 				893072CF22A4971A008612A1 /* DiskCache.swift in Sources */,
+				8992A45822A73FF300C186CA /* MKMapView+MapCache.swift in Sources */,
 				893072D122A49724008612A1 /* FileManager+DiskCache.swift in Sources */,
 				893072D622A497B5008612A1 /* MapCacheConfig.swift in Sources */,
 			);
@@ -965,6 +973,7 @@
 				893072C122A47C76008612A1 /* FileManager+DiskCache.swift in Sources */,
 				89F6E11E228A320700CE3E3F /* CachedTileOverlay.swift in Sources */,
 				893072C722A47CE2008612A1 /* DiskCache.swift in Sources */,
+				8992A45722A73C4700C186CA /* MKMapView+MapCache.swift in Sources */,
 				89F6E124228A3B1B00CE3E3F /* MapCache.swift in Sources */,
 				89F6E122228A38F700CE3E3F /* MapCacheConfig.swift in Sources */,
 			);
@@ -1093,6 +1102,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1129,6 +1139,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1197,7 +1208,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1267,7 +1278,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
