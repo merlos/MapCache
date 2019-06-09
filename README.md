@@ -133,7 +133,7 @@ config.capacity = 200 * 1024 * 1024 // 20 Megabytes
 ## You may also like
 
 * **[Open GPX Tracker](https://github.com/merlos/iOS-Open-GPX-Tracker)**. A free source iOS App to create [GPX](https://en.wikipedia.org/wiki/GPS_Exchange_Format) tracks
-* **[Core GPX](https://github.com/vincentneo/CoreGPX)** A swift library for managing GPX files by [Vincent Neo](https://github.com
+* **[Core GPX](https://github.com/vincentneo/CoreGPX)** A swift library for managing GPX files by [Vincent Neo](https://github.com/vincentneo)
 
 ## License - MIT
 
