@@ -111,7 +111,8 @@ var config = MapCacheConfig()
 // Below we set cartoDB Base map server (https://github.com/CartoDB/cartodb/wiki/BaseMaps-available)
 config.urlTemplate: "https://${s}.basemaps.cartocdn.com/base-light/${z}/${x}/${y}.png"
 
-// In the urlTemplate ${s} stands for subdomains, which allows you to balance the load among the
+// In the urlTemplate ${s} stands for subdomains, which allows you to balance 
+// the load among the
 // different tile servers.
 // Default value is ["a","b","c"].
 config.subdomains = ["a", "b"] 
@@ -120,8 +121,9 @@ config.subdomains = ["a", "b"]
 // Default value is "MapCache"
 config.cacheName = "Carto" 
 
-// Capacity of the cache in bytes. Once the cache is full it uses a LRU algorithm (Least Recently Used), that is, it removes the
-// tiles last used a lot of time ago. Each time a tile is retrieved from the cache it is updated the value of last time used.
+// Capacity of the cache in bytes. Once the cache is full it uses a LRU algorithm 
+// (Least Recently Used), that is, it removes the tiles last used a lot of time ago. 
+// Each time a tile is retrieved from the cache it is updated the value of last time used.
 // Default value of the capacity is unlimited.
 config.capacity = 200 * 1024 * 1024 // 20 Megabytes
 
