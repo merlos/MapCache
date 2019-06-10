@@ -81,7 +81,7 @@ extension ViewController : MKMapViewDelegate {
 
 ```
 After setting up map cache browsed areas of the map will be kept on disk. If user browses again that area it will use the local version.
-Note that in current version `0.1.0` cache has not expiration date so if you need to get a new version of the map you must call
+Note that in current version `0.1.0` cache has not expiration date so if you need to get a new version of the map you must call `clear()` which will wipe out the whole cache.
 
 ```swift
 mapCache.clear() {
@@ -90,7 +90,7 @@ mapCache.clear() {
 }
 ```
 
-To get current cache size
+To get current cache size:
 
 ```swift
 mapCache.calculateSize()
@@ -111,15 +111,18 @@ var config = MapCacheConfig()
 // Below we set cartoDB Base map server (https://github.com/CartoDB/cartodb/wiki/BaseMaps-available)
 config.urlTemplate: "https://${s}.basemaps.cartocdn.com/base-light/${z}/${x}/${y}.png"
 
+
 // In the urlTemplate ${s} stands for subdomains, which allows you to balance 
 // the load among the
 // different tile servers.
 // Default value is ["a","b","c"].
 config.subdomains = ["a", "b"] 
 
+
 // Cache Name is basically is the subfolder name in which the tiles are store.
 // Default value is "MapCache"
 config.cacheName = "Carto" 
+
 
 // Capacity of the cache in bytes. Once the cache is full it uses a LRU algorithm 
 // (Least Recently Used), that is, it removes the tiles last used a lot of time ago. 
@@ -129,6 +132,9 @@ config.capacity = 200 * 1024 * 1024 // 20 Megabytes
 
 
 ```
+
+If you need to use MapCache in different controllers, to avoid issues just be sure to use the same values in the config.
+
 
 ## You may also like
 
