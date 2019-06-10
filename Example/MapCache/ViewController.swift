@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         // See documentation to know more about config options
         
         
-        // We tell the MKMapView to use our cache
+        // We tell our MKMapView to use the cache
         // useCache(:) is part of MapCache extension.
         map.useCache(mapCache!)
     }
@@ -51,9 +51,9 @@ class ViewController: UIViewController {
     
     @IBAction func clearCache(_ sender: Any) {
         print("clear cache")
-        mapCache!.clear(completition: {
+        mapCache!.clear() { 
             self.cacheSizeLabel.text = String(self.mapCache!.calculateSize())
-        })
+        }
     }
     
     override func didReceiveMemoryWarning() {
