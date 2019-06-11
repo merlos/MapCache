@@ -18,15 +18,11 @@ class TileCoordsSpecs: QuickSpec {
             let lon: Double = 2.2
             
             it("can initialize with lat and long") {
-                do {
-                    let tileCoords = try TileCoords(latitude: lat, longitude: lon, zoom: 10)
-                    print(tileCoords.latitude)
-                    print(tileCoords.longitude)
-                    print(tileCoords.tileX)
-                    print(tileCoords.tileY)
-                } catch {
-                    
-                }
+                let tileCoords = TileCoords(latitude: lat, longitude: lon, zoom: 10)
+                print(tileCoords!.latitude)
+                print(tileCoords!.longitude)
+                print(tileCoords!.tileX)
+                print(tileCoords!.tileY)
             }
         }
     }

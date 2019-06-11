@@ -153,13 +153,21 @@ class TileCoords {
         _tileY = try! TileCoords.latitudeToTileY(latitude: latitude, zoom: _zoom)
     }
     
-    public init(tileX: UInt64, tileY: UInt64, zoom: UInt8) throws {
-        try set(zoom: zoom)
-        try set(tileX: tileX, tileY: tileY)
+    public init?(tileX: UInt64, tileY: UInt64, zoom: UInt8) {
+        do {
+            try set(zoom: zoom)
+            try set(tileX: tileX, tileY: tileY)
+        } catch {
+            return nil
+        }
     }
     
-    public init(latitude: Double, longitude: Double, zoom: UInt8) throws {
-        try set(zoom: zoom)
-        try set(latitude: latitude, longitude: longitude)
+    public init?(latitude: Double, longitude: Double, zoom: UInt8) {
+        do {
+            try set(zoom: zoom)
+            try set(latitude: latitude, longitude: longitude)
+        } catch {
+            return nil
+        }
     }
 }
