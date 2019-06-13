@@ -24,23 +24,33 @@ enum TileError: Error {
     case overflow
 }
 
-
+///
 /// Class to convert from Map Tiles to coordinates and from coordinates to tiles
 ///
-/// Coordinates (latitude and longitude) are ALWAYS expressed in degrees
+/// Coordinates (latitude and longitude) are ALWAYS expressed in degrees.
+/// The max latitude that can be converted to tiles is +85.0511 and the minimum
+///  is -85.0511 (see https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames).
 ///
-/// z = zoom
-/// Size of the square: 2^z x 2^z
+/// Zoom level (z) range is from 0 to 19.
 ///
-///     (-180,85.0511)      (180,85.0511)  <----- coord (lat, long)
-///     0,0                 2^z, 0         <------ tile number (x,y)
-///     +-------------------+
-///     |                   |
-///     |                   |
-///     |                   |
-///     +-------------------+
-///    0,2^z          2^z, 2^z
-/// (-180,-85.0511)   (180,-85.0511)
+/// The earth is represented by a square that is divided in small pieces (tiles).
+/// The number of tiles depends on the zoom value and is equal to: 2^z x 2^z
+///
+/// The values of tiles can be from 0 to 2^z - 1. For instance, for z=10
+/// the max tile would be 1023 (2^10 - 1 = 1024 - 1)
+///
+/// This diagram represents the equivalent lat/long vs tileX/tileY
+///
+///
+///     (-180,85.0511)           (180,85.0511)  <----- coords (lat, long)
+///     0,0                      2^z -1, 0 <---------- Tile number (x,y)
+///     +-------------------------+
+///     |                         |
+///     |            + (0.0,0.0)  |
+///     |                         |
+///     +-------------------------+
+///     0,2^z - 1                 2^z - 1, 2^z - 1
+///     (-180,-85.0511)           (180,-85.0511)
 ///
 /// All the wisdom of this class comes from:
 /// https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames
@@ -125,7 +135,7 @@ class TileCoords {
         return UInt64(floor((1 - log( tan( latitude * Double.pi / 180.0 ) + 1 / cos( latitude * Double.pi / 180.0 )) / Double.pi ) / 2 * pow(2.0, Double(zoom))))
     }
     
-    /// Returns the longitude in degrees
+    /// Returns the corresponding longitude in degrees for the tileX at zoom level
     static public func tileXToLongitude(tileX: UInt64, zoom: UInt8) throws -> Double {
         try validate(zoom: zoom)
         try validate(tile: tileX, forZoom: zoom)
@@ -134,6 +144,7 @@ class TileCoords {
         return longitude
     }
     
+    /// Returns the corresponding latitude in degrees for the tileY at zoom level
     static public func tileYToLatitude(tileY: UInt64, zoom: UInt8) throws -> Double {
         try validate(zoom: zoom)
         try validate(tile: tileY, forZoom: zoom)
@@ -141,14 +152,18 @@ class TileCoords {
         let latitude = atan( sinh (.pi - (Double(tileY) / n) * 2 * Double.pi)) * (180.0 / .pi)
         return latitude
     }
-    
+   
+    /// Holds the zoom level
     private var _zoom : UInt8 = 0
+    
+    /// Zoom level. Read only. Use setZoom() to change it.
     var zoom : UInt8 {
         get {
             return _zoom
         }
     }
     
+    /// Latitude for this tile. Use setCoords() to change it.
     private var _latitude: Double = 0.0
     var latitude: Double {
         get {
@@ -156,22 +171,27 @@ class TileCoords {
         }
     }
     
+    /// Holds the actual longitude
     private var _longitude: Double = 0.0
 
+    /// Longitude for this tile. Use set() to change it.
     var longitude: Double {
         get {
             return _longitude
         }
     }
     
+    /// Holds the actual tileX
     private var _tileX : UInt64 = 0
     
+    /// Tile in the X axis for current longitude and zoom. Use set() to change it.
     public var tileX: UInt64 {
         get {
          return _tileX
         }
     }
     
+    // Tile in the Y axis for current latitude and zoom. Use set() to change it.
     private var _tileY: UInt64 = 0
     
     public var tileY : UInt64 {
@@ -181,7 +201,8 @@ class TileCoords {
     }
     
     
-    
+    /// Set zoom level.
+    /// Throws ZoomError if zoom is not valid.
     public func set(zoom: UInt8) throws {
         try TileCoords.validate(zoom: zoom)
         _zoom = zoom
@@ -189,7 +210,8 @@ class TileCoords {
         _tileY = try! TileCoords.latitudeToTileY(latitude: latitude, zoom: _zoom)
     }
     
-    
+    /// Set tile X and Y values.
+    /// Throws TileError if latitude or longitude are out of range.
     public func set(tileX: UInt64, tileY: UInt64) throws {
         _longitude = try TileCoords.tileXToLongitude(tileX: tileX, zoom: _zoom)
         _latitude = try TileCoords.tileYToLatitude(tileY: tileY, zoom: _zoom)
@@ -197,6 +219,8 @@ class TileCoords {
         _tileY = tileY
     }
     
+    /// Sets latitude and longitude
+    /// Throws LatitudeError and LongitudeError if they are out of range.
     public func set(latitude: Double, longitude: Double) throws {
         
         // validate values are within the ranges
@@ -212,6 +236,8 @@ class TileCoords {
         _tileY = try! TileCoords.latitudeToTileY(latitude: latitude, zoom: _zoom)
     }
     
+    /// Init a TileCoords instance using tile and zoom info.
+    /// Will return nil if any of the parameters is out of range.
     public init?(tileX: UInt64, tileY: UInt64, zoom: UInt8) {
         do {
             try set(zoom: zoom)
@@ -221,6 +247,8 @@ class TileCoords {
         }
     }
     
+    /// Init a TileCoords instance using latitude, longitude and zoom info.
+    /// Will return nil if any of the parameters is out of range.
     public init?(latitude: Double, longitude: Double, zoom: UInt8) {
         do {
             try set(zoom: zoom)
@@ -230,6 +258,7 @@ class TileCoords {
         }
     }
     
+    /// Returns the maximum tile number for current set zoom.
     public func maxTile() -> UInt64 {
         return TileCoords.maxTile(forZoom: zoom)
     }
