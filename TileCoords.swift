@@ -78,7 +78,7 @@ class TileCoords {
     static public func validate(longitude: Double) throws -> Void {
         if longitude < minLongitude {
             throw LongitudeError.overflowMin
-        } else if longitude > maxLongitude {
+        } else if longitude >= maxLongitude {
             throw LongitudeError.overflowMax
         }
     }
