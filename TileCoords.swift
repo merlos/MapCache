@@ -7,19 +7,35 @@
 
 import Foundation
 
+/// An alias for UInt8. Used to indicate that the variable is holding a zoom value.
+///
+/// Notice that Zoom shoul have only values between 0 and 19.
+/// - SeeAlso: TileCoords
+public typealias Zoom = UInt8
+
+/// Tile number in a map.
+/// - SeeAlso TileCoords
+public typealias TileNumber = UInt64
+
+/// Errors for Zoom
 enum ZoomError: Error {
+    /// Zoom largest value is 19
     case largerThan19
 }
 
+/// Errors for a latitude
 enum LatitudeError: Error {
     case overflowMin
     case overflowMax
 }
+
+/// Errors for a longitude
 enum LongitudeError: Error {
     case overflowMin
     case overflowMax
 }
 
+/// Errors for a tile
 enum TileError: Error {
     case overflow
 }
@@ -73,18 +89,21 @@ class TileCoords {
     
     
     /// Max zoom supported in tile servers (19)
-    static let maxZoom : UInt8 = 19
+    static let maxZoom : Zoom = 19
     
     /// Min zoom supported (0)
-    static let minZoom : UInt8 = 0
+    static let minZoom : Zoom = 0
     
     /// Based on current zoom it indicates what is the max tile
-    static public func maxTile(forZoom zoom: UInt8) -> UInt64 {
-         return UInt64(pow(2.0, Double(zoom)) - 1 )
+    static public func maxTile(forZoom zoom: Zoom) -> TileNumber {
+         return TileNumber(pow(2.0, Double(zoom)) - 1 )
     }
     
-    /// validates if longitude is between min and max allowed longitudes
-    /// Throws LongitudeError
+    /// Validates if longitude is between min and max allowed longitudes
+    ///
+    /// - Parameter longitude: the longitude to validate
+    /// - Throws: LongitudeError
+    /// - SeeAlso: maxLatitude, minLatitude
     static public func validate(longitude: Double) throws -> Void {
         if longitude < minLongitude {
             throw LongitudeError.overflowMin
@@ -105,7 +124,7 @@ class TileCoords {
     
     /// Validate zoom is less or equal to the maxZoom
     /// Throws ZoomError if is greater than maxZoom
-    static public func validate(zoom: UInt8) throws -> Void {
+    static public func validate(zoom: Zoom) throws -> Void {
         if zoom > maxZoom {
             throw ZoomError.largerThan19
         }
@@ -113,7 +132,7 @@ class TileCoords {
     
     /// Validates if the tile is within the range for the zoom
     /// A tile must be always be less than 2^zoom.
-    static public func validate(tile: UInt64, forZoom zoom: UInt8) throws -> Void {
+    static public func validate(tile: TileNumber, forZoom zoom: Zoom) throws -> Void {
         if tile > maxTile(forZoom: zoom) {
             throw TileError.overflow
         }
@@ -121,22 +140,22 @@ class TileCoords {
     
     /// Returns the tile in the X axis for the longitude and zoom.
     /// Can throw ZoomError and LongitudeError if these are out of the boundaries.
-    static public func longitudeToTileX(longitude: Double, zoom: UInt8 ) throws -> UInt64 {
+    static public func longitudeToTileX(longitude: Double, zoom: Zoom ) throws -> TileNumber {
         try TileCoords.validate(zoom: zoom)
         try TileCoords.validate(longitude: longitude)
-        return UInt64(floor((longitude + 180) / 360.0 * pow(2.0, Double(zoom))))
+        return TileNumber(floor((longitude + 180) / 360.0 * pow(2.0, Double(zoom))))
     }
     
     /// Returns the tile in the Y axis for the latitude and zoom.
     /// Can throw ZoomError and LongitudeError if these are out of the boundaries.
-    static public func latitudeToTileY(latitude: Double, zoom: UInt8) throws -> UInt64{
+    static public func latitudeToTileY(latitude: Double, zoom: Zoom) throws -> TileNumber{
         try validate(zoom: zoom)
         try validate(latitude: latitude)
-        return UInt64(floor((1 - log( tan( latitude * Double.pi / 180.0 ) + 1 / cos( latitude * Double.pi / 180.0 )) / Double.pi ) / 2 * pow(2.0, Double(zoom))))
+        return TileNumber(floor((1 - log( tan( latitude * Double.pi / 180.0 ) + 1 / cos( latitude * Double.pi / 180.0 )) / Double.pi ) / 2 * pow(2.0, Double(zoom))))
     }
     
     /// Returns the corresponding longitude in degrees for the tileX at zoom level
-    static public func tileXToLongitude(tileX: UInt64, zoom: UInt8) throws -> Double {
+    static public func tileXToLongitude(tileX: TileNumber, zoom: Zoom) throws -> Double {
         try validate(zoom: zoom)
         try validate(tile: tileX, forZoom: zoom)
         let n : Double = pow(2.0, Double(zoom))
@@ -145,7 +164,7 @@ class TileCoords {
     }
     
     /// Returns the corresponding latitude in degrees for the tileY at zoom level
-    static public func tileYToLatitude(tileY: UInt64, zoom: UInt8) throws -> Double {
+    static public func tileYToLatitude(tileY: TileNumber, zoom: Zoom) throws -> Double {
         try validate(zoom: zoom)
         try validate(tile: tileY, forZoom: zoom)
         let n : Double = pow(2.0, Double(zoom))
@@ -154,10 +173,10 @@ class TileCoords {
     }
    
     /// Holds the zoom level
-    private var _zoom : UInt8 = 0
+    private var _zoom : Zoom = 0
     
     /// Zoom level. Read only. Use setZoom() to change it.
-    var zoom : UInt8 {
+    var zoom : Zoom {
         get {
             return _zoom
         }
@@ -182,19 +201,19 @@ class TileCoords {
     }
     
     /// Holds the actual tileX
-    private var _tileX : UInt64 = 0
+    private var _tileX : TileNumber = 0
     
     /// Tile in the X axis for current longitude and zoom. Use set() to change it.
-    public var tileX: UInt64 {
+    public var tileX: TileNumber {
         get {
          return _tileX
         }
     }
     
     // Tile in the Y axis for current latitude and zoom. Use set() to change it.
-    private var _tileY: UInt64 = 0
+    private var _tileY: TileNumber = 0
     
-    public var tileY : UInt64 {
+    public var tileY : TileNumber {
         get {
             return _tileY
         }
@@ -203,7 +222,7 @@ class TileCoords {
     
     /// Set zoom level.
     /// Throws ZoomError if zoom is not valid.
-    public func set(zoom: UInt8) throws {
+    public func set(zoom: Zoom) throws {
         try TileCoords.validate(zoom: zoom)
         _zoom = zoom
         _tileX = try! TileCoords.longitudeToTileX(longitude: longitude, zoom: _zoom)
@@ -212,7 +231,7 @@ class TileCoords {
     
     /// Set tile X and Y values.
     /// Throws TileError if latitude or longitude are out of range.
-    public func set(tileX: UInt64, tileY: UInt64) throws {
+    public func set(tileX: TileNumber, tileY: TileNumber) throws {
         _longitude = try TileCoords.tileXToLongitude(tileX: tileX, zoom: _zoom)
         _latitude = try TileCoords.tileYToLatitude(tileY: tileY, zoom: _zoom)
         _tileX = tileX
@@ -238,7 +257,7 @@ class TileCoords {
     
     /// Init a TileCoords instance using tile and zoom info.
     /// Will return nil if any of the parameters is out of range.
-    public init?(tileX: UInt64, tileY: UInt64, zoom: UInt8) {
+    public init?(tileX: TileNumber, tileY: TileNumber, zoom: Zoom) {
         do {
             try set(zoom: zoom)
             try set(tileX: tileX, tileY: tileY)
@@ -249,7 +268,7 @@ class TileCoords {
     
     /// Init a TileCoords instance using latitude, longitude and zoom info.
     /// Will return nil if any of the parameters is out of range.
-    public init?(latitude: Double, longitude: Double, zoom: UInt8) {
+    public init?(latitude: Double, longitude: Double, zoom: Zoom) {
         do {
             try set(zoom: zoom)
             try set(latitude: latitude, longitude: longitude)
@@ -259,7 +278,7 @@ class TileCoords {
     }
     
     /// Returns the maximum tile number for current set zoom.
-    public func maxTile() -> UInt64 {
+    public func maxTile() -> TileNumber {
         return TileCoords.maxTile(forZoom: zoom)
     }
 }
