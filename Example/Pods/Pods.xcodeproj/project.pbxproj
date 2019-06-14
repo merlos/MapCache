@@ -79,6 +79,10 @@
 		893072D522A497B2008612A1 /* MapCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E123228A3B1B00CE3E3F /* MapCache.swift */; };
 		893072D622A497B5008612A1 /* MapCacheConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E121228A38F700CE3E3F /* MapCacheConfig.swift */; };
 		893072D722A497B9008612A1 /* CachedTileOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E11D228A320700CE3E3F /* CachedTileOverlay.swift */; };
+		895E719622B30BCA0006977C /* TileCoordsRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895E719522B30BCA0006977C /* TileCoordsRegion.swift */; };
+		895E719822B3346A0006977C /* TileRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895E719722B3346A0006977C /* TileRange.swift */; };
+		895E719A22B341320006977C /* TileRangeIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895E719922B341320006977C /* TileRangeIterator.swift */; };
+		895E719C22B34BC30006977C /* ZoomRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895E719B22B34BC30006977C /* ZoomRange.swift */; };
 		8992A45722A73C4700C186CA /* MKMapView+MapCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8992A45622A73C4700C186CA /* MKMapView+MapCache.swift */; };
 		8992A45822A73FF300C186CA /* MKMapView+MapCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8992A45622A73C4700C186CA /* MKMapView+MapCache.swift */; };
 		8992A45E22AF12D800C186CA /* TileCoords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8992A45D22AF12D800C186CA /* TileCoords.swift */; };
@@ -255,6 +259,10 @@
 		893072C422A47CBA008612A1 /* String+DiskCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DiskCache.swift"; sourceTree = "<group>"; };
 		893072C622A47CE2008612A1 /* DiskCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskCache.swift; sourceTree = "<group>"; };
 		893072C822A47D15008612A1 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Log.swift; path = MapCache/Classes/Log.swift; sourceTree = "<group>"; };
+		895E719522B30BCA0006977C /* TileCoordsRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TileCoordsRegion.swift; path = MapCache/Classes/TileCoordsRegion.swift; sourceTree = "<group>"; };
+		895E719722B3346A0006977C /* TileRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TileRange.swift; path = MapCache/Classes/TileRange.swift; sourceTree = "<group>"; };
+		895E719922B341320006977C /* TileRangeIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TileRangeIterator.swift; path = MapCache/Classes/TileRangeIterator.swift; sourceTree = "<group>"; };
+		895E719B22B34BC30006977C /* ZoomRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZoomRange.swift; path = ../../../../MapCache/Classes/ZoomRange.swift; sourceTree = "<group>"; };
 		8992A45622A73C4700C186CA /* MKMapView+MapCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+MapCache.swift"; sourceTree = "<group>"; };
 		8992A45D22AF12D800C186CA /* TileCoords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileCoords.swift; sourceTree = "<group>"; };
 		89F6E11D228A320700CE3E3F /* CachedTileOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CachedTileOverlay.swift; path = MapCache/Classes/CachedTileOverlay.swift; sourceTree = "<group>"; };
@@ -392,6 +400,7 @@
 				9F5E82953169F636E95405AECFF8D495 /* MapCache-dummy.m */,
 				686508298708371B67D7986698D08F0B /* MapCache-prefix.pch */,
 				EDDCEE13D2BCFA004096EB4349B7F270 /* MapCache-umbrella.h */,
+				895E719B22B34BC30006977C /* ZoomRange.swift */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/MapCache";
@@ -678,6 +687,9 @@
 				893072C822A47D15008612A1 /* Log.swift */,
 				8992A45622A73C4700C186CA /* MKMapView+MapCache.swift */,
 				8992A45D22AF12D800C186CA /* TileCoords.swift */,
+				895E719522B30BCA0006977C /* TileCoordsRegion.swift */,
+				895E719722B3346A0006977C /* TileRange.swift */,
+				895E719922B341320006977C /* TileRangeIterator.swift */,
 			);
 			name = MapCache;
 			path = ../..;
@@ -975,10 +987,14 @@
 				A0AB5460A49FEB15D966FF959B3D8E64 /* MapCache-dummy.m in Sources */,
 				893072C922A47D15008612A1 /* Log.swift in Sources */,
 				893072C522A47CBA008612A1 /* String+DiskCache.swift in Sources */,
+				895E719622B30BCA0006977C /* TileCoordsRegion.swift in Sources */,
 				893072C122A47C76008612A1 /* FileManager+DiskCache.swift in Sources */,
 				89F6E11E228A320700CE3E3F /* CachedTileOverlay.swift in Sources */,
+				895E719A22B341320006977C /* TileRangeIterator.swift in Sources */,
 				893072C722A47CE2008612A1 /* DiskCache.swift in Sources */,
+				895E719822B3346A0006977C /* TileRange.swift in Sources */,
 				8992A45E22AF12D800C186CA /* TileCoords.swift in Sources */,
+				895E719C22B34BC30006977C /* ZoomRange.swift in Sources */,
 				8992A45722A73C4700C186CA /* MKMapView+MapCache.swift in Sources */,
 				89F6E124228A3B1B00CE3E3F /* MapCache.swift in Sources */,
 				89F6E122228A38F700CE3E3F /* MapCacheConfig.swift in Sources */,
