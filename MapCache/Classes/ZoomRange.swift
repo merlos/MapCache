@@ -8,7 +8,20 @@
 import Foundation
 
 
-/// A range of zooms
+/// A range of zooms.
+/// Matematically: [z1, z1+1, z1+2,..., z2-1, z2]
+///
+/// For instance: z1 = 2, z2 = 5 then [2, 3, 4, 5] would be
+/// the range.
+///
+/// Usage example:
+///
+///     let zR = ZoomRange(2,5).toArray()
+//      print(zR.count) // => 4
+///
+/// It strictly stores z1 and z2, and the rest of the range
+/// is built upon request
+///
 struct ZoomRange {
     
     /// Minimum zoom in this range
@@ -30,15 +43,13 @@ struct ZoomRange {
     ///
     ///     let zR = ZoomRange(2,2)
     ///     print(zR.count) // => 1
-    
     var count: Zoom {
         get {
             return diffZoom + 1
         }
     }
     
-    ///
-    /// [z1, z1+1, z1+2,..., z2-1, z2]
+    /// Creates the range of zooms
     init?(_ z1: Zoom, _ z2: Zoom) {
         do {
             try TileCoords.validate(zoom: z1)
@@ -50,6 +61,8 @@ struct ZoomRange {
         self.max = z1 > z2 ? z1 : z2
     }
     
+    /// Converts to array
+    /// For instance,
     func toArray() -> [Zoom] {
         var ret : [Zoom] = []
         for i in min...max {
