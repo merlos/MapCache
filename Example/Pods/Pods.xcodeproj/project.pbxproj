@@ -262,7 +262,7 @@
 		895E719522B30BCA0006977C /* TileCoordsRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TileCoordsRegion.swift; path = MapCache/Classes/TileCoordsRegion.swift; sourceTree = "<group>"; };
 		895E719722B3346A0006977C /* TileRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TileRange.swift; path = MapCache/Classes/TileRange.swift; sourceTree = "<group>"; };
 		895E719922B341320006977C /* TileRangeIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TileRangeIterator.swift; path = MapCache/Classes/TileRangeIterator.swift; sourceTree = "<group>"; };
-		895E719B22B34BC30006977C /* ZoomRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZoomRange.swift; path = ../../../../MapCache/Classes/ZoomRange.swift; sourceTree = "<group>"; };
+		895E719B22B34BC30006977C /* ZoomRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomRange.swift; sourceTree = "<group>"; };
 		8992A45622A73C4700C186CA /* MKMapView+MapCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+MapCache.swift"; sourceTree = "<group>"; };
 		8992A45D22AF12D800C186CA /* TileCoords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileCoords.swift; sourceTree = "<group>"; };
 		89F6E11D228A320700CE3E3F /* CachedTileOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CachedTileOverlay.swift; path = MapCache/Classes/CachedTileOverlay.swift; sourceTree = "<group>"; };
@@ -400,7 +400,6 @@
 				9F5E82953169F636E95405AECFF8D495 /* MapCache-dummy.m */,
 				686508298708371B67D7986698D08F0B /* MapCache-prefix.pch */,
 				EDDCEE13D2BCFA004096EB4349B7F270 /* MapCache-umbrella.h */,
-				895E719B22B34BC30006977C /* ZoomRange.swift */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/MapCache";
@@ -690,6 +689,7 @@
 				895E719522B30BCA0006977C /* TileCoordsRegion.swift */,
 				895E719722B3346A0006977C /* TileRange.swift */,
 				895E719922B341320006977C /* TileRangeIterator.swift */,
+				895E719B22B34BC30006977C /* ZoomRange.swift */,
 			);
 			name = MapCache;
 			path = ../..;

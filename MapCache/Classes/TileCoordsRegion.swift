@@ -46,9 +46,9 @@ class TileCoordsRegion {
             let z1 = topLeft.zoom
             let z2 = topLeft.zoom
             if z1 >= z2 {
-                return ZoomRange(min: z1, max: z2)!
+                return ZoomRange(z1, z2)!
             }
-            return ZoomRange(min: z2, max: z1)!
+            return ZoomRange(z2, z1)!
         }
     }
 
