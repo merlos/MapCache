@@ -262,9 +262,9 @@
 		895E719522B30BCA0006977C /* TileCoordsRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TileCoordsRegion.swift; path = MapCache/Classes/TileCoordsRegion.swift; sourceTree = "<group>"; };
 		895E719722B3346A0006977C /* TileRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TileRange.swift; path = MapCache/Classes/TileRange.swift; sourceTree = "<group>"; };
 		895E719922B341320006977C /* TileRangeIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TileRangeIterator.swift; path = MapCache/Classes/TileRangeIterator.swift; sourceTree = "<group>"; };
-		895E719B22B34BC30006977C /* ZoomRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomRange.swift; sourceTree = "<group>"; };
-		8992A45622A73C4700C186CA /* MKMapView+MapCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+MapCache.swift"; sourceTree = "<group>"; };
-		8992A45D22AF12D800C186CA /* TileCoords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileCoords.swift; sourceTree = "<group>"; };
+		895E719B22B34BC30006977C /* ZoomRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZoomRange.swift; path = MapCache/Classes/ZoomRange.swift; sourceTree = "<group>"; };
+		8992A45622A73C4700C186CA /* MKMapView+MapCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MKMapView+MapCache.swift"; path = "MapCache/Classes/MKMapView+MapCache.swift"; sourceTree = "<group>"; };
+		8992A45D22AF12D800C186CA /* TileCoords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TileCoords.swift; path = MapCache/Classes/TileCoords.swift; sourceTree = "<group>"; };
 		89F6E11D228A320700CE3E3F /* CachedTileOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CachedTileOverlay.swift; path = MapCache/Classes/CachedTileOverlay.swift; sourceTree = "<group>"; };
 		89F6E121228A38F700CE3E3F /* MapCacheConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapCacheConfig.swift; path = MapCache/Classes/MapCacheConfig.swift; sourceTree = "<group>"; };
 		89F6E123228A3B1B00CE3E3F /* MapCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapCache.swift; path = MapCache/Classes/MapCache.swift; sourceTree = "<group>"; };
