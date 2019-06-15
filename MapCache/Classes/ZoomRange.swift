@@ -22,7 +22,7 @@ import Foundation
 /// It strictly stores z1 and z2, and the rest of the range
 /// is built upon request
 ///
-struct ZoomRange {
+struct ZoomRange : Sequence {
     
     /// Minimum zoom in this range
     let min: Zoom
@@ -58,7 +58,7 @@ struct ZoomRange {
             return nil
         }
         self.min = z1 > z2 ? z2 : z1
-        self.max = z1 > z2 ? z1 : z2
+        self.max = z1 >= z2 ? z1 : z2
     }
     
     /// Converts to array
@@ -69,5 +69,13 @@ struct ZoomRange {
             ret.append(i)
         }
         return ret
+    }
+   
+    /// Returns the iterator for this range.
+    /// It allows to use ZoomRange in for loops.
+    ///
+    /// - More info: https://developer.apple.com/documentation/swift/iteratorprotocol
+    func makeIterator() -> ZoomRangeIterator{
+        return ZoomRangeIterator(self)
     }
 }

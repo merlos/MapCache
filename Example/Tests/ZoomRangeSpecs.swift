@@ -43,10 +43,24 @@ class ZoomRangeSpecs: QuickSpec {
                 expect(z2?.count).to(equal(20))
             }
             
-            it ("can be converted to array") {
+            it("can be converted to array") {
                 let z1Arr = ZoomRange(0,5)?.toArray()
                 expect(z1Arr?.count).to(equal(6))
                 expect(z1Arr?[1]).to(equal(1))
+                //0 to 0 => [0]
+                let z2Arr = ZoomRange(0,0)?.toArray()
+                expect(z2Arr?.count).to(equal(1))
+            }
+            
+            it("can iterate") {
+                let z1Arr = ZoomRange(0,5)
+                var count = 0
+                for _ in z1Arr! {
+                    count += 1
+                }
+                expect(count).to(equal(6))
+                expect(z1Arr?.count).to(equal(6))
+                expect(z1Arr?.diffZoom).to(equal(5))
             }
             
         }
