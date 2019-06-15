@@ -55,8 +55,10 @@ class ZoomRangeSpecs: QuickSpec {
             it("can iterate") {
                 let z1Arr = ZoomRange(0,5)
                 var count = 0
-                for _ in z1Arr! {
+                for zoom in z1Arr! { // -> 0,1,2,3,4,5
+                    expect(zoom == count).to(beTrue())
                     count += 1
+                    
                 }
                 expect(count).to(equal(6))
                 expect(z1Arr?.count).to(equal(6))
