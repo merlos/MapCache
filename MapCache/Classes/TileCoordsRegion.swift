@@ -9,7 +9,7 @@ import Foundation
 
 
 
-/// 3 dimensional region in a tile map.
+/// 3 dimensional square region in a tile map.
 /// The three dimensions are:
 ///  - latitude (y)
 ///  - longitude (x)
@@ -22,13 +22,13 @@ import Foundation
 /// longitude (x) axis, when the map ends, it is displayed the beginning.
 ///
 /// In this scenario, if we allow user to pick two points to select a region,
-/// we may end up with a
+/// we may end up with two sub-regions.
 ///
 ///     +---------------------++---------------------++---------------------+
 ///     |                     ||                     ||                     |
 ///     |             * P1    ||                     ||                     |
 ///     |                     ||                     ||                     |
-///     |       Map 1         ||        Map 2        ||       Map 3         |
+///     |       Map 1         ||        Map 1bis     ||       Map 1 bis bis |
 ///     |                     ||                     ||                     |
 ///     |                     ||  * P2               ||                     |
 ///     |                     ||                     ||                     |
@@ -37,10 +37,13 @@ import Foundation
 ///
 class TileCoordsRegion {
 
-    // Top left coordinate
+    // Top left tile/coordinate
     var topLeft : TileCoords
+    
+    // Bottom right tile/coordinate
     var bottomRight : TileCoords
     
+    //Zoom range for the region
     var zoomRange: ZoomRange {
         get {
             let z1 = topLeft.zoom
@@ -52,6 +55,17 @@ class TileCoordsRegion {
         }
     }
 
+    //Total number of tiles in this region for all zoom levels
+    var count : TileNumber {
+        get {
+            var counted: TileNumber = 0
+            for zoom in zoomRange {
+                counted += count(forZoom: zoom)
+            }
+            return counted
+        }
+    }
+    
     /// The region will be the area that holds the line from any top left point (P1) to any
     /// bottom rightpoint 2 (P2)
     init?(topLeftLatitude: Double, topLeftLongitude: Double, bottomRightLatitude: Double, bottomRightLongitude: Double, minZoom: UInt8, maxZoom: UInt8) {
@@ -86,10 +100,75 @@ class TileCoordsRegion {
         self.bottomRight = bottomRight
     }
     
+    //Counts for the zoom
+    func count(forZoom zoom: Zoom) -> TileNumber {
+        guard let ranges = tileRanges(forZoom: zoom) else {
+            return 0
+        }
+        var counted : TileNumber = 0
+        for range in ranges {
+            counted += range.count
+        }
+        return counted
+    }
+    
+    // All the tile ranges for this particular zoom.
+    // There may be 1 or 2.
+    ///
+    /// For example, in this map there are two ranges. One that covers the area A1
+    /// and other that covers the area A2
+    ///
+    ///     +----------------------++---------------------++---------------------+
+    ///     |               P1     ||                     ||                     |
+    ///     |                *.....||...+                  ||                     |
+    ///     |                . \  .||.  ·                  ||                     |
+    ///     |       Map 1    .  \ .||.  ·     Map 2        ||       Map 3         |
+    ///     |                .   \.||.  ·                  ||                     |
+    ///     |                .    \||.A2·                  ||                     |
+    ///     |                .  A1.|\.  ·                  ||                     |
+    ///     |                .    .||\  ·                  ||                     |
+    ///     |                .    .||.\ ·                  ||                     |
+    ///     |                +.....||...* P2               ||                     |
+    ///     +----------------------++---------------------++---------------------+
+    ///    -180                180 -180                 180
+    ///
+    ///
+    
     func tileRanges(forZoom zoom: Zoom) -> [TileRange]? {
-        return nil
+        if (topLeft.tileX <= bottomRight.tileX) {
+            // Normal scenario.
+            let range1 = TileRange(zoom: zoom,
+                                   minTileX: topLeft.tileX,
+                                   maxTileX: bottomRight.tileX,
+                                   minTileY: bottomRight.tileY,
+                                   maxTileY: topLeft.tileY)
+            return [range1]
+        }
+        // If top left longitude is > bottomRight that means that
+        // the map ended between topLeft and bottomRight.
+        // so we will have two ranges.
+        // - from topleft longitude to the end of the map
+        // - from the beggining of the map to bottom right long
+        let range1 = TileRange(zoom: zoom,
+                               minTileX: topLeft.tileX,
+                               maxTileX: TileCoords.maxTile(forZoom: zoom),
+                               minTileY: bottomRight.tileY,
+                               maxTileY: topLeft.tileY)
+        let range2 = TileRange(zoom: zoom,
+                               minTileX: 0,
+                               maxTileX: bottomRight.tileX,
+                               minTileY: bottomRight.tileY,
+                               maxTileY: topLeft.tileY)
+        return [range1, range2]
     }
+    
+    /// Gets the tile ranges for all zooms.
     func tileRanges() -> [TileRange]? {
-        return nil
+        var ranges : [TileRange] = []
+        for zoom in zoomRange {
+            ranges.append(contentsOf: tileRanges(forZoom: zoom) ?? [])
+        }
+        return ranges
     }
+    
 }
