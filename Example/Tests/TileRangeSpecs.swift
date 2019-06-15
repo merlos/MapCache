@@ -25,12 +25,12 @@ class TileRangeSpecs: QuickSpec {
             }
             
             it("can get calculated values") {
-                let tR = TileRange(zoom: 10, minTileX: 15, maxTileX: 20, minTileY: 25, maxTileY: 30)
+                let tR = TileRange(zoom: 10, minTileX: 15, maxTileX: 20, minTileY: 30, maxTileY: 41)
                 expect(tR.diffX).to(equal(5))
-                expect(tR.diffY).to(equal(5))
+                expect(tR.diffY).to(equal(11))
                 expect(tR.columns).to(equal(6))
-                expect(tR.rows).to(equal(6))
-                expect(tR.count).to(equal(6*6))
+                expect(tR.rows).to(equal(12))
+                expect(tR.count).to(equal(6*12))
             }
             
             it("can iterate") {
@@ -46,15 +46,16 @@ class TileRangeSpecs: QuickSpec {
                 // 1 Column
                 let tROneCol = TileRange(zoom: 10, minTileX: 20, maxTileX: 20, minTileY: 25, maxTileY: 30)
                 // 1 Row
-                let tROneRow = TileRange(zoom: 10, minTileX: 20, maxTileX: 20, minTileY: 25, maxTileY: 25)
+                let tROneRow = TileRange(zoom: 10, minTileX: 10, maxTileX: 19, minTileY: 25, maxTileY: 25)
                 
                 var countOneCol = 0
                 for _ in tROneCol {
                     countOneCol += 1
                 }
-                expect(countOneCol == tROneCol.columns).to(beTrue())
-                expect(tROneCol.count).to(equal(6))
-                expect(tROneRow.count).to(equal(6))
+                expect(countOneCol).to(equal(1*6))
+                expect(tROneCol.columns).to(equal(1))
+                expect(tROneCol.count).to(equal(1*6))
+                expect(tROneRow.count).to(equal(1*10))
                 
             }
         }

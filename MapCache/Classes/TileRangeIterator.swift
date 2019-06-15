@@ -47,11 +47,10 @@ struct TileRangeIterator: IteratorProtocol {
     mutating func next() -> TileCoords? {
         guard counter < maxCounter else { return nil }
         let currentColumn = counter % columns
-        var currentRow = Double(counter / columns)
-        //var roundedRow : UInt64 = Int(currentRow.round(.down));
-        // TODL %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        let currentRow = Double(counter / columns)
+        
         let x = range.minTileX + currentColumn //We start in the topLeft corner
-       // let y = range.maxTileY - roundedRow   // point and end in the bottomRight corner
+        let y = range.maxTileY - UInt64(currentRow.rounded(.down))   // point and end in the bottomRight corner
         counter += 1
         guard let nextTileCoords = TileCoords(tileX: x, tileY: y, zoom: range.zoom)
             else {
