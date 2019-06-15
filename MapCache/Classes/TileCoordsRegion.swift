@@ -47,7 +47,7 @@ class TileCoordsRegion {
     var zoomRange: ZoomRange {
         get {
             let z1 = topLeft.zoom
-            let z2 = topLeft.zoom
+            let z2 = bottomRight.zoom
             if z1 >= z2 {
                 return ZoomRange(z1, z2)!
             }
@@ -95,7 +95,12 @@ class TileCoordsRegion {
     ///
     /// The area will be the one denoted with the dots.
     ///
-    init(topLeft: TileCoords, bottomRight: TileCoords) {
+    init?(topLeft: TileCoords, bottomRight: TileCoords) {
+        //Validate latitudes
+        if (topLeft.latitude < bottomRight.latitude) {
+            return nil
+        }
+        
         self.topLeft = topLeft
         self.bottomRight = bottomRight
     }
@@ -135,13 +140,21 @@ class TileCoordsRegion {
     ///
     
     func tileRanges(forZoom zoom: Zoom) -> [TileRange]? {
-        if (topLeft.tileX <= bottomRight.tileX) {
+        //We create new tileCoords at the zoom
+        guard let topLeftForZoom = TileCoords(topLeft,zoom: zoom) else {
+            return nil
+        }
+        guard let bottomRightForZoom = TileCoords(bottomRight, zoom: zoom) else {
+            return nil
+        }
+        
+        if (topLeft.longitude <= bottomRight.longitude) {
             // Normal scenario.
             let range1 = TileRange(zoom: zoom,
-                                   minTileX: topLeft.tileX,
-                                   maxTileX: bottomRight.tileX,
-                                   minTileY: bottomRight.tileY,
-                                   maxTileY: topLeft.tileY)
+                                   minTileX: topLeftForZoom.tileX,
+                                   maxTileX: bottomRightForZoom.tileX,
+                                   minTileY: topLeftForZoom.tileY,
+                                   maxTileY: bottomRightForZoom.tileY)
             return [range1]
         }
         // If top left longitude is > bottomRight that means that
@@ -150,15 +163,15 @@ class TileCoordsRegion {
         // - from topleft longitude to the end of the map
         // - from the beggining of the map to bottom right long
         let range1 = TileRange(zoom: zoom,
-                               minTileX: topLeft.tileX,
+                               minTileX: topLeftForZoom.tileX,
                                maxTileX: TileCoords.maxTile(forZoom: zoom),
-                               minTileY: bottomRight.tileY,
-                               maxTileY: topLeft.tileY)
+                               minTileY: topLeftForZoom.tileY,
+                               maxTileY: bottomRightForZoom.tileY)
         let range2 = TileRange(zoom: zoom,
                                minTileX: 0,
-                               maxTileX: bottomRight.tileX,
-                               minTileY: bottomRight.tileY,
-                               maxTileY: topLeft.tileY)
+                               maxTileX: bottomRightForZoom.tileX,
+                               minTileY: topLeftForZoom.tileY,
+                               maxTileY: bottomRightForZoom.tileY)
         return [range1, range2]
     }
     

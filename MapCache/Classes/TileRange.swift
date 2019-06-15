@@ -68,7 +68,7 @@ struct TileRange: Sequence {
         }
     }
     
-    /// Counts the number of tiles in the range
+    /// Counts the number of tiles in the range (columns x rows)
     var count : TileNumber {
         get {
             return rows * columns
@@ -77,6 +77,8 @@ struct TileRange: Sequence {
     
     /// Sequence iterator.
     /// This allows TileRange to be used in for loops.
+    /// In each iteration it returns a TileCoord.
+    /// It starts from the top left corner of the range and iterates row by row.
     ///
     /// - See https://developer.apple.com/documentation/swift/iteratorprotocol
     func makeIterator() -> TileRangeIterator {

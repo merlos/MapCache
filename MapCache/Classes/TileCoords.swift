@@ -81,7 +81,7 @@ class TileCoords {
     
     /// Max value of a longitude (<180.0).
     /// Any longitude has to be strictly minor than this value 180.0
-    static let maxLongitude : Double = 180.0
+    static let maxLongitude : Double = 179.99999999
     
     /// Min value of a longitude (>=180.0)
     /// Any longitude has to be mayor or equal to this value -180.0.
@@ -107,7 +107,7 @@ class TileCoords {
     static public func validate(longitude: Double) throws -> Void {
         if longitude < minLongitude {
             throw LongitudeError.overflowMin
-        } else if longitude >= maxLongitude {
+        } else if longitude > maxLongitude {
             throw LongitudeError.overflowMax
         }
     }
@@ -272,6 +272,21 @@ class TileCoords {
         do {
             try set(zoom: zoom)
             try set(latitude: latitude, longitude: longitude)
+        } catch {
+            return nil
+        }
+    }
+    
+    ///
+    /// Creates a new Tile Coord with the same latitude and longitude
+    /// as the the parameter but with a different zoom
+    public init?(_ tileCoords: TileCoords, zoom: Zoom) {
+        // we can assume that these are coorect so no need o test.
+        self._latitude = tileCoords.latitude
+        self._longitude = tileCoords.longitude
+        //however zoom is not ok
+        do {
+            try set(zoom: zoom)
         } catch {
             return nil
         }

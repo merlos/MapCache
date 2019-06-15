@@ -56,8 +56,7 @@ class TileRangeSpecs: QuickSpec {
                 expect(tROneCol.columns).to(equal(1))
                 expect(tROneCol.count).to(equal(1*6))
                 expect(tROneRow.count).to(equal(1*10))
-                
-            }
+            }            
         }
     }
 }

@@ -31,6 +31,11 @@ class TileCoordsSpecs: QuickSpec {
                 expect(tileCoords!.zoom).to(equal(zoom))
             }
             
+            it("can initialize with another TileCoord") {
+                let tileCoords = TileCoords(latitude: lat, longitude: lon, zoom: zoom)!
+                let copyWithoutZoom = TileCoords(tileCoords, zoom: 12)!
+                expect(tileCoords.latitude == copyWithoutZoom.latitude).to(beTrue())
+            }
             it("cannot initialize with an invalid lat, long or zoom") {
                 let tileCoords1 = TileCoords(latitude: lat + 2000, longitude: lon, zoom: zoom)
                 expect(tileCoords1).to(beNil())
@@ -38,6 +43,12 @@ class TileCoordsSpecs: QuickSpec {
                 expect(tileCoords2).to(beNil())
                 let tileCoords3 = TileCoords(latitude: lat, longitude: lon + 2000, zoom: zoom + 20)
                 expect(tileCoords3).to(beNil())
+                
+                // For the initializer with a tileCoord, the only way to get nil
+                // is to set an invalid zoom
+                let tileCoordsOk = TileCoords(latitude: lat, longitude: lon, zoom: zoom)!
+                let tileCoords4 = TileCoords(tileCoordsOk, zoom: 20)
+                expect(tileCoords4).to(beNil())
             }
             it ("can validate max and mins") {
                 //zoom
