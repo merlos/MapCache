@@ -30,26 +30,30 @@ public class MapCache : NSObject {
         return URL(string: urlString)!
     }
     
+    public func cacheKey(forPath path: MKTileOverlayPath) -> String {
+        return "\(config.urlTemplate)-\(path.x)-\(path.y)-\(path.z)"
+    }
+    
     public func loadTile(at path: MKTileOverlayPath, result: @escaping (Data?, Error?) -> Void) {
         // Use cache
         // is the file alread in the system?
-        let cacheKey = "\(config.urlTemplate)-\(path.x)-\(path.y)-\(path.z)"
+        let key = cacheKey(forPath: path)
         let fetChfailure = { (error: Error?) -> () in
-            print ("MapCache::loadTile() Not found! cacheKey=\(cacheKey)" )
+            print ("MapCache::loadTile() Not found! cacheKey=\(key)" )
         }
         let fetchSuccess = {(data: Data) -> () in
-            print ("MapCache::loadTile() found! cacheKey=\(cacheKey)" )
+            print ("MapCache::loadTile() found! cacheKey=\(key)" )
             result (data, nil)
         }
         
-        diskCache.fetchData(forKey: cacheKey, failure: fetChfailure, success: fetchSuccess)
+        diskCache.fetchData(forKey: key, failure: fetChfailure, success: fetchSuccess)
         let url = self.url(forTilePath: path)
         print ("MapCache::loadTile() url=\(url)")
         print("Requesting data....");
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
             guard let data = data else { return }
-            self.diskCache.setData(data, forKey: cacheKey)
-            print ("CachedTileOverlay:: saved cacheKey=\(cacheKey)" )
+            self.diskCache.setData(data, forKey: key)
+            print ("CachedTileOverlay:: saved cacheKey=\(key)" )
             result(data,nil)
         }
         task.resume()
