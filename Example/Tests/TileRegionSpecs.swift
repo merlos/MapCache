@@ -134,7 +134,8 @@ class TileRegionSpecs: QuickSpec {
                                 longitude: TileCoords.maxLongitude,
                                 zoom: TileCoords.maxZoom)
                 let world = TileCoordsRegion(topLeft: tL!, bottomRight: bR!)!
-                let counted = world.count
+                // count = 1 + 4 + 16 + 64 + ... 4^zoom ... 4^19
+                expect(world.count).to(equal(366503875925))
                 //print("wwwwwwwwwwwwww \(counted)")
             }
         }
