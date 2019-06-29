@@ -14,11 +14,11 @@ import MapKit
 ///
 public class CachedTileOverlay : MKTileOverlay {
     
-    let mapCache : MapCache
+    let mapCache : MapCacheProtocol
     
     public var useCache: Bool = true
     
-    public init(withCache cache: MapCache) {
+    public init(withCache cache: MapCacheProtocol) {
         mapCache = cache
         super.init(urlTemplate: mapCache.config.urlTemplate)
     }

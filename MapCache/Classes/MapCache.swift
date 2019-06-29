@@ -8,8 +8,9 @@
 import Foundation
 import MapKit
 
+
 /// The real brain
-public class MapCache : NSObject {
+public class MapCache : MapCacheProtocol {
     
     public var config : MapCacheConfig
     public var diskCache : DiskCache

@@ -17,8 +17,8 @@ class RegionDownloader {
     /// region that will be downloaded
     let region: TileCoordsRegion
     
-    /// diskcache that is going to be used for saving the files.
-    let mapCache: MapCache
+    /// Cache that is going to be used for saving/loading the files.
+    let mapCache: MapCacheProtocol
     
     /// Total number of tiles to be downloaded
     var totalTilesToDownload: TileNumber {
@@ -116,7 +116,8 @@ class RegionDownloader {
     /// Queue to download stuff.
     lazy var downloaderQueue : DispatchQueue = {
         let queueName = "MapCache.Downloader." + self.mapCache.config.cacheName
-        let downloaderQueue = DispatchQueue(label: queueName, attributes: [])
+        //let downloaderQueue = DispatchQueue(label: queueName, attributes: [])
+        let downloaderQueue = DispatchQueue(label: queueName, qos: .background, attributes: [])
         return downloaderQueue
     }()
     
