@@ -19,4 +19,8 @@ extension MKTileOverlayPath {
         y = Int(tileCoords.tileY)
         z = Int(tileCoords.zoom)
     }
+    
+    func toTileCoords() -> TileCoords? {
+        return TileCoords(tileX: UInt64(x), tileY: UInt64(y), zoom: UInt8(z))
+    }
 }

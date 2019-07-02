@@ -10,7 +10,7 @@ import MapKit
 
 /// Hey! I need to download this area
 /// No problemo.
-class RegionDownloader {
+@objc class RegionDownloader: NSObject {
     /// Average number of bytes of a tile
     static let defaultAverageTileSizeBytes : UInt64 = 11664
     
@@ -30,7 +30,7 @@ class RegionDownloader {
     /// Number of tiles pending to be downloaded
     var pendingTilesToDownload: TileNumber {
         get {
-            return region.count - _downloadedTiles
+            return region.count - downloadedTiles
         }
     }
     
@@ -49,21 +49,18 @@ class RegionDownloader {
     /// This can be used to estimate the
     var averageTileSizeBytes: UInt64 {
         get {
-            if _downloadedTiles != 0 {
-                return UInt64(_downloadedBytes / _downloadedTiles)
+            if downloadedTiles != 0 {
+                return UInt64(_downloadedBytes / downloadedTiles)
             } else {
                 return 0
             }
         }
     }
-    /// It actually keeps the number of downloaded tiles in the current session.
-    /// It is only modified internally
-    private var _downloadedTiles : TileNumber = 0
     
     /// Keeps the number of tiles already downloaded successfully or failed.
     @objc dynamic var downloadedTiles: TileNumber {
         get {
-            return _downloadedTiles
+            return _successfulTileDownloads + _failedTileDownloads
         }
     }
     
@@ -105,7 +102,7 @@ class RegionDownloader {
     /// Percentage of tiles pending to download.
     var downloadedPercentage : Double {
         get {
-            return 100.0 * Double(_downloadedTiles / totalTilesToDownload)
+            return 100.0 * Double(downloadedTiles) / Double(totalTilesToDownload)
         }
     }
     
@@ -125,7 +122,7 @@ class RegionDownloader {
     ///
     /// initializes the downloader with the region and the MapCache
     ///
-    init(forRegion region: TileCoordsRegion, mapCache: MapCache) {
+    init(forRegion region: TileCoordsRegion, mapCache: MapCacheProtocol) {
         self.region = region
         self.mapCache = mapCache
     }
@@ -143,8 +140,9 @@ class RegionDownloader {
                             print(error?.localizedDescription ?? "Error downloading tile")
                             self._failedTileDownloads += 1
                         } else {
-                            print("RegionDownloader:: Donwloaded zoom: \(tileCoords.zoom) (x:\(tileCoords.tileX),y:\(tileCoords.tileY))")
                             self._successfulTileDownloads += 1
+                            print("RegionDownloader:: Donwloaded zoom: \(tileCoords.zoom) (x:\(tileCoords.tileX),y:\(tileCoords.tileY)) \(self.downloadedTiles)/\(self.totalTilesToDownload) \(self.downloadedPercentage)%")
+                            
                         }
                         //check if needs to notify duet to percentage
                         if self.downloadedPercentage > self.nextPercentageToNotify {
@@ -156,7 +154,7 @@ class RegionDownloader {
                         }
                         //Did we finish download
                         if self.downloadedTiles == self.totalTilesToDownload {
-                            self.delegate?.regionDownloader(self, didDownloadFinish: self.downloadedTiles)
+                            self.delegate?.regionDownloader(self, didFinishDownload: self.downloadedTiles)
                         }
                     })
                 }

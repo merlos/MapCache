@@ -11,13 +11,11 @@ import Foundation
 /// Delegate protocol of `RegionDownloader`
 ///
 ///
-protocol RegionDownloaderDelegate: class {
+@objc protocol RegionDownloaderDelegate: class {
     
     /// Did download the percentage
-    func regionDownloader(_ regionDownloader: RegionDownloader, didDownloadPercentage percentage: Double)
+    @objc func regionDownloader(_ regionDownloader: RegionDownloader, didDownloadPercentage percentage: Double)
     
-    /// Did download finish
-    func regionDownloader(_ regionDownloader: RegionDownloader, didDownloadFinish tilesDownloaded: TileNumber)
-    
-    
+    /// Did Finish Download all tiles
+    func regionDownloader(_ regionDownloader: RegionDownloader, didFinishDownload tilesDownloaded: TileNumber)
 }
