@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var clearCacheButton: UIButton!
     @IBOutlet weak var cacheSizeLabel: UILabel!
     
+    @IBOutlet weak var downloadRegionButton: UIButton!
+    
     /// Map Cache config contains all the config options.
     /// Initialize it before seting up the cache
     var config: MapCacheConfig = MapCacheConfig(withUrlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
@@ -54,6 +56,10 @@ class ViewController: UIViewController {
         mapCache!.clear() { 
             self.cacheSizeLabel.text = String(self.mapCache!.calculateSize())
         }
+    }
+    
+    @IBAction func downloadRegion(_ sender: Any) {
+        // Opens a new view controller
     }
     
     override func didReceiveMemoryWarning() {
