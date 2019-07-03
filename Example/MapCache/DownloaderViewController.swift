@@ -99,15 +99,16 @@ extension DownloaderViewController : MKMapViewDelegate {
 extension DownloaderViewController : RegionDownloaderDelegate {
     
     func regionDownloader(_ regionDownloader: RegionDownloader, didDownloadPercentage percentage: Double) {
-         DispatchQueue.main.async { 
+         DispatchQueue.main.async {
             self.progressView.progress = Float(percentage / 100.0)
         }
         
     }
     
     func regionDownloader(_ regionDownloader: RegionDownloader, didFinishDownload tilesDownloaded: TileNumber) {
-        self.progressView.progress = 1.0
-        
+        DispatchQueue.main.async {
+            self.progressView.progress = 1.0
+        }
     }
     
     
