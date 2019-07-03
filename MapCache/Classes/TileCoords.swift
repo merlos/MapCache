@@ -71,7 +71,7 @@ enum TileError: Error {
 /// All the wisdom of this class comes from:
 /// https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames
 ///
-class TileCoords {
+public class TileCoords {
     
     /// Max value of latitude that can be retrieved with tiles (-85.0511 degrees)
     static let maxLatitude : Double = 85.0511
@@ -176,7 +176,7 @@ class TileCoords {
     private var _zoom : Zoom = 0
     
     /// Zoom level. Read only. Use setZoom() to change it.
-    var zoom : Zoom {
+    public var zoom : Zoom {
         get {
             return _zoom
         }
@@ -184,7 +184,7 @@ class TileCoords {
     
     /// Latitude for this tile. Use setCoords() to change it.
     private var _latitude: Double = 0.0
-    var latitude: Double {
+    public var latitude: Double {
         get {
             return _latitude
         }
@@ -194,7 +194,7 @@ class TileCoords {
     private var _longitude: Double = 0.0
 
     /// Longitude for this tile. Use set() to change it.
-    var longitude: Double {
+    public var longitude: Double {
         get {
             return _longitude
         }

@@ -11,7 +11,7 @@ import Foundation
 /// Delegate protocol of `RegionDownloader`
 ///
 ///
-@objc protocol RegionDownloaderDelegate: class {
+@objc public protocol RegionDownloaderDelegate: class {
     
     /// Did download the percentage
     @objc func regionDownloader(_ regionDownloader: RegionDownloader, didDownloadPercentage percentage: Double)

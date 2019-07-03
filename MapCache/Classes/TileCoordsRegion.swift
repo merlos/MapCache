@@ -35,16 +35,16 @@ import Foundation
 ///     +---------------------++---------------------++---------------------+
 ///
 ///
-class TileCoordsRegion {
+public class TileCoordsRegion {
 
     // Top left tile/coordinate
-    var topLeft : TileCoords
+    public var topLeft : TileCoords
     
     // Bottom right tile/coordinate
-    var bottomRight : TileCoords
+    public var bottomRight : TileCoords
     
     //Zoom range for the region
-    var zoomRange: ZoomRange {
+    public var zoomRange: ZoomRange {
         get {
             let z1 = topLeft.zoom
             let z2 = bottomRight.zoom
@@ -56,7 +56,7 @@ class TileCoordsRegion {
     }
 
     //Total number of tiles in this region for all zoom levels
-    var count : TileNumber {
+    public var count : TileNumber {
         get {
             var counted: TileNumber = 0
             for zoom in zoomRange {
@@ -68,7 +68,7 @@ class TileCoordsRegion {
     
     /// The region will be the area that holds the line from any top left point (P1) to any
     /// bottom rightpoint 2 (P2)
-    init?(topLeftLatitude: Double, topLeftLongitude: Double, bottomRightLatitude: Double, bottomRightLongitude: Double, minZoom: UInt8, maxZoom: UInt8) {
+    public init?(topLeftLatitude: Double, topLeftLongitude: Double, bottomRightLatitude: Double, bottomRightLongitude: Double, minZoom: UInt8, maxZoom: UInt8) {
         guard let _topLeft = TileCoords(latitude: topLeftLatitude, longitude: topLeftLongitude, zoom: minZoom) else { return nil }
         guard let _bottomRight = TileCoords(latitude: bottomRightLatitude, longitude: bottomRightLongitude, zoom: maxZoom) else { return nil}
         topLeft = _topLeft
@@ -95,7 +95,7 @@ class TileCoordsRegion {
     ///
     /// The area will be the one denoted with the dots.
     ///
-    init?(topLeft: TileCoords, bottomRight: TileCoords) {
+    public init?(topLeft: TileCoords, bottomRight: TileCoords) {
         //Validate latitudes
         if (topLeft.latitude < bottomRight.latitude) {
             return nil
@@ -106,7 +106,7 @@ class TileCoordsRegion {
     }
     
     //Counts for the zoom
-    func count(forZoom zoom: Zoom) -> TileNumber {
+    public func count(forZoom zoom: Zoom) -> TileNumber {
         guard let ranges = tileRanges(forZoom: zoom) else {
             return 0
         }
@@ -139,7 +139,7 @@ class TileCoordsRegion {
     ///
     ///
     
-    func tileRanges(forZoom zoom: Zoom) -> [TileRange]? {
+    public func tileRanges(forZoom zoom: Zoom) -> [TileRange]? {
         //We create new tileCoords at the zoom
         guard let topLeftForZoom = TileCoords(topLeft,zoom: zoom) else {
             return nil
@@ -176,7 +176,7 @@ class TileCoordsRegion {
     }
     
     /// Gets the tile ranges for all zooms.
-    func tileRanges() -> [TileRange]? {
+    public func tileRanges() -> [TileRange]? {
         var ranges : [TileRange] = []
         for zoom in zoomRange {
             ranges.append(contentsOf: tileRanges(forZoom: zoom) ?? [])

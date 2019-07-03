@@ -8,7 +8,7 @@
 import Foundation
 
 //
-struct TileRangeIterator: IteratorProtocol {
+public struct TileRangeIterator: IteratorProtocol {
     
     /// Range for the counter
     let range: TileRange
@@ -44,7 +44,7 @@ struct TileRangeIterator: IteratorProtocol {
     ///          this function may fail. Pending to fix it.
     ///
     /// See: https://developer.apple.com/documentation/swift/iteratorprotocol
-    mutating func next() -> TileCoords? {
+    mutating public func next() -> TileCoords? {
         guard counter < maxCounter else { return nil }
         let currentColumn = counter % columns
         let currentRow = Double(counter / columns)

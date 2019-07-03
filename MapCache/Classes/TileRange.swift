@@ -24,7 +24,7 @@ enum TileRangeError: Error {
 ///       - There are no validations for the conditions above.
 ///       - There are not validations for the min and max values.
 ///
-struct TileRange: Sequence {
+public struct TileRange: Sequence {
     
     //Zoom level
     var zoom: Zoom
@@ -81,7 +81,7 @@ struct TileRange: Sequence {
     /// It starts from the top left corner of the range and iterates row by row.
     ///
     /// - See https://developer.apple.com/documentation/swift/iteratorprotocol
-    func makeIterator() -> TileRangeIterator {
+    public func makeIterator() -> TileRangeIterator {
             return TileRangeIterator(self)
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 public struct MapCacheConfig  {
     
-    public var urlTemplate: String = "https://${s}.tile.openstreetmap.org/${z}/${x}/${y}.png"
+    public var urlTemplate: String = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     
     public var subdomains: [String] = ["a","b","c"]
     
