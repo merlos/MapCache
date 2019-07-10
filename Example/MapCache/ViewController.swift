@@ -86,4 +86,7 @@ extension ViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         // Hello 
     }
+    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        print("ZoomLevel: \(mapView.zoomLevel)")
+    }
 }
