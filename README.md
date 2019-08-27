@@ -42,6 +42,7 @@ Then within the ViewController add
 
 ```swift
 
+// ViewController.swift
 class ViewController: UIViewController {
   @IBOutlet weak var map: MKMapView!
 
@@ -67,9 +68,10 @@ class ViewController: UIViewController {
 }
 ```
 
-Finally, tell the map delegate to use mapCacheRenderer
+Finally, tell the map delegate to use `mapCacheRenderer`
 
 ```swift
+//ViewController.swift
 
 // Assuming that ViewController is the delegate of the map
 // add this extension:
