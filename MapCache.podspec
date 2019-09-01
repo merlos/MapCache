@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MapCache'
-  s.version          = '0.1.0'
-  s.summary          = 'Smart map caching for iOS.'
+  s.version          = '0.5.0'
+  s.summary          = 'Map caching for iOS. Support offline maps in your app.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,8 +18,8 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-A smart cache for iOS Map Applications.
-                       DESC
+Map cache for iOS applications for offline maps. Download tiles in disk as user browsers the map or download an area for supporting offline maps.
+DESC
 
   s.homepage         = 'https://github.com/merlos/MapCache'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
