@@ -22,15 +22,26 @@ class DownloaderViewController: UIViewController {
     @IBOutlet weak var downloadButton: UIButton!
     
     /// region to download.
-    //
     var region : TileCoordsRegion?
+    
     /// Zoom range to download
     var zoomRange : ZoomRange?
-        
-        
+    
+    /// Cache config that uses open street map.
+    var config: MapCacheConfig = MapCacheConfig(withUrlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
+    
+    
+    var mapCache : MapCache?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         mapView.delegate = self
+        
+        mapCache = MapCache(withConfig: config)
+        mapView.useCache(mapCache!)
+        
         //Initialize the region with any random value.
         region = TileCoordsRegion(topLeftLatitude: 10.0, topLeftLongitude: 10.0, bottomRightLatitude: 20.0, bottomRightLongitude: 20.0, minZoom: 1, maxZoom: 9)
     }
@@ -39,9 +50,9 @@ class DownloaderViewController: UIViewController {
     /// Activated when download region button is pressed
     @IBAction func downloadRegion(_ sender: Any) {
         print("Download Region Pressed!")
-        let config = MapCacheConfig()
-        let mapCache = MapCache(withConfig: config)
-        let downloader = RegionDownloader(forRegion: region!, mapCache: mapCache)
+        
+
+        let downloader = RegionDownloader(forRegion: region!, mapCache: mapCache!)
         let delegate = self
         downloader.delegate = delegate
         downloader.start()
@@ -78,12 +89,16 @@ class DownloaderViewController: UIViewController {
         
         print("New Region: topLeft: (\(region?.topLeft.latitude),\(region?.topLeft.longitude)) bottomRight: (\(region?.bottomRight.latitude),\(region?.bottomRight.longitude)) zoom: \(region?.zoomRange.min)->\(region?.zoomRange.max)")
         // Update label with info
-        label.text = "Download \(region?.count) tiles\n  zoom: \(region?.zoomRange.min)->\(region?.zoomRange.max)"
+        label.text = "Download \(region?.count ?? 0) tiles | zoom: \(region?.zoomRange.min ?? 0)->\(region?.zoomRange.max ?? 0)"
     }
 
 }
 
 extension DownloaderViewController : MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        return mapView.mapCacheRenderer(forOverlay: overlay)
+    }
     
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
         print("current ZoomLevel: \(mapView.zoomLevel)")
