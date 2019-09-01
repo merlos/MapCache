@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         
         // We tell our MKMapView to use the cache
         // useCache(:) is part of MapCache extension.
-        map.useCache(mapCache!)
+        _ = map.useCache(mapCache!)
     }
     
     @IBAction func updateSize(_ sender: Any) {
