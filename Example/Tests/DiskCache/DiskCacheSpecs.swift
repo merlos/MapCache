@@ -130,6 +130,7 @@ class DiskCacheSpecs: QuickSpec {
                 let filePath = diskCache.path(forKey: weird1)
                 expect(FileManager.default.fileExists(atPath: filePath)).toEventually(equal(true))
                 expect(diskCache.size).toEventually(equal(10))
+                
                 diskCache.fetchData(forKey: weird1, failure: { error in
                     guard let error = error as NSError? else {
                         expect(1) > 2

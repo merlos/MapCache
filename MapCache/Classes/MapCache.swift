@@ -8,8 +8,9 @@
 import Foundation
 import MapKit
 
+
 /// The real brain
-public class MapCache : NSObject {
+public class MapCache : MapCacheProtocol {
     
     public var config : MapCacheConfig
     public var diskCache : DiskCache
@@ -30,26 +31,41 @@ public class MapCache : NSObject {
         return URL(string: urlString)!
     }
     
+    public func cacheKey(forPath path: MKTileOverlayPath) -> String {
+        return "\(config.urlTemplate)-\(path.x)-\(path.y)-\(path.z)"
+    }
+    
     public func loadTile(at path: MKTileOverlayPath, result: @escaping (Data?, Error?) -> Void) {
         // Use cache
         // is the file alread in the system?
-        let cacheKey = "\(config.urlTemplate)-\(path.x)-\(path.y)-\(path.z)"
-        let fetChfailure = { (error: Error?) -> () in
-            print ("MapCache::loadTile() Not found! cacheKey=\(cacheKey)" )
-        }
-        let fetchSuccess = {(data: Data) -> () in
-            print ("MapCache::loadTile() found! cacheKey=\(cacheKey)" )
-            result (data, nil)
-        }
+        let key = cacheKey(forPath: path)
         
-        diskCache.fetchData(forKey: cacheKey, failure: fetChfailure, success: fetchSuccess)
+        
+        // If fetching data from cache is successfull => return the data
+        let fetchSuccess = {(data: Data) -> () in
+            print ("MapCache::loadTile() found! cacheKey=\(key)" )
+            result (data, nil)
+            return
+        }
+        // Closure to run if error found while fetching data from cache
+        let fetChfailure = { (error: Error?) -> () in
+            print ("MapCache::loadTile() Not found! cacheKey=\(key)" )
+        }
+        // Fetch the data
+        diskCache.fetchData(forKey: key, failure: fetChfailure, success: fetchSuccess)
         let url = self.url(forTilePath: path)
         print ("MapCache::loadTile() url=\(url)")
         print("Requesting data....");
         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            if error != nil {
+                print("!!! MapCache::loadTile Error for key= \(key)")
+                //print(error)
+                result(nil,error)
+                return
+            }
             guard let data = data else { return }
-            self.diskCache.setData(data, forKey: cacheKey)
-            print ("CachedTileOverlay:: saved cacheKey=\(cacheKey)" )
+            self.diskCache.setData(data, forKey: key)
+            print ("CachedTileOverlay:: Data received saved cacheKey=\(key)" )
             result(data,nil)
         }
         task.resume()

@@ -29,26 +29,35 @@
                                 <rect key="frame" x="0.0" y="0.0" width="500" height="99"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0Z-in-k23" userLabel="Update Size Button">
-                                        <rect key="frame" x="142" y="48" width="116" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <accessibility key="accessibilityConfiguration" hint="updates value of the cache size" label="Update Size">
-                                            <accessibilityTraits key="traits" button="YES"/>
-                                        </accessibility>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                        <state key="normal" title="Get size"/>
-                                        <connections>
-                                            <action selector="updateSize:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3FC-cx-Tx6"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7EQ-Hp-CVK">
-                                        <rect key="frame" x="284" y="48" width="71" height="30"/>
+                                        <rect key="frame" x="122" y="48" width="71" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Clear"/>
                                         <connections>
                                             <action selector="clearCache:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="m3S-Qp-RDR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0Z-in-k23" userLabel="Update Size Button">
+                                        <rect key="frame" x="0.0" y="69" width="116" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" hint="updates value of the cache size" label="Update Size">
+                                            <accessibilityTraits key="traits" button="YES"/>
+                                        </accessibility>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                        <state key="normal" title="Refresh"/>
+                                        <connections>
+                                            <action selector="updateSize:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3FC-cx-Tx6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOt-Fe-b8G">
+                                        <rect key="frame" x="201" y="48" width="149" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Download Region"/>
+                                        <connections>
+                                            <segue destination="kyc-CB-ghz" kind="presentation" id="rUu-fY-38n"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -76,6 +85,7 @@
                     <connections>
                         <outlet property="cacheSizeLabel" destination="Lsd-4Y-LN2" id="tnk-Vq-9uT"/>
                         <outlet property="clearCacheButton" destination="7EQ-Hp-CVK" id="tc0-k6-3vF"/>
+                        <outlet property="downloadRegionButton" destination="wOt-Fe-b8G" id="pmi-Us-Ypv"/>
                         <outlet property="map" destination="dwC-V5-0co" id="Ir8-jR-9rJ"/>
                         <outlet property="updateSizeButton" destination="w0Z-in-k23" id="BJp-Jt-0XR"/>
                     </connections>
@@ -83,6 +93,113 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="80.799999999999997" y="114.69265367316342"/>
+        </scene>
+        <!--Downloader View Controller-->
+        <scene sceneID="dQz-qO-4zV">
+            <objects>
+                <viewController id="kyc-CB-ghz" customClass="DownloaderViewController" customModule="MapCache_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iC1-Wf-Jep"/>
+                        <viewControllerLayoutGuide type="bottom" id="ccj-19-m1N"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ezZ-5I-yxf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dId-17-Wac">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Download region" id="19H-T6-Qu9">
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="TDO-Di-KyF">
+                                            <connections>
+                                                <action selector="closeViewController:" destination="kyc-CB-ghz" id="zw5-Oa-N0X"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gul-O5-AUM">
+                                <rect key="frame" x="0.0" y="72" width="375" height="525"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                            <view alpha="0.30000001192092896" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mhf-Xv-732" userLabel="Right Border View">
+                                <rect key="frame" x="350" y="72" width="25" height="424"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r81-lv-Rwe" userLabel="Left Border View">
+                                <rect key="frame" x="0.0" y="72" width="26" height="424"/>
+                                <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
+                            </view>
+                            <view alpha="0.30000001192092896" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NiU-Pc-nlU" userLabel="Top Border View">
+                                <rect key="frame" x="26" y="72" width="324" height="38"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XAQ-zq-8WQ" userLabel="Bottom Border View">
+                                <rect key="frame" x="0.0" y="496" width="375" height="37"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
+                            </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="abU-YW-u0D">
+                                <rect key="frame" x="0.0" y="597" width="375" height="2"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZm-44-4an">
+                                <rect key="frame" x="0.0" y="601" width="375" height="66"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <state key="normal" title="Download Region"/>
+                                <connections>
+                                    <action selector="downloadRegion:" destination="kyc-CB-ghz" eventType="touchUpInside" id="8cr-C9-Z7y"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="For Testing only. OpenStreetMaps does not allow predonwload regions. (aprox. 500 tiles works fine)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gc8-FU-iPu">
+                                <rect key="frame" x="0.0" y="496" width="375" height="37"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.0" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view alpha="0.75" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fDV-Bg-6Ys" userLabel="Bottom Border View">
+                                <rect key="frame" x="1" y="531" width="375" height="68"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="11" minValue="1" maxValue="19" translatesAutoresizingMaskIntoConstraints="NO" id="qMo-0h-Hge">
+                                        <rect key="frame" x="23" y="39" width="328" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <connections>
+                                            <action selector="sliderValueChanged:" destination="kyc-CB-ghz" eventType="valueChanged" id="bEg-w0-eKi"/>
+                                        </connections>
+                                    </slider>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="_" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIw-AR-t92">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <connections>
+                        <outlet property="downloadButton" destination="NZm-44-4an" id="Ejm-8Y-AtC"/>
+                        <outlet property="label" destination="pIw-AR-t92" id="Q0Q-tw-a0d"/>
+                        <outlet property="mapView" destination="gul-O5-AUM" id="TKF-Mu-uo0"/>
+                        <outlet property="progressView" destination="abU-YW-u0D" id="0zw-6G-wax"/>
+                        <outlet property="slider" destination="qMo-0h-Hge" id="bAm-K0-sHw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IKC-0e-qLX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="893.60000000000002" y="114.69265367316342"/>
         </scene>
     </scenes>
 </document>

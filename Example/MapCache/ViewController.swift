@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var clearCacheButton: UIButton!
     @IBOutlet weak var cacheSizeLabel: UILabel!
     
+    @IBOutlet weak var downloadRegionButton: UIButton!
+    
     /// Map Cache config contains all the config options.
     /// Initialize it before seting up the cache
     var config: MapCacheConfig = MapCacheConfig(withUrlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
@@ -56,6 +58,10 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func downloadRegion(_ sender: Any) {
+        // Opens a new view controller
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -79,5 +85,8 @@ extension ViewController : CLLocationManagerDelegate {
     }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         // Hello 
+    }
+    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        print("ZoomLevel: \(mapView.zoomLevel)")
     }
 }
