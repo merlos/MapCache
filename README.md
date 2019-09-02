@@ -62,7 +62,7 @@ class ViewController: UIViewController {
     mapCache = MapCache(withConfig: config)
 
     // We tell the MKMapView to use our cache
-    map.useCache(mapCache!)
+    _ = map.useCache(mapCache!)
 
     ...
 }
