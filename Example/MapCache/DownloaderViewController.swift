@@ -40,7 +40,7 @@ class DownloaderViewController: UIViewController {
         mapView.delegate = self
         
         mapCache = MapCache(withConfig: config)
-        mapView.useCache(mapCache!)
+        _ = mapView.useCache(mapCache!)
         
         //Initialize the region with any random value.
         region = TileCoordsRegion(topLeftLatitude: 10.0, topLeftLongitude: 10.0, bottomRightLatitude: 20.0, bottomRightLongitude: 20.0, minZoom: 1, maxZoom: 9)

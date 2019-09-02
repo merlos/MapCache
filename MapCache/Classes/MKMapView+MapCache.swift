@@ -14,11 +14,12 @@ import MapKit
 extension MKMapView {
 
     /// Will tell the map to use the cache passed as parameter.
-    public func useCache(_ cache: MapCache) {
+    public func useCache(_ cache: MapCache) -> CachedTileOverlay {
         
         let tileServerOverlay = CachedTileOverlay(withCache: cache)
         tileServerOverlay.canReplaceMapContent = true
         self.insertOverlay(tileServerOverlay, at: 0, level: .aboveLabels)
+        return tileServerOverlay
     }
     
     /// Call this method within the MKMapView delegate function
