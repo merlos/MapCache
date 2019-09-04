@@ -15,23 +15,22 @@ Current features:
 * You can to set cache capacity. Once the cache is full it will use a LRU (Least recently Used) algorithm.
 * Get Current cache size
 * Clear existing cache
-
+* Download a full region of the map
+ 
 What is coming:
- * Download a full region of the map. 
  * Smart predownloading/caching: anticipate tiles that may be needed during network idle
  * Background cache updates downloads
  * Improve documentation
 
 ## Installation
-
 MapCache is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'MapCache'
 ```
-## How to use the MapCache?
 
+## How to use the MapCache?
 In the view controller where you have the `MKMapView` import `MapCache`
 
 ```swift
@@ -41,7 +40,6 @@ import MapCache
 Then within the ViewController add
 
 ```swift
-
 // ViewController.swift
 class ViewController: UIViewController {
   @IBOutlet weak var map: MKMapView!
