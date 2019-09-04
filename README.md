@@ -1,6 +1,6 @@
 # MapCache Swift
 
-<p><div style="text-align:center"><img src="./images/MapCache.png"></div>
+<p><div style="text-align:center"><img src="https://github.com/merlos/MapCache/tree/master/images/MapCache.png"></div>
 </p>
 
 [![CI Status](https://travis-ci.com/merlos/MapCache.svg?branch=master)](https://travis-ci.org/merlos/MapCache)
@@ -12,7 +12,7 @@ The missing part of [MapKit](https://developer.apple.com/documentation/mapkit): 
 
 Current features: 
 * Automatically save tiles in a disk cache as user browses the map.
-* You can to set cache capacity. Once the cache is full it will use a LRU (Least recently Used) algorithm.
+* You can to set cache capacity. Once the cache is full it will use a LRU (Least Recently Used) algorithm.
 * Get Current cache size
 * Clear existing cache
 * Download a full region of the map
@@ -24,7 +24,7 @@ What is coming:
 
 ## Installation
 MapCache is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+it, simply add the following line to your `Podfile`:
 
 ```ruby
 pod 'MapCache'
