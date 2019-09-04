@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TileCoords Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/TileCoords" class="dashAnchor"></a>
+    <a title="TileCoords Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">MapCache Docs</a> (58% documented)</p>
+        <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">MapCache Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        TileCoords Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DiskCache.html">DiskCache</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HashBase.html">HashBase</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MD5.html">MD5</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MapCache.html">MapCache</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegionDownloader.html">RegionDownloader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TileCoords.html">TileCoords</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TileCoordsRegion.html">TileCoordsRegion</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/LatitudeError.html">LatitudeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LongitudeError.html">LongitudeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TileError.html">TileError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TileRangeError.html">TileRangeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ZoomError.html">ZoomError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/FileManager.html">FileManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKMapView.html">MKMapView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSMutableData.html">NSMutableData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache1loiySbSo8NSNumberC_ADtF">&lt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache12arrayOfBytes5value6lengthSays5UInt8VGx_SiSgtlF">arrayOfBytes(value:length:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache17isNoSuchFileError33_FC193A7AE40E49CC84DE49A3128B2975LLySbs0G0_pSgF">isNoSuchFileError(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache10rotateLeft1v1ns6UInt32VAF_AFtF">rotateLeft(v:n:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache18sliceToUInt32ArrayySays0E0VGs0F5SliceVys5UInt8VGF">sliceToUInt32Array(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/MapCacheProtocol.html">MapCacheProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RegionDownloaderDelegate.html">RegionDownloaderDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/BytesSequence.html">BytesSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Log.html">Log</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Log/Level.html">– Level</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MapCacheConfig.html">MapCacheConfig</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TileRange.html">TileRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TileRangeIterator.html">TileRangeIterator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomRange.html">ZoomRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>TileCoords</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">TileCoords</span></code></pre>
+
+                </div>
+              </div>
+            <p>Class to convert from Map Tiles to coordinates and from coordinates to tiles</p>
+
+<p>Coordinates (latitude and longitude) are ALWAYS expressed in degrees.
+The max latitude that can be converted to tiles is +85.0511 and the minimum
+ is -85.0511 (see <a href="https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames">https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames</a>).</p>
+
+<p>Zoom level (z) range is from 0 to 19.</p>
+
+<p>The earth is represented by a square that is divided in small pieces (tiles).
+The number of tiles depends on the zoom value and is equal to: 2^z x 2^z</p>
+
+<p>The values of tiles can be from 0 to 2^z - 1. For instance, for z=10
+the max tile would be 1023 (2^10 - 1 = 1024 - 1)</p>
+
+<p>This diagram represents the equivalent lat/long vs tileX/tileY</p>
+<pre class="highlight swift"><code><span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span><span class="mf">85.0511</span><span class="p">)</span>           <span class="p">(</span><span class="mi">180</span><span class="p">,</span><span class="mf">85.0511</span><span class="p">)</span>  <span class="o">&lt;-----</span> <span class="nf">coords</span> <span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">long</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">,</span><span class="mi">0</span>                      <span class="mi">2</span><span class="o">^</span><span class="n">z</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span> <span class="o">&lt;----------</span> <span class="kt">Tile</span> <span class="nf">number</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="o">+-------------------------+</span>
+<span class="o">|</span>                         <span class="o">|</span>
+<span class="o">|</span>            <span class="o">+</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">)</span>  <span class="o">|</span>
+<span class="o">|</span>                         <span class="o">|</span>
+<span class="o">+-------------------------+</span>
+<span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">^</span><span class="n">z</span> <span class="o">-</span> <span class="mi">1</span>                 <span class="mi">2</span><span class="o">^</span><span class="n">z</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">^</span><span class="n">z</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span><span class="o">-</span><span class="mf">85.0511</span><span class="p">)</span>           <span class="p">(</span><span class="mi">180</span><span class="p">,</span><span class="o">-</span><span class="mf">85.0511</span><span class="p">)</span>
+</code></pre>
+
+<p>All the wisdom of this class comes from:
+<a href="https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames">https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames</a></p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC11maxLatitudeSdvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/maxLatitude" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC11maxLatitudeSdvpZ">maxLatitude</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Max value of latitude that can be retrieved with tiles (-85.0511 degrees)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="k">let</span> <span class="nv">maxLatitude</span><span class="p">:</span> <span class="kt">Double</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC11minLatitudeSdvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/minLatitude" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC11minLatitudeSdvpZ">minLatitude</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Min value of latitude that can be retrieved with tiles (-85.0511 degrees)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="k">let</span> <span class="nv">minLatitude</span><span class="p">:</span> <span class="kt">Double</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC12maxLongitudeSdvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/maxLongitude" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC12maxLongitudeSdvpZ">maxLongitude</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Max value of a longitude (&lt;180.0).
+Any longitude has to be strictly minor than this value 180.0</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="k">let</span> <span class="nv">maxLongitude</span><span class="p">:</span> <span class="kt">Double</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC12minLongitudeSdvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/minLongitude" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC12minLongitudeSdvpZ">minLongitude</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Min value of a longitude (&gt;=180.0)
+Any longitude has to be mayor or equal to this value -180.0.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="k">let</span> <span class="nv">minLongitude</span><span class="p">:</span> <span class="kt">Double</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC7maxZooms5UInt8VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/maxZoom" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC7maxZooms5UInt8VvpZ">maxZoom</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Max zoom supported in tile servers (19)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="k">let</span> <span class="nv">maxZoom</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC7minZooms5UInt8VvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/minZoom" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC7minZooms5UInt8VvpZ">minZoom</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Min zoom supported (0)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="k">let</span> <span class="nv">minZoom</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC03maxC07forZooms6UInt64Vs5UInt8V_tFZ"></a>
+                    <a name="//apple_ref/swift/Method/maxTile(forZoom:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC03maxC07forZooms6UInt64Vs5UInt8V_tFZ">maxTile(forZoom:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Based on current zoom it indicates what is the max tile</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">maxTile</span><span class="p">(</span><span class="n">forZoom</span> <span class="nv">zoom</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC8validate9longitudeySd_tKFZ"></a>
+                    <a name="//apple_ref/swift/Method/validate(longitude:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC8validate9longitudeySd_tKFZ">validate(longitude:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Validates if longitude is between min and max allowed longitudes</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    LongitudeError
+
+</div>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    maxLatitude, minLatitude
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span><span class="nv">longitude</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>longitude</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the longitude to validate</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC8validate8latitudeySd_tKFZ"></a>
+                    <a name="//apple_ref/swift/Method/validate(latitude:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC8validate8latitudeySd_tKFZ">validate(latitude:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Validates if a latitude is between min and max allowed latitudes.
+Throws LongitudeError if it is not.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC8validate4zoomys5UInt8V_tKFZ"></a>
+                    <a name="//apple_ref/swift/Method/validate(zoom:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC8validate4zoomys5UInt8V_tKFZ">validate(zoom:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Validate zoom is less or equal to the maxZoom
+Throws ZoomError if is greater than maxZoom</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span><span class="nv">zoom</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC8validate4tile7forZoomys6UInt64V_s5UInt8VtKFZ"></a>
+                    <a name="//apple_ref/swift/Method/validate(tile:forZoom:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC8validate4tile7forZoomys6UInt64V_s5UInt8VtKFZ">validate(tile:forZoom:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Validates if the tile is within the range for the zoom
+A tile must be always be less than 2^zoom.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">validate</span><span class="p">(</span><span class="nv">tile</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a></span><span class="p">,</span> <span class="n">forZoom</span> <span class="nv">zoom</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC011longitudeToC1X0E04zooms6UInt64VSd_s5UInt8VtKFZ"></a>
+                    <a name="//apple_ref/swift/Method/longitudeToTileX(longitude:zoom:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC011longitudeToC1X0E04zooms6UInt64VSd_s5UInt8VtKFZ">longitudeToTileX(longitude:zoom:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the tile in the X axis for the longitude and zoom.
+Can throw ZoomError and LongitudeError if these are out of the boundaries.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">longitudeToTileX</span><span class="p">(</span><span class="nv">longitude</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">zoom</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC010latitudeToC1Y0E04zooms6UInt64VSd_s5UInt8VtKFZ"></a>
+                    <a name="//apple_ref/swift/Method/latitudeToTileY(latitude:zoom:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC010latitudeToC1Y0E04zooms6UInt64VSd_s5UInt8VtKFZ">latitudeToTileY(latitude:zoom:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the tile in the Y axis for the latitude and zoom.
+Can throw ZoomError and LongitudeError if these are out of the boundaries.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">latitudeToTileY</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">zoom</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC16tileXToLongitude0E1X4zoomSds6UInt64V_s5UInt8VtKFZ"></a>
+                    <a name="//apple_ref/swift/Method/tileXToLongitude(tileX:zoom:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC16tileXToLongitude0E1X4zoomSds6UInt64V_s5UInt8VtKFZ">tileXToLongitude(tileX:zoom:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the corresponding longitude in degrees for the tileX at zoom level</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">tileXToLongitude</span><span class="p">(</span><span class="nv">tileX</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a></span><span class="p">,</span> <span class="nv">zoom</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Double</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC15tileYToLatitude0E1Y4zoomSds6UInt64V_s5UInt8VtKFZ"></a>
+                    <a name="//apple_ref/swift/Method/tileYToLatitude(tileY:zoom:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC15tileYToLatitude0E1Y4zoomSds6UInt64V_s5UInt8VtKFZ">tileYToLatitude(tileY:zoom:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the corresponding latitude in degrees for the tileY at zoom level</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">tileYToLatitude</span><span class="p">(</span><span class="nv">tileY</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a></span><span class="p">,</span> <span class="nv">zoom</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Double</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC5_zoom33_EA7126F1A3D16AFAE6DD45A5164BF908LLs5UInt8Vvp"></a>
+                    <a name="//apple_ref/swift/Property/_zoom" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC5_zoom33_EA7126F1A3D16AFAE6DD45A5164BF908LLs5UInt8Vvp">_zoom</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Holds the zoom level</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_zoom</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC4zooms5UInt8Vvp"></a>
+                    <a name="//apple_ref/swift/Property/zoom" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC4zooms5UInt8Vvp">zoom</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Zoom level. Read only. Use setZoom() to change it.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">zoom</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC9_latitude33_EA7126F1A3D16AFAE6DD45A5164BF908LLSdvp"></a>
+                    <a name="//apple_ref/swift/Property/_latitude" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC9_latitude33_EA7126F1A3D16AFAE6DD45A5164BF908LLSdvp">_latitude</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Latitude for this tile. Use setCoords() to change it.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_latitude</span><span class="p">:</span> <span class="kt">Double</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC8latitudeSdvp"></a>
+                    <a name="//apple_ref/swift/Property/latitude" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC8latitudeSdvp">latitude</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">latitude</span><span class="p">:</span> <span class="kt">Double</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC10_longitude33_EA7126F1A3D16AFAE6DD45A5164BF908LLSdvp"></a>
+                    <a name="//apple_ref/swift/Property/_longitude" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC10_longitude33_EA7126F1A3D16AFAE6DD45A5164BF908LLSdvp">_longitude</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Holds the actual longitude</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_longitude</span><span class="p">:</span> <span class="kt">Double</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC9longitudeSdvp"></a>
+                    <a name="//apple_ref/swift/Property/longitude" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC9longitudeSdvp">longitude</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Longitude for this tile. Use set() to change it.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">longitude</span><span class="p">:</span> <span class="kt">Double</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC6_tileX33_EA7126F1A3D16AFAE6DD45A5164BF908LLs6UInt64Vvp"></a>
+                    <a name="//apple_ref/swift/Property/_tileX" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC6_tileX33_EA7126F1A3D16AFAE6DD45A5164BF908LLs6UInt64Vvp">_tileX</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Holds the actual tileX</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_tileX</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC5tileXs6UInt64Vvp"></a>
+                    <a name="//apple_ref/swift/Property/tileX" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC5tileXs6UInt64Vvp">tileX</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Tile in the X axis for current longitude and zoom. Use set() to change it.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">tileX</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC6_tileY33_EA7126F1A3D16AFAE6DD45A5164BF908LLs6UInt64Vvp"></a>
+                    <a name="//apple_ref/swift/Property/_tileY" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC6_tileY33_EA7126F1A3D16AFAE6DD45A5164BF908LLs6UInt64Vvp">_tileY</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_tileY</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC5tileYs6UInt64Vvp"></a>
+                    <a name="//apple_ref/swift/Property/tileY" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC5tileYs6UInt64Vvp">tileY</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">tileY</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC3set4zoomys5UInt8V_tKF"></a>
+                    <a name="//apple_ref/swift/Method/set(zoom:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC3set4zoomys5UInt8V_tKF">set(zoom:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set zoom level.
+Throws ZoomError if zoom is not valid.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="nv">zoom</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC3set5tileX0F1Yys6UInt64V_AHtKF"></a>
+                    <a name="//apple_ref/swift/Method/set(tileX:tileY:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC3set5tileX0F1Yys6UInt64V_AHtKF">set(tileX:tileY:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set tile X and Y values.
+Throws TileError if latitude or longitude are out of range.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="nv">tileX</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a></span><span class="p">,</span> <span class="nv">tileY</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC3set8latitude9longitudeySd_SdtKF"></a>
+                    <a name="//apple_ref/swift/Method/set(latitude:longitude:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC3set8latitude9longitudeySd_SdtKF">set(latitude:longitude:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets latitude and longitude
+Throws LatitudeError and LongitudeError if they are out of range.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="nv">latitude</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC5tileX0E1Y4zoomACSgs6UInt64V_AIs5UInt8Vtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(tileX:tileY:zoom:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC5tileX0E1Y4zoomACSgs6UInt64V_AIs5UInt8Vtcfc">init(tileX:tileY:zoom:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Init a TileCoords instance using tile and zoom info.
+Will return nil if any of the parameters is out of range.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">tileX</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a></span><span class="p">,</span> <span class="nv">tileY</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a></span><span class="p">,</span> <span class="nv">zoom</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC8latitude9longitude4zoomACSgSd_Sds5UInt8Vtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(latitude:longitude:zoom:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC8latitude9longitude4zoomACSgSd_Sds5UInt8Vtcfc">init(latitude:longitude:zoom:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Init a TileCoords instance using latitude, longitude and zoom info.
+Will return nil if any of the parameters is out of range.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">latitude</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">longitude</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">zoom</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC_4zoomACSgAC_s5UInt8Vtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:zoom:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC_4zoomACSgAC_s5UInt8Vtcfc">init(_:zoom:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new Tile Coord with the same latitude and longitude
+as the the parameter but with a different zoom</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="n">_</span> <span class="nv">tileCoords</span><span class="p">:</span> <span class="kt">TileCoords</span><span class="p">,</span> <span class="nv">zoom</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache10TileCoordsC03maxC0s6UInt64VyF"></a>
+                    <a name="//apple_ref/swift/Method/maxTile()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC03maxC0s6UInt64VyF">maxTile()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the maximum tile number for current set zoom.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">maxTile</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2019-09-03)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

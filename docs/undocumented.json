@@ -1,0 +1,607 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/CachedTileOverlay.swift",
+      "line": 17,
+      "symbol": "CachedTileOverlay.mapCache",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/CachedTileOverlay.swift",
+      "line": 19,
+      "symbol": "CachedTileOverlay.useCache",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/CachedTileOverlay.swift",
+      "line": 21,
+      "symbol": "CachedTileOverlay.init(withCache:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/DiskCache.swift",
+      "line": 13,
+      "symbol": "DiskCache",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/DiskCache.swift",
+      "line": 16,
+      "symbol": "DiskCache.baseURL()",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/DiskCache.swift",
+      "line": 37,
+      "symbol": "DiskCache.capacity",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/DiskCache.swift",
+      "line": 45,
+      "symbol": "DiskCache.cacheQueue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/DiskCache.swift",
+      "line": 51,
+      "symbol": "DiskCache.init(withName:capacity:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/DiskCache.swift",
+      "line": 105,
+      "symbol": "DiskCache.fetchData(forKey:failure:success:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/DiskCache.swift",
+      "line": 124,
+      "symbol": "DiskCache.removeData(withKey:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/DiskCache.swift",
+      "line": 131,
+      "symbol": "DiskCache.removeAllData(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/DiskCache.swift",
+      "line": 156,
+      "symbol": "DiskCache.updateAccessDate(_:key:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/DiskCache.swift",
+      "line": 170,
+      "symbol": "DiskCache.calculateSize()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/DiskCache.swift",
+      "line": 195,
+      "symbol": "DiskCache.controlCapacity()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/DiskCache.swift",
+      "line": 211,
+      "symbol": "DiskCache.updateDiskAccessDate(atPath:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/DiskCache.swift",
+      "line": 223,
+      "symbol": "DiskCache.removeFile(atPath:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/DiskCache.swift",
+      "line": 244,
+      "symbol": "DiskCache.substract(size:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/DiskCache.swift",
+      "line": 254,
+      "symbol": "isNoSuchFileError(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/FileManager+DiskCache.swift",
+      "line": 18,
+      "symbol": "FileManager.enumerateContentsOfDirectory(atPath:orderedByProperty:ascending:usingBlock:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/FileManager+DiskCache.swift",
+      "line": 68,
+      "symbol": "<(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/MD5.swift",
+      "line": 64,
+      "symbol": "BytesSequence",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/MD5.swift",
+      "line": 65,
+      "symbol": "BytesSequence.chunkSize",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/MD5.swift",
+      "line": 66,
+      "symbol": "BytesSequence.data",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/MD5.swift",
+      "line": 79,
+      "symbol": "HashBase",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/MD5.swift",
+      "line": 81,
+      "symbol": "HashBase.size",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/MD5.swift",
+      "line": 82,
+      "symbol": "HashBase.message",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/MD5.swift",
+      "line": 84,
+      "symbol": "HashBase.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/MD5.swift",
+      "line": 109,
+      "symbol": "rotateLeft(v:n:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/MD5.swift",
+      "line": 113,
+      "symbol": "sliceToUInt32Array(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/MD5.swift",
+      "line": 127,
+      "symbol": "MD5",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/MD5.swift",
+      "line": 154,
+      "symbol": "MD5.h",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/MD5.swift",
+      "line": 156,
+      "symbol": "MD5.calculate()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/String+DiskCache.swift",
+      "line": 17,
+      "symbol": "String.escapedFilename()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/String+DiskCache.swift",
+      "line": 24,
+      "symbol": "String.toMD5()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/String+DiskCache.swift",
+      "line": 40,
+      "symbol": "String.MD5Filename()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/Log.swift",
+      "line": 15,
+      "symbol": "Log",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/Log.swift",
+      "line": 17,
+      "symbol": "Log.Tag",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/Log.swift",
+      "line": 19,
+      "symbol": "Log.Level",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/Log.swift",
+      "line": 20,
+      "symbol": "Log.Level.Debug",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/Log.swift",
+      "line": 21,
+      "symbol": "Log.Level.Error",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/Log.swift",
+      "line": 24,
+      "symbol": "Log.log(_:_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/Log.swift",
+      "line": 32,
+      "symbol": "Log.debug(message:error:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/Log.swift",
+      "line": 38,
+      "symbol": "Log.error(message:error:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MKTileOverlayPath+MapCache.swift",
+      "line": 23,
+      "symbol": "MKTileOverlayPath.toTileCoords()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCache.swift",
+      "line": 15,
+      "symbol": "MapCache.config",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCache.swift",
+      "line": 16,
+      "symbol": "MapCache.diskCache",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCache.swift",
+      "line": 17,
+      "symbol": "MapCache.operationQueue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCache.swift",
+      "line": 19,
+      "symbol": "MapCache.init(withConfig:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCache.swift",
+      "line": 24,
+      "symbol": "MapCache.url(forTilePath:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCache.swift",
+      "line": 34,
+      "symbol": "MapCache.cacheKey(forPath:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCache.swift",
+      "line": 74,
+      "symbol": "MapCache.size",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCache.swift",
+      "line": 80,
+      "symbol": "MapCache.calculateSize()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCache.swift",
+      "line": 84,
+      "symbol": "MapCache.clear(completition:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCacheConfig.swift",
+      "line": 10,
+      "symbol": "MapCacheConfig",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCacheConfig.swift",
+      "line": 12,
+      "symbol": "MapCacheConfig.urlTemplate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCacheConfig.swift",
+      "line": 14,
+      "symbol": "MapCacheConfig.subdomains",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCacheConfig.swift",
+      "line": 16,
+      "symbol": "MapCacheConfig.cacheName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCacheConfig.swift",
+      "line": 18,
+      "symbol": "MapCacheConfig.capacity",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCacheConfig.swift",
+      "line": 20,
+      "symbol": "MapCacheConfig.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCacheConfig.swift",
+      "line": 23,
+      "symbol": "MapCacheConfig.init(withUrlTemplate:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCacheConfig.swift",
+      "line": 27,
+      "symbol": "MapCacheConfig.randomSubdomain()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCacheProtocol.swift",
+      "line": 11,
+      "symbol": "MapCacheProtocol",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCacheProtocol.swift",
+      "line": 13,
+      "symbol": "MapCacheProtocol.config",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCacheProtocol.swift",
+      "line": 15,
+      "symbol": "MapCacheProtocol.url(forTilePath:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/RegionDownloader.swift",
+      "line": 38,
+      "symbol": "RegionDownloader._downloadedBytes",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileCoords.swift",
+      "line": 28,
+      "symbol": "LatitudeError.overflowMin",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileCoords.swift",
+      "line": 29,
+      "symbol": "LatitudeError.overflowMax",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileCoords.swift",
+      "line": 34,
+      "symbol": "LongitudeError.overflowMin",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileCoords.swift",
+      "line": 35,
+      "symbol": "LongitudeError.overflowMax",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileCoords.swift",
+      "line": 40,
+      "symbol": "TileError.overflow",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileCoords.swift",
+      "line": 187,
+      "symbol": "TileCoords.latitude",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileCoords.swift",
+      "line": 214,
+      "symbol": "TileCoords._tileY",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileCoords.swift",
+      "line": 216,
+      "symbol": "TileCoords.tileY",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileCoordsRegion.swift",
+      "line": 41,
+      "symbol": "TileCoordsRegion.topLeft",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileCoordsRegion.swift",
+      "line": 44,
+      "symbol": "TileCoordsRegion.bottomRight",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileCoordsRegion.swift",
+      "line": 47,
+      "symbol": "TileCoordsRegion.zoomRange",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileCoordsRegion.swift",
+      "line": 59,
+      "symbol": "TileCoordsRegion.count",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileCoordsRegion.swift",
+      "line": 109,
+      "symbol": "TileCoordsRegion.count(forZoom:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileRange.swift",
+      "line": 11,
+      "symbol": "TileRangeError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileRange.swift",
+      "line": 12,
+      "symbol": "TileRangeError.TileRangeCreation",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileRange.swift",
+      "line": 30,
+      "symbol": "TileRange.zoom",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileRange.swift",
+      "line": 33,
+      "symbol": "TileRange.minTileX",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileRange.swift",
+      "line": 36,
+      "symbol": "TileRange.maxTileX",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileRange.swift",
+      "line": 39,
+      "symbol": "TileRange.minTileY",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileRange.swift",
+      "line": 42,
+      "symbol": "TileRange.maxTileY",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/TileRangeIterator.swift",
+      "line": 11,
+      "symbol": "TileRangeIterator",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/merlos/Projects/MapCacher/sources/MapCache"
+}

@@ -1,0 +1,47 @@
+#
+# MapCache - Jazzy config file
+#
+#  Jazzy is a tool for generating SWIFT documentation in HTML.
+#  More info in: https://github.com/realm/jazzy
+#
+#  Install jazzy
+#
+#   $ gem install jazzy
+#
+#  Run jazzy
+#
+#  $ cd <root folder of MapCache>
+#  $ jazzy
+#
+#  Note the output is ./docs
+#
+# ----------------------------------------
+# xcodebuild command line to get list of targets
+#
+#    xcodebuild  -list
+#
+#
+
+
+output: ./docs
+
+author_url: https://github.com/merlos/MapCache
+github_url: https://github.com/merlos/MapCache
+theme: apple
+min_acl: private
+
+xcodebuild_arguments:
+  - clean
+  - build
+
+  - -workspace
+  - Example/MapCache.xcworkspace
+
+  - -scheme
+  - MapCache
+
+
+
+  #- "CODE_SIGN_IDENTITY="
+  #- "CODE_SIGNING_REQUIRED=NO"
+  #- "CODE_SIGNING_ALLOWED=NO"
