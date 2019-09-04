@@ -1,6 +1,6 @@
 # MapCache Swift
 
-<p><div style="text-align:center"><img src="https://github.com/merlos/MapCache/tree/master/images/MapCache.png"></div>
+<p><div style="text-align:center"><img src="https://github.com/merlos/MapCache/raw/master/images/MapCache.png"></div>
 </p>
 
 [![CI Status](https://travis-ci.com/merlos/MapCache.svg?branch=master)](https://travis-ci.org/merlos/MapCache)
