@@ -26,7 +26,7 @@ public class MapCache : MapCacheProtocol {
         var urlString = config.urlTemplate.replacingOccurrences(of: "{z}", with: String(path.z))
         urlString = urlString.replacingOccurrences(of: "{x}", with: String(path.x))
         urlString = urlString.replacingOccurrences(of: "{y}", with: String(path.y))
-        urlString = urlString.replacingOccurrences(of: "{s}", with: config.randomSubdomain() ?? "")
+        urlString = urlString.replacingOccurrences(of: "{s}", with: config.roundRobinSubdomain() ?? "")
         print("MapCache::url() urlString: \(urlString)")
         return URL(string: urlString)!
     }

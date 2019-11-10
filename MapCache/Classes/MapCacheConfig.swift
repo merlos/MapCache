@@ -51,4 +51,19 @@ public struct MapCacheConfig  {
         let rand = Int(arc4random_uniform(UInt32(subdomains.count)))
         return subdomains[rand]
     }
+    
+    /// Keeps track of the last subdomain requested.
+    private var subdomainRoundRobin: Int = 0
+    
+    /// Round Robin algorithm
+    /// If subdomains are a,b,c then it makes requests to a,b,c,a,b,c,a,b,c...
+    ///
+    /// It uniformly makes requests
+    public mutating func roundRobinSubdomain() -> String? {
+        if subdomains.count == 0 {
+            return nil
+        }
+        self.subdomainRoundRobin = (self.subdomainRoundRobin + 1)  % subdomains.count
+        return subdomains[subdomainRoundRobin]
+    }
 }
