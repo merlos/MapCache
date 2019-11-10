@@ -28,13 +28,25 @@ public struct MapCacheConfig  {
     /// Values vary from server to server. For example OpenStreetMap supports 19, but  OpenCycleMap supports 22
     /// - see https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames
     ///
-    /// Default value: 19. If 0 or negative is set iOS default value (i.e. 21) 
+    /// Default value: 19. If 0 or negative is set iOS default value (i.e. 21)
     public var maximumZ: Int = 19
     
+    ///
+    /// It must be smaller or equal than `maximumZ`
+    ///
+    /// Default value is 0. 
+    public var minimumZ: Int = 0
     
+    ///
+    /// Name of the cache
+    /// A folder will be created with this name all files will be stored in that folder
+    ///
+    /// Default value "MapCache"
     public var cacheName: String = "MapCache"
     
-    
+    ///
+    /// Cache capacity in bytes
+    ///
     public var capacity: UInt64 = UINT64_MAX
     
     public init() {
