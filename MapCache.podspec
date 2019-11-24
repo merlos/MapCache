@@ -1,4 +1,9 @@
 #
+# MapCache
+#
+# MIT License
+# Copyright (c) 2019 Juan M. Merlos @merlos
+#
 # Be sure to run `pod lib lint MapCache.podspec' to ensure this is a
 # valid spec before submitting.
 #
@@ -8,17 +13,10 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MapCache'
-  s.version          = '0.5.3'
+  s.version          = '0.6.0'
   s.summary          = 'Map caching for iOS. Support offline maps in your app.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
   s.description      = <<-DESC
-Map cache for iOS applications for offline maps. Download tiles in disk as user browsers the map or download an area for supporting offline maps.
+Cache for iOS applications for supporting offline tile maps. Downloads and keeps tiles in disk as user browses the map. Also, it can download a complete area at all different zoom levels for a complete offline experience (beta).
 DESC
 
   s.homepage         = 'https://github.com/merlos/MapCache'
@@ -35,8 +33,5 @@ DESC
   # s.resource_bundles = {
   #   'MapCache' => ['MapCache/Assets/*.png']
   # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
    s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
