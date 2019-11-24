@@ -87,7 +87,7 @@ class DownloaderViewController: UIViewController {
         region?.topLeft = topLeft
         region?.bottomRight = bottomRight
         
-        print("New Region: topLeft: (\(region?.topLeft.latitude),\(region?.topLeft.longitude)) bottomRight: (\(region?.bottomRight.latitude),\(region?.bottomRight.longitude)) zoom: \(region?.zoomRange.min)->\(region?.zoomRange.max)")
+       // print("New Region: topLeft: (\(region?.topLeft.latitude),\(region?.topLeft.longitude)) bottomRight: (\(region?.bottomRight.latitude),\(region?.bottomRight.longitude)) zoom: \(region?.zoomRange.min)->\(region?.zoomRange.max)")
         // Update label with info
         label.text = "Download \(region?.count ?? 0) tiles | zoom: \(region?.zoomRange.min ?? 0)->\(region?.zoomRange.max ?? 0)"
     }

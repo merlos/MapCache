@@ -125,6 +125,15 @@ config.subdomains = ["a", "b"]
 config.cacheName = "Carto" 
 
 
+// Max zoom supported by the tile server
+// Default value is 19
+config.maximumZ = 21
+
+// Minimum zoom can also be set.
+// config.minimumZ = 0 
+
+
+
 // Capacity of the cache in bytes. Once the cache is full it uses a LRU algorithm 
 // (Least Recently Used), that is, it removes the tiles last used a lot of time ago. 
 // Each time a tile is retrieved from the cache it is updated the value of last time used.

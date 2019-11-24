@@ -10,6 +10,7 @@ import Quick
 import Nimble
 @testable import MapCache
 
+/// Unit Testing for `DiskCache`
 class DiskCacheSpecs: QuickSpec {
     override func spec() {
         
@@ -49,10 +50,11 @@ class DiskCacheSpecs: QuickSpec {
         
         describe("a DiskCache") {
             
-            let cacheName = "path2"
+            let cacheBaseName = "cache"
+            var cacheName: String = ""
             var diskCache: DiskCache!
             let filename1 = "http://www."
-            let data1 = "1234567890".data(using: .utf8)
+            let data1 = "1234567890".data(using: .utf8) // size = 10
             
             // Set a long file name
             var longFileName: String = "1234567890"
@@ -63,11 +65,14 @@ class DiskCacheSpecs: QuickSpec {
             let dataLongFile = "1234567890".data(using: .utf8)
             
             beforeEach {
+                cacheName = cacheBaseName + String(Int.random(in: 1..<100000000))
                 diskCache = DiskCache(withName: cacheName)
             }
             
             afterEach {
-                removeCache(cacheName: cacheName)
+                diskCache.removeCache()
+                let exists = FileManager.default.fileExists(atPath: diskCache.path)
+                expect(exists) == false
             }
             
             it("can add a file") {
@@ -87,16 +92,27 @@ class DiskCacheSpecs: QuickSpec {
                 expect(FileManager.default.fileExists(atPath: filePath)).toEventually(equal(true))
             }
             
-            it("keeps track of its size") {
-                let size = diskCache.calculateSize()
-                expect(size) == 0
+            it("keeps track of its disk size") {
+                let diskSize = diskCache.calculateDiskSize()
+                expect(diskSize) == 0
+                expect(diskCache.diskSize).to(equal(0))
                 diskCache.setDataSync(data1!, forKey: filename1)
-                expect(diskCache.size).toEventually(equal(10))
+                // Note that 1 file ad minimum uses 4096 bytes in disk which is the
+                // block size.
+                // The actual content is only 10 bytes.
+                expect(diskCache.calculateDiskSize()).toEventually(equal(4096))
+            }
+            
+            it("keeps track of its file size") {
+                expect(diskCache.fileSize).toEventually(equal(0))
+                diskCache.setDataSync(data1!, forKey: filename1)
+                expect(diskCache.fileSize).toEventually(equal(10))
             }
             
             it("can find a file that is in the cache") {
-                diskCache.setData(data1!, forKey: filename1)
-                expect(diskCache.size).toEventually(equal(10))
+                expect(diskCache.diskSize).to(equal(0))
+                diskCache.setDataSync(data1!, forKey: filename1)
+                expect(diskCache.diskSize).to(equal(4096))
                 diskCache.fetchData(forKey: filename1, failure: {error in return}, success: {
                     expect($0) == data1
                 })
@@ -122,15 +138,16 @@ class DiskCacheSpecs: QuickSpec {
             //    diskCache2.setData(data1!, forKey: weird1)
             //}
             
-            it("can handle weird names") {
+            it("can add files with weird names") {
                 let weird1 = "ºª|!@#·$%&¬/()= ?'¿¡^`[]+*¨´{}ç;,.-<>€"
                 //print("weird: \(diskCache.path(forKey: weird1))")
-                expect(diskCache.size).toEventually(equal(0))
-                diskCache.setData(data1!, forKey: weird1)
+                expect(diskCache.diskSize).to(equal(0))
+                diskCache.setDataSync(data1!, forKey: weird1)
                 let filePath = diskCache.path(forKey: weird1)
-                expect(FileManager.default.fileExists(atPath: filePath)).toEventually(equal(true))
-                expect(diskCache.size).toEventually(equal(10))
-                
+                expect(FileManager.default.fileExists(atPath: filePath)).to(equal(true))
+               
+                expect(diskCache.calculateDiskSize()).to(equal(4096))
+                sleep(2)
                 diskCache.fetchData(forKey: weird1, failure: { error in
                     guard let error = error as NSError? else {
                         expect(1) > 2
@@ -141,15 +158,18 @@ class DiskCacheSpecs: QuickSpec {
                 }, success: {
                     expect($0) == data1
                 })
+                
             }
             
             it("can remove the file from the cache") {
                 // add the file
-                diskCache.setData(data1!, forKey: filename1)
-                expect(diskCache.size).toEventually(equal(10))
+                expect(diskCache.diskSize).to(equal(0))
+                diskCache.setDataSync(data1!, forKey: filename1)
+                expect(diskCache.diskSize).to(equal(4096))
                 // remove the file
                 diskCache.removeData(withKey: filename1)
-                expect(diskCache.size).toEventually(equal(0))
+                sleep(1)
+                expect(diskCache.diskSize).toEventually(equal(0))
                 diskCache.fetchData(forKey: filename1, failure: { error in
                     guard let error = error as NSError? else {
                         expect(1) > 2
@@ -164,11 +184,11 @@ class DiskCacheSpecs: QuickSpec {
             }
             
             it("can remove all items from the cache") {
-                diskCache.setData(data1!, forKey: filename1)
-                diskCache.setData(dataLongFile!, forKey: longFileName)
-                expect(diskCache.size).toEventually(equal(20))
+                diskCache.setDataSync(data1!, forKey: filename1)
+                diskCache.setDataSync(dataLongFile!, forKey: longFileName)
+                expect(diskCache.diskSize).to(equal(8192))
                 diskCache.removeAllData({})
-                expect(diskCache.size).toEventually(equal(0))
+                expect(diskCache.calculateDiskSize()).toEventually(equal(0))
             }
             
         }
