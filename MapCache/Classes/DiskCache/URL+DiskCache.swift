@@ -9,8 +9,9 @@ import Foundation
 
 extension URL {
     
-    /// Returns the allocated size in disk for a regular file
-    func regularFileAllocatedSize() throws -> UInt64 {
+    /// Returns the allocated size in disk for a regular file in bytes.
+    /// Typically are multiples of 4096 bytes
+    func regularFileAllocatedDiskSize() throws -> UInt64 {
         
         let allocatedSizeResourceKeys: Set<URLResourceKey> = [
             .isRegularFileKey,
@@ -32,4 +33,19 @@ extension URL {
         // meta data and compression) This value should always be available.
         return UInt64(resourceValues.totalFileAllocatedSize ?? resourceValues.fileAllocatedSize ?? 0)
     }
+    
+    
+    /// Returns the allocated file a regular file in bytes
+      func regularFileSize() throws -> UInt64 {
+          let allocatedSizeResourceKeys: Set<URLResourceKey> = [
+              .isRegularFileKey,
+              .fileSizeKey,
+          ]
+          let resourceValues = try self.resourceValues(forKeys: allocatedSizeResourceKeys)
+          // We only look at regular files.
+          guard resourceValues.isRegularFile ?? false else {
+              return 0
+          }
+        return UInt64(resourceValues.fileSize ?? 0)
+      }
 }

@@ -74,7 +74,7 @@ extension FileManager {
     ///
     /// - note: There are a couple of oddities that are not taken into account (like symbolic links, meta data of
     /// directories, hard links, ...).
-    func allocatedSizeOfDirectory(at directoryURL: URL) throws -> UInt64 {
+    func allocatedDiskSizeForDirectory(at directoryURL: URL) throws -> UInt64 {
         
         // The error handler simply stores the error and stops traversal
         var enumeratorError: Error? = nil
@@ -106,12 +106,46 @@ extension FileManager {
             
             // Add up individual file sizes.
             let contentItemURL = item as! URL
-            accumulatedSize += try contentItemURL.regularFileAllocatedSize()
+            accumulatedSize += try contentItemURL.regularFileAllocatedDiskSize()
         }
         
         // Rethrow errors from errorHandler.
         if let error = enumeratorError { throw error }
         
+        return accumulatedSize
+    }
+    
+    // Calculates the actual sum of file sizes
+    func fileSizeForDirectory(at directoryURL: URL) throws -> UInt64 {
+        // The error handler simply stores the error and stops traversal
+        var enumeratorError: Error? = nil
+        func errorHandler(_: URL, error: Error) -> Bool {
+            enumeratorError = error
+            return false
+        }
+        let allocatedSizeResourceKeys: Set<URLResourceKey> = [
+            .isRegularFileKey,
+            .fileSizeKey
+        ]
+        
+        // We have to enumerate all directory contents, including subdirectories.
+        let enumerator = self.enumerator(at: directoryURL,
+                                         includingPropertiesForKeys: Array(allocatedSizeResourceKeys),
+                                         options: [],
+                                         errorHandler: errorHandler)!
+        
+        // We'll sum up content size here:
+        var accumulatedSize: UInt64 = 0
+        // Perform the traversal.
+        for item in enumerator {
+            // Bail out on errors from the errorHandler.
+            if enumeratorError != nil { break }
+            // Add up individual file sizes.
+            let contentItemURL = item as! URL
+            accumulatedSize += try contentItemURL.regularFileSize()
+        }
+        // Rethrow errors from errorHandler.
+        if let error = enumeratorError { throw error }
         return accumulatedSize
     }
 }

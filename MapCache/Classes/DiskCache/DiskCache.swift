@@ -32,14 +32,24 @@ open class DiskCache {
         }
     }
     
-    /// Current cache disk size in bytes
+    /// Sum of the allocated size in disk for the cache expressed in bytes.
     /// Note that, this size is the actual disk allocation. It is equivalent with the amount of bytes
-    /// that would become available on the volume if the directory would be deleted.
+    /// that would become available on the volume if the directory is deleted.
+    /// For example a file may just contain 156 bytes of data (size listed in `ls` command), however its
+    /// disk size is 4096, 1 volume block (as listed using `du -h`)
+    ///
+    /// This size is calculated each time
     open var diskSize : UInt64 = 0
     
-
+    /// This is the sum of the sizes of the files within the diskCache
+    ///
+    /// This size is calculated each time it is used
+    /// - seealso: diskSize
+    open var fileSize: UInt64? {
+        return try? FileManager.default.fileSizeForDirectory(at: folderURL)
+    }
     
-    /// Maximum allowed cache size
+    /// Maximum allowed cache disk allocated size for this DiskCache
     /// Defaults to unlimited capacity (UINT64_MAX)
     open var capacity : UInt64 = UINT64_MAX {
         didSet {
@@ -91,7 +101,7 @@ open class DiskCache {
         //If the file exists get the current file diskSize.
         let fileURL = URL(fileURLWithPath: filePath)
         do {
-            substract(diskSize: try fileURL.regularFileAllocatedSize())
+            substract(diskSize: try fileURL.regularFileAllocatedDiskSize())
         } catch {} //if file is not found do nothing
         
         do {
@@ -191,7 +201,7 @@ open class DiskCache {
         let fileManager = FileManager.default
         var currentSize : UInt64 = 0
         do {
-            currentSize = try fileManager.allocatedSizeOfDirectory(at: folderURL)
+            currentSize = try fileManager.allocatedDiskSizeForDirectory(at: folderURL)
         }
         catch {
             Log.error(message: "Failed to get diskSize of directory", error: error)
@@ -231,7 +241,7 @@ open class DiskCache {
         let fileManager = FileManager.default
         do {
             let fileURL = URL(fileURLWithPath: path)
-            let fileSize = try fileURL.regularFileAllocatedSize()
+            let fileSize = try fileURL.regularFileAllocatedDiskSize()
             try fileManager.removeItem(atPath: path)
             substract(diskSize: fileSize)
         } catch {

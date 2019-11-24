@@ -92,7 +92,7 @@ class DiskCacheSpecs: QuickSpec {
                 expect(FileManager.default.fileExists(atPath: filePath)).toEventually(equal(true))
             }
             
-            it("keeps track of its size") {
+            it("keeps track of its disk size") {
                 let diskSize = diskCache.calculateDiskSize()
                 expect(diskSize) == 0
                 expect(diskCache.diskSize).to(equal(0))
@@ -101,6 +101,12 @@ class DiskCacheSpecs: QuickSpec {
                 // block size.
                 // The actual content is only 10 bytes.
                 expect(diskCache.calculateDiskSize()).toEventually(equal(4096))
+            }
+            
+            it("keeps track of its file size") {
+                expect(diskCache.fileSize).toEventually(equal(0))
+                diskCache.setDataSync(data1!, forKey: filename1)
+                expect(diskCache.fileSize).toEventually(equal(10))
             }
             
             it("can find a file that is in the cache") {
