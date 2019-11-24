@@ -48,13 +48,13 @@ class ViewController: UIViewController {
     
     @IBAction func updateSize(_ sender: Any) {
         print("update cache size")
-        cacheSizeLabel.text = String(mapCache!.calculateSize())
+        cacheSizeLabel.text = String(mapCache!.calculateDiskSize())
     }
     
     @IBAction func clearCache(_ sender: Any) {
         print("clear cache")
         mapCache!.clear() { 
-            self.cacheSizeLabel.text = String(self.mapCache!.calculateSize())
+            self.cacheSizeLabel.text = String(self.mapCache!.calculateDiskSize())
         }
     }
     

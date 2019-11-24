@@ -71,14 +71,14 @@ public class MapCache : MapCacheProtocol {
         task.resume()
     }
     
-    public var size: UInt64 {
+    public var diskSize: UInt64 {
         get  {
-            return diskCache.size
+            return diskCache.diskSize
         }
     }
     
-    public func calculateSize() -> UInt64 {
-        return diskCache.calculateSize()
+    public func calculateDiskSize() -> UInt64 {
+        return diskCache.calculateDiskSize()
     }
     
     public func clear(completition: (() -> ())? ) {
