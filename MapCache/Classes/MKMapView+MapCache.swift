@@ -14,22 +14,23 @@ import MapKit
 extension MKMapView {
 
     /// Will tell the map to use the cache passed as parameter.
+    @discardableResult
     public func useCache(_ cache: MapCache) -> CachedTileOverlay {
-        
+
         let tileServerOverlay = CachedTileOverlay(withCache: cache)
         tileServerOverlay.canReplaceMapContent = true
-        
+
         if cache.config.maximumZ > 0 {
             tileServerOverlay.maximumZ = cache.config.maximumZ
         }
-        
+
         if cache.config.minimumZ > 0 {
             tileServerOverlay.minimumZ = cache.config.minimumZ
         }
         self.insertOverlay(tileServerOverlay, at: 0, level: .aboveLabels)
         return tileServerOverlay
     }
-    
+
     /// Call this method within the MKMapView delegate function
     /// `mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer`
     ///
@@ -40,7 +41,7 @@ extension MKMapView {
         }
         return MKOverlayRenderer()
     }
-    
+
     ///
     /// Returns current zoom level
     ///
