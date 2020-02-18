@@ -11,13 +11,13 @@
 
 The missing part of [MapKit](https://developer.apple.com/documentation/mapkit): A simple way to cache [map tiles](https://en.wikipedia.org/wiki/Tiled_web_map) and support offline browsing of maps.
 
-Current features: 
+Current features:
 * Automatically save tiles in a disk cache as user browses the map.
 * You can to set cache capacity. Once the cache is full it will use a LRU (Least Recently Used) algorithm.
 * Get Current cache size
 * Clear existing cache
 * Download a full region of the map
- 
+
 What is coming:
  * Smart predownloading/caching: anticipate tiles that may be needed during network idle
  * Background cache updates downloads
@@ -55,13 +55,13 @@ class ViewController: UIViewController {
     ...
 
     // First setup the your cache
-    let config = MapCacheConfig(withTileUrlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
+    let config = MapCacheConfig(withUrlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
 
     // initialize the cache with our config
-    mapCache = MapCache(withConfig: config)
+    let mapCache = MapCache(withConfig: config)
 
     // We tell the MKMapView to use our cache
-    _ = map.useCache(mapCache!)
+    map.useCache(mapCache)
 
     ...
 }
@@ -95,34 +95,34 @@ To get current cache size:
 
 ```swift
 mapCache.calculateSize()
-``` 
+```
 
 ## MapCache configuration
-Config map cache is pretty straight forward, typically you will need to set only `urlTemplate` and probably the `subdomains`. 
+Config map cache is pretty straight forward, typically you will need to set only `urlTemplate` and probably the `subdomains`.
 
 These are the options:
 
 ```swift
 var config = MapCacheConfig()
 
-// Set the URL template. 
+// Set the URL template.
 // For Open Street Maps you can chose: https://wiki.openstreetmap.org/wiki/Tile_servers
-// It defaults to OpenStreetMaps servers 
+// It defaults to OpenStreetMaps servers
 //
 // Below we set cartoDB Base map server (https://github.com/CartoDB/cartodb/wiki/BaseMaps-available)
 config.urlTemplate: "https://${s}.basemaps.cartocdn.com/base-light/${z}/${x}/${y}.png"
 
 
-// In the urlTemplate ${s} stands for subdomains, which allows you to balance 
+// In the urlTemplate ${s} stands for subdomains, which allows you to balance
 // the load among the
 // different tile servers.
 // Default value is ["a","b","c"].
-config.subdomains = ["a", "b"] 
+config.subdomains = ["a", "b"]
 
 
 // Cache Name is basically is the subfolder name in which the tiles are store.
 // Default value is "MapCache"
-config.cacheName = "Carto" 
+config.cacheName = "Carto"
 
 
 // Max zoom supported by the tile server
@@ -130,12 +130,12 @@ config.cacheName = "Carto"
 config.maximumZ = 21
 
 // Minimum zoom can also be set.
-// config.minimumZ = 0 
+// config.minimumZ = 0
 
 
 
-// Capacity of the cache in bytes. Once the cache is full it uses a LRU algorithm 
-// (Least Recently Used), that is, it removes the tiles last used a lot of time ago. 
+// Capacity of the cache in bytes. Once the cache is full it uses a LRU algorithm
+// (Least Recently Used), that is, it removes the tiles last used a lot of time ago.
 // Each time a tile is retrieved from the cache it is updated the value of last time used.
 // Default value of the capacity is unlimited.
 config.capacity = 200 * 1024 * 1024 // 20 Megabytes
