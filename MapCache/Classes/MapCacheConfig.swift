@@ -52,7 +52,7 @@ public struct MapCacheConfig  {
     ///
     /// Tile size
     ///
-    public var tileSize: CGSize = 256
+    public var tileSize: CGSize = CGSize(width: 256, height: 256)
 
     public init() {
     }
