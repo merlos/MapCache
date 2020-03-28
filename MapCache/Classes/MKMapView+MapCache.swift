@@ -27,6 +27,8 @@ extension MKMapView {
         if cache.config.minimumZ > 0 {
             tileServerOverlay.minimumZ = cache.config.minimumZ
         }
+        
+        tileServerOverlay.tileSize = cache.config.tileSize
         self.insertOverlay(tileServerOverlay, at: 0, level: .aboveLabels)
         return tileServerOverlay
     }

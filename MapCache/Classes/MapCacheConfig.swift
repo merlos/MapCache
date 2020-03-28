@@ -49,6 +49,11 @@ public struct MapCacheConfig  {
     ///
     public var capacity: UInt64 = UINT64_MAX
     
+    ///
+    /// Tile size
+    ///
+    public var tileSize: CGSize = 256
+
     public init() {
     }
     
