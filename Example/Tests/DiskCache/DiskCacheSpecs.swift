@@ -14,18 +14,6 @@ import Nimble
 class DiskCacheSpecs: QuickSpec {
     override func spec() {
         
-        /// Removes the cache folder
-        func removeCache(cacheName: String) {
-            let diskCache = DiskCache(withName: cacheName)
-            do {
-                try FileManager.default.removeItem(at: diskCache.folderURL)
-            } catch {
-                print ("ERROR removing DiskCache folder")
-            }
-            let exists = FileManager.default.fileExists(atPath: diskCache.path)
-            expect(exists) == false
-        }
-        
         describe("DiskCache initialization") {
             it("can create the cache folder") {
                 let diskCache = DiskCache(withName: "path")
@@ -66,6 +54,7 @@ class DiskCacheSpecs: QuickSpec {
             
             beforeEach {
                 cacheName = cacheBaseName + String(Int.random(in: 1..<100000000))
+                try! FileManager.default.removeItem(at: DiskCache.baseURL())
                 diskCache = DiskCache(withName: cacheName)
             }
             
@@ -113,22 +102,21 @@ class DiskCacheSpecs: QuickSpec {
                 expect(diskCache.diskSize).to(equal(0))
                 diskCache.setDataSync(data1!, forKey: filename1)
                 expect(diskCache.diskSize).to(equal(4096))
-                diskCache.fetchData(forKey: filename1, failure: {error in return}, success: {
-                    expect($0) == data1
-                })
                 
+                var result: Data?
+                diskCache.fetchData(forKey: filename1, failure: nil, success: {
+                    result = $0
+                })
+
+                expect(result).toEventually(equal(data1!), timeout: 2)
             }
             
             it("cannot find a file that is not in the cache") {
+                var errorCode: Int?
                 diskCache.fetchData(forKey: "filename1", failure: { error in
-                    guard let error = error as NSError? else {
-                        return
-                    }
-                    expect(error.code).to(equal(NSFileReadNoSuchFileError))
-                    return
-                }, success: {
-                    expect($0) == data1
-                })
+                    errorCode = (error! as NSError).code
+                }, success: { _ in })
+                expect(errorCode).toEventually(equal(NSFileReadNoSuchFileError), timeout: 1)
             }
             
             //it("can handle weird names2") {
@@ -140,25 +128,20 @@ class DiskCacheSpecs: QuickSpec {
             
             it("can add files with weird names") {
                 let weird1 = "ºª|!@#·$%&¬/()= ?'¿¡^`[]+*¨´{}ç;,.-<>€"
-                //print("weird: \(diskCache.path(forKey: weird1))")
+//                print("weird: \(diskCache.path(forKey: weird1))")
                 expect(diskCache.diskSize).to(equal(0))
                 diskCache.setDataSync(data1!, forKey: weird1)
                 let filePath = diskCache.path(forKey: weird1)
                 expect(FileManager.default.fileExists(atPath: filePath)).to(equal(true))
                
                 expect(diskCache.calculateDiskSize()).to(equal(4096))
-                sleep(2)
-                diskCache.fetchData(forKey: weird1, failure: { error in
-                    guard let error = error as NSError? else {
-                        expect(1) > 2
-                        return
-                    }
-                    expect(error.code).toNot(equal(NSFileReadNoSuchFileError))
-                    return
-                }, success: {
-                    expect($0) == data1
-                })
                 
+                var result: Data?
+                diskCache.fetchData(forKey: weird1, failure: nil, success: {
+                    result = $0
+                })
+
+                expect(result).toEventually(equal(data1!), timeout: 1)
             }
             
             it("can remove the file from the cache") {
@@ -168,24 +151,20 @@ class DiskCacheSpecs: QuickSpec {
                 expect(diskCache.diskSize).to(equal(4096))
                 // remove the file
                 diskCache.removeData(withKey: filename1)
-                sleep(1)
+                
                 expect(diskCache.diskSize).toEventually(equal(0))
+                
+                var errorCode: Int?
                 diskCache.fetchData(forKey: filename1, failure: { error in
-                    guard let error = error as NSError? else {
-                        expect(1) > 2
-                        return
-                    }
-                    expect(error.code).to(equal(NSFileReadNoSuchFileError))
-                    return
-                }, success: {
-                    // if the test goes right it should never come here
-                    expect($0.isEmpty) == true //make it fail
-                })
+                    errorCode = (error! as NSError).code
+                }, success: { _ in })
+                expect(errorCode).toEventually(equal(NSFileReadNoSuchFileError))
             }
             
             it("can remove all items from the cache") {
                 diskCache.setDataSync(data1!, forKey: filename1)
-                diskCache.setDataSync(dataLongFile!, forKey: longFileName)
+                expect(diskCache.diskSize).to(equal(4096))
+                diskCache.setDataSync(data1!, forKey: longFileName)
                 expect(diskCache.diskSize).to(equal(8192))
                 diskCache.removeAllData({})
                 expect(diskCache.calculateDiskSize()).toEventually(equal(0))
