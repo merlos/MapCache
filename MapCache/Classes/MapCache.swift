@@ -47,12 +47,21 @@ public class MapCache : MapCacheProtocol {
                 if error != nil {
                     print("!!! MapCache::loadTile Error for key= \(key)")
                     //print(error)
-                    result(nil,error)
+                    DispatchQueue.main.async {
+                        result(nil, error)
+                    }
                 }
-                guard let data = data else { result(nil, nil); return }
+                guard let data = data else {
+                    DispatchQueue.main.async {
+                        result(nil, nil)
+                    }
+                    return
+                }
                 self.diskCache.setData(data, forKey: key)
                 print ("CachedTileOverlay:: Data received saved cacheKey=\(key)" )
-                result(data,nil)
+                DispatchQueue.main.async {
+                    result(data,nil)
+                }
             }
             task.resume()
         }
@@ -63,12 +72,12 @@ public class MapCache : MapCacheProtocol {
             result (data, nil)
         }
         // Closure to run if error found while fetching data from cache
-        let fetChfailure = { (error: Error?) -> () in
+        let fetchFailure = { (error: Error?) -> () in
             print ("MapCache::loadTile() Not found! cacheKey=\(key)" )
             loadTileFromOrigin()
         }
         // Fetch the data
-        diskCache.fetchData(forKey: key, failure: fetChfailure, success: fetchSuccess)
+        diskCache.fetchData(forKey: key, failure: fetchFailure, success: fetchSuccess)
     }
     
     public var diskSize: UInt64 {
