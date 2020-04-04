@@ -117,21 +117,15 @@ open class DiskCache {
     }
     
     
-    open func fetchData(forKey key: String, failure fail: ((Error?) -> ())? = nil, success succeed: @escaping (Data) -> ()) {
-        cacheQueue.async {
-            let path = self.path(forKey: key)
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: Data.ReadingOptions())
-                DispatchQueue.main.async {
-                    succeed(data)
-                }
-                self.updateDiskAccessDate(atPath: path)
-            } catch {
-                if let block = fail {
-                    DispatchQueue.main.async {
-                        block(error)
-                    }
-                }
+    open func fetchDataSync(forKey key: String, failure fail: ((Error?) -> ())? = nil, success succeed: @escaping (Data) -> ()) {
+        let path = self.path(forKey: key)
+        do {
+            let data = try Data(contentsOf: URL(fileURLWithPath: path), options: Data.ReadingOptions())
+            succeed(data)
+            self.updateDiskAccessDate(atPath: path)
+        } catch {
+            if let block = fail {
+                block(error)
             }
         }
     }

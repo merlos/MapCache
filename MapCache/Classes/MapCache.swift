@@ -46,22 +46,16 @@ public class MapCache : MapCacheProtocol {
             let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
                 if error != nil {
                     print("!!! MapCache::loadTile Error for key= \(key)")
-                    //print(error)
-                    DispatchQueue.main.async {
-                        result(nil, error)
-                    }
+                    result(nil, error)
+                    return
                 }
                 guard let data = data else {
-                    DispatchQueue.main.async {
-                        result(nil, nil)
-                    }
+                    result(nil, nil)
                     return
                 }
                 self.diskCache.setData(data, forKey: key)
                 print ("CachedTileOverlay:: Data received saved cacheKey=\(key)" )
-                DispatchQueue.main.async {
-                    result(data,nil)
-                }
+                result(data,nil)
             }
             task.resume()
         }
@@ -76,8 +70,8 @@ public class MapCache : MapCacheProtocol {
             print ("MapCache::loadTile() Not found! cacheKey=\(key)" )
             loadTileFromOrigin()
         }
-        // Fetch the data
-        diskCache.fetchData(forKey: key, failure: fetchFailure, success: fetchSuccess)
+        // Fetch the data. Current thread is not main thread.
+        diskCache.fetchDataSync(forKey: key, failure: fetchFailure, success: fetchSuccess)
     }
     
     public var diskSize: UInt64 {

@@ -104,7 +104,7 @@ class DiskCacheSpecs: QuickSpec {
                 expect(diskCache.diskSize).to(equal(4096))
                 
                 var result: Data?
-                diskCache.fetchData(forKey: filename1, failure: nil, success: {
+                diskCache.fetchDataSync(forKey: filename1, failure: nil, success: {
                     result = $0
                 })
 
@@ -113,7 +113,7 @@ class DiskCacheSpecs: QuickSpec {
             
             it("cannot find a file that is not in the cache") {
                 var errorCode: Int?
-                diskCache.fetchData(forKey: "filename1", failure: { error in
+                diskCache.fetchDataSync(forKey: "filename1", failure: { error in
                     errorCode = (error! as NSError).code
                 }, success: { _ in })
                 expect(errorCode).toEventually(equal(NSFileReadNoSuchFileError), timeout: 1)
@@ -137,7 +137,7 @@ class DiskCacheSpecs: QuickSpec {
                 expect(diskCache.calculateDiskSize()).to(equal(4096))
                 
                 var result: Data?
-                diskCache.fetchData(forKey: weird1, failure: nil, success: {
+                diskCache.fetchDataSync(forKey: weird1, failure: nil, success: {
                     result = $0
                 })
 
@@ -155,7 +155,7 @@ class DiskCacheSpecs: QuickSpec {
                 expect(diskCache.diskSize).toEventually(equal(0))
                 
                 var errorCode: Int?
-                diskCache.fetchData(forKey: filename1, failure: { error in
+                diskCache.fetchDataSync(forKey: filename1, failure: { error in
                     errorCode = (error! as NSError).code
                 }, success: { _ in })
                 expect(errorCode).toEventually(equal(NSFileReadNoSuchFileError))
