@@ -138,7 +138,7 @@ config.maximumZ = 21
 // (Least Recently Used), that is, it removes the tiles last used a lot of time ago.
 // Each time a tile is retrieved from the cache it is updated the value of last time used.
 // Default value of the capacity is unlimited.
-config.capacity = 200 * 1024 * 1024 // 20 Megabytes
+config.capacity = 200 * 1024 * 1024 // 200 Megabytes
 
 
 ```
