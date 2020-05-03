@@ -87,7 +87,7 @@
     {
       "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/DiskCache/DiskCache.swift",
       "line": 170,
-      "symbol": "DiskCache.calculateSize()",
+      "symbol": "DiskCache.calculateDiskSize()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -360,7 +360,7 @@
     {
       "file": "/Users/merlos/Projects/MapCacher/sources/MapCache/MapCache/Classes/MapCache.swift",
       "line": 80,
-      "symbol": "MapCache.calculateSize()",
+      "symbol": "MapCache.calculateDiskSize()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
