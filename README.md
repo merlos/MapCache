@@ -94,7 +94,7 @@ mapCache.clear() {
 To get current cache size:
 
 ```swift
-mapCache.calculateSize()
+mapCache.calculateDiskSize()
 ```
 
 ## MapCache configuration
