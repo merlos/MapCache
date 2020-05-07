@@ -12,6 +12,23 @@ import MapKit
 /// The real brain
 public class MapCache : MapCacheProtocol {
     
+    public enum LoadMode {
+        ///Always return the tile from the server, as well as updating the cache
+        case always_server
+        
+        ///If the tile exists in the cache, return it, otherwise, fetch it from server (and cache the result)
+        case cache_then_server
+
+        ///TODO: If the tile exists in the cache and is younger than a user-supplied setting, return it, otherwise, fetch it from server (and update cache)
+        //case cache_if_expired_then_server
+        
+        ///Only return data from cache
+        case cache_only
+
+    }
+
+    public var mode : LoadMode = .cache_then_server
+
     public var config : MapCacheConfig
     public var diskCache : DiskCache
     let operationQueue = OperationQueue()
@@ -70,8 +87,17 @@ public class MapCache : MapCacheProtocol {
             print ("MapCache::loadTile() Not found! cacheKey=\(key)" )
             loadTileFromOrigin()
         }
-        // Fetch the data. Current thread is not main thread.
-        diskCache.fetchDataSync(forKey: key, failure: fetchFailure, success: fetchSuccess)
+        
+        switch mode {
+            
+            case .always_server:
+                loadTileFromOrigin()
+            case .cache_then_server:
+                diskCache.fetchDataSync(forKey: key, failure: fetchFailure, success: fetchSuccess)
+            case .cache_only:
+                diskCache.fetchDataSync(forKey: key, failure: { error in result(nil, error)}, success: fetchSuccess)
+    
+        }
     }
     
     public var diskSize: UInt64 {
