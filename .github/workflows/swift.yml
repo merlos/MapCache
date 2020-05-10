@@ -12,7 +12,10 @@ jobs:
     - name: install xpretty
       run: gem install xcpretty
     - name: install pods
-      run: pod install
+      run: |
+        cd Example
+        pod install
+        cd ..
     - name: environment info
       run: |
         xcodebuild -version
