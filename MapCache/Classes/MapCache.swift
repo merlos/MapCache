@@ -12,23 +12,6 @@ import MapKit
 /// The real brain
 public class MapCache : MapCacheProtocol {
     
-    public enum LoadMode {
-        ///Always return the tile from the server, as well as updating the cache
-        case always_server
-        
-        ///If the tile exists in the cache, return it, otherwise, fetch it from server (and cache the result)
-        case cache_then_server
-
-        ///TODO: If the tile exists in the cache and is younger than a user-supplied setting, return it, otherwise, fetch it from server (and update cache)
-        //case cache_if_expired_then_server
-        
-        ///Only return data from cache
-        case cache_only
-
-    }
-
-    public var mode : LoadMode = .cache_then_server
-
     public var config : MapCacheConfig
     public var diskCache : DiskCache
     let operationQueue = OperationQueue()
