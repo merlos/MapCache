@@ -35,39 +35,43 @@ public class MapCache : MapCacheProtocol {
         return "\(config.urlTemplate)-\(path.x)-\(path.y)-\(path.z)"
     }
     
+    // Fetches tile from server. If it is found updates the cache
+    public func fetchTileFromServer(at path: MKTileOverlayPath,
+                             failure fail: ((Error?) -> ())? = nil,
+                             success succeed: @escaping (Data) -> ()) {
+        let url = self.url(forTilePath: path)
+        print ("MapCache::fetchTileFromServer() url=\(url)")
+        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            if error != nil {
+                print("!!! MapCache::fetchTileFromServer Error for url= \(url) \(error.debugDescription)")
+                fail!(error)
+                return
+            }
+            guard let data = data else {
+                print("!!! MapCache::fetchTileFromServer No data for url= \(url)")
+                fail!(nil)
+                return
+            }
+            succeed(data)
+        }
+        task.resume()
+    }
+    
     
     public func loadTile(at path: MKTileOverlayPath, result: @escaping (Data?, Error?) -> Void) {
         
         let key = cacheKey(forPath: path)
         
-        // Feches tile from server. If it is found updates the cache
-        func fetchTileFromServer(failure fail: ((Error?) -> ())? = nil,
-                                 success succeed: @escaping (Data) -> ()) {
-            let url = self.url(forTilePath: path)
-            print ("MapCache::fetchTileFromServer() url=\(url)")
-            let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-                if error != nil {
-                    print("!!! MapCache::fetchTileFromServer Error for url= \(url)")
-                    fail!(error)
-                    return
-                }
-                guard let data = data else {
-                    fail!(nil)
-                    return
-                }
-                self.diskCache.setData(data, forKey: key)
-                print ("MapCache::fetchTileFromServer:: Data received saved cacheKey=\(key)" )
-                succeed(data)
-            }
-            task.resume()
-        }
-        
        // Tries to load the tile from the server.
        // If it fails returns error to the caller.
         let tileFromServerFallback = { () -> () in
             print ("MapCache::tileFromServerFallback:: key=\(key)" )
-            fetchTileFromServer(failure: {error in result(nil, error)},
-                                success: {data in result(data, nil)})
+            self.fetchTileFromServer(at: path,
+                                failure: {error in result(nil, error)},
+                                success: {data in
+                                    self.diskCache.setData(data, forKey: key)
+                                               print ("MapCache::fetchTileFromServer:: Data received saved cacheKey=\(key)" )
+                                    result(data, nil)})
         }
         
         // Tries to load the tile from the cache.
@@ -85,10 +89,10 @@ public class MapCache : MapCacheProtocol {
                                     failure: {error in tileFromServerFallback()},
                                     success: {data in result(data, nil) })
         case .serverThenCache:
-            fetchTileFromServer(failure: {error in tileFromCacheFallback()},
+            fetchTileFromServer(at: path, failure: {error in tileFromCacheFallback()},
                                 success: {data in result(data, nil) })
         case .serverOnly:
-            fetchTileFromServer(failure: {error in result(nil, error)},
+            fetchTileFromServer(at: path, failure: {error in result(nil, error)},
                                 success: {data in result(data, nil)})
         case .cacheOnly:
             diskCache.fetchDataSync(forKey: key,
