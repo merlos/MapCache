@@ -15,7 +15,7 @@ import MapKit
 class MapCacheTests: QuickSpec {
     override func spec() {
         describe("MapCache") {
-            let urlTemplate = "http://localhost:1980/{s}/{x}/{y}/{z}"
+            let urlTemplate = "https://localhost:1980/{s}/{x}/{y}/{z}"
             var config = MapCacheConfig(withUrlTemplate: urlTemplate)
             config.subdomains = ["ok"]
             let cache = MapCache(withConfig: config)
@@ -23,14 +23,14 @@ class MapCacheTests: QuickSpec {
             
             it("can create the tile url") {
                 let url = cache.url(forTilePath: path)
-                expect(url.absoluteString) == "http://localhost:1980/ok/1/2/3"
+                expect(url.absoluteString) == "https://localhost:1980/ok/1/2/3"
             }
             
             it("can generate the key for a path") {
                 let key = cache.cacheKey(forPath: path)
                 expect(key) == "\(urlTemplate)-1-2-3"
             }
-            /*
+            
             it("can fetch tile from server") {
                 cache.fetchTileFromServer(
                     at: path,
@@ -39,13 +39,14 @@ class MapCacheTests: QuickSpec {
             }
             
             it("can return error on fetch") {
+                //Set a template url that returns error (in this case does not use https)
+                cache.config.urlTemplate = "http://doesnotexist.com/mapcache"
                 cache.fetchTileFromServer(
                     at: path,
-                             failure: {error in expect(false) == true},
-                             success: {data in expect(true) == true} )
-                }
+                    failure: {error in expect(true) == true},
+                    success: {data in expect(true) == false} )
+            }
               
-            */
             /*
             it("can do maths") {
                 expect(2) == 2
