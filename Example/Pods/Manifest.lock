@@ -2,19 +2,16 @@ PODS:
   - MapCache (0.6.0)
   - Nimble (8.0.1)
   - Quick (2.1.0)
-  - Swifter (1.4.7)
 
 DEPENDENCIES:
   - MapCache (from `../`)
   - Nimble (~> 8.0.1)
   - Quick (~> 2.1.0)
-  - Swifter (~> 1.4.7)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Nimble
     - Quick
-    - Swifter
 
 EXTERNAL SOURCES:
   MapCache:
@@ -24,8 +21,7 @@ SPEC CHECKSUMS:
   MapCache: 8afa98ddc3539a384ba75b019284cded95aaccab
   Nimble: 45f786ae66faa9a709624227fae502db55a8bdd0
   Quick: 4be43f6634acfa727dd106bdf3929ce125ffa79d
-  Swifter: 2327ef5d872c638aebab79646ce494af508b0c8f
 
-PODFILE CHECKSUM: 437939eb4b0ac63b2dc62c96efc24be38b8a0ceb
+PODFILE CHECKSUM: ec7f7d07ac0a38f1b4ed16feaaaf640da075e10a
 
 COCOAPODS: 1.7.5
