@@ -10,11 +10,23 @@
 import Quick
 import Nimble
 import MapCache
+import MapKit
 
 class MapCacheTests: QuickSpec {
     override func spec() {
         describe("MapCache") {
             
+            it("can define url") {
+                var config = MapCacheConfig(withUrlTemplate: "a{x}b{y}c{z}d{s}")
+                config.subdomains = ["a"]
+                let cache = MapCache(withConfig: config)
+                let path = MKTileOverlayPath(x: 1, y: 2, z: 3, contentScaleFactor: 1.0)
+                let url = cache.url(forTilePath: path)
+                expect(url.absoluteString) == "a1b2c3da"
+            }
+            
+            
+            /*
             it("can do maths") {
                 expect(2) == 2
             }
@@ -51,7 +63,7 @@ class MapCacheTests: QuickSpec {
                         done()
                     }
                 }
-            }
+            }*/
         }
     }
 }
