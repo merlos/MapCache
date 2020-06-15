@@ -11,11 +11,28 @@ import Quick
 import Nimble
 import MapCache
 import MapKit
+import OHHTTPStubs
 
 class MapCacheTests: QuickSpec {
     override func spec() {
+        beforeSuite {
+            // This stub returns the URL of the request
+            stub(condition: isHost("localhost")) { request in
+                let stubData = request.url?.description.data(using: .utf8)
+              return OHHTTPStubsResponse(data: stubData!, statusCode:200, headers:nil)
+            }
+            // This stub returns a 404 error
+            stub(condition: isHost("brokenhost")) { request in
+                let stubData = request.url?.description.data(using: .utf8)
+              return OHHTTPStubsResponse(data: stubData!, statusCode:404, headers:nil)
+            }
+        }
+        afterSuite {
+        OHHTTPStubs.removeAllStubs()    
+        }
+            
         describe("MapCache") {
-            let urlTemplate = "https://localhost:1980/{s}/{x}/{y}/{z}"
+            let urlTemplate = "https://localhost/{s}/{x}/{y}/{z}"
             var config = MapCacheConfig(withUrlTemplate: urlTemplate)
             config.subdomains = ["ok"]
             let cache = MapCache(withConfig: config)
@@ -23,7 +40,7 @@ class MapCacheTests: QuickSpec {
             
             it("can create the tile url") {
                 let url = cache.url(forTilePath: path)
-                expect(url.absoluteString) == "https://localhost:1980/ok/1/2/3"
+                expect(url.absoluteString) == "https://localhost/ok/1/2/3"
             }
             
             it("can generate the key for a path") {
@@ -35,12 +52,12 @@ class MapCacheTests: QuickSpec {
                 cache.fetchTileFromServer(
                     at: path,
                     failure: {error in expect(false) == true},
-                    success: {data in expect(true) == true} )
+                    success: {data in expect(String(data: data, encoding: .utf8)) == cache.url(forTilePath: path).description} )
             }
             
             it("can return error on fetch") {
                 //Set a template url that returns error (in this case does not use https)
-                cache.config.urlTemplate = "http://doesnotexist.com/mapcache"
+                cache.config.urlTemplate = "http://brokenhost/notworking"
                 cache.fetchTileFromServer(
                     at: path,
                     failure: {error in expect(true) == true},
