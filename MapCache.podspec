@@ -29,7 +29,8 @@ DESC
   s.ios.deployment_target = '8.0'
   s.swift_version = '5.0'
   s.source_files = 'MapCache/Classes/**/*'
-  s.platform = :ios, '8.0'
+  s.ios.deployment_target = '8.0'
+  s.osx.deployment_target = '10.9'
   # s.resource_bundles = {
   #   'MapCache' => ['MapCache/Assets/*.png']
   # }
