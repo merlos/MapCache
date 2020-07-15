@@ -26,12 +26,12 @@ DESC
   s.source           = { :git => 'https://github.com/merlos/MapCache.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/merlos'
 
-  s.ios.deployment_target = '8.0'
   s.swift_version = '5.0'
   s.source_files = 'MapCache/Classes/**/*'
-  s.platform = :ios, '8.0' :osx, '10.10'
+  s.ios.deployment_target = '8.0'
+  s.osx.deployment_target = '10.10'
   # s.resource_bundles = {
   #   'MapCache' => ['MapCache/Assets/*.png']
   # }
-   s.frameworks = 'UIKit', 'MapKit'
+   s.frameworks = 'Foundation', 'MapKit'
 end
