@@ -28,10 +28,6 @@ class MapCacheConfigTests: QuickSpec {
                 cache.subdomains = []
                 expect(cache.roundRobinSubdomain()).to(beNil())
              }
-             
-             it("will eventually fail") {
-                 expect("time").toEventually( equal("time") )
-             }
         }
     }
 }
