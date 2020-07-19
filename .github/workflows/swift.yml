@@ -9,7 +9,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
+    - name: install xpretty
+      run: gem install xcpretty
+    - name: install pods
+      run: |
+        cd Example
+        pod install
+        cd ..
+    - name: environment info
+      run: |
+        xcodebuild -version
+        xcodebuild -showsdks
+        xcrun instruments -s devices
+    - name: Test
+      run: |
+        set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/MapCache.xcworkspace -scheme MapCache-Example -sdk iphonesimulator13.5 -destination 'platform=iOS Simulator,name=iPhone 11' ONLY_ACTIVE_ARCH=NO | xcpretty
+        # TODO do not allow warnings
+        pod lib lint --allow-warnings
