@@ -10,6 +10,8 @@ import MapKit
 
 /// Hey! I need to download this area
 /// No problemo.
+///
+/// Experimental
 @objc public class RegionDownloader: NSObject {
     /// Average number of bytes of a tile
     static let defaultAverageTileSizeBytes : UInt64 = 11664
@@ -127,9 +129,19 @@ import MapKit
         self.mapCache = mapCache
     }
     
+    /// Resets downloader counters
+    public func resetCounters() {
+        _downloadedBytes = 0
+        _successfulTileDownloads = 0
+        _failedTileDownloads = 0
+        lastPercentageNotified = 0.0
+        nextPercentageToNotify = incrementInPercentageNotification
+    }
+    
     /// Starts download
     public func start() {
         //Downloads stuff
+        resetCounters()
         downloaderQueue.async {
             for range: TileRange in self.region.tileRanges() ?? [] {
                 for tileCoords: TileCoords in range {
@@ -139,6 +151,8 @@ import MapKit
                         if error != nil {
                             print(error?.localizedDescription ?? "Error downloading tile")
                             self._failedTileDownloads += 1
+                            // TODO add to an array of tiles not downloaded
+                            // so a retry can be performed
                         } else {
                             self._successfulTileDownloads += 1
                             print("RegionDownloader:: Donwloaded zoom: \(tileCoords.zoom) (x:\(tileCoords.tileX),y:\(tileCoords.tileY)) \(self.downloadedTiles)/\(self.totalTilesToDownload) \(self.downloadedPercentage)%")

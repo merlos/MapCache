@@ -27,7 +27,7 @@ public class MapCache : MapCacheProtocol {
         urlString = urlString.replacingOccurrences(of: "{x}", with: String(path.x))
         urlString = urlString.replacingOccurrences(of: "{y}", with: String(path.y))
         urlString = urlString.replacingOccurrences(of: "{s}", with: config.roundRobinSubdomain() ?? "")
-        print("MapCache::url() urlString: \(urlString)")
+        Log.debug(message: "MapCache::url() urlString: \(urlString)")
         return URL(string: urlString)!
     }
     
@@ -35,43 +35,77 @@ public class MapCache : MapCacheProtocol {
         return "\(config.urlTemplate)-\(path.x)-\(path.y)-\(path.z)"
     }
     
+    // Fetches tile from server. If it is found updates the cache
+    public func fetchTileFromServer(at path: MKTileOverlayPath,
+                             failure fail: ((Error?) -> ())? = nil,
+                             success succeed: @escaping (Data) -> ()) {
+        let url = self.url(forTilePath: path)
+        print ("MapCache::fetchTileFromServer() url=\(url)")
+        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+            if error != nil {
+                print("!!! MapCache::fetchTileFromServer Error for url= \(url) \(error.debugDescription)")
+                fail!(error)
+                return
+            }
+            guard let data = data else {
+                print("!!! MapCache::fetchTileFromServer No data for url= \(url)")
+                fail!(nil)
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse,
+            (200...299).contains(httpResponse.statusCode) else {
+                print("!!! MapCache::fetchTileFromServer statusCode != 2xx url= \(url)")
+                fail!(nil)
+                return
+            }
+            
+            succeed(data)
+        }
+        task.resume()
+    }
+    
+    
     public func loadTile(at path: MKTileOverlayPath, result: @escaping (Data?, Error?) -> Void) {
-        // Use cache
-        // is the file alread in the system?
+        
         let key = cacheKey(forPath: path)
         
-        let loadTileFromOrigin = { () -> () in
-            let url = self.url(forTilePath: path)
-            print ("MapCache::loadTile() url=\(url)")
-            let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-                if error != nil {
-                    print("!!! MapCache::loadTile Error for key= \(key)")
-                    result(nil, error)
-                    return
-                }
-                guard let data = data else {
-                    result(nil, nil)
-                    return
-                }
-                self.diskCache.setData(data, forKey: key)
-                print ("CachedTileOverlay:: Data received saved cacheKey=\(key)" )
-                result(data,nil)
-            }
-            task.resume()
+       // Tries to load the tile from the server.
+       // If it fails returns error to the caller.
+        let tileFromServerFallback = { () -> () in
+            print ("MapCache::tileFromServerFallback:: key=\(key)" )
+            self.fetchTileFromServer(at: path,
+                                failure: {error in result(nil, error)},
+                                success: {data in
+                                    self.diskCache.setData(data, forKey: key)
+                                               print ("MapCache::fetchTileFromServer:: Data received saved cacheKey=\(key)" )
+                                    result(data, nil)})
         }
         
-        // If fetching data from cache is successfull => return the data
-        let fetchSuccess = {(data: Data) -> () in
-            print ("MapCache::loadTile() found! cacheKey=\(key)" )
-            result (data, nil)
+        // Tries to load the tile from the cache.
+        // If it fails returns error to the caller.
+        let tileFromCacheFallback = { () -> () in
+            self.diskCache.fetchDataSync(forKey: key,
+                    failure: {error in result(nil, error)},
+                    success: {data in result(data, nil)})
+            
         }
-        // Closure to run if error found while fetching data from cache
-        let fetchFailure = { (error: Error?) -> () in
-            print ("MapCache::loadTile() Not found! cacheKey=\(key)" )
-            loadTileFromOrigin()
+        
+        switch config.loadTileMode {
+        case .cacheThenServer:
+            diskCache.fetchDataSync(forKey: key,
+                                    failure: {error in tileFromServerFallback()},
+                                    success: {data in result(data, nil) })
+        case .serverThenCache:
+            fetchTileFromServer(at: path, failure: {error in tileFromCacheFallback()},
+                                success: {data in result(data, nil) })
+        case .serverOnly:
+            fetchTileFromServer(at: path, failure: {error in result(nil, error)},
+                                success: {data in result(data, nil)})
+        case .cacheOnly:
+            diskCache.fetchDataSync(forKey: key,
+                failure: {error in result(nil, error)},
+                success: {data in result(data, nil)})
         }
-        // Fetch the data. Current thread is not main thread.
-        diskCache.fetchDataSync(forKey: key, failure: fetchFailure, success: fetchSuccess)
     }
     
     public var diskSize: UInt64 {

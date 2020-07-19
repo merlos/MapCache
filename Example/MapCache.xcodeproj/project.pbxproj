@@ -343,18 +343,20 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MapCache_Tests/Pods-MapCache_Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-MapCache_Tests/Pods-MapCache_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapCache_Tests/Pods-MapCache_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MapCache_Tests/Pods-MapCache_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BC464C2C3DB7AE8646FF677D /* [CP] Embed Pods Frameworks */ = {
@@ -363,7 +365,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MapCache_Example/Pods-MapCache_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-MapCache_Example/Pods-MapCache_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/MapCache/MapCache.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -372,7 +374,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapCache_Example/Pods-MapCache_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MapCache_Example/Pods-MapCache_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
