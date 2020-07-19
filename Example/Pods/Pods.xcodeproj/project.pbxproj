@@ -100,6 +100,8 @@
 		8992A45822A73FF300C186CA /* MKMapView+MapCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8992A45622A73C4700C186CA /* MKMapView+MapCache.swift */; };
 		8992A45E22AF12D800C186CA /* TileCoords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8992A45D22AF12D800C186CA /* TileCoords.swift */; };
 		8992A46122AF307A00C186CA /* TileCoords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8992A45D22AF12D800C186CA /* TileCoords.swift */; };
+		899B378D2466F71000101B13 /* LoadTileMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899B378C2466F71000101B13 /* LoadTileMode.swift */; };
+		899B378E2466FA0700101B13 /* LoadTileMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899B378C2466F71000101B13 /* LoadTileMode.swift */; };
 		89F6E11E228A320700CE3E3F /* CachedTileOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E11D228A320700CE3E3F /* CachedTileOverlay.swift */; };
 		89F6E122228A38F700CE3E3F /* MapCacheConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E121228A38F700CE3E3F /* MapCacheConfig.swift */; };
 		89F6E124228A3B1B00CE3E3F /* MapCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F6E123228A3B1B00CE3E3F /* MapCache.swift */; };
@@ -284,6 +286,7 @@
 		895E71B422C7F2D10006977C /* MapCacheProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapCacheProtocol.swift; path = MapCache/Classes/MapCacheProtocol.swift; sourceTree = "<group>"; };
 		8992A45622A73C4700C186CA /* MKMapView+MapCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MKMapView+MapCache.swift"; path = "MapCache/Classes/MKMapView+MapCache.swift"; sourceTree = "<group>"; };
 		8992A45D22AF12D800C186CA /* TileCoords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TileCoords.swift; path = MapCache/Classes/TileCoords.swift; sourceTree = "<group>"; };
+		899B378C2466F71000101B13 /* LoadTileMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoadTileMode.swift; path = MapCache/Classes/LoadTileMode.swift; sourceTree = "<group>"; };
 		89F6E11D228A320700CE3E3F /* CachedTileOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CachedTileOverlay.swift; path = MapCache/Classes/CachedTileOverlay.swift; sourceTree = "<group>"; };
 		89F6E121228A38F700CE3E3F /* MapCacheConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapCacheConfig.swift; path = MapCache/Classes/MapCacheConfig.swift; sourceTree = "<group>"; };
 		89F6E123228A3B1B00CE3E3F /* MapCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapCache.swift; path = MapCache/Classes/MapCache.swift; sourceTree = "<group>"; };
@@ -715,6 +718,7 @@
 				895E719922B341320006977C /* TileRangeIterator.swift */,
 				895E719B22B34BC30006977C /* ZoomRange.swift */,
 				895E719F22B464AF0006977C /* ZoomRangeIterator.swift */,
+				899B378C2466F71000101B13 /* LoadTileMode.swift */,
 			);
 			name = MapCache;
 			path = ../..;
@@ -926,6 +930,7 @@
 				895E71A622B59E840006977C /* ZoomRange.swift in Sources */,
 				8992A45822A73FF300C186CA /* MKMapView+MapCache.swift in Sources */,
 				893072D122A49724008612A1 /* FileManager+DiskCache.swift in Sources */,
+				899B378E2466FA0700101B13 /* LoadTileMode.swift in Sources */,
 				895E71A922B59E8D0006977C /* TileCoordsRegion.swift in Sources */,
 				895E71A522B59E800006977C /* ZoomRangeIterator.swift in Sources */,
 				893072D622A497B5008612A1 /* MapCacheConfig.swift in Sources */,
@@ -1023,6 +1028,7 @@
 				893072C122A47C76008612A1 /* FileManager+DiskCache.swift in Sources */,
 				89F6E11E228A320700CE3E3F /* CachedTileOverlay.swift in Sources */,
 				895E71AD22B9B2390006977C /* RegionDownloaderDelegate.swift in Sources */,
+				899B378D2466F71000101B13 /* LoadTileMode.swift in Sources */,
 				895E71AF22B9B75A0006977C /* MKTileOverlayPath+MapCache.swift in Sources */,
 				895E71B522C7F2D10006977C /* MapCacheProtocol.swift in Sources */,
 				895E719A22B341320006977C /* TileRangeIterator.swift in Sources */,

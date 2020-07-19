@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 
 ///
@@ -54,6 +55,12 @@ public struct MapCacheConfig  {
     ///
     public var tileSize: CGSize = CGSize(width: 256, height: 256)
 
+    ///
+    /// Load tile  mode.
+    /// Sets the strategy when loading a tile. By default loads from the cache and if it fails loads from the server
+    ///
+    public var loadTileMode: LoadTileMode = .cacheThenServer
+    
     public init() {
     }
     
