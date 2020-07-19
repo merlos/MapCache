@@ -14,9 +14,10 @@ import MapKit
 import OHHTTPStubs
 
 class MapCacheTests: QuickSpec {
+    
     override func spec() {
         beforeSuite {
-            // This stub returns the URL of the request
+            // This stub returns as data the URL of the request
             stub(condition: isHost("localhost")) { request in
                 let stubData = request.url?.description.data(using: .utf8)
               return OHHTTPStubsResponse(data: stubData!, statusCode:200, headers:nil)
@@ -27,6 +28,7 @@ class MapCacheTests: QuickSpec {
               return OHHTTPStubsResponse(data: stubData!, statusCode:404, headers:nil)
             }
         }
+        
         afterSuite {
         OHHTTPStubs.removeAllStubs()    
         }
@@ -57,51 +59,16 @@ class MapCacheTests: QuickSpec {
             
             it("can return error on fetch") {
                 //Set a template url that returns error (in this case does not use https)
-                cache.config.urlTemplate = "http://brokenhost/notworking"
-                cache.fetchTileFromServer(
+                let urlTemplate2 = "http://brokenhost/notworking"
+                let config2 = MapCacheConfig(withUrlTemplate: urlTemplate2)
+                let cache2 = MapCache(withConfig: config2)
+                
+                cache2.fetchTileFromServer(
                     at: path,
                     failure: {error in expect(true) == true},
                     success: {data in expect(true) == false} )
             }
               
-            /*
-            it("can do maths") {
-                expect(2) == 2
-            }
-            
-            it("can read") {
-                //expect("number") == "string"
-            }
-            
-            it("will eventually fail") {
-                expect("time").toEventually( equal("time") )
-            }
-            
-            context("these will pass") {
-                
-                it("can do maths") {
-                    expect(23) == 23
-                }
-                
-                it("can read") {
-                    expect("🐮") == "🐮"
-                }
-                
-                it("will eventually pass") {
-                    var time = "passing"
-                    
-                    DispatchQueue.main.async {
-                        time = "done"
-                    }
-                    
-                    waitUntil { done in
-                        Thread.sleep(forTimeInterval: 0.5)
-                        expect(time) == "done"
-                        
-                        done()
-                    }
-                }
-            }*/
         }
     }
 }

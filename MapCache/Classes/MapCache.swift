@@ -52,6 +52,13 @@ public class MapCache : MapCacheProtocol {
                 fail!(nil)
                 return
             }
+            guard let httpResponse = response as? HTTPURLResponse,
+            (200...299).contains(httpResponse.statusCode) else {
+                print("!!! MapCache::fetchTileFromServer statusCode != 2xx url= \(url)")
+                fail!(nil)
+                return
+            }
+            
             succeed(data)
         }
         task.resume()
