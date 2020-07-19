@@ -8,6 +8,7 @@
 [![License](https://img.shields.io/cocoapods/l/MapCache.svg?style=flat)](https://cocoapods.org/pods/MapCache)
 [![Platform](https://img.shields.io/cocoapods/p/MapCache.svg?style=flat)](https://cocoapods.org/pods/MapCache)
 [![Documentation](https://www.merlos.org/MapCache/badge.svg)](http://merlos.org/MapCache)
+![Swift](https://github.com/merlos/MapCache/workflows/Swift/badge.svg)
 
 The missing part of [MapKit](https://developer.apple.com/documentation/mapkit): A simple way to cache [map tiles](https://en.wikipedia.org/wiki/Tiled_web_map) and support offline browsing of maps.
 
