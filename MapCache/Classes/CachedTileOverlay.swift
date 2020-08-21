@@ -10,14 +10,21 @@ import MapKit
 
 
 ///
-/// Overwrites the default overlay to store downloaded images
+/// Whenever a tile is requested by the `MapView`, it calls the `MKTileOverlay.loadTile`.
+/// This class overrides the default `MKTileOverlay`to provide support to `MapCache`.
+///
+/// - SeeAlso: MkMapView+MapView
 ///
 public class CachedTileOverlay : MKTileOverlay {
     
+    /// A class that implements the `MapCacheProtocol`
     let mapCache : MapCacheProtocol
     
+    /// If true `loadTile` uses the implementation of  the `mapCache` var. If `false`, uses the
+    /// default `MKTileOverlay`implementation from Apple.
     public var useCache: Bool = true
     
+    /// - Parameter withCache: the cache to be used on loadTile
     public init(withCache cache: MapCacheProtocol) {
         mapCache = cache
         super.init(urlTemplate: mapCache.config.urlTemplate)
@@ -27,7 +34,7 @@ public class CachedTileOverlay : MKTileOverlay {
     /// Generates the URL for the tile to be requested.
     /// It replaces the values of {z},{x} and {y} in the urlTemplate defined in GPXTileServer
     ///
-    /// -SeeAlso: GPXTileServer
+    /// - SeeAlso: GPXTileServer
     ///
     override public func url(forTilePath path: MKTileOverlayPath) -> URL {
         //print("CachedTileOverlay:: url() urlTemplate: \(urlTemplate)")
@@ -35,10 +42,8 @@ public class CachedTileOverlay : MKTileOverlay {
     }
     
     ///
-    /// Loads the tile from the network or from cache
-    ///
-    /// If the internal app cache is activated,it tries to get the tile from it.
-    /// If not, it uses the default system cache (managed by the OS).
+    /// Depending on  `useCache`value, when invoked, will load the tile using the standard OS
+    /// implementation or from the cache.
     ///
     override public func loadTile(at path: MKTileOverlayPath,
                            result: @escaping (Data?, Error?) -> Void) {
