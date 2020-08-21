@@ -2,7 +2,7 @@
 # MapCache
 #
 # MIT License
-# Copyright (c) 2019 Juan M. Merlos @merlos
+# Copyright (c) 2019-2020 Juan M. Merlos @merlos
 #
 # Be sure to run `pod lib lint MapCache.podspec' to ensure this is a
 # valid spec before submitting.
