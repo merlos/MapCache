@@ -12,23 +12,27 @@
 import Foundation
 
 ///
-/// A struct to log messages on console.
+/// For logging messages on console.
 ///
-/// Format is:
+/// The log format is `<tag><Level> <message> [with error <error>]`:
+/// Examples:
 /// ```
-///   <tag><Level> <message> [with error <error>]
+///   [MapCache][DEBUG] Welcome to MapCache
+///   [MapCache][ERROR] Could not download file with error Unknown address
+///
 /// ```
+///
 ///
 struct Log {
     
-    /// The tag
+    /// The tag [MapCache]
     fileprivate static let tag = "[MapCache]"
     
     /// Levels
     fileprivate enum Level : String {
-        /// For displaying messages useful during development.
+        /// `[Debug]` For displaying messages useful during development.
         case Debug = "[DEBUG]"
-        /// For displaying bad, very, very bad situations.
+        /// `[ERROR]`For displaying messages of bad situations, very, very bad situations.
         case Error = "[ERROR]"
     }
     
@@ -62,6 +66,10 @@ struct Log {
     ///
     /// These messages are displayed independently of the debug mode.
     /// Used  to provide useful information on exceptional situations to library users.
+    /// Example:
+    /// ```
+    /// Log.error("Could not download tile", error) // prints: [MapCache][ERROR] Could not download tile with error No internet connection.
+    /// ```
     ///
     static func error(message: @autoclosure () -> String, error: Error? = nil) {
         log(.Error, message(), error)
