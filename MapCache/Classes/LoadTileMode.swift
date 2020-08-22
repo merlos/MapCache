@@ -7,6 +7,9 @@
 
 import Foundation
 
+/// Defines the strategies that can be used for retrieving the tiles from the cache
+/// Used by `MapCache.loadTile()` method.
+
 public enum LoadTileMode {
     
     /// Default. If the tile exists in the cache, return it, otherwise, fetch it from server (and cache the result)
