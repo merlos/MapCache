@@ -7,8 +7,9 @@
 
 import Foundation
 
-//
+/// Errors for tile range
 enum TileRangeError: Error {
+    /// Error to be thrown in case of an issue during creation.
     case TileRangeCreation
 }
 
@@ -26,29 +27,29 @@ enum TileRangeError: Error {
 ///
 public struct TileRange: Sequence {
     
-    //Zoom level
+    /// Zoom level
     var zoom: Zoom
     
-    //min value of tile in X axis
+    /// Min value of tile in X axis
     var minTileX: TileNumber
     
-    //max value of tile in X axis
+    /// Max value of tile in X axis
     var maxTileX: TileNumber
     
-    //min value of tile in Y axis
+    /// Min value of tile in Y axis
     var minTileY: TileNumber
     
-    //min value of tile in Y axis
+    /// Min value of tile in Y axis
     var maxTileY: TileNumber
     
-    /// difference between X
+    /// Difference between max and min X
     var diffX : TileNumber {
         get {
             return maxTileX - minTileX
         }
     }
     
-    /// difference between maxTileY and minTileY
+    /// Difference between maxTileY and minTileY
     var diffY : TileNumber {
         get {
             return maxTileY - minTileY
@@ -80,7 +81,7 @@ public struct TileRange: Sequence {
     /// In each iteration it returns a TileCoord.
     /// It starts from the top left corner of the range and iterates row by row.
     ///
-    /// - See https://developer.apple.com/documentation/swift/iteratorprotocol
+     /// - SeeAlso: [IteratorProtocol](https://developer.apple.com/documentation/swift/iteratorprotocol)
     public func makeIterator() -> TileRangeIterator {
             return TileRangeIterator(self)
     }

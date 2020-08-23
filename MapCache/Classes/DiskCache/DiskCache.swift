@@ -10,11 +10,14 @@
 
 import Foundation
 
+///
+/// A specialized cache for storing data in disk.
+/// Based on [Haneke Disk Cache](https://github.com/Haneke/HanekeSwift) and customized for the MapCache project.
+///
 open class DiskCache {
     
-    //TODO REMOVE
+    /// gets the root base folder to be used
     open class func baseURL() -> URL {
-        
         // where should you put your files
         // https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW28
         let cachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
@@ -59,12 +62,15 @@ open class DiskCache {
         }
     }
     
+    /// Queue for making async operations
     open lazy var cacheQueue : DispatchQueue = {
         let queueName = "DiskCache.\(folderURL.lastPathComponent)"
         let cacheQueue = DispatchQueue(label: queueName, attributes: [])
         return cacheQueue
     }()
     
+    /// Constructor
+    /// - Parameter withName Name of the cache, will be the subfolder name too. Use a
     public init(withName cacheName: String, capacity: UInt64 = UINT64_MAX) {
         folderURL = DiskCache.baseURL().appendingPathComponent(cacheName, isDirectory: true)
         do {
@@ -116,7 +122,10 @@ open class DiskCache {
         self.controlCapacity()
     }
     
-    
+    /// Fetches the image data from storage synchronously
+    /// - Parameter forKey Key within the cache
+    /// - Parameter failure closure to be run in case of error
+    /// - Parameter success closure to be run once the data is ready
     open func fetchDataSync(forKey key: String, failure fail: ((Error?) -> ())? = nil, success succeed: @escaping (Data) -> ()) {
         let path = self.path(forKey: key)
         do {
@@ -130,6 +139,8 @@ open class DiskCache {
         }
     }
     
+    /// Removes asynchronously the data from the diskcache for the key passed as argument
+    /// - Parameter withKey key to be removed
     open func removeData(withKey key: String) {
         cacheQueue.async(execute: {
             let path = self.path(forKey: key)
@@ -137,6 +148,9 @@ open class DiskCache {
         })
     }
     
+    /// Removes asynchronously all data from the cache
+    /// Calls completition closure once the task is done
+    /// - Parameter completition closure run once all the files are deleted from the cache
     open func removeAllData(_ completion: (() -> ())? = nil) {
         let fileManager = FileManager.default
         cacheQueue.async(execute: {
@@ -177,6 +191,7 @@ open class DiskCache {
         }
     }
     
+    /// Asynchronously updates the access date of a file.
     open func updateAccessDate( _ getData: @autoclosure @escaping () -> Data?, key: String) {
         cacheQueue.async(execute: {
             let path = self.path(forKey: key)
@@ -191,6 +206,7 @@ open class DiskCache {
         })
     }
     
+    /// Calculates the size used by all the files in the cache
     public func calculateDiskSize() -> UInt64 {
         let fileManager = FileManager.default
         var currentSize : UInt64 = 0
@@ -205,6 +221,7 @@ open class DiskCache {
     
     // MARK: Private
     
+    /// It checks if the capacity of the cache has been reached. If so, it removes the least recently used file (LRU).
     fileprivate func controlCapacity() {
         if self.diskSize <= self.capacity { return }
         
@@ -218,7 +235,7 @@ open class DiskCache {
                 stop = self.diskSize <= self.capacity
         }
     }
-    
+    /// Updates the time a file was accessed for the last time.
     @discardableResult fileprivate func updateDiskAccessDate(atPath path: String) -> Bool {
         let fileManager = FileManager.default
         let now = Date()
@@ -231,6 +248,7 @@ open class DiskCache {
         }
     }
     
+    /// Removes a file syncrhonously
     fileprivate func removeFile(atPath path: String) {
         let fileManager = FileManager.default
         do {
@@ -247,6 +265,10 @@ open class DiskCache {
         }
     }
     
+    /// Substracts from the cachesize  the disk size passed as parameter
+    /// Logs an error message if the amount to be substracted is larger than the current used disk space
+    ///
+    /// - Parameter diskSize disksize to be deducted
     fileprivate func substract(diskSize : UInt64) {
         if (self.diskSize >= diskSize) {
             self.diskSize -= diskSize
@@ -257,6 +279,7 @@ open class DiskCache {
     }
 }
 
+/// Error when there is not a file
 private func isNoSuchFileError(_ error : Error?) -> Bool {
     if let error = error {
         return NSCocoaErrorDomain == (error as NSError).domain && (error as NSError).code == NSFileReadNoSuchFileError

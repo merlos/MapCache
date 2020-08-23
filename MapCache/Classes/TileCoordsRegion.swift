@@ -37,13 +37,13 @@ import Foundation
 ///
 public class TileCoordsRegion {
 
-    // Top left tile/coordinate
+    /// Top left tile/coordinate
     public var topLeft : TileCoords
     
-    // Bottom right tile/coordinate
+    /// Bottom right tile/coordinate
     public var bottomRight : TileCoords
     
-    //Zoom range for the region
+    /// Zoom range for the region
     public var zoomRange: ZoomRange {
         get {
             let z1 = topLeft.zoom
@@ -55,7 +55,7 @@ public class TileCoordsRegion {
         }
     }
 
-    //Total number of tiles in this region for all zoom levels
+    /// Total number of tiles in this region for all zoom levels
     public var count : TileNumber {
         get {
             var counted: TileNumber = 0
@@ -105,7 +105,7 @@ public class TileCoordsRegion {
         self.bottomRight = bottomRight
     }
     
-    //Counts for the zoom
+    /// Counts for the zoom
     public func count(forZoom zoom: Zoom) -> TileNumber {
         guard let ranges = tileRanges(forZoom: zoom) else {
             return 0
@@ -117,28 +117,27 @@ public class TileCoordsRegion {
         return counted
     }
     
-    // All the tile ranges for this particular zoom.
-    // There may be 1 or 2.
+    /// All the tile ranges for this particular zoom.
+    /// There may be 1 or 2.
     ///
     /// For example, in this map there are two ranges. One that covers the area A1
     /// and other that covers the area A2
     ///
     ///     +----------------------++---------------------++---------------------+
     ///     |               P1     ||                     ||                     |
-    ///     |                *.....||...+                  ||                     |
-    ///     |                . \  .||.  ·                  ||                     |
-    ///     |       Map 1    .  \ .||.  ·     Map 2        ||       Map 3         |
-    ///     |                .   \.||.  ·                  ||                     |
-    ///     |                .    \||.A2·                  ||                     |
-    ///     |                .  A1.|\.  ·                  ||                     |
-    ///     |                .    .||\  ·                  ||                     |
-    ///     |                .    .||.\ ·                  ||                     |
-    ///     |                +.....||...* P2               ||                     |
+    ///     |                *.....||...+                  ||                    |
+    ///     |                . \  .||.  ·                  ||                    |
+    ///     |       Map 1    .  \ .||.  ·     Map 2        ||       Map 3        |
+    ///     |                .   \.||.  ·                  ||                    |
+    ///     |                .    \||.A2·                  ||                    |
+    ///     |                .  A1.|\.  ·                  ||                    |
+    ///     |                .    .||\  ·                  ||                    |
+    ///     |                .    .||.\ ·                  ||                    |
+    ///     |                +.....||...* P2               ||                    |
     ///     +----------------------++---------------------++---------------------+
     ///    -180                180 -180                 180
     ///
     ///
-    
     public func tileRanges(forZoom zoom: Zoom) -> [TileRange]? {
         //We create new tileCoords at the zoom
         guard let topLeftForZoom = TileCoords(topLeft,zoom: zoom) else {

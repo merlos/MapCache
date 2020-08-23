@@ -13,10 +13,15 @@
 
 import Foundation
 
+///
+/// Class for handling the operations with file folders
 extension FileManager {
     
-    
-    
+    /// Gets the list of files of this  the directory
+    /// - Parameter atPath path of the directory
+    /// - Parameter orderedByProperty property to be used for ordeing the contents
+    /// - Parameter ascending if true it is ordered ascending
+    /// - Parameter usingBlock
     func enumerateContentsOfDirectory(atPath path: String, orderedByProperty property: String, ascending: Bool, usingBlock block: (URL, Int, inout Bool) -> Void ) {
         
         let directoryURL = URL(fileURLWithPath: path)
@@ -78,6 +83,8 @@ extension FileManager {
         
         // The error handler simply stores the error and stops traversal
         var enumeratorError: Error? = nil
+        
+        /// Error handler in case there is a problem when getting the information from the disk
         func errorHandler(_: URL, error: Error) -> Bool {
             enumeratorError = error
             return false
@@ -115,10 +122,12 @@ extension FileManager {
         return accumulatedSize
     }
     
-    // Calculates the actual sum of file sizes
+    /// Calculates the actual sum of file sizes
     func fileSizeForDirectory(at directoryURL: URL) throws -> UInt64 {
         // The error handler simply stores the error and stops traversal
         var enumeratorError: Error? = nil
+        
+        /// Handler in case of error when calculating the filesize
         func errorHandler(_: URL, error: Error) -> Bool {
             enumeratorError = error
             return false
@@ -150,6 +159,7 @@ extension FileManager {
     }
 }
 
+/// Overload of the the `<` operator
 func < (lhs: NSNumber, rhs: NSNumber) -> Bool {
     return lhs.compare(rhs) == ComparisonResult.orderedAscending
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-//
+/// Iterator of a TileRange. 
 public struct TileRangeIterator: IteratorProtocol {
     
     /// Range for the counter
@@ -24,6 +24,7 @@ public struct TileRangeIterator: IteratorProtocol {
     
     /// Number of rows
     let rows : TileNumber
+    
     /// initializer of the iterator.
     /// Sets range, counter, maxCounter and diffX
     init(_ range: TileRange) {
@@ -43,7 +44,7 @@ public struct TileRangeIterator: IteratorProtocol {
     /// - TODO: because there are no validations of the range in TileRange,
     ///          this function may fail. Pending to fix it.
     ///
-    /// See: https://developer.apple.com/documentation/swift/iteratorprotocol
+    /// - SeeAlso: [IteratorProtocol](https://developer.apple.com/documentation/swift/iteratorprotocol)
     mutating public func next() -> TileCoords? {
         guard counter < maxCounter else { return nil }
         let currentColumn = counter % columns

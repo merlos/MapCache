@@ -12,10 +12,10 @@ import Foundation
 /// - SeeAlso: https://developer.apple.com/documentation/swift/iteratorprotocol
 public struct ZoomRangeIterator: IteratorProtocol {
     
-    /// keeps the counter of the iterator
+    /// Keeps the counter of the iterator
     var  counter : UInt8 = 0
     
-    /// the range in question
+    /// The zoom range in question
     var range: ZoomRange
     
     /// receives the range to iterate.
