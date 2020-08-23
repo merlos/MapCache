@@ -86,7 +86,7 @@ extension ViewController : MKMapViewDelegate {
 
 ```
 After setting up map cache browsed areas of the map will be kept on disk. If user browses again that area it will use the local version.
-Note that in current version `0.1.0` cache has not expiration date so if you need to get a new version of the map you must call `clear()` which will wipe out the whole cache.
+Note that in current version `0.7.1` cache has not expiration date so if you need to get a new version of the map you must call `clear()` which will wipe out the whole cache.
 
 ```swift
 mapCache.clear() {
