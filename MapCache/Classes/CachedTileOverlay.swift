@@ -53,12 +53,13 @@ public class CachedTileOverlay : MKTileOverlay {
 
 
 extension CachedTileOverlay {
+    
     ///
     /// Tells whether or not to upsample and show a lesser detailed z level
     /// takes into account `useZoom` configuration as well as current and `maximumZ` values
     ///
     func shouldZoom(at scale: MKZoomScale) -> Bool {
-        guard mapCache.config.useZoom else { return false }
+        guard mapCache.config.overZoomMaximumZ else { return false }
         let maxZ = mapCache.config.maximumZ
         let tileSize = mapCache.config.tileSize.width
         return scale.toZoomLevel(tileSize: tileSize) > maxZ

@@ -61,7 +61,7 @@ public struct MapCacheConfig  {
     /// When zooming in beyond `maximumZ` the tiles at `maximumZ` will be upsampled and shown.
     /// This is to mitigate the issue of showing an empty map when zooming in beyond `maximumZ`.
     /// `maximumZ` is vital to zoom working, make sure it is properly set.
-    public var useZoom: Bool = false
+    public var overZoomMaximumZ: Bool = false
     
     ///
     /// Load tile  mode.

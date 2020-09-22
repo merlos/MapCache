@@ -133,6 +133,8 @@ config.maximumZ = 21
 // Minimum zoom can also be set.
 // config.minimumZ = 0
 
+// Continues to show map tiles even beyond maximumZ
+// config.overZoomMaximumZ = true
 
 
 // Capacity of the cache in bytes. Once the cache is full it uses a LRU algorithm
