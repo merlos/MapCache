@@ -41,12 +41,71 @@ public class CachedTileOverlay : MKTileOverlay {
     /// If not, it uses the default system cache (managed by the OS).
     ///
     override public func loadTile(at path: MKTileOverlayPath,
-                           result: @escaping (Data?, Error?) -> Void) {
+                                  result: @escaping (Data?, Error?) -> Void) {
         if !self.useCache { // Use cache by use cache is not set.
-           // print("loadTile:: not using cache")
+            // print("loadTile:: not using cache")
             return super.loadTile(at: path, result: result)
         } else {
-           return mapCache.loadTile(at: path, result: result)
+            return mapCache.loadTile(at: path, result: result)
         }
+    }
+}
+
+
+extension CachedTileOverlay {
+    ///
+    /// Tells whether or not to upsample and show a lesser detailed z level
+    /// takes into account `useZoom` configuration as well as current and `maximumZ` values
+    ///
+    func shouldZoom(at scale: MKZoomScale) -> Bool {
+        guard mapCache.config.useZoom else { return false }
+        let maxZ = mapCache.config.maximumZ
+        let tileSize = mapCache.config.tileSize.width
+        return scale.toZoomLevel(tileSize: tileSize) > maxZ
+    }
+    
+    /**
+     * Brains for zooming
+     * With the maximum zoom level for the tileset (config) this will give the available tile, map rects, and additional scaling factor for upscaling tiles.
+     */
+    func tilesInMapRect(rect: MKMapRect, scale: MKZoomScale) -> [ZoomableTile] {
+        var tiles: [ZoomableTile] = []
+        let tileSize = mapCache.config.tileSize.width
+        var z = scale.toZoomLevel(tileSize: tileSize)
+        
+        var overZoom = 1
+        let tileSetMaxZ = mapCache.config.maximumZ
+        if (z > tileSetMaxZ) {
+            overZoom = Int(pow(2.0, Double(z - tileSetMaxZ)))
+            z = tileSetMaxZ
+        }
+        
+        let adjustedTileSize = Double(overZoom * Int(tileSize))
+        
+        let minX = Int(floor((rect.minX * Double(scale)) / adjustedTileSize))
+        let maxX = Int(floor((rect.maxX * Double(scale)) / adjustedTileSize))
+        let minY = Int(floor((rect.minY * Double(scale)) / adjustedTileSize))
+        let maxY = Int(floor((rect.maxY * Double(scale)) / adjustedTileSize))
+        
+        for x in minX ... maxX {
+            for y in minY ... maxY {
+                
+                let point = MKMapPoint(x: (Double(x) * adjustedTileSize) / Double(scale),
+                                       y: (Double(y) * adjustedTileSize) / Double(scale))
+                let size = MKMapSize(width: adjustedTileSize / Double(scale),
+                                     height: adjustedTileSize / Double(scale))
+                let tileRect = MKMapRect(origin: point, size: size)
+                
+                // check that a portion of the tile intersects with the maps rect
+                // no need to do the work on a tile that won't be seen
+                guard rect.intersects(tileRect) else { continue }
+                
+                let path =  MKTileOverlayPath(x: x, y: y, z: z, contentScaleFactor: scale)
+                let tile = ZoomableTile(path: path, rect: tileRect, overZoom: Zoom(overZoom))
+                tiles.append(tile)
+            }
+        }
+        
+        return tiles
     }
 }
