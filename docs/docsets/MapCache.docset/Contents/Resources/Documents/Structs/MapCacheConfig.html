@@ -8,14 +8,22 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Struct/MapCacheConfig" class="dashAnchor"></a>
     <a title="MapCacheConfig Structure Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">MapCache Docs</a> (58% documented)</p>
+        <p><a href="../index.html">MapCache 0.7.0 Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -64,6 +72,9 @@
                 <a href="../Enums/LatitudeError.html">LatitudeError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/LoadTileMode.html">LoadTileMode</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/LongitudeError.html">LongitudeError</a>
               </li>
               <li class="nav-group-task">
@@ -97,6 +108,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
               </li>
             </ul>
           </li>
@@ -179,11 +193,12 @@
             <h1>MapCacheConfig</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">MapCacheConfig</span></code></pre>
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Settings of your MapCache.</p>
 
           </section>
           <section class="section task-group-section">
@@ -202,7 +217,27 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Each time a tile is going to be retrieved from the server its x,y and z (zoom) values are plugged into this URL template.</p>
+
+<p>Default value <code>&quot;https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png</code></p>
+
+<p>Where</p>
+
+<ol>
+<li><code>{s}</code> Replaced with one of the subdomains defined in <code><a href="../Structs/MapCacheConfig.html#/s:8MapCache0aB6ConfigV10subdomainsSaySSGvp">subdomains</a></code>.</li>
+<li><code>{z}</code> Replaced with the zoom level value.</li>
+<li><code>{x}</code> Replaced with the position of the tile in the X asis for this zoom level</li>
+<li><code>{y}</code> Replaced with the position of the tile in the X asis for this zoom level</li>
+</ol>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <a href="https://en.wikipedia.org/wiki/Tiled_web_map">Tiles servers in OpenStreetMap wiki</a>
+
+</div><div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <a href="https://en.wikipedia.org/wiki/Tiled_web_map">Tiled we maps in wikipedia</a>
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -229,7 +264,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Subdomains used on the <code><a href="../Structs/MapCacheConfig.html#/s:8MapCache0aB6ConfigV11urlTemplateSSvp">urlTemplate</a></code></p>
 
                       </div>
                       <div class="declaration">
@@ -237,6 +272,74 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">subdomains</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0aB6ConfigV8maximumZSivp"></a>
+                    <a name="//apple_ref/swift/Property/maximumZ" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0aB6ConfigV8maximumZSivp">maximumZ</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Maximum supported zoom by the tile server</p>
+
+<p>If the tile server supported zoom is smaller than <code>maximumZ</code> tiles won&rsquo;t be rendered as a HTTP 404 error
+will be returned by the server for not supported zoom levels.</p>
+
+<p>Values vary from server to server. For example OpenStreetMap supports 19, but  OpenCycleMap supports 22</p>
+<div class="aside aside-see">
+    <p class="aside-title">See</p>
+    see <a href="https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames">https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames</a>
+
+</div>
+
+<p>Default value: 19. If 0 or negative is set iOS default value (i.e. 21)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maximumZ</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0aB6ConfigV8minimumZSivp"></a>
+                    <a name="//apple_ref/swift/Property/minimumZ" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0aB6ConfigV8minimumZSivp">minimumZ</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>It must be smaller or equal than <code><a href="../Structs/MapCacheConfig.html#/s:8MapCache0aB6ConfigV8maximumZSivp">maximumZ</a></code></p>
+
+<p>Default value is 0.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minimumZ</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -256,7 +359,10 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Name of the cache
+A folder will be created with this name all files will be stored in that folder</p>
+
+<p>Default value &ldquo;MapCache&rdquo;</p>
 
                       </div>
                       <div class="declaration">
@@ -283,7 +389,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Cache capacity in bytes</p>
 
                       </div>
                       <div class="declaration">
@@ -291,6 +397,67 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">capacity</span><span class="p">:</span> <span class="kt">UInt64</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0aB6ConfigV8tileSizeSo6CGSizeVvp"></a>
+                    <a name="//apple_ref/swift/Property/tileSize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0aB6ConfigV8tileSizeSo6CGSizeVvp">tileSize</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Tile size of the tile. Default is 256x256</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">tileSize</span><span class="p">:</span> <span class="kt">CGSize</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0aB6ConfigV12loadTileModeAA04LoadeF0Ovp"></a>
+                    <a name="//apple_ref/swift/Property/loadTileMode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0aB6ConfigV12loadTileModeAA04LoadeF0Ovp">loadTileMode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Load tile  mode.
+Sets the strategy to be used when loading a tile.
+By default loads from the cache and if it fails loads from the server</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    LoadTileMode
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">loadTileMode</span><span class="p">:</span> <span class="kt"><a href="../Enums/LoadTileMode.html">LoadTileMode</a></span></code></pre>
 
                         </div>
                       </div>
@@ -310,7 +477,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Constructor with all the default values.</p>
 
                       </div>
                       <div class="declaration">
@@ -329,7 +496,7 @@
                     <code>
                     <a name="/s:8MapCache0aB6ConfigV15withUrlTemplateACSS_tcfc"></a>
                     <a name="//apple_ref/swift/Method/init(withUrlTemplate:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache0aB6ConfigV15withUrlTemplateACSS_tcfc">init(withUrlTemplate:)</a>
+                    <a class="token" href="#/s:8MapCache0aB6ConfigV15withUrlTemplateACSS_tcfc">init(withUrlTemplate:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -337,7 +504,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Constructor that overwrites the urlTemplate</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p>MapCacheConfig.urlTemplate</p>
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -364,7 +536,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Selects one of the subdomains randomly.</p>
 
                       </div>
                       <div class="declaration">
@@ -378,13 +550,70 @@
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0aB6ConfigV19subdomainRoundRobin33_DF0222806B55D79AD742F8F62B690241LLSivp"></a>
+                    <a name="//apple_ref/swift/Property/subdomainRoundRobin" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0aB6ConfigV19subdomainRoundRobin33_DF0222806B55D79AD742F8F62B690241LLSivp">subdomainRoundRobin</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Keeps track of the index of the last subdomain requested for round robin</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">subdomainRoundRobin</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0aB6ConfigV19roundRobinSubdomainSSSgyF"></a>
+                    <a name="//apple_ref/swift/Method/roundRobinSubdomain()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0aB6ConfigV19roundRobinSubdomainSSSgyF">roundRobinSubdomain()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Round Robin algorithm
+If subdomains are a,b,c then it makes requests to a,b,c,a,b,c,a,b,c&hellip;</p>
+
+<p>It uniformly makes requests to all the subdomains.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">roundRobinSubdomain</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2019-09-03)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-26)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

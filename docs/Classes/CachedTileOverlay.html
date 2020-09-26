@@ -8,14 +8,22 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Class/CachedTileOverlay" class="dashAnchor"></a>
     <a title="CachedTileOverlay Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">MapCache Docs</a> (58% documented)</p>
+        <p><a href="../index.html">MapCache 0.7.0 Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -64,6 +72,9 @@
                 <a href="../Enums/LatitudeError.html">LatitudeError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/LoadTileMode.html">LoadTileMode</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/LongitudeError.html">LongitudeError</a>
               </li>
               <li class="nav-group-task">
@@ -97,6 +108,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
               </li>
             </ul>
           </li>
@@ -179,11 +193,18 @@
             <h1>CachedTileOverlay</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CachedTileOverlay</span> <span class="p">:</span> <span class="kt">MKTileOverlay</span></code></pre>
 
                 </div>
               </div>
-            <p>Overwrites the default overlay to store downloaded images</p>
+            <p>Whenever a tile is requested by the <code>MapView</code>, it calls the <code>MKTileOverlay.loadTile</code>.
+This class overrides the default <code>MKTileOverlay</code>to provide support to <code><a href="../Classes/MapCache.html">MapCache</a></code>.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    MkMapView+MapView
+
+</div>
 
           </section>
           <section class="section task-group-section">
@@ -202,7 +223,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A class that implements the <code><a href="../Protocols/MapCacheProtocol.html">MapCacheProtocol</a></code></p>
 
                       </div>
                       <div class="declaration">
@@ -229,7 +250,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>If true <code>loadTile</code> uses the implementation of  the <code><a href="../Classes/CachedTileOverlay.html#/s:8MapCache17CachedTileOverlayC03mapB0AA0aB8Protocol_pvp">mapCache</a></code> var. If <code>false</code>, uses the
+default <code>MKTileOverlay</code>implementation from Apple.</p>
 
                       </div>
                       <div class="declaration">
@@ -248,7 +270,7 @@
                     <code>
                     <a name="/s:8MapCache17CachedTileOverlayC04withB0AcA0aB8Protocol_p_tcfc"></a>
                     <a name="//apple_ref/swift/Method/init(withCache:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache17CachedTileOverlayC04withB0AcA0aB8Protocol_p_tcfc">init(withCache:)</a>
+                    <a class="token" href="#/s:8MapCache17CachedTileOverlayC04withB0AcA0aB8Protocol_p_tcfc">init(withCache:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -256,7 +278,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Constructor.</p>
 
                       </div>
                       <div class="declaration">
@@ -267,6 +289,25 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>withCache</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the cache to be used on loadTile</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </section>
                   </div>
                 </li>
@@ -275,7 +316,7 @@
                     <code>
                     <a name="/c:@M@MapCache@objc(cs)CachedTileOverlay(im)URLForTilePath:"></a>
                     <a name="//apple_ref/swift/Method/url(forTilePath:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@MapCache@objc(cs)CachedTileOverlay(im)URLForTilePath:">url(forTilePath:)</a>
+                    <a class="token" href="#/c:@M@MapCache@objc(cs)CachedTileOverlay(im)URLForTilePath:">url(forTilePath:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -285,8 +326,11 @@
                       <div class="abstract">
                         <p>Generates the URL for the tile to be requested.
 It replaces the values of {z},{x} and {y} in the urlTemplate defined in GPXTileServer</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    GPXTileServer
 
-<p>-SeeAlso: GPXTileServer</p>
+</div>
 
                       </div>
                       <div class="declaration">
@@ -305,7 +349,7 @@ It replaces the values of {z},{x} and {y} in the urlTemplate defined in GPXTileS
                     <code>
                     <a name="/c:@M@MapCache@objc(cs)CachedTileOverlay(im)loadTileAtPath:result:"></a>
                     <a name="//apple_ref/swift/Method/loadTile(at:result:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@MapCache@objc(cs)CachedTileOverlay(im)loadTileAtPath:result:">loadTile(at:result:)</a>
+                    <a class="token" href="#/c:@M@MapCache@objc(cs)CachedTileOverlay(im)loadTileAtPath:result:">loadTile(at:<wbr>result:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -313,10 +357,8 @@ It replaces the values of {z},{x} and {y} in the urlTemplate defined in GPXTileS
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Loads the tile from the network or from cache</p>
-
-<p>If the internal app cache is activated,it tries to get the tile from it.
-If not, it uses the default system cache (managed by the OS).</p>
+                        <p>Depending on  <code><a href="../Classes/CachedTileOverlay.html#/s:8MapCache17CachedTileOverlayC03useB0Sbvp">useCache</a></code>value, when invoked, will load the tile using the standard OS
+implementation or from the cache.</p>
 
                       </div>
                       <div class="declaration">
@@ -336,8 +378,8 @@ If not, it uses the default system cache (managed by the OS).</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2019-09-03)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-26)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

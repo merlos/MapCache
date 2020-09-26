@@ -8,14 +8,22 @@
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Section/Structures" class="dashAnchor"></a>
     <a title="Structures  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">MapCache Docs</a> (58% documented)</p>
+        <p><a href="index.html">MapCache 0.7.0 Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -64,6 +72,9 @@
                 <a href="Enums/LatitudeError.html">LatitudeError</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/LoadTileMode.html">LoadTileMode</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/LongitudeError.html">LongitudeError</a>
               </li>
               <li class="nav-group-task">
@@ -97,6 +108,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/URL.html">URL</a>
               </li>
             </ul>
           </li>
@@ -196,7 +210,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Bytes sequence for the implementation of MD5
+The following is an altered source version that only includes MD5. The original software can be found at:
+<a href="https://github.com/krzyzanowskim/CryptoSwift">https://github.com/krzyzanowskim/CryptoSwift</a></p>
 
                         <a href="Structs/BytesSequence.html" class="slightly-smaller">See more</a>
                       </div>
@@ -211,10 +227,6 @@
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -228,7 +240,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>For logging messages on console.</p>
+
+<p>The log format is <code>&lt;tag&gt;&lt;Level&gt; &lt;message&gt; [with error &lt;error&gt;]</code>:
+Examples:</p>
+<pre class="highlight swift"><code>  <span class="p">[</span><span class="kt">MapCache</span><span class="p">][</span><span class="kt">DEBUG</span><span class="p">]</span> <span class="kt">Welcome</span> <span class="n">to</span> <span class="kt">MapCache</span>
+  <span class="p">[</span><span class="kt">MapCache</span><span class="p">][</span><span class="kt">ERROR</span><span class="p">]</span> <span class="kt">Could</span> <span class="n">not</span> <span class="n">download</span> <span class="n">file</span> <span class="n">with</span> <span class="n">error</span> <span class="kt">Unknown</span> <span class="n">address</span>
+
+</code></pre>
 
                         <a href="Structs/Log.html" class="slightly-smaller">See more</a>
                       </div>
@@ -243,10 +262,6 @@
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -260,7 +275,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Settings of your MapCache.</p>
 
                         <a href="Structs/MapCacheConfig.html" class="slightly-smaller">See more</a>
                       </div>
@@ -275,10 +290,6 @@
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -321,10 +332,6 @@ It can be iterated in a for loop. It will get the TileCoord</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -338,7 +345,7 @@ It can be iterated in a for loop. It will get the TileCoord</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Iterator of a TileRange.</p>
 
                         <a href="Structs/TileRangeIterator.html" class="slightly-smaller">See more</a>
                       </div>
@@ -353,10 +360,6 @@ It can be iterated in a for loop. It will get the TileCoord</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -386,10 +389,6 @@ is built upon request</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -428,8 +427,8 @@ is built upon request</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2019-09-03)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-26)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

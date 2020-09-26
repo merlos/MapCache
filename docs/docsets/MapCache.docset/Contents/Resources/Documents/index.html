@@ -8,13 +8,21 @@
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a title="MapCache  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">MapCache Docs</a> (58% documented)</p>
+        <p><a href="index.html">MapCache 0.7.0 Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -63,6 +71,9 @@
                 <a href="Enums/LatitudeError.html">LatitudeError</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/LoadTileMode.html">LoadTileMode</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/LongitudeError.html">LongitudeError</a>
               </li>
               <li class="nav-group-task">
@@ -96,6 +107,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/URL.html">URL</a>
               </li>
             </ul>
           </li>
@@ -178,48 +192,49 @@
             
             <h1 id='mapcache-swift' class='heading'>MapCache Swift</h1>
 
-<p><div style="text-align:center"><img src="./images/MapCache.png"></div>
+<p><div style="text-align:center"><img src="https://github.com/merlos/MapCache/raw/master/images/MapCache.png"></div>
 </p>
 
 <p><a href="https://travis-ci.org/merlos/MapCache"><img src="https://travis-ci.com/merlos/MapCache.svg?branch=master" alt="CI Status"></a>
 <a href="https://cocoapods.org/pods/MapCache"><img src="https://img.shields.io/cocoapods/v/MapCache.svg?style=flat" alt="Version"></a>
 <a href="https://cocoapods.org/pods/MapCache"><img src="https://img.shields.io/cocoapods/l/MapCache.svg?style=flat" alt="License"></a>
-<a href="https://cocoapods.org/pods/MapCache"><img src="https://img.shields.io/cocoapods/p/MapCache.svg?style=flat" alt="Platform"></a></p>
+<a href="https://cocoapods.org/pods/MapCache"><img src="https://img.shields.io/cocoapods/p/MapCache.svg?style=flat" alt="Platform"></a>
+<a href="http://merlos.org/MapCache"><img src="https://www.merlos.org/MapCache/badge.svg" alt="Documentation"></a>
+<img src="https://github.com/merlos/MapCache/workflows/Swift/badge.svg" alt="Swift"></p>
 
 <p>The missing part of <a href="https://developer.apple.com/documentation/mapkit">MapKit</a>: A simple way to cache <a href="https://en.wikipedia.org/wiki/Tiled_web_map">map tiles</a> and support offline browsing of maps.</p>
 
-<p>Current features: </p>
+<p>Current features:</p>
 
 <ul>
 <li>Automatically save tiles in a disk cache as user browses the map.</li>
-<li>You can to set cache capacity. Once the cache is full it will use a LRU (Least recently Used) algorithm.</li>
+<li>You can to set cache capacity. Once the cache is full it will use a LRU (Least Recently Used) algorithm.</li>
 <li>Get Current cache size</li>
 <li>Clear existing cache</li>
+<li>Download a full region of the map (experimental)</li>
 </ul>
 
 <p>What is coming:</p>
 
 <ul>
-<li>Download a full region of the map.</li>
+<li>Improve documentation</li>
 <li>Smart predownloading/caching: anticipate tiles that may be needed during network idle</li>
 <li>Background cache updates downloads</li>
-<li>Improve documentation</li>
 </ul>
 <h2 id='installation' class='heading'>Installation</h2>
 
 <p>MapCache is available through <a href="https://cocoapods.org">CocoaPods</a>. To install
-it, simply add the following line to your Podfile:</p>
+it, simply add the following line to your <code>Podfile</code>:</p>
 <pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'MapCache'</span>
 </code></pre>
-<h2 id='how-to-use-the-mapcache' class='heading'>How to use the MapCache?</h2>
+<h2 id='how-to-use-mapcache' class='heading'>How to use MapCache?</h2>
 
 <p>In the view controller where you have the <code>MKMapView</code> import <code><a href="Classes/MapCache.html">MapCache</a></code></p>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">MapCache</span>
 </code></pre>
 
 <p>Then within the ViewController add</p>
-<pre class="highlight swift"><code>
-<span class="c1">// ViewController.swift</span>
+<pre class="highlight swift"><code><span class="c1">// ViewController.swift</span>
 <span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
   <span class="kd">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">map</span><span class="p">:</span> <span class="kt">MKMapView</span><span class="o">!</span>
 
@@ -232,14 +247,18 @@ it, simply add the following line to your Podfile:</p>
 
     <span class="o">...</span>
 
-    <span class="c1">// First setup the your cache</span>
-    <span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">MapCacheConfig</span><span class="p">(</span><span class="nv">withTileUrlTemplate</span><span class="p">:</span> <span class="s">"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"</span><span class="p">)</span>
+    <span class="c1">// First setup the config of our cache. </span>
+    <span class="c1">// The only thing we must provide is the url template of the tile server.</span>
+    <span class="c1">// (All other config options are explained below in the section MapCache Configuration)</span>
+    <span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">MapCacheConfig</span><span class="p">(</span><span class="nv">withUrlTemplate</span><span class="p">:</span> <span class="s">"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"</span><span class="p">)</span>
 
     <span class="c1">// initialize the cache with our config</span>
-    <span class="n">mapCache</span> <span class="o">=</span> <span class="kt">MapCache</span><span class="p">(</span><span class="nv">withConfig</span><span class="p">:</span> <span class="n">config</span><span class="p">)</span>
+    <span class="k">let</span> <span class="nv">mapCache</span> <span class="o">=</span> <span class="kt">MapCache</span><span class="p">(</span><span class="nv">withConfig</span><span class="p">:</span> <span class="n">config</span><span class="p">)</span>
 
-    <span class="c1">// We tell the MKMapView to use our cache</span>
-    <span class="n">_</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="nf">useCache</span><span class="p">(</span><span class="n">mapCache</span><span class="o">!</span><span class="p">)</span>
+    <span class="c1">// We tell the MKMapView to use the cache</span>
+    <span class="c1">// So whenever it requires a tile, it will be requested to the </span>
+    <span class="c1">// cache </span>
+    <span class="n">map</span><span class="o">.</span><span class="nf">useCache</span><span class="p">(</span><span class="n">mapCache</span><span class="p">)</span>
 
     <span class="o">...</span>
 <span class="p">}</span>
@@ -258,8 +277,9 @@ it, simply add the following line to your Podfile:</p>
 
 </code></pre>
 
-<p>After setting up map cache browsed areas of the map will be kept on disk. If user browses again that area it will use the local version.
-Note that in current version <code>0.1.0</code> cache has not expiration date so if you need to get a new version of the map you must call <code>clear()</code> which will wipe out the whole cache.</p>
+<p>After setting up map cache browsed areas of the map will be kept on disk. If user browses again that area it will use the local version.</p>
+
+<p>Note that in current version cache has not expiration date so if you need to get an updated version of the tiles you must call <code>clear()</code> which will wipe out the whole cache.</p>
 <pre class="highlight swift"><code><span class="n">mapCache</span><span class="o">.</span><span class="nf">clear</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// do something after clear</span>
   <span class="nf">print</span><span class="p">(</span><span class="s">"cache cleared!"</span><span class="p">)</span>
@@ -269,43 +289,109 @@ Note that in current version <code>0.1.0</code> cache has not expiration date so
 <p>To get current cache size:</p>
 <pre class="highlight swift"><code><span class="n">mapCache</span><span class="o">.</span><span class="nf">calculateDiskSize</span><span class="p">()</span>
 </code></pre>
+
+<p>You can take a look at the <a href="https://github.com/merlos/MapCache/tree/master/Example/MapCache"><strong>Example/ folder</strong></a> to see a complete implementation.</p>
 <h2 id='mapcache-configuration' class='heading'>MapCache configuration</h2>
 
-<p>Config map cache is pretty straight forward, typically you will need to set only <code>urlTemplate</code> and probably the <code>subdomains</code>. </p>
+<p>Config map cache is pretty straight forward, typically you will need to set only <code>urlTemplate</code> and probably the <code>subdomains</code>.</p>
 
 <p>These are the options:</p>
 <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">MapCacheConfig</span><span class="p">()</span>
 
-<span class="c1">// Set the URL template. </span>
+<span class="c1">// Set the URL template.</span>
 <span class="c1">// For Open Street Maps you can chose: https://wiki.openstreetmap.org/wiki/Tile_servers</span>
-<span class="c1">// It defaults to OpenStreetMaps servers </span>
+<span class="c1">// It defaults to OpenStreetMaps servers</span>
 <span class="c1">//</span>
 <span class="c1">// Below we set cartoDB Base map server (https://github.com/CartoDB/cartodb/wiki/BaseMaps-available)</span>
 <span class="n">config</span><span class="o">.</span><span class="nv">urlTemplate</span><span class="p">:</span> <span class="s">"https://${s}.basemaps.cartocdn.com/base-light/${z}/${x}/${y}.png"</span>
 
 
-<span class="c1">// In the urlTemplate ${s} stands for subdomains, which allows you to balance </span>
+<span class="c1">// In the urlTemplate ${s} stands for subdomains, which allows you to balance</span>
 <span class="c1">// the load among the</span>
 <span class="c1">// different tile servers.</span>
 <span class="c1">// Default value is ["a","b","c"].</span>
-<span class="n">config</span><span class="o">.</span><span class="n">subdomains</span> <span class="o">=</span> <span class="p">[</span><span class="s">"a"</span><span class="p">,</span> <span class="s">"b"</span><span class="p">]</span> 
+<span class="n">config</span><span class="o">.</span><span class="n">subdomains</span> <span class="o">=</span> <span class="p">[</span><span class="s">"a"</span><span class="p">,</span> <span class="s">"b"</span><span class="p">]</span>
 
 
 <span class="c1">// Cache Name is basically is the subfolder name in which the tiles are store.</span>
 <span class="c1">// Default value is "MapCache"</span>
-<span class="n">config</span><span class="o">.</span><span class="n">cacheName</span> <span class="o">=</span> <span class="s">"Carto"</span> 
+<span class="n">config</span><span class="o">.</span><span class="n">cacheName</span> <span class="o">=</span> <span class="s">"Carto"</span>
 
 
-<span class="c1">// Capacity of the cache in bytes. Once the cache is full it uses a LRU algorithm </span>
-<span class="c1">// (Least Recently Used), that is, it removes the tiles last used a lot of time ago. </span>
+<span class="c1">// Max zoom supported by the tile server</span>
+<span class="c1">// Default value is 19</span>
+<span class="n">config</span><span class="o">.</span><span class="n">maximumZ</span> <span class="o">=</span> <span class="mi">21</span>
+
+<span class="c1">// Minimum zoom can also be set.</span>
+<span class="c1">// config.minimumZ = 0</span>
+
+
+
+<span class="c1">// Capacity of the cache in bytes. Once the cache is full it uses a LRU algorithm</span>
+<span class="c1">// (Least Recently Used), that is, it removes the tiles last used a lot of time ago.</span>
 <span class="c1">// Each time a tile is retrieved from the cache it is updated the value of last time used.</span>
 <span class="c1">// Default value of the capacity is unlimited.</span>
-<span class="n">config</span><span class="o">.</span><span class="n">capacity</span> <span class="o">=</span> <span class="mi">200</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="c1">// 20 Megabytes</span>
+<span class="n">config</span><span class="o">.</span><span class="n">capacity</span> <span class="o">=</span> <span class="mi">200</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="c1">// 200 Megabytes</span>
 
 
 </code></pre>
 
 <p>If you need to use MapCache in different controllers, to avoid issues just be sure to use the same values in the config.</p>
+<h2 id='how-does-code-mapcache-code-work-behind-the-scenes' class='heading'>How does <code><a href="Classes/MapCache.html">MapCache</a></code> work behind the scenes</h2>
+
+<p>If you need to build on something top of MapCache read this. If not, you can ignore</p>
+
+<p>MapCache is a hack of <a href="https://developer.apple.com/documentation/mapkit">MapKit</a>, the map framework of Apple.</p>
+<h3 id='understanding-mapcache-bootstrap' class='heading'>Understanding MapCache bootstrap</h3>
+
+<p>As explained in <em>How to use MapCache?</em> section, in order to bootstrap MapCache we have to call this method</p>
+<pre class="highlight swift"><code><span class="n">map</span><span class="o">.</span><span class="nf">useCache</span><span class="p">(</span><span class="n">mapCache</span><span class="p">)</span>
+</code></pre>
+
+<p>Where map is an instance of <code>MKMapView</code>, the main class used to display a map in iOS. What MapCache does through the extension (<code>MKMapView+MapCache</code>) is to add a new method <code>useCache</code> that tells <code>MKMapView</code> to display in the map a new tile layer on top of the default layers.  Because of this while the tiles are loaded you may see  the names of the default Apple Maps.</p>
+
+<p>This extension also adds a variable in the <code>MKMapView</code> to keep the cache config.</p>
+
+<p>A layer in the map is called <em>overlay</em> in the MapKit terminology. MapCache uses <a href="https://en.wikipedia.org/wiki/Tiled_web_map">tile based overlay</a>.  implemented in the class <code><a href="Classes/CachedTileOverlay.html">CachedTileOverlay</a></code> which is a subclass of <a href="https://developer.apple.com/documentation/mapkit/mktileoverlay">MKTileOverlay</a>. </p>
+
+<p>Overlays, have associated <em>renderers</em> that are the actual classes that draw the content of an overlay in the screen. For example, there  are rendererers for points, lines, polygons, and tiles. When <code>MapView</code> needs to display an overlay it calls the delegate with the overlay it is going to render and you need to provide the renderer to use. In order to do that, We added a method <code>mapCacheRenderer</code> that just returns the default <a href="https://developer.apple.com/documentation/mapkit/mktileoverlay">MKTileOverlayRenderer</a> when the class of the overlay passed as argument is of the type <code><a href="Classes/CachedTileOverlay.html">CachedTileOverlay</a></code>.  That is why we need to add this code on the application in the delegate of the map view (<code>MKMapViewDelegate</code>) :</p>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">ViewController</span> <span class="p">:</span> <span class="kt">MKMapViewDelegate</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">mapView</span><span class="p">:</span> <span class="kt">MKMapView</span><span class="p">,</span> <span class="n">rendererFor</span> <span class="nv">overlay</span><span class="p">:</span> <span class="kt">MKOverlay</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MKOverlayRenderer</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">mapView</span><span class="o">.</span><span class="nf">mapCacheRenderer</span><span class="p">(</span><span class="nv">forOverlay</span><span class="p">:</span> <span class="n">overlay</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='code-cachedtileoverlay-code-and-code-mapcacheprotocol-code' class='heading'><code><a href="Classes/CachedTileOverlay.html">CachedTileOverlay</a></code> and <code><a href="Protocols/MapCacheProtocol.html">MapCacheProtocol</a></code></h3>
+
+<p>As mentioned earlier, <code><a href="Classes/CachedTileOverlay.html">CachedTileOverlay</a></code> is tile based layer that is implemented as a subclass of <a href="https://developer.apple.com/documentation/mapkit/mktileoverlay">MKTileOverlay</a>. Basically, the only thing that it does is to override two methods of the parent class:</p>
+
+<ol>
+<li><p><code>func url(forTilePath path: MKTileOverlayPath) -&gt; URL</code>. The goal of this method is to return the URL of the tile. We need to overwrite it to be able to use the tile server of our preference.    </p></li>
+<li><p><code>func loadTile(at path: MKTileOverlayPath, result: @escaping (Data?, Error?) -&gt; Void)</code>. This method is the one that returns the actual Tile.</p></li>
+</ol>
+
+<p>If you take a look to the <a href="https://github.com/merlos/MapCache/blob/master/MapCache/Classes/CachedTileOverlay.swift">implementation of <code><a href="Classes/CachedTileOverlay.html">CachedTileOverlay</a></code></a> you will notice that it only forwards the request a method with the same signature of a variable called <code>mapCache</code> which is an instance of a class that implements  <code><a href="Protocols/MapCacheProtocol.html">MapCacheProtocol</a></code> </p>
+<pre class="highlight plaintext"><code>override public func url(forTilePath path: MKTileOverlayPath) -&gt; URL {`
+       return mapCache.url(forTilePath: path)
+   }
+</code></pre>
+
+<p>The <a href="https://github.com/merlos/MapCache/blob/master/MapCache/Classes/MapCacheProtocol.swift"><code>MapCacheProtocol definition</code></a> is pretty simple, it just requires to have a config variable instance of a <code><a href="Structs/MapCacheConfig.html">MapCacheConfig</a></code> and an implementation of the two methods that are called from <code><a href="Classes/CachedTileOverlay.html">CachedTileOverlay</a></code></p>
+<pre class="highlight plaintext"><code>public protocol MapCacheProtocol {
+
+    var config: MapCacheConfig { get set }
+
+    func url(forTilePath path: MKTileOverlayPath) -&gt; URL
+
+    func loadTile(at path: MKTileOverlayPath, result: @escaping (Data?, Error?) -&gt; Void)
+</code></pre>
+
+<p>If you need to create a custom implementation of the cache, you just need to create a class that implements this protocol and initialize the cache using  <code>map.useCache(myCustomCacheImplementationInstance)</code>. The implementation provided by the library is on the class named as  <code><a href="Classes/MapCache.html">MapCache</a></code>.</p>
+
+<p>Something that may be useful too is the <code><a href="Classes/DiskCache.html">DiskCache</a></code> class.</p>
+
+<p>If you need further information you can take a look at </p>
+<h3 id='a-href-http-www-merlos-org-mapcache-reference-documentation-of-mapcache-a' class='heading'><a href="http://www.merlos.org/MapCache/">Reference documentation of MapCache</a>.</h3>
 <h2 id='you-may-also-like' class='heading'>You may also like</h2>
 
 <ul>
@@ -314,10 +400,10 @@ Note that in current version <code>0.1.0</code> cache has not expiration date so
 </ul>
 <h2 id='license-mit' class='heading'>License - MIT</h2>
 
-<p>Copyright &copy; 2019 Juan M. Merlos <a href="http://twitter.com/merlos">@merlos</a></p>
+<p>Copyright &copy; 2019-2020 Juan M. Merlos <a href="http://twitter.com/merlos">@merlos</a>, and contributors.</p>
 
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the <q>Software</q>), to deal
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
@@ -326,7 +412,7 @@ furnished to do so, subject to the following conditions:</p>
 <p>The above copyright notice and this permission notice shall be included in
 all copies or substantial portions of the Software.</p>
 
-<p>THE SOFTWARE IS PROVIDED <q>AS IS</q>, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+<p>THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
@@ -337,8 +423,8 @@ THE SOFTWARE.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2019-09-03)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-26)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

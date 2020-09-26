@@ -8,14 +8,22 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Class/TileCoords" class="dashAnchor"></a>
     <a title="TileCoords Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">MapCache Docs</a> (58% documented)</p>
+        <p><a href="../index.html">MapCache 0.7.0 Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -64,6 +72,9 @@
                 <a href="../Enums/LatitudeError.html">LatitudeError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/LoadTileMode.html">LoadTileMode</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/LongitudeError.html">LongitudeError</a>
               </li>
               <li class="nav-group-task">
@@ -97,6 +108,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
               </li>
             </ul>
           </li>
@@ -179,6 +193,7 @@
             <h1>TileCoords</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">TileCoords</span></code></pre>
 
                 </div>
@@ -385,7 +400,7 @@ Any longitude has to be mayor or equal to this value -180.0.</p>
                     <code>
                     <a name="/s:8MapCache10TileCoordsC03maxC07forZooms6UInt64Vs5UInt8V_tFZ"></a>
                     <a name="//apple_ref/swift/Method/maxTile(forZoom:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache10TileCoordsC03maxC07forZooms6UInt64Vs5UInt8V_tFZ">maxTile(forZoom:)</a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC03maxC07forZooms6UInt64Vs5UInt8V_tFZ">maxTile(forZoom:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -412,7 +427,7 @@ Any longitude has to be mayor or equal to this value -180.0.</p>
                     <code>
                     <a name="/s:8MapCache10TileCoordsC8validate9longitudeySd_tKFZ"></a>
                     <a name="//apple_ref/swift/Method/validate(longitude:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache10TileCoordsC8validate9longitudeySd_tKFZ">validate(longitude:)</a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC8validate9longitudeySd_tKFZ">validate(longitude:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -425,8 +440,7 @@ Any longitude has to be mayor or equal to this value -180.0.</p>
     <p class="aside-title">Throws</p>
     LongitudeError
 
-</div>
-<div class="aside aside-see-also">
+</div><div class="aside aside-see-also">
     <p class="aside-title">See also</p>
     maxLatitude, minLatitude
 
@@ -468,7 +482,7 @@ Any longitude has to be mayor or equal to this value -180.0.</p>
                     <code>
                     <a name="/s:8MapCache10TileCoordsC8validate8latitudeySd_tKFZ"></a>
                     <a name="//apple_ref/swift/Method/validate(latitude:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache10TileCoordsC8validate8latitudeySd_tKFZ">validate(latitude:)</a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC8validate8latitudeySd_tKFZ">validate(latitude:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -496,7 +510,7 @@ Throws LongitudeError if it is not.</p>
                     <code>
                     <a name="/s:8MapCache10TileCoordsC8validate4zoomys5UInt8V_tKFZ"></a>
                     <a name="//apple_ref/swift/Method/validate(zoom:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache10TileCoordsC8validate4zoomys5UInt8V_tKFZ">validate(zoom:)</a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC8validate4zoomys5UInt8V_tKFZ">validate(zoom:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -524,7 +538,7 @@ Throws ZoomError if is greater than maxZoom</p>
                     <code>
                     <a name="/s:8MapCache10TileCoordsC8validate4tile7forZoomys6UInt64V_s5UInt8VtKFZ"></a>
                     <a name="//apple_ref/swift/Method/validate(tile:forZoom:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache10TileCoordsC8validate4tile7forZoomys6UInt64V_s5UInt8VtKFZ">validate(tile:forZoom:)</a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC8validate4tile7forZoomys6UInt64V_s5UInt8VtKFZ">validate(tile:<wbr>forZoom:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -552,7 +566,7 @@ A tile must be always be less than 2^zoom.</p>
                     <code>
                     <a name="/s:8MapCache10TileCoordsC011longitudeToC1X0E04zooms6UInt64VSd_s5UInt8VtKFZ"></a>
                     <a name="//apple_ref/swift/Method/longitudeToTileX(longitude:zoom:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache10TileCoordsC011longitudeToC1X0E04zooms6UInt64VSd_s5UInt8VtKFZ">longitudeToTileX(longitude:zoom:)</a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC011longitudeToC1X0E04zooms6UInt64VSd_s5UInt8VtKFZ">longitudeToTileX(longitude:<wbr>zoom:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -580,7 +594,7 @@ Can throw ZoomError and LongitudeError if these are out of the boundaries.</p>
                     <code>
                     <a name="/s:8MapCache10TileCoordsC010latitudeToC1Y0E04zooms6UInt64VSd_s5UInt8VtKFZ"></a>
                     <a name="//apple_ref/swift/Method/latitudeToTileY(latitude:zoom:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache10TileCoordsC010latitudeToC1Y0E04zooms6UInt64VSd_s5UInt8VtKFZ">latitudeToTileY(latitude:zoom:)</a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC010latitudeToC1Y0E04zooms6UInt64VSd_s5UInt8VtKFZ">latitudeToTileY(latitude:<wbr>zoom:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -608,7 +622,7 @@ Can throw ZoomError and LongitudeError if these are out of the boundaries.</p>
                     <code>
                     <a name="/s:8MapCache10TileCoordsC16tileXToLongitude0E1X4zoomSds6UInt64V_s5UInt8VtKFZ"></a>
                     <a name="//apple_ref/swift/Method/tileXToLongitude(tileX:zoom:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache10TileCoordsC16tileXToLongitude0E1X4zoomSds6UInt64V_s5UInt8VtKFZ">tileXToLongitude(tileX:zoom:)</a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC16tileXToLongitude0E1X4zoomSds6UInt64V_s5UInt8VtKFZ">tileXToLongitude(tileX:<wbr>zoom:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -635,7 +649,7 @@ Can throw ZoomError and LongitudeError if these are out of the boundaries.</p>
                     <code>
                     <a name="/s:8MapCache10TileCoordsC15tileYToLatitude0E1Y4zoomSds6UInt64V_s5UInt8VtKFZ"></a>
                     <a name="//apple_ref/swift/Method/tileYToLatitude(tileY:zoom:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache10TileCoordsC15tileYToLatitude0E1Y4zoomSds6UInt64V_s5UInt8VtKFZ">tileYToLatitude(tileY:zoom:)</a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC15tileYToLatitude0E1Y4zoomSds6UInt64V_s5UInt8VtKFZ">tileYToLatitude(tileY:<wbr>zoom:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -670,7 +684,8 @@ Can throw ZoomError and LongitudeError if these are out of the boundaries.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Holds the zoom level</p>
+                        <p>Holds the zoom level.
+For internal use only.</p>
 
                       </div>
                       <div class="declaration">
@@ -724,7 +739,7 @@ Can throw ZoomError and LongitudeError if these are out of the boundaries.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Latitude for this tile. Use setCoords() to change it.</p>
+                        <p>Holds the actual latitude</p>
 
                       </div>
                       <div class="declaration">
@@ -751,7 +766,7 @@ Can throw ZoomError and LongitudeError if these are out of the boundaries.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Latitude for this tile. Use set() to change it.</p>
 
                       </div>
                       <div class="declaration">
@@ -886,7 +901,7 @@ Can throw ZoomError and LongitudeError if these are out of the boundaries.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Holds the actual tileY</p>
 
                       </div>
                       <div class="declaration">
@@ -913,7 +928,7 @@ Can throw ZoomError and LongitudeError if these are out of the boundaries.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Tile in the Y axis for current latitude and zoom. Use set() to change it.</p>
 
                       </div>
                       <div class="declaration">
@@ -932,7 +947,7 @@ Can throw ZoomError and LongitudeError if these are out of the boundaries.</p>
                     <code>
                     <a name="/s:8MapCache10TileCoordsC3set4zoomys5UInt8V_tKF"></a>
                     <a name="//apple_ref/swift/Method/set(zoom:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache10TileCoordsC3set4zoomys5UInt8V_tKF">set(zoom:)</a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC3set4zoomys5UInt8V_tKF">set(zoom:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -960,7 +975,7 @@ Throws ZoomError if zoom is not valid.</p>
                     <code>
                     <a name="/s:8MapCache10TileCoordsC3set5tileX0F1Yys6UInt64V_AHtKF"></a>
                     <a name="//apple_ref/swift/Method/set(tileX:tileY:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache10TileCoordsC3set5tileX0F1Yys6UInt64V_AHtKF">set(tileX:tileY:)</a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC3set5tileX0F1Yys6UInt64V_AHtKF">set(tileX:<wbr>tileY:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -988,7 +1003,7 @@ Throws TileError if latitude or longitude are out of range.</p>
                     <code>
                     <a name="/s:8MapCache10TileCoordsC3set8latitude9longitudeySd_SdtKF"></a>
                     <a name="//apple_ref/swift/Method/set(latitude:longitude:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache10TileCoordsC3set8latitude9longitudeySd_SdtKF">set(latitude:longitude:)</a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC3set8latitude9longitudeySd_SdtKF">set(latitude:<wbr>longitude:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1016,7 +1031,7 @@ Throws LatitudeError and LongitudeError if they are out of range.</p>
                     <code>
                     <a name="/s:8MapCache10TileCoordsC5tileX0E1Y4zoomACSgs6UInt64V_AIs5UInt8Vtcfc"></a>
                     <a name="//apple_ref/swift/Method/init(tileX:tileY:zoom:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache10TileCoordsC5tileX0E1Y4zoomACSgs6UInt64V_AIs5UInt8Vtcfc">init(tileX:tileY:zoom:)</a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC5tileX0E1Y4zoomACSgs6UInt64V_AIs5UInt8Vtcfc">init(tileX:<wbr>tileY:<wbr>zoom:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1044,7 +1059,7 @@ Will return nil if any of the parameters is out of range.</p>
                     <code>
                     <a name="/s:8MapCache10TileCoordsC8latitude9longitude4zoomACSgSd_Sds5UInt8Vtcfc"></a>
                     <a name="//apple_ref/swift/Method/init(latitude:longitude:zoom:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache10TileCoordsC8latitude9longitude4zoomACSgSd_Sds5UInt8Vtcfc">init(latitude:longitude:zoom:)</a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC8latitude9longitude4zoomACSgSd_Sds5UInt8Vtcfc">init(latitude:<wbr>longitude:<wbr>zoom:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1072,7 +1087,7 @@ Will return nil if any of the parameters is out of range.</p>
                     <code>
                     <a name="/s:8MapCache10TileCoordsC_4zoomACSgAC_s5UInt8Vtcfc"></a>
                     <a name="//apple_ref/swift/Method/init(_:zoom:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache10TileCoordsC_4zoomACSgAC_s5UInt8Vtcfc">init(_:zoom:)</a>
+                    <a class="token" href="#/s:8MapCache10TileCoordsC_4zoomACSgAC_s5UInt8Vtcfc">init(_:<wbr>zoom:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1127,8 +1142,8 @@ as the the parameter but with a different zoom</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2019-09-03)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-26)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
