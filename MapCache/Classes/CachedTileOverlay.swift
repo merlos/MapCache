@@ -24,6 +24,7 @@ public class CachedTileOverlay : MKTileOverlay {
     /// default `MKTileOverlay`implementation from Apple.
     public var useCache: Bool = true
     
+    /// Constructor.
     /// - Parameter withCache: the cache to be used on loadTile
     public init(withCache cache: MapCacheProtocol) {
         mapCache = cache

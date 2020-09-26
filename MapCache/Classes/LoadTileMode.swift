@@ -9,6 +9,8 @@ import Foundation
 
 /// Defines the strategies that can be used for retrieving the tiles from the cache
 /// Used by `MapCache.loadTile()` method.
+///
+/// - SeeAlso: MapCache
 
 public enum LoadTileMode {
     

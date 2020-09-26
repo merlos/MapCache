@@ -56,7 +56,9 @@ class ViewController: UIViewController {
 
     ...
 
-    // First setup the your cache
+    // First setup the config of our cache. 
+    // The only thing we must provide is the url template of the tile server.
+    // (All other config options are explained below in the section MapCache Configuration)
     let config = MapCacheConfig(withUrlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
 
     // initialize the cache with our config
@@ -86,7 +88,8 @@ extension ViewController : MKMapViewDelegate {
 
 ```
 After setting up map cache browsed areas of the map will be kept on disk. If user browses again that area it will use the local version.
-Note that in current version `0.7.1` cache has not expiration date so if you need to get a new version of the map you must call `clear()` which will wipe out the whole cache.
+
+Note that in current version cache has not expiration date so if you need to get an updated version of the tiles you must call `clear()` which will wipe out the whole cache.
 
 ```swift
 mapCache.clear() {
@@ -153,7 +156,7 @@ If you need to use MapCache in different controllers, to avoid issues just be su
 
 ## How does `MapCache` work behind the scenes
 
-If you need to build on top of MapCache read this. 
+If you need to build on something top of MapCache read this. If not, you can ignore
 
 MapCache is a hack of [MapKit](https://developer.apple.com/documentation/mapkit), the map framework of Apple.
 
@@ -165,9 +168,13 @@ As explained in _How to use MapCache?_ section, in order to bootstrap MapCache w
 map.useCache(mapCache)
 ```
 
-Where map is an instance of `MKMapView` is the main class used to display a map. What MapCache does through the extension (`MKMapView+MapCache`) is to add a new method `useCache` that tells `MKMapView` to display a new layer in the map  on top of the other layers. This layer is draws its the content on top of the default layers provided by apple that´s why you can see the names of the default map layer while the tiles are being loaded.
+Where map is an instance of `MKMapView`, the main class used to display a map in iOS. What MapCache does through the extension (`MKMapView+MapCache`) is to add a new method `useCache` that tells `MKMapView` to display in the map a new tile layer on top of the default layers.  Because of this while the tiles are loaded you may see  the names of the default Apple Maps.
 
-A layer in the map is called _overlay_ in the MapKit terminology. Overlays, have associated renderers that are the actual classes that draw the content. In our particular case, MapCache adds a [tile based overlay](https://en.wikipedia.org/wiki/Tiled_web_map) that is implemented in the class `CachedTileOverlay` that is a subclass of [MKTileOverlay](https://developer.apple.com/documentation/mapkit/mktileoverlay). When MapView wants to display our overlay we need to tell it what is the renderer to use. We added a method `mapCacheRenderer` that just returns the default [MKTileOverlayRenderer](https://developer.apple.com/documentation/mapkit/mktileoverlay) when the class of the overlay passed as argument is of the type `CachedTileOverlay`.  That is why we need to add this code on the application in the delegate of the map view (`MKMapViewDelegate`) :
+This extension also adds a variable in the `MKMapView` to keep the cache config.
+
+A layer in the map is called _overlay_ in the MapKit terminology. MapCache uses [tile based overlay](https://en.wikipedia.org/wiki/Tiled_web_map).  implemented in the class `CachedTileOverlay` which is a subclass of [MKTileOverlay](https://developer.apple.com/documentation/mapkit/mktileoverlay). 
+
+Overlays, have associated _renderers_ that are the actual classes that draw the content of an overlay in the screen. For example, there  are rendererers for points, lines, polygons, and tiles. When `MapView` needs to display an overlay it calls the delegate with the overlay it is going to render and you need to provide the renderer to use. In order to do that, We added a method `mapCacheRenderer` that just returns the default [MKTileOverlayRenderer](https://developer.apple.com/documentation/mapkit/mktileoverlay) when the class of the overlay passed as argument is of the type `CachedTileOverlay`.  That is why we need to add this code on the application in the delegate of the map view (`MKMapViewDelegate`) :
 
 ```swift
 extension ViewController : MKMapViewDelegate {
@@ -176,6 +183,7 @@ extension ViewController : MKMapViewDelegate {
     }
 }
 ```
+
 ### `CachedTileOverlay` and `MapCacheProtocol`
 
 As mentioned earlier, `CachedTileOverlay` is tile based layer that is implemented as a subclass of [MKTileOverlay](https://developer.apple.com/documentation/mapkit/mktileoverlay). Basically, the only thing that it does is to override two methods of the parent class:
@@ -193,6 +201,7 @@ override public func url(forTilePath path: MKTileOverlayPath) -> URL {`
 ```
 
 The [`MapCacheProtocol definition`](https://github.com/merlos/MapCache/blob/master/MapCache/Classes/MapCacheProtocol.swift) is pretty simple, it just requires to have a config variable instance of a `MapCacheConfig` and an implementation of the two methods that are called from `CachedTileOverlay`
+
 ```
 public protocol MapCacheProtocol {
 
@@ -203,15 +212,13 @@ public protocol MapCacheProtocol {
     func loadTile(at path: MKTileOverlayPath, result: @escaping (Data?, Error?) -> Void)
 ```
 
-If you need to create a custom implementation of the cache, you just need to create a class that implements  this protocol. The implementation provided by the library is on the class named as  `MapCache`.
+If you need to create a custom implementation of the cache, you just need to create a class that implements this protocol and initialize the cache using  `map.useCache(myCustomCacheImplementationInstance)`. The implementation provided by the library is on the class named as  `MapCache`.
 
-Something that may be useful too is the `DiskCache` class
+Something that may be useful too is the `DiskCache` class.
 
 If you need further information you can take a look at 
 
 ### [Reference documentation of MapCache](http://www.merlos.org/MapCache/).
-
-
 
 
 ## You may also like
@@ -221,7 +228,7 @@ If you need further information you can take a look at
 
 ## License - MIT
 
-Copyright (c) 2019-2020 Juan M. Merlos [@merlos](http://twitter.com/merlos)
+Copyright (c) 2019-2020 Juan M. Merlos [@merlos](http://twitter.com/merlos), and contributors.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
