@@ -47,7 +47,7 @@ public struct MapCacheConfig  {
     ///
     /// It must be smaller or equal than `maximumZ`
     ///
-    /// Default value is 0. 
+    /// Default value is 0.
     public var minimumZ: Int = 0
     
     ///
@@ -66,7 +66,15 @@ public struct MapCacheConfig  {
     /// Tile size of the tile. Default is 256x256
     ///
     public var tileSize: CGSize = CGSize(width: 256, height: 256)
-
+    
+    ///
+    /// Zoom
+    ///
+    /// When zooming in beyond `maximumZ` the tiles at `maximumZ` will be upsampled and shown.
+    /// This is to mitigate the issue of showing an empty map when zooming in beyond `maximumZ`.
+    /// `maximumZ` is vital to zoom working, make sure it is properly set.
+    public var overZoomMaximumZ: Bool = true
+    
     ///
     /// Load tile  mode.
     /// Sets the strategy to be used when loading a tile.
