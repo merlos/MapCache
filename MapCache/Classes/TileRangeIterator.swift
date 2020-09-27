@@ -13,7 +13,7 @@ public struct TileRangeIterator: IteratorProtocol {
     /// Range for the counter
     let range: TileRange
     
-    /// Counter
+    /// Current counter value
     var counter: UInt64
     
     /// Max value counter can take.

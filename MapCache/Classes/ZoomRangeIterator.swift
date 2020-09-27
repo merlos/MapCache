@@ -18,7 +18,7 @@ public struct ZoomRangeIterator: IteratorProtocol {
     /// The zoom range in question
     var range: ZoomRange
     
-    /// receives the range to iterate.
+    /// Receives the range to iterate.
     init(_ range: ZoomRange) {
         self.range = range
     }

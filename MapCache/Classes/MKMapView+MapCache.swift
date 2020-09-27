@@ -14,6 +14,7 @@ import MapKit
 extension MKMapView {
 
     /// Will tell the map to use the cache passed as parameter.
+    /// - parameter cache the cache to use for the
     @discardableResult
     public func useCache(_ cache: MapCache) -> CachedTileOverlay {
 

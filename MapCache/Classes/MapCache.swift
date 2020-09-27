@@ -59,9 +59,13 @@ public class MapCache : MapCacheProtocol {
         return URL(string: urlString)!
     }
     
-    /// For the path passed as argument it creates a unique key to be used in `diskCache`.
+    /// For the path passed as argument it creates a unique key to be used in `DiskCache`.
     ///
-    /// - Parameter forPath is the path of the tile
+    /// The output is a string that has the following format `{config.urlTemplate}-{x}-{y}-{z}` where:
+    ///  - config.urlTemplate is the template url template and
+    ///  -  x, y and z are the coords of the path
+    ///
+    /// - Parameter forPath is the path of the tile you want the cache
     public func cacheKey(forPath path: MKTileOverlayPath) -> String {
         return "\(config.urlTemplate)-\(path.x)-\(path.y)-\(path.z)"
     }
@@ -163,7 +167,9 @@ public class MapCache : MapCacheProtocol {
         }
     }
     
-    /// Calculate size of the cache
+    /// Calculates the disk space allocated in dis for the cache
+    /// 
+    /// - SeeAlso: DiskCache
     public func calculateDiskSize() -> UInt64 {
         return diskCache.calculateDiskSize()
     }
@@ -171,6 +177,7 @@ public class MapCache : MapCacheProtocol {
     /// Clears the cache.
     /// Removes all files in the diskCache
     /// As it may take some time to remove all files it calls the completition closure upon finishing the removal.
+    /// - Parameter completition: code to run upon the cache is cleared.
     public func clear(completition: (() -> ())? ) {
         diskCache.removeAllData(completition)
     }

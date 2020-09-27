@@ -17,7 +17,7 @@ import Foundation
 /// Usage example:
 ///
 ///     let zR = ZoomRange(2,5).toArray()
-//      print(zR.count) // => 4
+///      print(zR.count) // => 4
 ///
 /// It strictly stores z1 and z2, and the rest of the range
 /// is built upon request
@@ -61,8 +61,7 @@ public struct ZoomRange : Sequence {
         self.max = z1 >= z2 ? z1 : z2
     }
     
-    /// Converts to array
-    /// For instance,
+    /// Converts the zoom range in to an array
     func toArray() -> [Zoom] {
         var ret : [Zoom] = []
         for i in min...max {
@@ -74,7 +73,7 @@ public struct ZoomRange : Sequence {
     /// Returns the iterator for this range.
     /// It allows to use ZoomRange in for loops.
     ///
-    /// - More info: https://developer.apple.com/documentation/swift/iteratorprotocol
+    /// - SeeAlso: [IteratorProtocol](https://developer.apple.com/documentation/swift/iteratorprotocol)
     public func makeIterator() -> ZoomRangeIterator{
         return ZoomRangeIterator(self)
     }
