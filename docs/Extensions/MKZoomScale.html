@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>MKMapView Extension Reference</title>
+    <title>MKZoomScale Extension Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -13,8 +13,8 @@
     <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Extension/MKMapView" class="dashAnchor"></a>
-    <a title="MKMapView Extension Reference"></a>
+    <a name="//apple_ref/swift/Extension/MKZoomScale" class="dashAnchor"></a>
+    <a title="MKZoomScale Extension Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">MapCache 0.7.0 Docs</a> (100% documented)</p>
@@ -30,7 +30,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">MapCache Reference</a>
         <img id="carat" src="../img/carat.png" />
-        MKMapView Extension Reference
+        MKZoomScale Extension Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -199,20 +199,15 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>MKMapView</h1>
+            <h1>MKZoomScale</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">MKMapView</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">MKZoomScale</span></code></pre>
 
                 </div>
               </div>
-            <p>Extension that provides MKMapView support to use MapCache.</p>
-<div class="aside aside-see-also">
-    <p class="aside-title">See also</p>
-    Readme documentation
-
-</div>
+            <p>Extension for MapCache</p>
 
           </section>
           <section class="section task-group-section">
@@ -221,9 +216,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:So9MKMapViewC8MapCacheE03useD0yAC17CachedTileOverlayCAC0cD8Protocol_pF"></a>
-                    <a name="//apple_ref/swift/Method/useCache(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So9MKMapViewC8MapCacheE03useD0yAC17CachedTileOverlayCAC0cD8Protocol_pF">useCache(_:<wbr>)</a>
+                    <a name="/s:12CoreGraphics7CGFloatV8MapCacheE11toZoomLevel8tileSizeSiSo6CGSizeV_tF"></a>
+                    <a name="//apple_ref/swift/Method/toZoomLevel(tileSize:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12CoreGraphics7CGFloatV8MapCacheE11toZoomLevel8tileSizeSiSo6CGSizeV_tF">toZoomLevel(tileSize:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -231,20 +226,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Will tell the map to use the cache passed as parameter for getting the tiles.</p>
-<div class="aside aside-see-also">
-    <p class="aside-title">See also</p>
-    <p><code>Readme</code></p>
-
-</div>
+                        <p>Converts from standard MapKit MKZoomScale to tile zoom level</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">useCache</span><span class="p">(</span><span class="n">_</span> <span class="nv">cache</span><span class="p">:</span> <span class="kt"><a href="../Protocols/MapCacheProtocol.html">MapCacheProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">toZoomLevel</span><span class="p">(</span><span class="nv">tileSize</span><span class="p">:</span> <span class="kt">CGSize</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -255,78 +244,21 @@
                             <tr>
                               <td>
                                 <code>
-                                <em>cache</em>
+                                <em>tileSize</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>A cache that implements the <code><a href="../Protocols/MapCacheProtocol.html">MapCacheProtocol</a></code>. Typically an instance of <code><a href="../Classes/MapCache.html">MapCache</a></code></p>
+                                  <p>current map tile size in pixels. Typically set in MapCacheConfig</p>
                                 </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:So9MKMapViewC8MapCacheE03mapD8Renderer10forOverlaySo09MKOverlayF0CSo0I0_p_tF"></a>
-                    <a name="//apple_ref/swift/Method/mapCacheRenderer(forOverlay:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So9MKMapViewC8MapCacheE03mapD8Renderer10forOverlaySo09MKOverlayF0CSo0I0_p_tF">mapCacheRenderer(forOverlay:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Call this method within the MKMapView delegate function
-<code>mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -&gt; MKOverlayRenderer</code></p>
-<div class="aside aside-see-also">
-    <p class="aside-title">See also</p>
-    Example project and Readme documentation
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">mapCacheRenderer</span><span class="p">(</span><span class="n">forOverlay</span> <span class="nv">overlay</span><span class="p">:</span> <span class="kt">MKOverlay</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MKOverlayRenderer</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:So9MKMapViewC8MapCacheE9zoomLevelSivp"></a>
-                    <a name="//apple_ref/swift/Property/zoomLevel" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So9MKMapViewC8MapCacheE9zoomLevelSivp">zoomLevel</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>TODO: Implement this correctly. 
-Returns current zoom level</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">zoomLevel</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Corresponding zoom level for a tile</p>
                       </div>
                     </section>
                   </div>

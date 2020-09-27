@@ -43,6 +43,9 @@
                 <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/DiskCache.html">DiskCache</a>
               </li>
               <li class="nav-group-task">
@@ -102,6 +105,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKZoomScale.html">MKZoomScale</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/NSMutableData.html">NSMutableData</a>
@@ -171,6 +177,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomableTile.html">ZoomableTile</a>
               </li>
             </ul>
           </li>
@@ -243,7 +252,7 @@ we may end up with two sub-regions.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Top left tile/coordinate</p>
+                        <p>Top left tile/coordinate.</p>
 
                       </div>
                       <div class="declaration">
@@ -270,7 +279,7 @@ we may end up with two sub-regions.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Bottom right tile/coordinate</p>
+                        <p>Bottom right tile/coordinate.</p>
 
                       </div>
                       <div class="declaration">
@@ -297,7 +306,7 @@ we may end up with two sub-regions.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Zoom range for the region</p>
+                        <p>Zoom range for the region.</p>
 
                       </div>
                       <div class="declaration">
@@ -324,7 +333,7 @@ we may end up with two sub-regions.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Total number of tiles in this region for all zoom levels</p>
+                        <p>Total number of tiles in this region for all zoom levels.</p>
 
                       </div>
                       <div class="declaration">
@@ -352,7 +361,7 @@ we may end up with two sub-regions.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The region will be the area that holds the line from any top left point (P1) to any
-bottom rightpoint 2 (P2)</p>
+bottom rightpoint 2 (P2).</p>
 
                       </div>
                       <div class="declaration">
@@ -380,7 +389,7 @@ bottom rightpoint 2 (P2)</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The region will be the area that holds the line from any top left point (P1) to any
-bottom rightpoint 2 (P2)
+bottom rightpoint 2 (P2).
 For example, in this map:</p>
 <pre class="highlight swift"><code><span class="o">+---------------------++---------------------++---------------------+</span>
 <span class="o">|</span>               <span class="kt">P1</span>    <span class="o">||</span>                     <span class="o">||</span>                     <span class="o">|</span>
@@ -394,9 +403,8 @@ For example, in this map:</p>
 <span class="o">|</span>                <span class="o">.</span>    <span class="o">||</span> <span class="p">\</span><span class="err">·</span>                  <span class="o">||</span>                     <span class="o">|</span>
 <span class="o">|</span>                <span class="o">+</span> <span class="o">.</span> <span class="o">.||.</span> <span class="o">*</span> <span class="kt">P2</span>               <span class="o">||</span>                     <span class="o">|</span>
 <span class="o">+---------------------++---------------------++---------------------+</span>
+<span class="o">-</span><span class="mi">180</span>               <span class="mi">180</span> <span class="o">-</span><span class="mi">180</span>               <span class="mi">180</span>
 </code></pre>
-
-<p>-180                180 -180                 180</p>
 
 <p>The area will be the one denoted with the dots.</p>
 
@@ -457,21 +465,20 @@ There may be 1 or 2.</p>
 
 <p>For example, in this map there are two ranges. One that covers the area A1
 and other that covers the area A2</p>
-<pre class="highlight swift"><code><span class="o">+----------------------++---------------------++---------------------+</span>
-<span class="o">|</span>               <span class="kt">P1</span>     <span class="o">||</span>                     <span class="o">||</span>                     <span class="o">|</span>
-<span class="o">|</span>                <span class="o">*.....||...+</span>                  <span class="o">||</span>                    <span class="o">|</span>
-<span class="o">|</span>                <span class="o">.</span> <span class="p">\</span>  <span class="o">.||.</span>  <span class="err">·</span>                  <span class="o">||</span>                    <span class="o">|</span>
-<span class="o">|</span>       <span class="kt">Map</span> <span class="mi">1</span>    <span class="o">.</span>  <span class="p">\</span> <span class="o">.||.</span>  <span class="err">·</span>     <span class="kt">Map</span> <span class="mi">2</span>        <span class="o">||</span>       <span class="kt">Map</span> <span class="mi">3</span>        <span class="o">|</span>
-<span class="o">|</span>                <span class="o">.</span>   <span class="p">\</span><span class="o">.||.</span>  <span class="err">·</span>                  <span class="o">||</span>                    <span class="o">|</span>
-<span class="o">|</span>                <span class="o">.</span>    <span class="p">\</span><span class="o">||.</span><span class="kt">A2</span><span class="err">·</span>                  <span class="o">||</span>                    <span class="o">|</span>
-<span class="o">|</span>                <span class="o">.</span>  <span class="kt">A1</span><span class="o">.|</span><span class="p">\</span><span class="o">.</span>  <span class="err">·</span>                  <span class="o">||</span>                    <span class="o">|</span>
-<span class="o">|</span>                <span class="o">.</span>    <span class="o">.||</span><span class="p">\</span>  <span class="err">·</span>                  <span class="o">||</span>                    <span class="o">|</span>
-<span class="o">|</span>                <span class="o">.</span>    <span class="o">.||.</span><span class="p">\</span> <span class="err">·</span>                  <span class="o">||</span>                    <span class="o">|</span>
-<span class="o">|</span>                <span class="o">+.....||...*</span> <span class="kt">P2</span>               <span class="o">||</span>                    <span class="o">|</span>
-<span class="o">+----------------------++---------------------++---------------------+</span>
+<pre class="highlight swift"><code><span class="o">+----------------------++---------------------++--------------------+</span>
+<span class="o">|</span>               <span class="kt">P1</span>     <span class="o">||</span>                     <span class="o">||</span>                    <span class="o">|</span>
+<span class="o">|</span>                <span class="o">*.....||...+</span>                 <span class="o">||</span>                    <span class="o">|</span>
+<span class="o">|</span>                <span class="o">.</span> <span class="p">\</span>  <span class="o">.||.</span>  <span class="err">·</span>                 <span class="o">||</span>                    <span class="o">|</span>
+<span class="o">|</span>       <span class="kt">Map</span> <span class="mi">1</span>    <span class="o">.</span>  <span class="p">\</span> <span class="o">.||.</span>  <span class="err">·</span>     <span class="kt">Map</span> <span class="mi">2</span>       <span class="o">||</span>       <span class="kt">Map</span> <span class="mi">3</span>        <span class="o">|</span>
+<span class="o">|</span>                <span class="o">.</span>   <span class="p">\</span><span class="o">.||.</span>  <span class="err">·</span>                 <span class="o">||</span>                    <span class="o">|</span>
+<span class="o">|</span>                <span class="o">.</span>    <span class="p">\</span><span class="o">||.</span><span class="kt">A2</span><span class="err">·</span>                 <span class="o">||</span>                    <span class="o">|</span>
+<span class="o">|</span>                <span class="o">.</span>  <span class="kt">A1</span><span class="o">.|</span><span class="p">\</span><span class="o">.</span>  <span class="err">·</span>                 <span class="o">||</span>                    <span class="o">|</span>
+<span class="o">|</span>                <span class="o">.</span>    <span class="o">.||</span><span class="p">\</span>  <span class="err">·</span>                 <span class="o">||</span>                    <span class="o">|</span>
+<span class="o">|</span>                <span class="o">.</span>    <span class="o">.||.</span><span class="p">\</span> <span class="err">·</span>                 <span class="o">||</span>                    <span class="o">|</span>
+<span class="o">|</span>                <span class="o">+.....||...*</span> <span class="kt">P2</span>              <span class="o">||</span>                    <span class="o">|</span>
+<span class="o">+----------------------++---------------------++--------------------+</span>
+<span class="o">-</span><span class="mi">180</span>                <span class="mi">180</span> <span class="o">-</span><span class="mi">180</span>               <span class="mi">180</span>
 </code></pre>
-
-<p>-180                180 -180                 180</p>
 
                       </div>
                       <div class="declaration">
@@ -517,7 +524,7 @@ and other that covers the area A2</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-26)</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

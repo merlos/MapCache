@@ -43,6 +43,9 @@
                 <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/DiskCache.html">DiskCache</a>
               </li>
               <li class="nav-group-task">
@@ -102,6 +105,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKZoomScale.html">MKZoomScale</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/NSMutableData.html">NSMutableData</a>
@@ -171,6 +177,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomableTile.html">ZoomableTile</a>
               </li>
             </ul>
           </li>
@@ -281,45 +290,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:8MapCache0aB6ConfigV8maximumZSivp"></a>
-                    <a name="//apple_ref/swift/Property/maximumZ" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache0aB6ConfigV8maximumZSivp">maximumZ</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Maximum supported zoom by the tile server</p>
-
-<p>If the tile server supported zoom is smaller than <code>maximumZ</code> tiles won&rsquo;t be rendered as a HTTP 404 error
-will be returned by the server for not supported zoom levels.</p>
-
-<p>Values vary from server to server. For example OpenStreetMap supports 19, but  OpenCycleMap supports 22</p>
-<div class="aside aside-see">
-    <p class="aside-title">See</p>
-    see <a href="https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames">https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames</a>
-
-</div>
-
-<p>Default value: 19. If 0 or negative is set iOS default value (i.e. 21)</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maximumZ</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:8MapCache0aB6ConfigV8minimumZSivp"></a>
                     <a name="//apple_ref/swift/Property/minimumZ" class="dashAnchor"></a>
                     <a class="token" href="#/s:8MapCache0aB6ConfigV8minimumZSivp">minimumZ</a>
@@ -340,6 +310,74 @@ will be returned by the server for not supported zoom levels.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minimumZ</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0aB6ConfigV8maximumZSivp"></a>
+                    <a name="//apple_ref/swift/Property/maximumZ" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0aB6ConfigV8maximumZSivp">maximumZ</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Maximum supported zoom by the tile server</p>
+
+<p>Tiles with a z zoom beyond <code>maximumZ</code> supported by the tile server will return a HTTP 404 error.</p>
+
+<p>Values vary from server to server. For example OpenStreetMap supports 19, but  OpenCycleMap supports 22</p>
+
+<p>Default value: 19. If 0 or negative is set iOS default value (i.e. 21)</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <a href="https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames">OpenStreetMap Wiki Slippy map tilenames</a>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maximumZ</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0aB6ConfigV16overZoomMaximumZSbvp"></a>
+                    <a name="//apple_ref/swift/Property/overZoomMaximumZ" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0aB6ConfigV16overZoomMaximumZSbvp">overZoomMaximumZ</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>If set to true when zooming in beyond <code><a href="../Structs/MapCacheConfig.html#/s:8MapCache0aB6ConfigV8maximumZSivp">maximumZ</a></code> the tiles at <code><a href="../Structs/MapCacheConfig.html#/s:8MapCache0aB6ConfigV8maximumZSivp">maximumZ</a></code> will be upsampled and shown.
+This mitigates the issue of showing an empty map when zooming in beyond <code><a href="../Structs/MapCacheConfig.html#/s:8MapCache0aB6ConfigV8maximumZSivp">maximumZ</a></code>.</p>
+
+<p><code><a href="../Structs/MapCacheConfig.html#/s:8MapCache0aB6ConfigV8maximumZSivp">maximumZ</a></code> is vital to zoom working, make sure it is properly set.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">overZoomMaximumZ</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -448,7 +486,7 @@ Sets the strategy to be used when loading a tile.
 By default loads from the cache and if it fails loads from the server</p>
 <div class="aside aside-see-also">
     <p class="aside-title">See also</p>
-    LoadTileMode
+    <code><a href="../Enums/LoadTileMode.html">LoadTileMode</a></code>
 
 </div>
 
@@ -504,12 +542,7 @@ By default loads from the cache and if it fails loads from the server</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Constructor that overwrites the urlTemplate</p>
-<div class="aside aside-see-also">
-    <p class="aside-title">See also</p>
-    <p>MapCacheConfig.urlTemplate</p>
-
-</div>
+                        <p>Constructor that overwrites the <code><a href="../Structs/MapCacheConfig.html#/s:8MapCache0aB6ConfigV11urlTemplateSSvp">urlTemplate</a></code>`</p>
 
                       </div>
                       <div class="declaration">
@@ -519,6 +552,25 @@ By default loads from the cache and if it fails loads from the server</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">withUrlTemplate</span> <span class="nv">urlTemplate</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>withUrlTemplate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>is the string of the <code><a href="../Structs/MapCacheConfig.html#/s:8MapCache0aB6ConfigV11urlTemplateSSvp">urlTemplate</a></code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -612,7 +664,7 @@ If subdomains are a,b,c then it makes requests to a,b,c,a,b,c,a,b,c&hellip;</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-26)</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

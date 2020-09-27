@@ -43,6 +43,9 @@
                 <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/DiskCache.html">DiskCache</a>
               </li>
               <li class="nav-group-task">
@@ -102,6 +105,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKZoomScale.html">MKZoomScale</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/NSMutableData.html">NSMutableData</a>
@@ -172,6 +178,9 @@
               <li class="nav-group-task">
                 <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomableTile.html">ZoomableTile</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -198,7 +207,7 @@
 
                 </div>
               </div>
-            <p>Extension that provides MKMapView support to use MapCache</p>
+            <p>Extension that provides MKMapView support to use MapCache.</p>
 <div class="aside aside-see-also">
     <p class="aside-title">See also</p>
     Readme documentation
@@ -212,9 +221,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:So9MKMapViewC8MapCacheE03useD0yAC17CachedTileOverlayCA2CCF"></a>
+                    <a name="/s:So9MKMapViewC8MapCacheE03useD0yAC17CachedTileOverlayCAC0cD8Protocol_pF"></a>
                     <a name="//apple_ref/swift/Method/useCache(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So9MKMapViewC8MapCacheE03useD0yAC17CachedTileOverlayCA2CCF">useCache(_:<wbr>)</a>
+                    <a class="token" href="#/s:So9MKMapViewC8MapCacheE03useD0yAC17CachedTileOverlayCAC0cD8Protocol_pF">useCache(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -222,7 +231,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Will tell the map to use the cache passed as parameter.</p>
+                        <p>Will tell the map to use the cache passed as parameter for getting the tiles.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p><code>Readme</code></p>
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -230,9 +244,28 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">useCache</span><span class="p">(</span><span class="n">_</span> <span class="nv">cache</span><span class="p">:</span> <span class="kt"><a href="../Classes/MapCache.html">MapCache</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">useCache</span><span class="p">(</span><span class="n">_</span> <span class="nv">cache</span><span class="p">:</span> <span class="kt"><a href="../Protocols/MapCacheProtocol.html">MapCacheProtocol</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a></span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cache</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A cache that implements the <code><a href="../Protocols/MapCacheProtocol.html">MapCacheProtocol</a></code>. Typically an instance of <code><a href="../Classes/MapCache.html">MapCache</a></code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -283,7 +316,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns current zoom level</p>
+                        <p>TODO: Implement this correctly. 
+Returns current zoom level</p>
 
                       </div>
                       <div class="declaration">
@@ -302,7 +336,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-26)</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

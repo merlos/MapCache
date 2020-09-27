@@ -43,6 +43,9 @@
                 <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/DiskCache.html">DiskCache</a>
               </li>
               <li class="nav-group-task">
@@ -102,6 +105,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKZoomScale.html">MKZoomScale</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/NSMutableData.html">NSMutableData</a>
@@ -172,6 +178,9 @@
               <li class="nav-group-task">
                 <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomableTile.html">ZoomableTile</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -217,7 +226,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Cofiguration that will be used to set up the behavior of the MapCache instance</p>
+                        <p>Cofiguration that will be used to set up the behavior of the <code>MapCache</code> instance</p>
 
                       </div>
                       <div class="declaration">
@@ -298,7 +307,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Constructor. It sets the <code><a href="../Classes/MapCache.html#/s:8MapCacheAAC6configAA0aB6ConfigVvp">config</a></code> variable and initializes the <code>disCache</code> with the name and capacity set in the config.</p>
+                        <p>Constructor. It sets the <code><a href="../Classes/MapCache.html#/s:8MapCacheAAC6configAA0aB6ConfigVvp">config</a></code> variable and initializes the <code><a href="../Classes/MapCache.html#/s:8MapCacheAAC04diskB0AA04DiskB0Cvp">diskCache</a></code> with the name and capacity set in the config.</p>
 
                       </div>
                       <div class="declaration">
@@ -332,7 +341,7 @@ with the values of the <code>forTilePath</code>
 If <code>{s}</code> is defined in the template, it aplies the Round Robin algorithm.</p>
 <div class="aside aside-see-also">
     <p class="aside-title">See also</p>
-    MapCacheConfig.roundRoubinSubdomain()
+    <p>MapCacheConfig.roundRoubinSubdomain()</p>
 
 </div>
 
@@ -344,6 +353,25 @@ If <code>{s}</code> is defined in the template, it aplies the Round Robin algori
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">url</span><span class="p">(</span><span class="n">forTilePath</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">MKTileOverlayPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">URL</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>forTilePath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>is the path for the tile in (x, y, z) tile coordinates.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -361,7 +389,14 @@ If <code>{s}</code> is defined in the template, it aplies the Round Robin algori
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>For the path passed as argument it creates a unique key to be used in <code><a href="../Classes/MapCache.html#/s:8MapCacheAAC04diskB0AA04DiskB0Cvp">diskCache</a></code>.</p>
+                        <p>For the path passed as argument it creates a unique key to be used in <code><a href="../Classes/DiskCache.html">DiskCache</a></code>.</p>
+
+<p>The output is a string that has the following format <code>{config.urlTemplate}-{x}-{y}-{z}</code> where:</p>
+
+<ul>
+<li>config.urlTemplate is the template url template and</li>
+<li><p>x, y and z are the coords of the path</p></li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -371,6 +406,25 @@ If <code>{s}</code> is defined in the template, it aplies the Round Robin algori
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">cacheKey</span><span class="p">(</span><span class="n">forPath</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">MKTileOverlayPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>forPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>is the path of the tile you want the cache</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -404,6 +458,49 @@ If something goes wrong it invokes the <code>failure</code>closure  passing the 
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>at</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Path for the tile</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>failure</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>if the tile cannot be retrieved from the server this closure is called</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>success</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>if the image is downloaded</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </section>
                   </div>
                 </li>
@@ -421,10 +518,10 @@ If something goes wrong it invokes the <code>failure</code>closure  passing the 
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns the tile to be displayed on the overlay.
-The strategy used to retrieve the tile (i.e. from network or from the diskCache) depends on the <code>config.loadTileMode</code>.</p>
+The strategy used to retrieve the tile (i.e. from network or from the <code><a href="../Classes/MapCache.html#/s:8MapCacheAAC04diskB0AA04DiskB0Cvp">diskCache</a></code>) depends on the <code>config.loadTileMode</code>.</p>
 <div class="aside aside-see-also">
     <p class="aside-title">See also</p>
-    <p>LoadTileMode</p>
+    <p><code><a href="../Enums/LoadTileMode.html">LoadTileMode</a></code></p>
 
 </div>
 
@@ -480,7 +577,12 @@ The strategy used to retrieve the tile (i.e. from network or from the diskCache)
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Calculate size of the cache</p>
+                        <p>Calculates the disk space allocated in dis for the cache</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    DiskCache
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -508,7 +610,7 @@ The strategy used to retrieve the tile (i.e. from network or from the diskCache)
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Clears the cache.
-Removes all files in the diskCache
+Removes all files in the <code><a href="../Classes/MapCache.html#/s:8MapCacheAAC04diskB0AA04DiskB0Cvp">diskCache</a></code>
 As it may take some time to remove all files it calls the completition closure upon finishing the removal.</p>
 
                       </div>
@@ -520,6 +622,25 @@ As it may take some time to remove all files it calls the completition closure u
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completition</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>code to run upon the cache is cleared.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </section>
                   </div>
                 </li>
@@ -528,7 +649,7 @@ As it may take some time to remove all files it calls the completition closure u
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-26)</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

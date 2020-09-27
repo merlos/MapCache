@@ -43,6 +43,9 @@
                 <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/DiskCache.html">DiskCache</a>
               </li>
               <li class="nav-group-task">
@@ -102,6 +105,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKZoomScale.html">MKZoomScale</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/NSMutableData.html">NSMutableData</a>
@@ -172,6 +178,9 @@
               <li class="nav-group-task">
                 <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomableTile.html">ZoomableTile</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -198,8 +207,8 @@
 
                 </div>
               </div>
-            <p>For a particular zoom level, defines a range of tiles
-It can be iterated in a for loop. It will get the TileCoord</p>
+            <p>For a particular zoom level, defines a range of tiles.
+It can be iterated in a for loop. It will get the <code>TileCoord</code>`</p>
 
 <p>The following conditions shall always be true</p>
 <pre class="highlight swift"><code><span class="n">minTileX</span> <span class="o">&lt;=</span> <span class="n">maxTileX</span>
@@ -231,7 +240,7 @@ It can be iterated in a for loop. It will get the TileCoord</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Zoom level</p>
+                        <p>Zoom level.</p>
 
                       </div>
                       <div class="declaration">
@@ -258,7 +267,7 @@ It can be iterated in a for loop. It will get the TileCoord</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Min value of tile in X axis</p>
+                        <p>Min value of tile in X axis.</p>
 
                       </div>
                       <div class="declaration">
@@ -285,7 +294,7 @@ It can be iterated in a for loop. It will get the TileCoord</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Max value of tile in X axis</p>
+                        <p>Max value of tile in X axis.</p>
 
                       </div>
                       <div class="declaration">
@@ -312,7 +321,7 @@ It can be iterated in a for loop. It will get the TileCoord</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Min value of tile in Y axis</p>
+                        <p>Min value of tile in Y axis.</p>
 
                       </div>
                       <div class="declaration">
@@ -339,7 +348,7 @@ It can be iterated in a for loop. It will get the TileCoord</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Min value of tile in Y axis</p>
+                        <p>Min value of tile in Y axis.</p>
 
                       </div>
                       <div class="declaration">
@@ -366,7 +375,7 @@ It can be iterated in a for loop. It will get the TileCoord</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Difference between max and min X</p>
+                        <p>Difference between <code><a href="../Structs/TileRange.html#/s:8MapCache9TileRangeV03maxC1Xs6UInt64Vvp">maxTileX</a></code> and <code><a href="../Structs/TileRange.html#/s:8MapCache9TileRangeV03minC1Xs6UInt64Vvp">minTileX</a></code></p>
 
                       </div>
                       <div class="declaration">
@@ -393,7 +402,7 @@ It can be iterated in a for loop. It will get the TileCoord</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Difference between maxTileY and minTileY</p>
+                        <p>Difference between <code><a href="../Structs/TileRange.html#/s:8MapCache9TileRangeV03maxC1Ys6UInt64Vvp">maxTileY</a></code> and <code><a href="../Structs/TileRange.html#/s:8MapCache9TileRangeV03minC1Ys6UInt64Vvp">minTileY</a></code></p>
 
                       </div>
                       <div class="declaration">
@@ -420,7 +429,7 @@ It can be iterated in a for loop. It will get the TileCoord</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Number of rows in the range</p>
+                        <p>Number of rows in the range.</p>
 
                       </div>
                       <div class="declaration">
@@ -447,7 +456,7 @@ It can be iterated in a for loop. It will get the TileCoord</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Number of columns in the range</p>
+                        <p>Number of columns in the range.</p>
 
                       </div>
                       <div class="declaration">
@@ -474,7 +483,7 @@ It can be iterated in a for loop. It will get the TileCoord</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Counts the number of tiles in the range (columns x rows)</p>
+                        <p>Counts the number of tiles in the range (columns x rows).</p>
 
                       </div>
                       <div class="declaration">
@@ -502,8 +511,8 @@ It can be iterated in a for loop. It will get the TileCoord</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Sequence iterator.
-This allows TileRange to be used in for loops.
-In each iteration it returns a TileCoord.
+This allows <code>TileRange</code> to be used in for loops.
+In each iteration it returns a <code>TileCoord</code>.
 It starts from the top left corner of the range and iterates row by row.</p>
 <div class="aside aside-see-also">
     <p class="aside-title">See also</p>
@@ -528,7 +537,7 @@ It starts from the top left corner of the range and iterates row by row.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-26)</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

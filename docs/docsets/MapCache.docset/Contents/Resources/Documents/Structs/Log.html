@@ -43,6 +43,9 @@
                 <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/DiskCache.html">DiskCache</a>
               </li>
               <li class="nav-group-task">
@@ -102,6 +105,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKZoomScale.html">MKZoomScale</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/NSMutableData.html">NSMutableData</a>
@@ -171,6 +177,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomableTile.html">ZoomableTile</a>
               </li>
             </ul>
           </li>
@@ -251,7 +260,7 @@ Examples:</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Levels</p>
+                        <p>Log Levels</p>
 
                         <a href="../Structs/Log/Level.html" class="slightly-smaller">See more</a>
                       </div>
@@ -290,6 +299,49 @@ Examples:</p>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>level</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>log level to show</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>message</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>message to show</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>error to show if any on addition to the message. Uses the pattern <code>{message} with error {error}</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </section>
                   </div>
                 </li>
@@ -312,7 +364,7 @@ Examples:</p>
 <pre class="highlight swift"><code><span class="kt">Log</span><span class="o">.</span><span class="nf">debug</span><span class="p">(</span><span class="s">"Hello world"</span><span class="p">)</span> <span class="c1">// prints: [MapCache][DEBUG] Hello word</span>
 </code></pre>
 
-<p>These messages are displayed only if DEBUG is defined</p>
+<p>These messages are displayed only if DEBUG is defined.</p>
 
                       </div>
                       <div class="declaration">
@@ -322,6 +374,37 @@ Examples:</p>
                           <pre class="highlight swift"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">debug</span><span class="p">(</span><span class="nv">message</span><span class="p">:</span> <span class="kd">@autoclosure</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>message</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>message to display</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>error to display if any.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -340,12 +423,10 @@ Examples:</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>These messages are displayed independently of the debug mode.
- Used  to provide useful information on exceptional situations to library users.
- Example:</p>
-<pre class="highlight swift"><code> <span class="kt">Log</span><span class="o">.</span><span class="nf">error</span><span class="p">(</span><span class="s">"Could not download tile"</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="c1">// prints: [MapCache][ERROR] Could not download tile with error No internet connection.</span>
+Used  to provide useful information on exceptional situations to library users.
+Example:</p>
+<pre class="highlight swift"><code><span class="kt">Log</span><span class="o">.</span><span class="nf">error</span><span class="p">(</span><span class="s">"Could not download tile"</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="c1">// prints: [MapCache][ERROR] Could not download tile with error No internet connection.</span>
 </code></pre>
-
-<p></p>
 
                       </div>
                       <div class="declaration">
@@ -356,6 +437,37 @@ Examples:</p>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>message</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>message to display</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>error to display</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </section>
                   </div>
                 </li>
@@ -364,7 +476,7 @@ Examples:</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-26)</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

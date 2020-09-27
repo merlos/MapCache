@@ -43,6 +43,9 @@
                 <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/DiskCache.html">DiskCache</a>
               </li>
               <li class="nav-group-task">
@@ -102,6 +105,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKZoomScale.html">MKZoomScale</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/NSMutableData.html">NSMutableData</a>
@@ -172,6 +178,9 @@
               <li class="nav-group-task">
                 <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomableTile.html">ZoomableTile</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -198,7 +207,9 @@
 
                 </div>
               </div>
-            <p>Class for handling the operations with file folders</p>
+            <p>Class for handling the operations with file folders.</p>
+
+<p>Original source code from <a href="https://github.com/Haneke/HanekeSwift/blob/master/Haneke/NSFileManager%2BHaneke.swift">Haneke</a></p>
 
           </section>
           <section class="section task-group-section">
@@ -217,7 +228,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Gets the list of files of this  the directory</p>
+                        <p>Gets the list of files of this  the directory.</p>
 
                       </div>
                       <div class="declaration">
@@ -227,6 +238,61 @@
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">enumerateContentsOfDirectory</span><span class="p">(</span><span class="n">atPath</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">orderedByProperty</span> <span class="nv">property</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">ascending</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">usingBlock</span> <span class="nv">block</span><span class="p">:</span> <span class="p">(</span><span class="kt">URL</span><span class="p">,</span> <span class="kt">Int</span><span class="p">,</span> <span class="k">inout</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>atPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>path of the directory.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>orderedByProperty</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>property to be used for ordeing the contents.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ascending</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>if true it is ordered ascending.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>usingBlock</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>block being used.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -303,7 +369,7 @@ directories, hard links, &hellip;).
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-26)</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

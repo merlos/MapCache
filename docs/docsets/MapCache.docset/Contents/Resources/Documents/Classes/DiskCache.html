@@ -43,6 +43,9 @@
                 <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/DiskCache.html">DiskCache</a>
               </li>
               <li class="nav-group-task">
@@ -102,6 +105,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKZoomScale.html">MKZoomScale</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/NSMutableData.html">NSMutableData</a>
@@ -172,6 +178,9 @@
               <li class="nav-group-task">
                 <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomableTile.html">ZoomableTile</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -218,7 +227,7 @@ Based on <a href="https://github.com/Haneke/HanekeSwift">Haneke Disk Cache</a> a
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>gets the root base folder to be used</p>
+                        <p>Gets the root base folder to be used.</p>
 
                       </div>
                       <div class="declaration">
@@ -245,7 +254,7 @@ Based on <a href="https://github.com/Haneke/HanekeSwift">Haneke Disk Cache</a> a
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>URL of the physical folder of the Cache in the file system</p>
+                        <p>URL of the physical folder of the Cache in the file system.</p>
 
                       </div>
                       <div class="declaration">
@@ -272,7 +281,7 @@ Based on <a href="https://github.com/Haneke/HanekeSwift">Haneke Disk Cache</a> a
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A shortcut for folderURL.path</p>
+                        <p>A shortcut for <code>folderURL.path</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -299,10 +308,12 @@ Based on <a href="https://github.com/Haneke/HanekeSwift">Haneke Disk Cache</a> a
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Sum of the allocated size in disk for the cache expressed in bytes.
-Note that, this size is the actual disk allocation. It is equivalent with the amount of bytes
-that would become available on the volume if the directory is deleted.
-For example a file may just contain 156 bytes of data (size listed in <code>ls</code> command), however its
+                        <p>Sum of the allocated size in disk for the cache expressed in bytes.</p>
+
+<p>Note that, this size is the actual disk allocation. It is equivalent with the amount of bytes
+that would become available on the volume if the directory is deleted.</p>
+
+<p>For example, a file may just contain 156 bytes of data (size listed in <code>ls</code> command), however its
 disk size is 4096, 1 volume block (as listed using <code>du -h</code>)</p>
 
 <p>This size is calculated each time</p>
@@ -332,12 +343,12 @@ disk size is 4096, 1 volume block (as listed using <code>du -h</code>)</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This is the sum of the sizes of the files within the diskCache</p>
+                        <p>This is the sum of the data sizes of the files within the <code>DiskCache</code></p>
 
 <p>This size is calculated each time it is used</p>
 <div class="aside aside-seealso">
     <p class="aside-title">Seealso</p>
-    diskSize
+    <code><a href="../Classes/DiskCache.html#/s:8MapCache04DiskB0C8diskSizes6UInt64Vvp">diskSize</a></code>
 
 </div>
 
@@ -366,8 +377,8 @@ disk size is 4096, 1 volume block (as listed using <code>du -h</code>)</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Maximum allowed cache disk allocated size for this DiskCache
-Defaults to unlimited capacity (UINT64_MAX)</p>
+                        <p>Maximum allowed cache disk allocated size for this <code>DiskCache</code><code>
+Defaults to unlimited capacity (</code>UINT64_MAX`)</p>
 
                       </div>
                       <div class="declaration">
@@ -394,7 +405,7 @@ Defaults to unlimited capacity (UINT64_MAX)</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Queue for making async operations</p>
+                        <p>Queue for making async operations.</p>
 
                       </div>
                       <div class="declaration">
@@ -432,6 +443,37 @@ Defaults to unlimited capacity (UINT64_MAX)</p>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>withName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Name of the cache, will be the subfolder name too.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>capacity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>capacity of the cache in bytes. Defaults to virutally unlimited capacity (<code>UINT64_MAX</code>)</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </section>
                   </div>
                 </li>
@@ -448,7 +490,7 @@ Defaults to unlimited capacity (UINT64_MAX)</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Get the path for key</p>
+                        <p>Get the path for key.</p>
 
                       </div>
                       <div class="declaration">
@@ -475,8 +517,8 @@ Defaults to unlimited capacity (UINT64_MAX)</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Sets the data for the key asyncronously
-Use this function for writing into the cache</p>
+                        <p>Sets the data for the key asyncronously.
+Use this function for writing into the cache.</p>
 
                       </div>
                       <div class="declaration">
@@ -503,7 +545,7 @@ Use this function for writing into the cache</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Sets the data for the key synchronously</p>
+                        <p>Sets the data for the key synchronously.</p>
 
                       </div>
                       <div class="declaration">
@@ -530,7 +572,7 @@ Use this function for writing into the cache</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Fetches the image data from storage synchronously</p>
+                        <p>Fetches the image data from storage synchronously.</p>
 
                       </div>
                       <div class="declaration">
@@ -540,6 +582,49 @@ Use this function for writing into the cache</p>
                           <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">fetchDataSync</span><span class="p">(</span><span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">failure</span> <span class="nv">fail</span><span class="p">:</span> <span class="p">((</span><span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="p">())?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">success</span> <span class="nv">succeed</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">())</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>forKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Key within the cache</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>failure</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>closure to be run in case of error</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>success</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>closure to be run once the data is ready</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -557,7 +642,7 @@ Use this function for writing into the cache</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Removes asynchronously the data from the diskcache for the key passed as argument</p>
+                        <p>Removes asynchronously the data from the diskcache for the key passed as argument.</p>
 
                       </div>
                       <div class="declaration">
@@ -567,6 +652,25 @@ Use this function for writing into the cache</p>
                           <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">removeData</span><span class="p">(</span><span class="n">withKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>withKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>key to be removed</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -584,8 +688,8 @@ Use this function for writing into the cache</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Removes asynchronously all data from the cache
-Calls completition closure once the task is done</p>
+                        <p>Removes asynchronously all data from the cache.
+Calls completition closure once the task is done.</p>
 
                       </div>
                       <div class="declaration">
@@ -595,6 +699,25 @@ Calls completition closure once the task is done</p>
                           <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">removeAllData</span><span class="p">(</span><span class="n">_</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="p">())?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completition</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>closure run once all the files are deleted from the cache</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -669,7 +792,7 @@ This method not only removes the data, it also removes the cache folder.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Calculates the size used by all the files in the cache</p>
+                        <p>Calculates the size used by all the files in the cache.</p>
 
                       </div>
                       <div class="declaration">
@@ -764,7 +887,7 @@ This method not only removes the data, it also removes the cache folder.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Removes a file syncrhonously</p>
+                        <p>Removes a file syncrhonously.</p>
 
                       </div>
                       <div class="declaration">
@@ -791,8 +914,8 @@ This method not only removes the data, it also removes the cache folder.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Substracts from the cachesize  the disk size passed as parameter
-Logs an error message if the amount to be substracted is larger than the current used disk space</p>
+                        <p>Substracts from the cachesize  the disk size passed as parameter.
+Logs an error message if the amount to be substracted is larger than the current used disk space.</p>
 
                       </div>
                       <div class="declaration">
@@ -803,6 +926,25 @@ Logs an error message if the amount to be substracted is larger than the current
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>diskSize</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>disksize to be deducted</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </section>
                   </div>
                 </li>
@@ -811,7 +953,7 @@ Logs an error message if the amount to be substracted is larger than the current
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-26)</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
