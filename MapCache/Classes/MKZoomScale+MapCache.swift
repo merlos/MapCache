@@ -13,7 +13,7 @@ extension MKZoomScale {
     ///
     /// Converts from standard MapKit MKZoomScale to tile zoom level
     /// - Parameter tileSize: current map tile size in pixels. Typically set in MapCacheConfig
-    /// - Returns: Corresponding Zoom level for a tile
+    /// - Returns: Corresponding zoom level for a tile
     func toZoomLevel(tileSize: CGSize) -> Int {
         let numTilesAt1_0 = MKMapSize.world.width / Double(tileSize.width)
         let zoomLevelAt1_0 = log2(numTilesAt1_0)

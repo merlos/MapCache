@@ -14,14 +14,17 @@
 import Foundation
 
 ///
-/// Class for handling the operations with file folders
+/// Class for handling the operations with file folders.
+///
+/// Original source code from [Haneke](https://github.com/Haneke/HanekeSwift/blob/master/Haneke/NSFileManager%2BHaneke.swift)
+///
 extension FileManager {
     
-    /// Gets the list of files of this  the directory
-    /// - Parameter atPath path of the directory
-    /// - Parameter orderedByProperty property to be used for ordeing the contents
-    /// - Parameter ascending if true it is ordered ascending
-    /// - Parameter usingBlock
+    /// Gets the list of files of this  the directory.
+    /// - Parameter atPath: path of the directory.
+    /// - Parameter orderedByProperty: property to be used for ordeing the contents.
+    /// - Parameter ascending: if true it is ordered ascending.
+    /// - Parameter usingBlock: block being used.
     func enumerateContentsOfDirectory(atPath path: String, orderedByProperty property: String, ascending: Bool, usingBlock block: (URL, Int, inout Bool) -> Void ) {
         
         let directoryURL = URL(fileURLWithPath: path)
@@ -77,7 +80,7 @@ extension FileManager {
     /// The resulting value is roughly equivalent with the amount of bytes
     /// that would become available on the volume if the directory would be deleted.
     ///
-    /// - note: There are a couple of oddities that are not taken into account (like symbolic links, meta data of
+    /// - Note: There are a couple of oddities that are not taken into account (like symbolic links, meta data of
     /// directories, hard links, ...).
     func allocatedDiskSizeForDirectory(at directoryURL: URL) throws -> UInt64 {
         

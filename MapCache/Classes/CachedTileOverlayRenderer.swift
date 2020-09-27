@@ -28,8 +28,9 @@ class CachedTileOverlayRenderer: MKTileOverlayRenderer {
     }
     
     /// Draws the tile in the map
-    /// - Parameter mapRect the map rect where the tiles need to be drawn
-    /// - Parameter zoomScale current zoom in the map
+    /// - Parameters:
+    ///     - mapRect: the map rect where the tiles need to be drawn
+    ///     - zoomScale: current zoom in the map
     override func draw(_ mapRect: MKMapRect, zoomScale: MKZoomScale, in context: CGContext) {
         
         // use default rendering if the type of overlay is not CachedTileOverlay

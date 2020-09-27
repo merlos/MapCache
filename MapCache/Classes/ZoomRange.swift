@@ -20,17 +20,17 @@ import Foundation
 ///      print(zR.count) // => 4
 ///
 /// It strictly stores z1 and z2, and the rest of the range
-/// is built upon request
+/// is built upon request.
 ///
 public struct ZoomRange : Sequence {
     
-    /// Minimum zoom in this range
+    /// Minimum zoom in this range.
     public let min: Zoom
     
-    /// Maximum zoom in this range
+    /// Maximum zoom in this range.
     public let max: Zoom
 
-    /// difference between max zoom and min zoom
+    /// Difference between max zoom and min zoom.
     var diffZoom: Zoom {
         get {
             return max - min
@@ -43,13 +43,14 @@ public struct ZoomRange : Sequence {
     ///
     ///     let zR = ZoomRange(2,2)
     ///     print(zR.count) // => 1
+    
     public var count: Zoom {
         get {
             return diffZoom + 1
         }
     }
     
-    /// Creates the range of zooms
+    /// Creates the range of zooms.
     public init?(_ z1: Zoom, _ z2: Zoom) {
         do {
             try TileCoords.validate(zoom: z1)
@@ -61,7 +62,7 @@ public struct ZoomRange : Sequence {
         self.max = z1 >= z2 ? z1 : z2
     }
     
-    /// Converts the zoom range in to an array
+    /// Converts the zoom range in to an array`.`
     func toArray() -> [Zoom] {
         var ret : [Zoom] = []
         for i in min...max {
@@ -71,7 +72,7 @@ public struct ZoomRange : Sequence {
     }
    
     /// Returns the iterator for this range.
-    /// It allows to use ZoomRange in for loops.
+    /// It allows to use `ZoomRange` in for loops.
     ///
     /// - SeeAlso: [IteratorProtocol](https://developer.apple.com/documentation/swift/iteratorprotocol)
     public func makeIterator() -> ZoomRangeIterator{

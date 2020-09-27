@@ -41,12 +41,14 @@ public struct MapCacheConfig  {
     ///
     /// Maximum supported zoom by the tile server
     ///
-    /// Ttiles with a z zoom beyond `maximumZ` supported by the tile server will return a HTTP 404 error.
+    /// Tiles with a z zoom beyond `maximumZ` supported by the tile server will return a HTTP 404 error.
     ///
     /// Values vary from server to server. For example OpenStreetMap supports 19, but  OpenCycleMap supports 22
-    /// - see https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames
     ///
     /// Default value: 19. If 0 or negative is set iOS default value (i.e. 21)
+    ///
+    /// - SeeAlso:  [OpenStreetMap Wiki Slippy map tilenames](https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames)
+    ///
     public var maximumZ: Int = 19
 
     ///
@@ -80,7 +82,7 @@ public struct MapCacheConfig  {
     /// Sets the strategy to be used when loading a tile.
     /// By default loads from the cache and if it fails loads from the server
     ///
-    /// - SeeAlso: LoadTileMode
+    /// - SeeAlso: `LoadTileMode`
     
     public var loadTileMode: LoadTileMode = .cacheThenServer
     
@@ -91,11 +93,9 @@ public struct MapCacheConfig  {
     }
     
     ///
-    ///Constructor that overwrites the urlTemplate
+    ///Constructor that overwrites the `urlTemplate``
     ///
-    /// - Parameter withUrlTemplate is the string of the urlTemplate
-    ///
-    /// - SeeAlso: MapCacheConfig.urlTemplate
+    /// - Parameter withUrlTemplate: is the string of the `urlTemplate`
     ///
     public init(withUrlTemplate urlTemplate: String)  {
         self.urlTemplate = urlTemplate

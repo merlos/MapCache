@@ -13,7 +13,7 @@
 import Foundation
 
 ///
-/// Extension that adds a few methods that are useful for the DiskCache
+/// Extension that adds a few methods that are useful for the `DiskCache`.
 extension String {
     
     /// Returns the escaped version of a filename.
@@ -24,7 +24,7 @@ extension String {
         }
     }
     
-    /// Returns the md5 digest of this string
+    /// Returns the md5 digest of this string.
     func toMD5() -> String {
         guard let data = self.data(using: String.Encoding.utf8) else {
             return self
@@ -41,7 +41,7 @@ extension String {
         return MD5String as String
     }
     
-    /// Returns the path for the filename whose name is hold in this string
+    /// Returns the path for the filename whose name is hold in this string.
     ///
     /// This method is used to get the md5 file name from a string that is key filename.
     func MD5Filename() -> String {

@@ -13,7 +13,7 @@ import MapKit
 /// Whenever a tile is requested by the `MapView`, it calls the `MKTileOverlay.loadTile`.
 /// This class overrides the default `MKTileOverlay`to provide support to `MapCache`.
 ///
-/// - SeeAlso: MkMapView+MapView
+/// - SeeAlso: `MkMapView+MapCache`
 ///
 public class CachedTileOverlay : MKTileOverlay {
     
@@ -25,7 +25,7 @@ public class CachedTileOverlay : MKTileOverlay {
     public var useCache: Bool = true
     
     /// Constructor.
-    /// - Parameter withCache: the cache to be used on loadTile
+    /// - Parameter withCache: the cache to be used on `loadTile`
     public init(withCache cache: MapCacheProtocol) {
         mapCache = cache
         super.init(urlTemplate: mapCache.config.urlTemplate)
@@ -33,9 +33,9 @@ public class CachedTileOverlay : MKTileOverlay {
     
     ///
     /// Generates the URL for the tile to be requested.
-    /// It replaces the values of {z},{x} and {y} in the urlTemplate defined in GPXTileServer
+    /// It replaces the values of {z},{x} and {y} in the `urlTemplate`defined in `mapCache.config`
     ///
-    /// - SeeAlso: GPXTileServer
+    /// - SeeAlso: `MapCache`, `MapCacheConfig`
     ///
     override public func url(forTilePath path: MKTileOverlayPath) -> URL {
         //print("CachedTileOverlay:: url() urlTemplate: \(urlTemplate)")
@@ -43,8 +43,8 @@ public class CachedTileOverlay : MKTileOverlay {
     }
     
     ///
-    /// Depending on  `useCache`value, when invoked, will load the tile using the standard OS
-    /// implementation or from the cache.
+    /// When invoked it will load the tile using the standard OS implementation (if `useCache`is `false`)
+    /// or from the cache (if `useCache` is `true`
     ///
     override public func loadTile(at path: MKTileOverlayPath,
                                   result: @escaping (Data?, Error?) -> Void) {
@@ -66,13 +66,10 @@ public class CachedTileOverlay : MKTileOverlay {
     }
     
     ///
-    /// Brains for zooming
+    /// Given the maximum zoom level for the tileset `(mapCache.config.maximumZ`) it will return the tile, map rects, and additional scaling factor for upscaling tiles.
     ///
-    /// With the maximum zoom level for the tileset (config) this will give the available tile, map rects, and additional
-    /// scaling factor for upscaling tiles.
-    ///
-    /// - Parameter rect map rectangle for which we want to get the tile set
-    /// - Parameter scale current zoom scale
+    /// - Parameter rect: map rectangle for which we want to get the tile set
+    /// - Parameter scale: current zoom scale
     ///
     func tilesInMapRect(rect: MKMapRect, scale: MKZoomScale) -> [ZoomableTile] {
         var tiles: [ZoomableTile] = []

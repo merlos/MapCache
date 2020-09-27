@@ -8,15 +8,18 @@
 import Foundation
 import MapKit
 
-/// Extension that provides MKMapView support to use MapCache
+/// Extension that provides MKMapView support to use MapCache.
 ///
 /// - SeeAlso: Readme documentation
 extension MKMapView {
 
-    /// Will tell the map to use the cache passed as parameter.
-    /// - parameter cache the cache to use for the
+    /// Will tell the map to use the cache passed as parameter for getting the tiles.
+    ///
+    /// - Parameter cache: A cache that implements the `MapCacheProtocol`. Typically an instance of `MapCache`
+    ///
+    /// - SeeAlso: `Readme`
     @discardableResult
-    public func useCache(_ cache: MapCache) -> CachedTileOverlay {
+    public func useCache(_ cache: MapCacheProtocol) -> CachedTileOverlay {
 
         let tileServerOverlay = CachedTileOverlay(withCache: cache)
         tileServerOverlay.canReplaceMapContent = true
@@ -52,6 +55,7 @@ extension MKMapView {
     }
 
     ///
+    /// TODO: Implement this correctly. 
     /// Returns current zoom level
     ///
     public var zoomLevel: Int {

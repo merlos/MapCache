@@ -28,7 +28,7 @@ struct Log {
     /// The tag [MapCache]
     fileprivate static let tag = "[MapCache]"
     
-    /// Levels
+    /// Log Levels
     fileprivate enum Level : String {
         /// `[Debug]` For displaying messages useful during development.
         case Debug = "[DEBUG]"
@@ -38,7 +38,9 @@ struct Log {
     
     ///
     /// The actual method that prints.
-    ///
+    /// - Parameter level: log level to show
+    /// - Parameter message: message to show
+    /// - Parameter error: error to show if any on addition to the message. Uses the pattern `{message} with error {error}`
     fileprivate static func log(_ level: Level, _ message: @autoclosure () -> String, _ error: Error? = nil) {
         if let error = error {
             print("\(tag)\(level.rawValue) \(message()) with error \(error)")
@@ -55,8 +57,9 @@ struct Log {
     /// Log.debug("Hello world") // prints: [MapCache][DEBUG] Hello word
     /// ```
     ///
-    /// These messages are displayed only if DEBUG is defined
-    ///
+    /// These messages are displayed only if DEBUG is defined.
+    /// - Parameter message: message to display
+    /// - Parameter error: error to display if any.
     static func debug(message: @autoclosure () -> String, error: Error? = nil) {
         #if DEBUG
         log(.Debug, message(), error)
@@ -70,7 +73,10 @@ struct Log {
     /// ```
     /// Log.error("Could not download tile", error) // prints: [MapCache][ERROR] Could not download tile with error No internet connection.
     /// ```
-    ///
+    ///
+    /// - Parameter message: message to display
+    /// - Parameter error: error to display
+
     static func error(message: @autoclosure () -> String, error: Error? = nil) {
         log(.Error, message(), error)
     }

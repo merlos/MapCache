@@ -17,25 +17,25 @@ public typealias Zoom = UInt8
 /// - SeeAlso: TileCoords
 public typealias TileNumber = UInt64
 
-/// Errors for Zoom
+/// Errors for Zoom.
 enum ZoomError: Error {
-    /// Zoom largest value is 19
+    /// Zoom largest value is 19.
     case largerThan19
 }
 
-/// Errors for a latitude
+/// Errors for a latitude.
 enum LatitudeError: Error {
-    /// Overflow if latitud is smaller than the minimum
+    /// Overflow if latitud is smaller than the minimum.
     case overflowMin
-    /// Overflow if latitud is greater than the maximum
+    /// Overflow if latitud is greater than the maximum.
     case overflowMax
 }
 
-/// Errors for a longitude
+/// Errors for a longitude.
 enum LongitudeError: Error {
-     /// Overflow if latitud is smaller than the minimum
+     /// Overflow if latitud is smaller than the minimum.
     case overflowMin
-     /// Overflow if latitud is greater than the maximum
+     /// Overflow if latitud is greater than the maximum.
     case overflowMax
 }
 
@@ -247,7 +247,7 @@ public class TileCoords {
         _tileY = tileY
     }
     
-    /// Sets latitude and longitude
+    /// Sets latitude and longitude.
     /// Throws LatitudeError and LongitudeError if they are out of range.
     public func set(latitude: Double, longitude: Double) throws {
         
@@ -288,7 +288,7 @@ public class TileCoords {
     
     ///
     /// Creates a new Tile Coord with the same latitude and longitude
-    /// as the the parameter but with a different zoom
+    /// as the the parameter but with a different zoom.
     public init?(_ tileCoords: TileCoords, zoom: Zoom) {
         // we can assume that these are coorect so no need o test.
         self._latitude = tileCoords.latitude

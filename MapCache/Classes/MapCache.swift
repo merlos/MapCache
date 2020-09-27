@@ -15,7 +15,7 @@ import MapKit
 
 public class MapCache : MapCacheProtocol {
     ///
-    /// Cofiguration that will be used to set up the behavior of the MapCache instance
+    /// Cofiguration that will be used to set up the behavior of the `MapCache` instance
     ///
     public var config : MapCacheConfig
     
@@ -30,7 +30,7 @@ public class MapCache : MapCacheProtocol {
     let operationQueue = OperationQueue()
     
     ///
-    /// Constructor. It sets the `config` variable and initializes the `disCache` with the name and capacity set in the config.
+    /// Constructor. It sets the `config` variable and initializes the `diskCache` with the name and capacity set in the config.
     ///
     /// - Parameter withConfig Cofiguration that will be used to set up the behavior of the MapCache instance
     ///
@@ -46,7 +46,8 @@ public class MapCache : MapCacheProtocol {
     /// with the values of the `forTilePath`
     /// If ` {s}` is defined in the template, it aplies the Round Robin algorithm.
     ///
-    /// - Parameter forTilePath is the path for the tile in (x, y, z) tile coordinates.
+    /// - Parameter forTilePath: is the path for the tile in (x, y, z) tile coordinates.
+    ///
     /// - SeeAlso: MapCacheConfig.roundRoubinSubdomain()
     
     public func url(forTilePath path: MKTileOverlayPath) -> URL {
@@ -65,7 +66,8 @@ public class MapCache : MapCacheProtocol {
     ///  - config.urlTemplate is the template url template and
     ///  -  x, y and z are the coords of the path
     ///
-    /// - Parameter forPath is the path of the tile you want the cache
+    /// - Parameter forPath: is the path of the tile you want the cache
+    
     public func cacheKey(forPath path: MKTileOverlayPath) -> String {
         return "\(config.urlTemplate)-\(path.x)-\(path.y)-\(path.z)"
     }
@@ -76,9 +78,10 @@ public class MapCache : MapCacheProtocol {
     /// and updates the image in `diskCache` and returns the received `Data`  through the  `sucess` closure.
     /// If something goes wrong it invokes the `failure`closure  passing the `error`returned by the system.
     ///
-    /// - Parameter at Path for the tile
-    /// - Parameter failure if the tile cannot be retrieved from the server this closure is called
-    /// - Parameter success if the image is downloaded
+    /// - Parameter at: Path for the tile
+    /// - Parameter failure: if the tile cannot be retrieved from the server this closure is called
+    /// - Parameter success: if the image is downloaded
+    
     public func fetchTileFromServer(at path: MKTileOverlayPath,
                              failure fail: ((Error?) -> ())? = nil,
                              success succeed: @escaping (Data) -> ()) {
@@ -108,12 +111,12 @@ public class MapCache : MapCacheProtocol {
     }
     
     /// Returns the tile to be displayed on the overlay.
-    /// The strategy used to retrieve the tile (i.e. from network or from the diskCache) depends on the `config.loadTileMode`.
+    /// The strategy used to retrieve the tile (i.e. from network or from the `diskCache`) depends on the `config.loadTileMode`.
     ///
     /// - Parameter at the path of the tile to be retrived
     /// - Parameter result is the closure that will be run once the tile or an error is received.
     ///
-    /// - SeeAlso: LoadTileMode
+    /// - SeeAlso: `LoadTileMode`
     ///
     public func loadTile(at path: MKTileOverlayPath, result: @escaping (Data?, Error?) -> Void) {
         
@@ -175,9 +178,11 @@ public class MapCache : MapCacheProtocol {
     }
     
     /// Clears the cache.
-    /// Removes all files in the diskCache
+    /// Removes all files in the `diskCache`
     /// As it may take some time to remove all files it calls the completition closure upon finishing the removal.
+    ///
     /// - Parameter completition: code to run upon the cache is cleared.
+    
     public func clear(completition: (() -> ())? ) {
         diskCache.removeAllData(completition)
     }
