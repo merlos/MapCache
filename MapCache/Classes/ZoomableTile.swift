@@ -13,8 +13,9 @@ import MapKit
 ///
 struct ZoomableTile {
     
-    /// Path for the maximumZ supported by the tile server from wich this zoomable tile can be extracted
-    let path: MKTileOverlayPath
+    /// Path for the tile with maximumZ supported by the tile server.
+    /// This is the path with the best resolution tile from wich this zoomable tile can be interpolated.
+    let maximumZPath: MKTileOverlayPath
     
     /// Rectangle area ocupied by this tile
     let rect: MKMapRect

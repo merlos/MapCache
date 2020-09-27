@@ -55,22 +55,14 @@ public class CachedTileOverlay : MKTileOverlay {
             return mapCache.loadTile(at: path, result: result)
         }
     }
-}
-
-///
-/// functions to support overZoom
-///
-extension CachedTileOverlay {
     
     ///
     /// Tells whether or not to upsample and show a lesser detailed z level
     /// takes into account `useZoom` configuration as well as current and `maximumZ` values
-    ///
+    /// - Parameter at current zoom.
     func shouldZoom(at scale: MKZoomScale) -> Bool {
         guard mapCache.config.overZoomMaximumZ else { return false }
-        let maxZ = mapCache.config.maximumZ
-        let tileSize = mapCache.config.tileSize.width
-        return scale.toZoomLevel(tileSize: tileSize) > maxZ
+        return scale.toZoomLevel(tileSize: mapCache.config.tileSize) > mapCache.config.maximumZ
     }
     
     ///
@@ -84,7 +76,7 @@ extension CachedTileOverlay {
     ///
     func tilesInMapRect(rect: MKMapRect, scale: MKZoomScale) -> [ZoomableTile] {
         var tiles: [ZoomableTile] = []
-        let tileSize = mapCache.config.tileSize.width
+        let tileSize = mapCache.config.tileSize
         var z = scale.toZoomLevel(tileSize: tileSize)
        
         // Represents the number of tiles the current tile is going to be divided
@@ -95,7 +87,7 @@ extension CachedTileOverlay {
             z = tileSetMaxZ
         }
         
-        let adjustedTileSize = Double(overZoom * Int(tileSize))
+        let adjustedTileSize = Double(overZoom * Int(tileSize.width))
         
         let minX = Int(floor((rect.minX * Double(scale)) / adjustedTileSize))
         let maxX = Int(floor((rect.maxX * Double(scale)) / adjustedTileSize))
@@ -116,7 +108,7 @@ extension CachedTileOverlay {
                 guard rect.intersects(tileRect) else { continue }
                 
                 let path =  MKTileOverlayPath(x: x, y: y, z: z, contentScaleFactor: scale)
-                let tile = ZoomableTile(path: path, rect: tileRect, overZoom: Zoom(overZoom))
+                let tile = ZoomableTile(maximumZPath: path, rect: tileRect, overZoom: Zoom(overZoom))
                 tiles.append(tile)
             }
         }

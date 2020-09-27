@@ -87,7 +87,7 @@
 		81FED3E061FA39538B0AA3092F6F380B /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911B06044A3BF3D67D9028BBD2BAAE76 /* Example.swift */; };
 		878F0474D84D790D1268F9AC54B51E53 /* MapCache-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E2CE1DD503DF38ECB994877A61BE504A /* MapCache-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		88F403109D33F993ACD635A3D01134BC /* NSBundle+CurrentTestBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF54A01F553F29F621F98E0D9BB2758C /* NSBundle+CurrentTestBundle.swift */; };
-		895A9F4B2520089C00D083C7 /* CachedTileOverlayZoomRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A9F4A2520089C00D083C7 /* CachedTileOverlayZoomRenderer.swift */; };
+		895A9F4B2520089C00D083C7 /* CachedTileOverlayRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A9F4A2520089C00D083C7 /* CachedTileOverlayRenderer.swift */; };
 		895A9F4D2520192900D083C7 /* MKZoomScale+MapCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A9F4C2520192900D083C7 /* MKZoomScale+MapCache.swift */; };
 		895A9F512520BB8C00D083C7 /* ZoomableTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A9F502520BB8C00D083C7 /* ZoomableTile.swift */; };
 		89EE4D6DBDB79963D65AA1E67B543B6D /* CwlCatchBadInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CB0B46A4D179D569B8020B5A44B7BF /* CwlCatchBadInstruction.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
@@ -367,7 +367,7 @@
 		87E7CB09DAD768F6E20F80B47B2D519F /* jazzy.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; name = jazzy.js; path = docs/js/jazzy.js; sourceTree = "<group>"; };
 		880966A95B74A3A1BCC56C7C9DC18611 /* TileRangeIterator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TileRangeIterator.swift; path = MapCache/Classes/TileRangeIterator.swift; sourceTree = "<group>"; };
 		8828460C0663892385C2368BC6BD3085 /* Pods-MapCache_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MapCache_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		895A9F4A2520089C00D083C7 /* CachedTileOverlayZoomRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CachedTileOverlayZoomRenderer.swift; path = MapCache/Classes/CachedTileOverlayZoomRenderer.swift; sourceTree = "<group>"; };
+		895A9F4A2520089C00D083C7 /* CachedTileOverlayRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CachedTileOverlayRenderer.swift; path = MapCache/Classes/CachedTileOverlayRenderer.swift; sourceTree = "<group>"; };
 		895A9F4C2520192900D083C7 /* MKZoomScale+MapCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MKZoomScale+MapCache.swift"; path = "MapCache/Classes/MKZoomScale+MapCache.swift"; sourceTree = "<group>"; };
 		895A9F502520BB8C00D083C7 /* ZoomableTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZoomableTile.swift; path = MapCache/Classes/ZoomableTile.swift; sourceTree = "<group>"; };
 		8A78DED07C3DBDBCE6B96CAC101D2FE4 /* TileRangeError.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = TileRangeError.html; path = docs/Enums/TileRangeError.html; sourceTree = "<group>"; };
@@ -662,7 +662,7 @@
 			isa = PBXGroup;
 			children = (
 				895A9F502520BB8C00D083C7 /* ZoomableTile.swift */,
-				895A9F4A2520089C00D083C7 /* CachedTileOverlayZoomRenderer.swift */,
+				895A9F4A2520089C00D083C7 /* CachedTileOverlayRenderer.swift */,
 				895A9F4C2520192900D083C7 /* MKZoomScale+MapCache.swift */,
 				2FA84894A0ED4B49C202F674179FD3F1 /* CachedTileOverlay.swift */,
 				A27FA715B02735A7598DA75D285AC6D3 /* LoadTileMode.swift */,
@@ -1393,7 +1393,7 @@
 				BF1FF48ABA96425848A8139D129E9028 /* MapCacheProtocol.swift in Sources */,
 				08C2DA09EAAD7DFF0E929E7B44BE9A7A /* MD5.swift in Sources */,
 				F22487D25FC98EFAA279FD39C7225D9A /* MKMapView+MapCache.swift in Sources */,
-				895A9F4B2520089C00D083C7 /* CachedTileOverlayZoomRenderer.swift in Sources */,
+				895A9F4B2520089C00D083C7 /* CachedTileOverlayRenderer.swift in Sources */,
 				141E895949E33F72731B18B57F7C43D0 /* MKTileOverlayPath+MapCache.swift in Sources */,
 				6880A2FACB91C2C25B777945144044B6 /* RegionDownloader.swift in Sources */,
 				93AE33B3526FF4B6085B508ED89A3A35 /* RegionDownloaderDelegate.swift in Sources */,
