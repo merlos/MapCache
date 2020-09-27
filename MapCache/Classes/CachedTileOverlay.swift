@@ -51,7 +51,9 @@ public class CachedTileOverlay : MKTileOverlay {
     }
 }
 
-
+///
+/// functions to support overZoom
+///
 extension CachedTileOverlay {
     
     ///
@@ -65,15 +67,21 @@ extension CachedTileOverlay {
         return scale.toZoomLevel(tileSize: tileSize) > maxZ
     }
     
-    /**
-     * Brains for zooming
-     * With the maximum zoom level for the tileset (config) this will give the available tile, map rects, and additional scaling factor for upscaling tiles.
-     */
+    ///
+    /// Brains for zooming
+    ///
+    /// With the maximum zoom level for the tileset (config) this will give the available tile, map rects, and additional
+    /// scaling factor for upscaling tiles.
+    ///
+    /// - Parameter rect map rectangle for which we want to get the tile set
+    /// - Parameter scale current zoom scale
+    ///
     func tilesInMapRect(rect: MKMapRect, scale: MKZoomScale) -> [ZoomableTile] {
         var tiles: [ZoomableTile] = []
         let tileSize = mapCache.config.tileSize.width
         var z = scale.toZoomLevel(tileSize: tileSize)
-        
+       
+        // Represents the number of tiles the current tile is going to be divided
         var overZoom = 1
         let tileSetMaxZ = mapCache.config.maximumZ
         if (z > tileSetMaxZ) {
@@ -106,7 +114,6 @@ extension CachedTileOverlay {
                 tiles.append(tile)
             }
         }
-        
         return tiles
     }
 }

@@ -88,6 +88,8 @@
 		878F0474D84D790D1268F9AC54B51E53 /* MapCache-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E2CE1DD503DF38ECB994877A61BE504A /* MapCache-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		88F403109D33F993ACD635A3D01134BC /* NSBundle+CurrentTestBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF54A01F553F29F621F98E0D9BB2758C /* NSBundle+CurrentTestBundle.swift */; };
 		895A9F4B2520089C00D083C7 /* CachedTileOverlayZoomRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A9F4A2520089C00D083C7 /* CachedTileOverlayZoomRenderer.swift */; };
+		895A9F4D2520192900D083C7 /* MKZoomScale+MapCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A9F4C2520192900D083C7 /* MKZoomScale+MapCache.swift */; };
+		895A9F4F25201A1E00D083C7 /* ZoomableTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A9F4E25201A1E00D083C7 /* ZoomableTile.swift */; };
 		89EE4D6DBDB79963D65AA1E67B543B6D /* CwlCatchBadInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CB0B46A4D179D569B8020B5A44B7BF /* CwlCatchBadInstruction.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		8A0EF19254BAC5DF0885D1FBA345E016 /* CwlMachBadInstructionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A957877D1F903A5830268A2C05B2C0 /* CwlMachBadInstructionHandler.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		8D17749611AB0C8BD51C068749D8DF68 /* NMBExceptionCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = 47A7484A26D426C2F034B0B7A7BD4FC0 /* NMBExceptionCapture.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -366,6 +368,8 @@
 		880966A95B74A3A1BCC56C7C9DC18611 /* TileRangeIterator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TileRangeIterator.swift; path = MapCache/Classes/TileRangeIterator.swift; sourceTree = "<group>"; };
 		8828460C0663892385C2368BC6BD3085 /* Pods-MapCache_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MapCache_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		895A9F4A2520089C00D083C7 /* CachedTileOverlayZoomRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CachedTileOverlayZoomRenderer.swift; path = MapCache/Classes/CachedTileOverlayZoomRenderer.swift; sourceTree = "<group>"; };
+		895A9F4C2520192900D083C7 /* MKZoomScale+MapCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MKZoomScale+MapCache.swift"; path = "MapCache/Classes/MKZoomScale+MapCache.swift"; sourceTree = "<group>"; };
+		895A9F4E25201A1E00D083C7 /* ZoomableTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableTile.swift; sourceTree = "<group>"; };
 		8A78DED07C3DBDBCE6B96CAC101D2FE4 /* TileRangeError.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = TileRangeError.html; path = docs/Enums/TileRangeError.html; sourceTree = "<group>"; };
 		8C1092AB770999A27768BADA699E54E4 /* World.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = World.swift; path = Sources/Quick/World.swift; sourceTree = "<group>"; };
 		8C29CAD75DA4C75D8CC7A2573578C7DA /* SourceLocation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SourceLocation.swift; path = Sources/Nimble/Utils/SourceLocation.swift; sourceTree = "<group>"; };
@@ -658,6 +662,8 @@
 			isa = PBXGroup;
 			children = (
 				895A9F4A2520089C00D083C7 /* CachedTileOverlayZoomRenderer.swift */,
+				895A9F4E25201A1E00D083C7 /* ZoomableTile.swift */,
+				895A9F4C2520192900D083C7 /* MKZoomScale+MapCache.swift */,
 				2FA84894A0ED4B49C202F674179FD3F1 /* CachedTileOverlay.swift */,
 				A27FA715B02735A7598DA75D285AC6D3 /* LoadTileMode.swift */,
 				8FB30407B2F0B8A654B76336D235B108 /* Log.swift */,
@@ -1380,7 +1386,9 @@
 				F3E92983B774801A81A5EB48AA1B2C30 /* LoadTileMode.swift in Sources */,
 				9E4E9672D32604544117F33983E2968B /* Log.swift in Sources */,
 				22284BFEB9D94716FFA56F62D34AB040 /* MapCache-dummy.m in Sources */,
+				895A9F4F25201A1E00D083C7 /* ZoomableTile.swift in Sources */,
 				786F87E50A2F92B2B04B98FED840BFD9 /* MapCache.swift in Sources */,
+				895A9F4D2520192900D083C7 /* MKZoomScale+MapCache.swift in Sources */,
 				2F73CCD99F13564207C549DF9C80FA18 /* MapCacheConfig.swift in Sources */,
 				BF1FF48ABA96425848A8139D129E9028 /* MapCacheProtocol.swift in Sources */,
 				08C2DA09EAAD7DFF0E929E7B44BE9A7A /* MD5.swift in Sources */,
