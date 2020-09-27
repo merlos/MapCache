@@ -8,14 +8,22 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Extension/FileManager" class="dashAnchor"></a>
     <a title="FileManager Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">MapCache Docs</a> (58% documented)</p>
+        <p><a href="../index.html">MapCache 0.7.0 Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -33,6 +41,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DiskCache.html">DiskCache</a>
@@ -64,6 +75,9 @@
                 <a href="../Enums/LatitudeError.html">LatitudeError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/LoadTileMode.html">LoadTileMode</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/LongitudeError.html">LongitudeError</a>
               </li>
               <li class="nav-group-task">
@@ -93,10 +107,16 @@
                 <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/MKZoomScale.html">MKZoomScale</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/NSMutableData.html">NSMutableData</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
               </li>
             </ul>
           </li>
@@ -158,6 +178,9 @@
               <li class="nav-group-task">
                 <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomableTile.html">ZoomableTile</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -179,11 +202,15 @@
             <h1>FileManager</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">FileManager</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+                  
+                  <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">FileManager</span></code></pre>
 
                 </div>
               </div>
-            
+            <p>Class for handling the operations with file folders.</p>
+
+<p>Original source code from <a href="https://github.com/Haneke/HanekeSwift/blob/master/Haneke/NSFileManager%2BHaneke.swift">Haneke</a></p>
+
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -193,7 +220,7 @@
                     <code>
                     <a name="/s:So13NSFileManagerC8MapCacheE28enumerateContentsOfDirectory6atPath17orderedByProperty9ascending10usingBlockySS_SSSby10Foundation3URLV_SiSbztXEtF"></a>
                     <a name="//apple_ref/swift/Method/enumerateContentsOfDirectory(atPath:orderedByProperty:ascending:usingBlock:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So13NSFileManagerC8MapCacheE28enumerateContentsOfDirectory6atPath17orderedByProperty9ascending10usingBlockySS_SSSby10Foundation3URLV_SiSbztXEtF">enumerateContentsOfDirectory(atPath:orderedByProperty:ascending:usingBlock:)</a>
+                    <a class="token" href="#/s:So13NSFileManagerC8MapCacheE28enumerateContentsOfDirectory6atPath17orderedByProperty9ascending10usingBlockySS_SSSby10Foundation3URLV_SiSbztXEtF">enumerateContentsOfDirectory(atPath:<wbr>orderedByProperty:<wbr>ascending:<wbr>usingBlock:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -201,7 +228,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Gets the list of files of this  the directory.</p>
 
                       </div>
                       <div class="declaration">
@@ -209,6 +236,128 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">enumerateContentsOfDirectory</span><span class="p">(</span><span class="n">atPath</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">orderedByProperty</span> <span class="nv">property</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">ascending</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">usingBlock</span> <span class="nv">block</span><span class="p">:</span> <span class="p">(</span><span class="kt">URL</span><span class="p">,</span> <span class="kt">Int</span><span class="p">,</span> <span class="k">inout</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>atPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>path of the directory.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>orderedByProperty</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>property to be used for ordeing the contents.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ascending</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>if true it is ordered ascending.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>usingBlock</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>block being used.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:So13NSFileManagerC8MapCacheE29allocatedDiskSizeForDirectory2ats6UInt64V10Foundation3URLV_tKF"></a>
+                    <a name="//apple_ref/swift/Method/allocatedDiskSizeForDirectory(at:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:So13NSFileManagerC8MapCacheE29allocatedDiskSizeForDirectory2ats6UInt64V10Foundation3URLV_tKF">allocatedDiskSizeForDirectory(at:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Calculate the allocated size of a directory and all its contents on the volume.</p>
+
+<p>As there&rsquo;s no simple way to get this information from the file system the method
+has to crawl the entire hierarchy, accumulating the overall sum on the way.
+The resulting value is roughly equivalent with the amount of bytes
+that would become available on the volume if the directory would be deleted.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    There are a couple of oddities that are not taken into account (like symbolic links, meta data of
+directories, hard links, &hellip;).
+
+</div>
+
+                        <a href="../Extensions/FileManager/allocatedDiskSizeForDirectory%28at%3A%29.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">allocatedDiskSizeForDirectory</span><span class="p">(</span><span class="n">at</span> <span class="nv">directoryURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">UInt64</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:So13NSFileManagerC8MapCacheE20fileSizeForDirectory2ats6UInt64V10Foundation3URLV_tKF"></a>
+                    <a name="//apple_ref/swift/Method/fileSizeForDirectory(at:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:So13NSFileManagerC8MapCacheE20fileSizeForDirectory2ats6UInt64V10Foundation3URLV_tKF">fileSizeForDirectory(at:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Calculates the actual sum of file sizes</p>
+
+                        <a href="../Extensions/FileManager/fileSizeForDirectory%28at%3A%29.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">fileSizeForDirectory</span><span class="p">(</span><span class="n">at</span> <span class="nv">directoryURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">UInt64</span></code></pre>
 
                         </div>
                       </div>
@@ -220,8 +369,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2019-09-03)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-27)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

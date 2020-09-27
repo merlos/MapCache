@@ -8,14 +8,22 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Struct/TileRangeIterator" class="dashAnchor"></a>
     <a title="TileRangeIterator Structure Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">MapCache Docs</a> (58% documented)</p>
+        <p><a href="../index.html">MapCache 0.7.0 Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -33,6 +41,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DiskCache.html">DiskCache</a>
@@ -64,6 +75,9 @@
                 <a href="../Enums/LatitudeError.html">LatitudeError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/LoadTileMode.html">LoadTileMode</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/LongitudeError.html">LongitudeError</a>
               </li>
               <li class="nav-group-task">
@@ -93,10 +107,16 @@
                 <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/MKZoomScale.html">MKZoomScale</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/NSMutableData.html">NSMutableData</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
               </li>
             </ul>
           </li>
@@ -158,6 +178,9 @@
               <li class="nav-group-task">
                 <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomableTile.html">ZoomableTile</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -179,11 +202,12 @@
             <h1>TileRangeIterator</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">TileRangeIterator</span> <span class="p">:</span> <span class="kt">IteratorProtocol</span></code></pre>
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>Iterator of a TileRange.</p>
 
           </section>
           <section class="section task-group-section">
@@ -229,7 +253,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Counter</p>
+                        <p>Current counter value</p>
 
                       </div>
                       <div class="declaration">
@@ -329,7 +353,7 @@
                     <code>
                     <a name="/s:8MapCache17TileRangeIteratorVyAcA0cD0Vcfc"></a>
                     <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache17TileRangeIteratorVyAcA0cD0Vcfc">init(_:)</a>
+                    <a class="token" href="#/s:8MapCache17TileRangeIteratorVyAcA0cD0Vcfc">init(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -337,8 +361,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>initializer of the iterator.
-Sets range, counter, maxCounter and diffX</p>
+                        <p>Initializer of the iterator.
+Sets <code>range</code>,<code>counter</code>, <code><a href="../Structs/TileRangeIterator.html#/s:8MapCache17TileRangeIteratorV10maxCounters6UInt64Vvp">maxCounter</a></code> and <code>diffX</code></p>
 
                       </div>
                       <div class="declaration">
@@ -368,25 +392,26 @@ Sets range, counter, maxCounter and diffX</p>
                         <p>The function that is required by the Iterator protocol.</p>
 <div class="aside aside-todo">
     <p class="aside-title">Todo</p>
-    <p>because there are no validations of the range in TileRange,
-     this function may fail. Pending to fix it.</p>
+    <p>because there are no validations of the range in TileRange, this function may fail. Pending to fix it.</p>
+
+</div><div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p><a href="https://developer.apple.com/documentation/swift/iteratorprotocol">IteratorProtocol</a></p>
 
 </div>
-
-<p>See: <a href="https://developer.apple.com/documentation/swift/iteratorprotocol">https://developer.apple.com/documentation/swift/iteratorprotocol</a></p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">mutating</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">next</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/TileCoords.html">TileCoords</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">mutating</span> <span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">next</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/TileCoords.html">TileCoords</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>the TileCoord for the current iteration.</p>
+                        <p>the <code>TileCoord</code> for the current iteration.</p>
                       </div>
                     </section>
                   </div>
@@ -396,8 +421,8 @@ Sets range, counter, maxCounter and diffX</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2019-09-03)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-27)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

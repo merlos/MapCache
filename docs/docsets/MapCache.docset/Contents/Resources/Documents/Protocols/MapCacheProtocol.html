@@ -8,14 +8,22 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Protocol/MapCacheProtocol" class="dashAnchor"></a>
     <a title="MapCacheProtocol Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">MapCache Docs</a> (58% documented)</p>
+        <p><a href="../index.html">MapCache 0.7.0 Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -33,6 +41,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DiskCache.html">DiskCache</a>
@@ -64,6 +75,9 @@
                 <a href="../Enums/LatitudeError.html">LatitudeError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/LoadTileMode.html">LoadTileMode</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/LongitudeError.html">LongitudeError</a>
               </li>
               <li class="nav-group-task">
@@ -93,10 +107,16 @@
                 <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/MKZoomScale.html">MKZoomScale</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/NSMutableData.html">NSMutableData</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
               </li>
             </ul>
           </li>
@@ -158,6 +178,9 @@
               <li class="nav-group-task">
                 <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomableTile.html">ZoomableTile</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -179,11 +202,17 @@
             <h1>MapCacheProtocol</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">MapCacheProtocol</span></code></pre>
 
                 </div>
               </div>
-            <p>Undocumented</p>
+            <p>This protocol shall be implemented by any cache used in MapCache.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <a href="/">Main Readme page</a>
+
+</div>
 
           </section>
           <section class="section task-group-section">
@@ -202,7 +231,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>An instance of <code><a href="../Structs/MapCacheConfig.html">MapCacheConfig</a></code></p>
 
                       </div>
                       <div class="declaration">
@@ -221,7 +250,7 @@
                     <code>
                     <a name="/s:8MapCache0aB8ProtocolP3url11forTilePath10Foundation3URLVSo013MKTileOverlayG0a_tF"></a>
                     <a name="//apple_ref/swift/Method/url(forTilePath:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache0aB8ProtocolP3url11forTilePath10Foundation3URLVSo013MKTileOverlayG0a_tF">url(forTilePath:)</a>
+                    <a class="token" href="#/s:8MapCache0aB8ProtocolP3url11forTilePath10Foundation3URLVSo013MKTileOverlayG0a_tF">url(forTilePath:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -229,7 +258,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The implementation shall convert a tile path into a URL object</p>
+
+<p>Typically it will use the <code>config.urlTemplate</code> and <code>config.subdomains</code>.</p>
+
+<p>An example of implementation can be found in the class<code><a href="../Classes/MapCache.html">MapCache</a></code></p>
 
                       </div>
                       <div class="declaration">
@@ -248,7 +281,7 @@
                     <code>
                     <a name="/s:8MapCache0aB8ProtocolP8loadTile2at6resultySo17MKTileOverlayPatha_y10Foundation4DataVSg_s5Error_pSgtctF"></a>
                     <a name="//apple_ref/swift/Method/loadTile(at:result:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache0aB8ProtocolP8loadTile2at6resultySo17MKTileOverlayPatha_y10Foundation4DataVSg_s5Error_pSgtctF">loadTile(at:result:)</a>
+                    <a class="token" href="#/s:8MapCache0aB8ProtocolP8loadTile2at6resultySo17MKTileOverlayPatha_y10Foundation4DataVSg_s5Error_pSgtctF">loadTile(at:<wbr>result:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -256,7 +289,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Shall load a tile based on MKTileOverlayPath</p>
+                        <p>The implementation shall return either the tile as a Data object or an Error if the tile could not be retrieved.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    SeeAlso <a href="https://developer.apple.com/documentation/mapkit/mktileoverlay">MapKit.MkTileOverlay</a>
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -275,8 +313,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2019-09-03)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-27)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

@@ -8,14 +8,22 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Class/TileCoordsRegion" class="dashAnchor"></a>
     <a title="TileCoordsRegion Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">MapCache Docs</a> (58% documented)</p>
+        <p><a href="../index.html">MapCache 0.7.0 Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -33,6 +41,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DiskCache.html">DiskCache</a>
@@ -64,6 +75,9 @@
                 <a href="../Enums/LatitudeError.html">LatitudeError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/LoadTileMode.html">LoadTileMode</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/LongitudeError.html">LongitudeError</a>
               </li>
               <li class="nav-group-task">
@@ -93,10 +107,16 @@
                 <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/MKZoomScale.html">MKZoomScale</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/NSMutableData.html">NSMutableData</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
               </li>
             </ul>
           </li>
@@ -158,6 +178,9 @@
               <li class="nav-group-task">
                 <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomableTile.html">ZoomableTile</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -179,6 +202,7 @@
             <h1>TileCoordsRegion</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">TileCoordsRegion</span></code></pre>
 
                 </div>
@@ -228,7 +252,7 @@ we may end up with two sub-regions.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Top left tile/coordinate.</p>
 
                       </div>
                       <div class="declaration">
@@ -255,7 +279,7 @@ we may end up with two sub-regions.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Bottom right tile/coordinate.</p>
 
                       </div>
                       <div class="declaration">
@@ -282,7 +306,7 @@ we may end up with two sub-regions.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Zoom range for the region.</p>
 
                       </div>
                       <div class="declaration">
@@ -309,7 +333,7 @@ we may end up with two sub-regions.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Total number of tiles in this region for all zoom levels.</p>
 
                       </div>
                       <div class="declaration">
@@ -328,7 +352,7 @@ we may end up with two sub-regions.</p>
                     <code>
                     <a name="/s:8MapCache16TileCoordsRegionC15topLeftLatitude0fG9Longitude011bottomRightH00jkI07minZoom03maxM0ACSgSd_S3ds5UInt8VALtcfc"></a>
                     <a name="//apple_ref/swift/Method/init(topLeftLatitude:topLeftLongitude:bottomRightLatitude:bottomRightLongitude:minZoom:maxZoom:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache16TileCoordsRegionC15topLeftLatitude0fG9Longitude011bottomRightH00jkI07minZoom03maxM0ACSgSd_S3ds5UInt8VALtcfc">init(topLeftLatitude:topLeftLongitude:bottomRightLatitude:bottomRightLongitude:minZoom:maxZoom:)</a>
+                    <a class="token" href="#/s:8MapCache16TileCoordsRegionC15topLeftLatitude0fG9Longitude011bottomRightH00jkI07minZoom03maxM0ACSgSd_S3ds5UInt8VALtcfc">init(topLeftLatitude:<wbr>topLeftLongitude:<wbr>bottomRightLatitude:<wbr>bottomRightLongitude:<wbr>minZoom:<wbr>maxZoom:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -337,7 +361,7 @@ we may end up with two sub-regions.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The region will be the area that holds the line from any top left point (P1) to any
-bottom rightpoint 2 (P2)</p>
+bottom rightpoint 2 (P2).</p>
 
                       </div>
                       <div class="declaration">
@@ -356,7 +380,7 @@ bottom rightpoint 2 (P2)</p>
                     <code>
                     <a name="/s:8MapCache16TileCoordsRegionC7topLeft11bottomRightACSgAA0cD0C_AHtcfc"></a>
                     <a name="//apple_ref/swift/Method/init(topLeft:bottomRight:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache16TileCoordsRegionC7topLeft11bottomRightACSgAA0cD0C_AHtcfc">init(topLeft:bottomRight:)</a>
+                    <a class="token" href="#/s:8MapCache16TileCoordsRegionC7topLeft11bottomRightACSgAA0cD0C_AHtcfc">init(topLeft:<wbr>bottomRight:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -365,7 +389,7 @@ bottom rightpoint 2 (P2)</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The region will be the area that holds the line from any top left point (P1) to any
-bottom rightpoint 2 (P2)
+bottom rightpoint 2 (P2).
 For example, in this map:</p>
 <pre class="highlight swift"><code><span class="o">+---------------------++---------------------++---------------------+</span>
 <span class="o">|</span>               <span class="kt">P1</span>    <span class="o">||</span>                     <span class="o">||</span>                     <span class="o">|</span>
@@ -379,9 +403,8 @@ For example, in this map:</p>
 <span class="o">|</span>                <span class="o">.</span>    <span class="o">||</span> <span class="p">\</span><span class="err">·</span>                  <span class="o">||</span>                     <span class="o">|</span>
 <span class="o">|</span>                <span class="o">+</span> <span class="o">.</span> <span class="o">.||.</span> <span class="o">*</span> <span class="kt">P2</span>               <span class="o">||</span>                     <span class="o">|</span>
 <span class="o">+---------------------++---------------------++---------------------+</span>
+<span class="o">-</span><span class="mi">180</span>               <span class="mi">180</span> <span class="o">-</span><span class="mi">180</span>               <span class="mi">180</span>
 </code></pre>
-
-<p>-180                180 -180                 180</p>
 
 <p>The area will be the one denoted with the dots.</p>
 
@@ -402,7 +425,7 @@ For example, in this map:</p>
                     <code>
                     <a name="/s:8MapCache16TileCoordsRegionC5count7forZooms6UInt64Vs5UInt8V_tF"></a>
                     <a name="//apple_ref/swift/Method/count(forZoom:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache16TileCoordsRegionC5count7forZooms6UInt64Vs5UInt8V_tF">count(forZoom:)</a>
+                    <a class="token" href="#/s:8MapCache16TileCoordsRegionC5count7forZooms6UInt64Vs5UInt8V_tF">count(forZoom:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -410,7 +433,7 @@ For example, in this map:</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Counts for the zoom</p>
 
                       </div>
                       <div class="declaration">
@@ -429,7 +452,7 @@ For example, in this map:</p>
                     <code>
                     <a name="/s:8MapCache16TileCoordsRegionC10tileRanges7forZoomSayAA0C5RangeVGSgs5UInt8V_tF"></a>
                     <a name="//apple_ref/swift/Method/tileRanges(forZoom:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache16TileCoordsRegionC10tileRanges7forZoomSayAA0C5RangeVGSgs5UInt8V_tF">tileRanges(forZoom:)</a>
+                    <a class="token" href="#/s:8MapCache16TileCoordsRegionC10tileRanges7forZoomSayAA0C5RangeVGSgs5UInt8V_tF">tileRanges(forZoom:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -437,23 +460,25 @@ For example, in this map:</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>For example, in this map there are two ranges. One that covers the area A1
-and other that covers the area A2</p>
-<pre class="highlight swift"><code><span class="o">+----------------------++---------------------++---------------------+</span>
-<span class="o">|</span>               <span class="kt">P1</span>     <span class="o">||</span>                     <span class="o">||</span>                     <span class="o">|</span>
-<span class="o">|</span>                <span class="o">*.....||...+</span>                  <span class="o">||</span>                     <span class="o">|</span>
-<span class="o">|</span>                <span class="o">.</span> <span class="p">\</span>  <span class="o">.||.</span>  <span class="err">·</span>                  <span class="o">||</span>                     <span class="o">|</span>
-<span class="o">|</span>       <span class="kt">Map</span> <span class="mi">1</span>    <span class="o">.</span>  <span class="p">\</span> <span class="o">.||.</span>  <span class="err">·</span>     <span class="kt">Map</span> <span class="mi">2</span>        <span class="o">||</span>       <span class="kt">Map</span> <span class="mi">3</span>         <span class="o">|</span>
-<span class="o">|</span>                <span class="o">.</span>   <span class="p">\</span><span class="o">.||.</span>  <span class="err">·</span>                  <span class="o">||</span>                     <span class="o">|</span>
-<span class="o">|</span>                <span class="o">.</span>    <span class="p">\</span><span class="o">||.</span><span class="kt">A2</span><span class="err">·</span>                  <span class="o">||</span>                     <span class="o">|</span>
-<span class="o">|</span>                <span class="o">.</span>  <span class="kt">A1</span><span class="o">.|</span><span class="p">\</span><span class="o">.</span>  <span class="err">·</span>                  <span class="o">||</span>                     <span class="o">|</span>
-<span class="o">|</span>                <span class="o">.</span>    <span class="o">.||</span><span class="p">\</span>  <span class="err">·</span>                  <span class="o">||</span>                     <span class="o">|</span>
-<span class="o">|</span>                <span class="o">.</span>    <span class="o">.||.</span><span class="p">\</span> <span class="err">·</span>                  <span class="o">||</span>                     <span class="o">|</span>
-<span class="o">|</span>                <span class="o">+.....||...*</span> <span class="kt">P2</span>               <span class="o">||</span>                     <span class="o">|</span>
-<span class="o">+----------------------++---------------------++---------------------+</span>
-</code></pre>
+                        <p>All the tile ranges for this particular zoom.
+There may be 1 or 2.</p>
 
-<p>-180                180 -180                 180</p>
+<p>For example, in this map there are two ranges. One that covers the area A1
+and other that covers the area A2</p>
+<pre class="highlight swift"><code><span class="o">+----------------------++---------------------++--------------------+</span>
+<span class="o">|</span>               <span class="kt">P1</span>     <span class="o">||</span>                     <span class="o">||</span>                    <span class="o">|</span>
+<span class="o">|</span>                <span class="o">*.....||...+</span>                 <span class="o">||</span>                    <span class="o">|</span>
+<span class="o">|</span>                <span class="o">.</span> <span class="p">\</span>  <span class="o">.||.</span>  <span class="err">·</span>                 <span class="o">||</span>                    <span class="o">|</span>
+<span class="o">|</span>       <span class="kt">Map</span> <span class="mi">1</span>    <span class="o">.</span>  <span class="p">\</span> <span class="o">.||.</span>  <span class="err">·</span>     <span class="kt">Map</span> <span class="mi">2</span>       <span class="o">||</span>       <span class="kt">Map</span> <span class="mi">3</span>        <span class="o">|</span>
+<span class="o">|</span>                <span class="o">.</span>   <span class="p">\</span><span class="o">.||.</span>  <span class="err">·</span>                 <span class="o">||</span>                    <span class="o">|</span>
+<span class="o">|</span>                <span class="o">.</span>    <span class="p">\</span><span class="o">||.</span><span class="kt">A2</span><span class="err">·</span>                 <span class="o">||</span>                    <span class="o">|</span>
+<span class="o">|</span>                <span class="o">.</span>  <span class="kt">A1</span><span class="o">.|</span><span class="p">\</span><span class="o">.</span>  <span class="err">·</span>                 <span class="o">||</span>                    <span class="o">|</span>
+<span class="o">|</span>                <span class="o">.</span>    <span class="o">.||</span><span class="p">\</span>  <span class="err">·</span>                 <span class="o">||</span>                    <span class="o">|</span>
+<span class="o">|</span>                <span class="o">.</span>    <span class="o">.||.</span><span class="p">\</span> <span class="err">·</span>                 <span class="o">||</span>                    <span class="o">|</span>
+<span class="o">|</span>                <span class="o">+.....||...*</span> <span class="kt">P2</span>              <span class="o">||</span>                    <span class="o">|</span>
+<span class="o">+----------------------++---------------------++--------------------+</span>
+<span class="o">-</span><span class="mi">180</span>                <span class="mi">180</span> <span class="o">-</span><span class="mi">180</span>               <span class="mi">180</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -499,8 +524,8 @@ and other that covers the area A2</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2019-09-03)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-27)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

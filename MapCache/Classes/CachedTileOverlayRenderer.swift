@@ -10,8 +10,14 @@ import Foundation
 import MapKit
 
 ///
-/// A Tile overlay that supports to zoom
-class CachedTileOverlayZoomRenderer: MKTileOverlayRenderer {
+/// A Tile overlay that supports to zoom beyond the maximumZ
+///
+/// Tile servers allow from 1 to a certain zoom level typically between 16 and 21 (set in `MapCacheConfig.maximumZ`).
+/// Beyond that zoom levels tiles are not available in the server
+///
+/// This renderer takes the maximumZ tile and extracts the portion that would correspond to the requested level.
+///
+class CachedTileOverlayRenderer: MKTileOverlayRenderer {
     
     /// Indicates if the renderer is ready to draw. It´s always true
     /// - SeeAlso: [MKOverlayRenderer](https://developer.apple.com/documentation/mapkit/mkoverlayrenderer)
@@ -22,8 +28,9 @@ class CachedTileOverlayZoomRenderer: MKTileOverlayRenderer {
     }
     
     /// Draws the tile in the map
-    /// - Parameter mapRect the map rect where the tile has to be drawn
-    /// - Parameter zoomScale current zoom in the map
+    /// - Parameters:
+    ///     - mapRect: the map rect where the tiles need to be drawn
+    ///     - zoomScale: current zoom in the map
     override func draw(_ mapRect: MKMapRect, zoomScale: MKZoomScale, in context: CGContext) {
         
         // use default rendering if the type of overlay is not CachedTileOverlay
@@ -42,7 +49,7 @@ class CachedTileOverlayZoomRenderer: MKTileOverlayRenderer {
         let tiles = cachedOverlay.tilesInMapRect(rect: mapRect, scale: zoomScale)
         
         for tile in tiles {
-            cachedOverlay.loadTile(at: tile.path) { [weak self] (data, error) in
+            cachedOverlay.loadTile(at: tile.maximumZPath) { [weak self] (data, error) in
                 guard let strongSelf = self,
                       let data = data,
                       let provider = CGDataProvider(data: data as CFData),

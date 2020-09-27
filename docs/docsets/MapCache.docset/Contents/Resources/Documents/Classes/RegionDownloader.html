@@ -8,14 +8,22 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Class/RegionDownloader" class="dashAnchor"></a>
     <a title="RegionDownloader Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">MapCache Docs</a> (58% documented)</p>
+        <p><a href="../index.html">MapCache 0.7.0 Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -33,6 +41,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DiskCache.html">DiskCache</a>
@@ -64,6 +75,9 @@
                 <a href="../Enums/LatitudeError.html">LatitudeError</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/LoadTileMode.html">LoadTileMode</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/LongitudeError.html">LongitudeError</a>
               </li>
               <li class="nav-group-task">
@@ -93,10 +107,16 @@
                 <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/MKZoomScale.html">MKZoomScale</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/NSMutableData.html">NSMutableData</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
               </li>
             </ul>
           </li>
@@ -158,6 +178,9 @@
               <li class="nav-group-task">
                 <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomableTile.html">ZoomableTile</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -179,13 +202,25 @@
             <h1>RegionDownloader</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">@objc</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="kt">RegionDownloader</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                 </div>
               </div>
-            <p>Hey! I need to download this area
+            <p>Hey! I need to download this area of the map.
 No problemo.</p>
+
+<p>This class allows you to download all the tiles of a region of the map.</p>
+
+<p>Internally what it does is to iterate over every tile coordinate within the region and  request to a
+mapCache to download it by calling its <code>loadTile</code> method.</p>
+
+<p>In order to keep track of the downloaded data you can implement <code>ReguionDownloaderDelegate</code>.</p>
+
+<p>Based on the value of <code>incrementInPercentageNotification</code> the delegate will be called.</p>
+
+<p>Experimental</p>
 
           </section>
           <section class="section task-group-section">
@@ -204,7 +239,7 @@ No problemo.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Average number of bytes of a tile</p>
+                        <p>Approximation of the average number of bytes of a tile (used with 256x256 tiles).</p>
 
                       </div>
                       <div class="declaration">
@@ -231,7 +266,9 @@ No problemo.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>region that will be downloaded</p>
+                        <p>Region that will be downloaded.</p>
+
+<p>Initialized in the constructor</p>
 
                       </div>
                       <div class="declaration">
@@ -285,7 +322,7 @@ No problemo.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Total number of tiles to be downloaded</p>
+                        <p>Total number of tiles to be downloaded.</p>
 
                       </div>
                       <div class="declaration">
@@ -312,7 +349,7 @@ No problemo.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Number of tiles pending to be downloaded</p>
+                        <p>Number of tiles pending to be downloaded.</p>
 
                       </div>
                       <div class="declaration">
@@ -339,7 +376,7 @@ No problemo.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The variable that actually keeps the count of the downloaded bytes.</p>
 
                       </div>
                       <div class="declaration">
@@ -366,7 +403,7 @@ No problemo.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Total number of downloaded data bytes</p>
+                        <p>Total number of downloaded data bytes.</p>
 
                       </div>
                       <div class="declaration">
@@ -395,7 +432,7 @@ No problemo.</p>
                       <div class="abstract">
                         <p>Returns the average</p>
 
-<p>This can be used to estimate the</p>
+<p>This can be used to estimate the amount of bytes pending to be downloaded.</p>
 
                       </div>
                       <div class="declaration">
@@ -450,7 +487,8 @@ No problemo.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Number of successfully downloaded tiles.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -504,8 +542,8 @@ No problemo.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Keeps the number of tiles failes to be downloaded
-Publicly accessible through failledTIleDownloads</p>
+                        <p>Keeps the number of tiles failes to be downloaded.
+Publicly accessible through failledTIleDownloads.</p>
 
                       </div>
                       <div class="declaration">
@@ -560,9 +598,9 @@ Publicly accessible through failledTIleDownloads</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Percentage to notify thought delegate
-If set to &gt;100 will only notify on finish download
-If set to a percentage &lt; <code><a href="../Classes/RegionDownloader.html#/s:8MapCache16RegionDownloaderC20downloadedPercentageSdvp">downloadedPercentage</a></code>, will never notify.</p>
+                        <p>Percentage to notify thought delegate.
+If set to &gt;100 will only notify on finish download.
+If set to a percentage  smaller than <code><a href="../Classes/RegionDownloader.html#/s:8MapCache16RegionDownloaderC20downloadedPercentageSdvp">downloadedPercentage</a></code>, it will never notify.</p>
 
                       </div>
                       <div class="declaration">
@@ -589,9 +627,9 @@ If set to a percentage &lt; <code><a href="../Classes/RegionDownloader.html#/s:8
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The downloader will notify the delegate every time this
-For example if you set this to 5, it will notify when 5%, 10%, 15%, etc&hellip;
-default value 5.</p>
+                        <p>The downloader will notify the delegate every time this.
+For example if you set this to 5, it will notify when 5%, 10%, 15%, etc.
+Default value 5.</p>
 
                       </div>
                       <div class="declaration">
@@ -618,7 +656,7 @@ default value 5.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Last notified</p>
+                        <p>Last percentage notified to the deletage.</p>
 
                       </div>
                       <div class="declaration">
@@ -672,7 +710,7 @@ default value 5.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Delegate</p>
+                        <p>Delegate.</p>
 
                       </div>
                       <div class="declaration">
@@ -699,7 +737,7 @@ default value 5.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Queue to download stuff.</p>
+                        <p>Queue to download the stuff.</p>
 
                       </div>
                       <div class="declaration">
@@ -718,7 +756,7 @@ default value 5.</p>
                     <code>
                     <a name="/s:8MapCache16RegionDownloaderC03forC003mapB0AcA010TileCoordsC0C_AA0aB8Protocol_ptcfc"></a>
                     <a name="//apple_ref/swift/Method/init(forRegion:mapCache:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:8MapCache16RegionDownloaderC03forC003mapB0AcA010TileCoordsC0C_AA0aB8Protocol_ptcfc">init(forRegion:mapCache:)</a>
+                    <a class="token" href="#/s:8MapCache16RegionDownloaderC03forC003mapB0AcA010TileCoordsC0C_AA0aB8Protocol_ptcfc">init(forRegion:<wbr>mapCache:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -726,7 +764,7 @@ default value 5.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>initializes the downloader with the region and the MapCache</p>
+                        <p>Initializes the downloader with the region and the MapCache.</p>
 
                       </div>
                       <div class="declaration">
@@ -734,6 +772,64 @@ default value 5.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">forRegion</span> <span class="nv">region</span><span class="p">:</span> <span class="kt"><a href="../Classes/TileCoordsRegion.html">TileCoordsRegion</a></span><span class="p">,</span> <span class="nv">mapCache</span><span class="p">:</span> <span class="kt"><a href="../Protocols/MapCacheProtocol.html">MapCacheProtocol</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>forRegion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the region to be downloaded.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mapCache</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the <code><a href="../Classes/MapCache.html">MapCache</a></code> implementation used to download and store the downloaded data</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache16RegionDownloaderC13resetCountersyyF"></a>
+                    <a name="//apple_ref/swift/Method/resetCounters()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache16RegionDownloaderC13resetCountersyyF">resetCounters()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Resets downloader counters.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">resetCounters</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -753,7 +849,7 @@ default value 5.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Starts download</p>
+                        <p>Starts download.</p>
 
                       </div>
                       <div class="declaration">
@@ -781,7 +877,7 @@ default value 5.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Returns an estimation of the total number of bytes the whole region may occupy.
-It is an estimation.</p>
+Again, it is an estimation.</p>
 
                       </div>
                       <div class="declaration">
@@ -800,8 +896,8 @@ It is an estimation.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2019-09-03)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-27)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

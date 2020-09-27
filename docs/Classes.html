@@ -8,14 +8,22 @@
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Section/Classes" class="dashAnchor"></a>
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">MapCache Docs</a> (58% documented)</p>
+        <p><a href="index.html">MapCache 0.7.0 Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -33,6 +41,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Classes/CachedTileOverlay.html">CachedTileOverlay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/DiskCache.html">DiskCache</a>
@@ -64,6 +75,9 @@
                 <a href="Enums/LatitudeError.html">LatitudeError</a>
               </li>
               <li class="nav-group-task">
+                <a href="Enums/LoadTileMode.html">LoadTileMode</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/LongitudeError.html">LongitudeError</a>
               </li>
               <li class="nav-group-task">
@@ -93,10 +107,16 @@
                 <a href="Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
               </li>
               <li class="nav-group-task">
+                <a href="Extensions/MKZoomScale.html">MKZoomScale</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/NSMutableData.html">NSMutableData</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/URL.html">URL</a>
               </li>
             </ul>
           </li>
@@ -158,6 +178,9 @@
               <li class="nav-group-task">
                 <a href="Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Structs/ZoomableTile.html">ZoomableTile</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -196,7 +219,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Overwrites the default overlay to store downloaded images</p>
+                        <p>Whenever a tile is requested by the <code>MapView</code>, it calls the <code>MKTileOverlay.loadTile</code>.
+This class overrides the default <code>MKTileOverlay</code>to provide support to <code><a href="Classes/MapCache.html">MapCache</a></code>.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code>MkMapView+MapCache</code>
+
+</div>
 
                         <a href="Classes/CachedTileOverlay.html" class="slightly-smaller">See more</a>
                       </div>
@@ -211,10 +240,39 @@
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@MapCache@objc(cs)CachedTileOverlayRenderer"></a>
+                    <a name="//apple_ref/swift/Class/CachedTileOverlayRenderer" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@MapCache@objc(cs)CachedTileOverlayRenderer">CachedTileOverlayRenderer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A Tile overlay that supports to zoom beyond the maximumZ</p>
+
+<p>Tile servers allow from 1 to a certain zoom level typically between 16 and 21 (set in <code><a href="Structs/MapCacheConfig.html#/s:8MapCache0aB6ConfigV8maximumZSivp">MapCacheConfig.maximumZ</a></code>).
+Beyond that zoom levels tiles are not available in the server</p>
+
+<p>This renderer takes the maximumZ tile and extracts the portion that would correspond to the requested level.</p>
+
+                        <a href="Classes/CachedTileOverlayRenderer.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">CachedTileOverlayRenderer</span> <span class="p">:</span> <span class="kt">MKTileOverlayRenderer</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -228,7 +286,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A specialized cache for storing data in disk.
+Based on <a href="https://github.com/Haneke/HanekeSwift">Haneke Disk Cache</a> and customized for the MapCache project.</p>
 
                         <a href="Classes/DiskCache.html" class="slightly-smaller">See more</a>
                       </div>
@@ -243,10 +302,6 @@
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -260,7 +315,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>HashBase
+The following is an altered source version that only includes MD5. The original software can be found at:
+<a href="https://github.com/krzyzanowskim/CryptoSwift">https://github.com/krzyzanowskim/CryptoSwift</a></p>
 
                         <a href="Classes/HashBase.html" class="slightly-smaller">See more</a>
                       </div>
@@ -288,7 +345,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>An actual implementation of the MD5
+The following is an altered source version that only includes MD5. The original software can be found at:
+<a href="https://github.com/krzyzanowskim/CryptoSwift">https://github.com/krzyzanowskim/CryptoSwift</a></p>
 
                         <a href="Classes/MD5.html" class="slightly-smaller">See more</a>
                       </div>
@@ -303,10 +362,6 @@
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -320,7 +375,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The real brain</p>
+                        <p>This is the main implementation of the MapCacheProtocol, the actual cache</p>
 
                         <a href="Classes/MapCache.html" class="slightly-smaller">See more</a>
                       </div>
@@ -335,10 +390,6 @@
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -352,8 +403,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Hey! I need to download this area
+                        <p>Hey! I need to download this area of the map.
 No problemo.</p>
+
+<p>This class allows you to download all the tiles of a region of the map.</p>
+
+<p>Internally what it does is to iterate over every tile coordinate within the region and  request to a
+mapCache to download it by calling its <code>loadTile</code> method.</p>
+
+<p>In order to keep track of the downloaded data you can implement <code>ReguionDownloaderDelegate</code>.</p>
+
+<p>Based on the value of <code>incrementInPercentageNotification</code> the delegate will be called.</p>
+
+<p>Experimental</p>
 
                         <a href="Classes/RegionDownloader.html" class="slightly-smaller">See more</a>
                       </div>
@@ -369,10 +431,6 @@ No problemo.</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -428,10 +486,6 @@ the max tile would be 1023 (2^10 - 1 = 1024 - 1)</p>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -491,8 +545,8 @@ we may end up with two sub-regions.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2019-09-03)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-09-27)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
