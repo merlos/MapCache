@@ -8,7 +8,7 @@
 import Foundation
 
 /// Iterator of a TileRange. 
-public struct TileRangeIterator: IteratorProtocol {
+open struct TileRangeIterator: IteratorProtocol {
     
     /// Range for the counter
     let range: TileRange

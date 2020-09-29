@@ -11,7 +11,7 @@ import MapKit
 ///
 /// Specifies a single tile and area of the tile that should upscaled.
 ///
-struct ZoomableTile {
+public struct ZoomableTile {
     
     /// Path for the tile with `maximumZ` supported by the tile server set in the config.
     /// This is the path with the best resolution tile from wich this zoomable tile can be interpolated.
