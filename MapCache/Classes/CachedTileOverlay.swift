@@ -15,7 +15,7 @@ import MapKit
 ///
 /// - SeeAlso: `MkMapView+MapCache`
 ///
-public class CachedTileOverlay : MKTileOverlay {
+open class CachedTileOverlay : MKTileOverlay {
     
     /// A class that implements the `MapCacheProtocol`
     let mapCache : MapCacheProtocol

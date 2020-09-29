@@ -10,7 +10,7 @@ import Foundation
 /// Iterator that allows the use of ZoomRange in a for loop.
 ///
 /// - SeeAlso: [IteratorProtocol](https://developer.apple.com/documentation/swift/iteratorprotocol)
-public struct ZoomRangeIterator: IteratorProtocol {
+open struct ZoomRangeIterator: IteratorProtocol {
     
     /// Keeps the counter of the iterator.
     var  counter : UInt8 = 0
