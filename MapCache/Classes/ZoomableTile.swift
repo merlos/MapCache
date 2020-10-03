@@ -23,6 +23,6 @@ public struct ZoomableTile {
     
     /// Delta from given tile z to desired tile z.
     /// Example: maximum zoom supported by the server is 20 and the desired tile is in zoom level 24, the delta is 4.
-    let overZoom: Zoom
+    let overZoom: Int
 }
 
