@@ -11,7 +11,12 @@ before_install:
 # - pod install --project-directory=Example
   - gem install xcpretty
 script:
+
+# Display some environment info.
 - xcodebuild -version
 - xcodebuild -showsdks
-- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/MapCache.xcworkspace -scheme MapCache-Example -sdk iphonesimulator14.0 ONLY_ACTIVE_ARCH=NO | xcpretty
+- xcrun xctrace list devices
+
+# Build-a-bear
+- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/MapCache.xcworkspace -scheme MapCache-Example -sdk iphonesimulator14.0 -destination 'platform=iOS Simulator,name=iPhone 11' ONLY_ACTIVE_ARCH=NO | xcpretty
 - pod lib lint
