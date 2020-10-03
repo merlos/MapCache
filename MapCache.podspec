@@ -13,7 +13,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MapCache'
-  s.version          = '0.8.2'
+  s.version          = '0.9.0'
   s.summary          = 'Map caching for iOS. Support offline maps in your app.'
   s.description      = <<-DESC
 Cache for iOS applications for supporting offline tile maps. Downloads and keeps tiles in disk as user browses the map. Also, it can download a complete area at all different zoom levels for a complete offline experience (beta).
