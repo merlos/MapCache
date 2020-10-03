@@ -108,7 +108,7 @@ class DiskCacheSpecs: QuickSpec {
                     result = $0
                 })
 
-                expect(result).toEventually(equal(data1!), timeout: 2)
+                expect(result).toEventually(equal(data1!), timeout: .seconds(2))
             }
             
             it("cannot find a file that is not in the cache") {
@@ -116,7 +116,7 @@ class DiskCacheSpecs: QuickSpec {
                 diskCache.fetchDataSync(forKey: "filename1", failure: { error in
                     errorCode = (error! as NSError).code
                 }, success: { _ in })
-                expect(errorCode).toEventually(equal(NSFileReadNoSuchFileError), timeout: 1)
+                expect(errorCode).toEventually(equal(NSFileReadNoSuchFileError), timeout: .seconds(1))
             }
             
             //it("can handle weird names2") {
@@ -141,7 +141,7 @@ class DiskCacheSpecs: QuickSpec {
                     result = $0
                 })
 
-                expect(result).toEventually(equal(data1!), timeout: 1)
+                expect(result).toEventually(equal(data1!), timeout: .seconds(1))
             }
             
             it("can remove the file from the cache") {

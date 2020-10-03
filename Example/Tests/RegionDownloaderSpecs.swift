@@ -103,7 +103,7 @@ class RegionDownloaderSpecs: QuickSpec {
                 let delegate = DelegateTest()
                 downloader.delegate = delegate
                 downloader.start()
-                expect(delegate.finished).toEventually(beTrue(), timeout: 10)
+                expect(delegate.finished).toEventually(beTrue(), timeout: .seconds(10))
 
             }
         }
