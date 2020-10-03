@@ -56,6 +56,7 @@ class DiskCacheSpecs: QuickSpec {
                 cacheName = cacheBaseName + String(Int.random(in: 1..<100000000))
                 try! FileManager.default.removeItem(at: DiskCache.baseURL())
                 diskCache = DiskCache(withName: cacheName)
+                expect(diskCache.diskSize).to(equal(0))
             }
             
             afterEach {
@@ -162,6 +163,7 @@ class DiskCacheSpecs: QuickSpec {
             }
             
             it("can remove all items from the cache") {
+                expect(diskCache.diskSize).to(equal(0))
                 diskCache.setDataSync(data1!, forKey: filename1)
                 expect(diskCache.diskSize).to(equal(4096))
                 diskCache.setDataSync(data1!, forKey: longFileName)
