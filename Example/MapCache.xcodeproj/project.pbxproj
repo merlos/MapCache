@@ -54,6 +54,9 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		86806D7962E8E2CA29F7E1EF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		89293F562528CF9C00D8ABA2 /* .jazzy.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = .jazzy.yaml; path = ../.jazzy.yaml; sourceTree = "<group>"; };
+		89293F572528CF9C00D8ABA2 /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
+		89293F582528CF9C00D8ABA2 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
 		893072CB22A47E4A008612A1 /* DiskCacheSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskCacheSpecs.swift; sourceTree = "<group>"; };
 		893072CD22A47F06008612A1 /* String+DiskCacheSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DiskCacheSpecs.swift"; sourceTree = "<group>"; };
 		895E719D22B34F2A0006977C /* ZoomRangeSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomRangeSpecs.swift; sourceTree = "<group>"; };
@@ -172,6 +175,9 @@
 			children = (
 				EEF136F62BE41AE85E8E4DEA /* MapCache.podspec */,
 				86806D7962E8E2CA29F7E1EF /* README.md */,
+				89293F562528CF9C00D8ABA2 /* .jazzy.yaml */,
+				89293F572528CF9C00D8ABA2 /* .travis.yml */,
+				89293F582528CF9C00D8ABA2 /* Package.swift */,
 				98B68CF07B3AC619DB7870E1 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
@@ -262,10 +268,9 @@
 			};
 			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "MapCache" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -485,9 +490,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -534,8 +540,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;

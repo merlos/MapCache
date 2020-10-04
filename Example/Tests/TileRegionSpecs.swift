@@ -55,8 +55,8 @@ class TileRegionSpecs: QuickSpec {
             let tileCoordsRegion2 = TileCoordsRegion(topLeft: topLeft2,
                                                      bottomRight: bottomRight2)
             it("can provide the zoom range") {
-                expect(tileCoordsRegion.zoomRange.min).to(equal(10))
-                expect(tileCoordsRegion.zoomRange.max).to(equal(19))
+                expect(tileCoordsRegion.zoomRange.min() ).to(equal(10))
+                expect(tileCoordsRegion.zoomRange.max()).to(equal(19))
             }
             
             it("can return the tile ranges for a particular zoom") {

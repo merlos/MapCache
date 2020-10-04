@@ -3,7 +3,7 @@ This application makes use of the following third party libraries:
 
 ## MapCache
 
-Copyright (c) 2019 Juan M. Merlos @merlos
+Copyright (c) 2019-2020 Juan M. Merlos @merlos
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
