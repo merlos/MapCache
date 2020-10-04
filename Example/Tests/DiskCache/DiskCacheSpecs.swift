@@ -11,9 +11,15 @@ import Nimble
 @testable import MapCache
 
 /// Unit Testing for `DiskCache`
+
 class DiskCacheSpecs: QuickSpec {
+
     override func spec() {
-        
+        // Increase the global timeout to 5 seconds:
+        Nimble.AsyncDefaults.timeout = .seconds(5)
+        // Slow the polling interval to 0.2 seconds:
+        Nimble.AsyncDefaults.pollInterval = .milliseconds(200)
+
         describe("DiskCache initialization") {
             it("can create the cache folder") {
                 let diskCache = DiskCache(withName: "path")
@@ -79,7 +85,7 @@ class DiskCacheSpecs: QuickSpec {
                 
                 diskCache.setData(data!, forKey: filename)
                 let filePath = diskCache.folderURL.appendingPathComponent(filename.MD5Filename()).path
-                expect(FileManager.default.fileExists(atPath: filePath)).toEventually(equal(true))
+                expect(FileManager.default.fileExists(atPath: filePath)).toEventually(equal(true), timeout: .seconds(2))
             }
             
             it("keeps track of its disk size") {
@@ -120,13 +126,6 @@ class DiskCacheSpecs: QuickSpec {
                 expect(errorCode).toEventually(equal(NSFileReadNoSuchFileError), timeout: .seconds(1))
             }
             
-            //it("can handle weird names2") {
-            //    let diskCache2 = DiskCache(withName: "weird")
-            //   let weird1 = "ºª|!@#·$%&¬/()= ?'¿¡^`[]+*¨´{}ç;,.-<>€"
-            //    print("weird: \(diskCache2.path(forKey: weird1))")
-            //    diskCache2.setData(data1!, forKey: weird1)
-            //}
-            
             it("can add files with weird names") {
                 let weird1 = "ºª|!@#·$%&¬/()= ?'¿¡^`[]+*¨´{}ç;,.-<>€"
 //                print("weird: \(diskCache.path(forKey: weird1))")
@@ -142,14 +141,14 @@ class DiskCacheSpecs: QuickSpec {
                     result = $0
                 })
 
-                expect(result).toEventually(equal(data1!), timeout: .seconds(1))
+                expect(result).toEventually(equal(data1!), timeout: .seconds(2))
             }
             
             it("can remove the file from the cache") {
                 // add the file
                 expect(diskCache.diskSize).to(equal(0))
                 diskCache.setDataSync(data1!, forKey: filename1)
-                expect(diskCache.diskSize).to(equal(4096))
+                expect(diskCache.diskSize).toEventually(equal(4096))
                 // remove the file
                 diskCache.removeData(withKey: filename1)
                 
@@ -165,9 +164,9 @@ class DiskCacheSpecs: QuickSpec {
             it("can remove all items from the cache") {
                 expect(diskCache.diskSize).to(equal(0))
                 diskCache.setDataSync(data1!, forKey: filename1)
-                expect(diskCache.diskSize).to(equal(4096))
+                expect(diskCache.diskSize).toEventually(equal(4096))
                 diskCache.setDataSync(data1!, forKey: longFileName)
-                expect(diskCache.diskSize).to(equal(8192))
+                expect(diskCache.diskSize).toEventually(equal(8192))
                 diskCache.removeAllData({})
                 expect(diskCache.calculateDiskSize()).toEventually(equal(0))
             }
