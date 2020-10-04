@@ -19,7 +19,7 @@ script:
 
 # Build-a-bear
 
-- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/MapCache.xcworkspace -scheme MapCache-Example -sdk iphonesimulator14.0 -destination 'platform=iOS Simulator,name=iPhone 11' ONLY_ACTIVE_ARCH=NO | grep -E "Test Case |\[MAPCACHE\]|error:"
+#- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/MapCache.xcworkspace -scheme MapCache-Example -sdk iphonesimulator14.0 -destination 'platform=iOS Simulator,name=iPhone 11' ONLY_ACTIVE_ARCH=NO | grep -E "Test Case |\[MAPCACHE\]|error:"
 
 - set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/MapCache.xcworkspace -scheme MapCache-Example -sdk iphonesimulator14.0 -destination 'platform=iOS Simulator,name=iPhone 11' ONLY_ACTIVE_ARCH=NO | xcpretty
 - pod lib lint --allow-warnings
