@@ -145,10 +145,11 @@ class DiskCacheSpecs: QuickSpec {
             }
             
             it("can remove the file from the cache") {
+                print("----------------------------")
                 // add the file
                 expect(diskCache.diskSize).to(equal(0))
                 diskCache.setDataSync(data1!, forKey: filename1)
-                expect(diskCache.diskSize).toEventually(equal(4096))
+                expect(diskCache.diskSize).to(equal(4096))
                 // remove the file
                 diskCache.removeData(withKey: filename1)
                 
@@ -162,11 +163,12 @@ class DiskCacheSpecs: QuickSpec {
             }
             
             it("can remove all items from the cache") {
+                print("folder URL", diskCache.folderURL)
                 expect(diskCache.diskSize).to(equal(0))
                 diskCache.setDataSync(data1!, forKey: filename1)
-                expect(diskCache.diskSize).toEventually(equal(4096))
+                expect(diskCache.diskSize).to(equal(4096))
                 diskCache.setDataSync(data1!, forKey: longFileName)
-                expect(diskCache.diskSize).toEventually(equal(8192))
+                expect(diskCache.diskSize).to(equal(8192))
                 diskCache.removeAllData({})
                 expect(diskCache.calculateDiskSize()).toEventually(equal(0))
             }

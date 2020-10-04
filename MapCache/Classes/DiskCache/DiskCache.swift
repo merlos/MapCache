@@ -107,7 +107,7 @@ open class DiskCache {
     /// Sets the data for the key synchronously.
     open func setDataSync(_ data: Data, forKey key: String) {
         let filePath = path(forKey: key)
-        
+        Log.debug(message: "DiskCache::setDataSync filePath: \(filePath) data count: \(data.count) key: \(key) diskBlocks:\(Double(data.count) / 4096.0)")
         //If the file exists get the current file diskSize.
         let fileURL = URL(fileURLWithPath: filePath)
         do {
@@ -117,7 +117,7 @@ open class DiskCache {
         do {
             try data.write(to: URL(fileURLWithPath: filePath), options: Data.WritingOptions.atomicWrite)
         } catch {
-            Log.error(message: "Failed to write key \(key)", error: error)
+            Log.error(message: "setDataSync Failed to write key: \(key) filepath: \(filePath)", error: error)
         }
         //Now add to the diskSize the file size
         var diskBlocks = Double(data.count) / 4096.0
