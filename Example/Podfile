@@ -1,12 +1,37 @@
+
+platform :ios, '9.0'
 use_frameworks!
 
-target 'MapCache_Example' do
-  pod 'MapCache', :path => '../'
+install! 'cocoapods', :deterministic_uuids => false, :warn_for_multiple_pod_sources => false, :warn_for_unused_master_specs_repo => false
 
-  target 'MapCache_Tests' do
-    inherit! :search_paths
-    pod 'OHHTTPStubs/Swift','~> 8.0.0'
-    pod 'Quick', '~> 3.0.0'
-    pod 'Nimble', '~> 9.0.0-rc.3'
+def shared_pods
+  pod 'MapCache', :path => '../'
+end
+
+target 'MapCache_Example' do
+
+  shared_pods
+
+end
+
+target 'MapCache_Tests' do
+
+  shared_pods
+  
+  pod 'OHHTTPStubs/Swift','~> 8.0'
+  pod 'Quick', '~> 3.0'
+  pod 'Nimble', '~> 9.0'
+
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+
+      if Gem::Version.new('9.0') < Gem::Version.new(config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'])
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '9.0'
+      end
+
+    end
   end
 end
