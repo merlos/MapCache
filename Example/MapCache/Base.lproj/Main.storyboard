@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,66 +19,83 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dwC-V5-0co" userLabel="Map">
-                                <rect key="frame" x="0.0" y="-8" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </mapView>
-                            <view clipsSubviews="YES" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vE0-SZ-UXH">
-                                <rect key="frame" x="0.0" y="0.0" width="500" height="99"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view clipsSubviews="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="vE0-SZ-UXH">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7EQ-Hp-CVK">
-                                        <rect key="frame" x="122" y="48" width="71" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="Clear"/>
-                                        <connections>
-                                            <action selector="clearCache:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="m3S-Qp-RDR"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0Z-in-k23" userLabel="Update Size Button">
-                                        <rect key="frame" x="0.0" y="69" width="116" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <accessibility key="accessibilityConfiguration" hint="updates value of the cache size" label="Update Size">
-                                            <accessibilityTraits key="traits" button="YES"/>
-                                        </accessibility>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                        <state key="normal" title="Refresh"/>
-                                        <connections>
-                                            <action selector="updateSize:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3FC-cx-Tx6"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOt-Fe-b8G">
-                                        <rect key="frame" x="201" y="48" width="149" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Download Region"/>
-                                        <connections>
-                                            <segue destination="kyc-CB-ghz" kind="presentation" id="rUu-fY-38n"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="eoS-8a-Nb9">
+                                        <rect key="frame" x="45" y="11.5" width="285" height="76"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="-7" translatesAutoresizingMaskIntoConstraints="NO" id="0j9-pQ-t3h">
+                                                <rect key="frame" x="0.0" y="0.0" width="91" height="76"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cache Size (bytes)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21V-Um-U9Y">
+                                                        <rect key="frame" x="0.0" y="0.0" width="91" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsd-4Y-LN2">
+                                                        <rect key="frame" x="0.0" y="23" width="91" height="30"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0Z-in-k23" userLabel="Update Size Button">
+                                                        <rect key="frame" x="0.0" y="46" width="91" height="30"/>
+                                                        <accessibility key="accessibilityConfiguration" hint="updates value of the cache size" label="Update Size">
+                                                            <accessibilityTraits key="traits" button="YES"/>
+                                                        </accessibility>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                        <state key="normal" title="Refresh"/>
+                                                        <connections>
+                                                            <action selector="updateSize:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3FC-cx-Tx6"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7EQ-Hp-CVK">
+                                                <rect key="frame" x="110" y="46" width="36" height="30"/>
+                                                <color key="backgroundColor" systemColor="lightTextColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <state key="normal" title="Clear"/>
+                                                <connections>
+                                                    <action selector="clearCache:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="m3S-Qp-RDR"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOt-Fe-b8G">
+                                                <rect key="frame" x="165" y="46" width="120" height="30"/>
+                                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Download Region"/>
+                                                <connections>
+                                                    <segue destination="kyc-CB-ghz" kind="presentation" id="rUu-fY-38n"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
+                                <constraints>
+                                    <constraint firstItem="eoS-8a-Nb9" firstAttribute="centerX" secondItem="vE0-SZ-UXH" secondAttribute="centerX" id="7ge-4l-iFh"/>
+                                    <constraint firstAttribute="height" constant="99" id="YVh-kG-uQN"/>
+                                    <constraint firstItem="eoS-8a-Nb9" firstAttribute="centerY" secondItem="vE0-SZ-UXH" secondAttribute="centerY" id="Zi4-gI-2mB"/>
+                                </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsd-4Y-LN2">
-                                <rect key="frame" x="9" y="47" width="110" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cache Size (bytes)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21V-Um-U9Y">
-                                <rect key="frame" x="26" y="39" width="91" height="12"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dwC-V5-0co" userLabel="Map">
+                                <rect key="frame" x="0.0" y="99" width="375" height="568"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vE0-SZ-UXH" secondAttribute="trailing" id="10l-7q-i84"/>
+                            <constraint firstItem="dwC-V5-0co" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="5TB-Yd-cyk"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="dwC-V5-0co" secondAttribute="bottom" id="Pd0-Tl-16u"/>
+                            <constraint firstItem="dwC-V5-0co" firstAttribute="top" secondItem="vE0-SZ-UXH" secondAttribute="bottom" id="scU-jI-L48"/>
+                            <constraint firstAttribute="trailing" secondItem="dwC-V5-0co" secondAttribute="trailing" id="vCa-n1-T4c"/>
+                            <constraint firstItem="vE0-SZ-UXH" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="ywG-2T-0uJ"/>
+                            <constraint firstItem="vE0-SZ-UXH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="zUS-No-ve2"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="cacheSizeLabel" destination="Lsd-4Y-LN2" id="tnk-Vq-9uT"/>
@@ -104,9 +121,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dId-17-Wac">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dId-17-Wac">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                 <items>
                                     <navigationItem title="Download region" id="19H-T6-Qu9">
                                         <barButtonItem key="rightBarButtonItem" title="Done" id="TDO-Di-KyF">
@@ -117,75 +133,79 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gul-O5-AUM">
-                                <rect key="frame" x="0.0" y="72" width="375" height="505"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gul-O5-AUM">
+                                <rect key="frame" x="0.0" y="56" width="375" height="527"/>
                             </mapView>
-                            <view alpha="0.30000001192092896" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mhf-Xv-732" userLabel="Right Border View">
-                                <rect key="frame" x="350" y="72" width="25" height="404"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r81-lv-Rwe" userLabel="Left Border View">
-                                <rect key="frame" x="0.0" y="72" width="26" height="404"/>
-                                <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
-                            </view>
-                            <view alpha="0.30000001192092896" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NiU-Pc-nlU" userLabel="Top Border View">
-                                <rect key="frame" x="26" y="72" width="324" height="38"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XAQ-zq-8WQ" userLabel="Bottom Border View">
-                                <rect key="frame" x="0.0" y="476" width="375" height="37"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
-                            </view>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="abU-YW-u0D">
                                 <rect key="frame" x="0.0" y="577" width="375" height="2"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             </progressView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZm-44-4an">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For Testing only. OpenStreetMaps does not allow predonwload regions. (aprox. 500 tiles works fine)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gc8-FU-iPu">
+                                <rect key="frame" x="0.0" y="490" width="375" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.0" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fDV-Bg-6Ys" userLabel="Bottom Border View">
+                                <rect key="frame" x="0.0" y="527" width="375" height="56"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="_" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIw-AR-t92">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" systemColor="tableCellGroupedBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="11" minValue="1" maxValue="19" translatesAutoresizingMaskIntoConstraints="NO" id="qMo-0h-Hge">
+                                        <rect key="frame" x="23" y="26" width="329" height="31"/>
+                                        <connections>
+                                            <action selector="sliderValueChanged:" destination="kyc-CB-ghz" eventType="valueChanged" id="bEg-w0-eKi"/>
+                                        </connections>
+                                    </slider>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="pIw-AR-t92" secondAttribute="trailing" id="0jQ-RT-wj3"/>
+                                    <constraint firstAttribute="trailing" secondItem="qMo-0h-Hge" secondAttribute="trailing" constant="25" id="D6m-ci-7Bz"/>
+                                    <constraint firstItem="qMo-0h-Hge" firstAttribute="leading" secondItem="fDV-Bg-6Ys" secondAttribute="leading" constant="25" id="Hq9-xC-nfg"/>
+                                    <constraint firstItem="pIw-AR-t92" firstAttribute="top" secondItem="fDV-Bg-6Ys" secondAttribute="top" id="Ikz-5G-7Xd"/>
+                                    <constraint firstItem="pIw-AR-t92" firstAttribute="leading" secondItem="fDV-Bg-6Ys" secondAttribute="leading" id="P2Y-LI-d6n"/>
+                                    <constraint firstAttribute="bottom" secondItem="qMo-0h-Hge" secondAttribute="bottom" id="cEi-9Y-4cR"/>
+                                    <constraint firstItem="qMo-0h-Hge" firstAttribute="top" secondItem="pIw-AR-t92" secondAttribute="bottom" constant="8" symbolic="YES" id="mx3-bJ-Q4C"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZm-44-4an">
                                 <rect key="frame" x="0.0" y="583" width="375" height="64"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="vBF-7W-ZXQ"/>
+                                </constraints>
                                 <state key="normal" title="Download Region"/>
                                 <connections>
                                     <action selector="downloadRegion:" destination="kyc-CB-ghz" eventType="touchUpInside" id="8cr-C9-Z7y"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="For Testing only. OpenStreetMaps does not allow predonwload regions. (aprox. 500 tiles works fine)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gc8-FU-iPu">
-                                <rect key="frame" x="0.0" y="476" width="375" height="37"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" white="0.0" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view alpha="0.75" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fDV-Bg-6Ys" userLabel="Bottom Border View">
-                                <rect key="frame" x="1" y="511" width="375" height="68"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="11" minValue="1" maxValue="19" translatesAutoresizingMaskIntoConstraints="NO" id="qMo-0h-Hge">
-                                        <rect key="frame" x="23" y="39" width="328" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <connections>
-                                            <action selector="sliderValueChanged:" destination="kyc-CB-ghz" eventType="valueChanged" id="bEg-w0-eKi"/>
-                                        </connections>
-                                    </slider>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="_" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIw-AR-t92">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="28"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ccj-19-m1N" firstAttribute="top" secondItem="NZm-44-4an" secondAttribute="bottom" id="4dS-u3-eLe"/>
+                            <constraint firstAttribute="trailing" secondItem="gc8-FU-iPu" secondAttribute="trailing" id="5AW-tk-qzE"/>
+                            <constraint firstItem="NZm-44-4an" firstAttribute="leading" secondItem="ezZ-5I-yxf" secondAttribute="leading" id="BvV-eL-g6O"/>
+                            <constraint firstItem="dId-17-Wac" firstAttribute="leading" secondItem="ezZ-5I-yxf" secondAttribute="leading" id="DbH-p1-74O"/>
+                            <constraint firstAttribute="trailing" secondItem="dId-17-Wac" secondAttribute="trailing" id="Fn9-2S-Ye4"/>
+                            <constraint firstItem="gul-O5-AUM" firstAttribute="leading" secondItem="ezZ-5I-yxf" secondAttribute="leading" id="Hwj-5e-qev"/>
+                            <constraint firstItem="dId-17-Wac" firstAttribute="top" secondItem="iC1-Wf-Jep" secondAttribute="bottom" id="IOV-tk-o6c"/>
+                            <constraint firstAttribute="trailing" secondItem="fDV-Bg-6Ys" secondAttribute="trailing" id="KAc-WB-cZ7"/>
+                            <constraint firstAttribute="trailing" secondItem="gul-O5-AUM" secondAttribute="trailing" id="QGK-0z-mVp"/>
+                            <constraint firstItem="fDV-Bg-6Ys" firstAttribute="leading" secondItem="ezZ-5I-yxf" secondAttribute="leading" id="XMJ-4P-NHC"/>
+                            <constraint firstItem="gc8-FU-iPu" firstAttribute="leading" secondItem="ezZ-5I-yxf" secondAttribute="leading" id="e1B-XT-kH0"/>
+                            <constraint firstAttribute="trailing" secondItem="NZm-44-4an" secondAttribute="trailing" id="ei4-aa-dqm"/>
+                            <constraint firstAttribute="trailing" secondItem="gul-O5-AUM" secondAttribute="trailing" id="fLe-bg-Sj4"/>
+                            <constraint firstItem="NZm-44-4an" firstAttribute="top" secondItem="gul-O5-AUM" secondAttribute="bottom" id="lDx-PH-xFN"/>
+                            <constraint firstItem="gul-O5-AUM" firstAttribute="leading" secondItem="ezZ-5I-yxf" secondAttribute="leading" id="oEr-xe-iva"/>
+                            <constraint firstItem="gul-O5-AUM" firstAttribute="top" secondItem="dId-17-Wac" secondAttribute="bottom" id="pDc-0j-ome"/>
+                            <constraint firstItem="fDV-Bg-6Ys" firstAttribute="top" secondItem="gc8-FU-iPu" secondAttribute="bottom" constant="8" id="v9a-r6-9v6"/>
+                            <constraint firstItem="NZm-44-4an" firstAttribute="top" secondItem="fDV-Bg-6Ys" secondAttribute="bottom" id="y6r-t1-gla"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="downloadButton" destination="NZm-44-4an" id="Ejm-8Y-AtC"/>
@@ -200,4 +220,12 @@
             <point key="canvasLocation" x="893.60000000000002" y="114.69265367316342"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="lightTextColor">
+            <color white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tableCellGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

@@ -11,6 +11,7 @@
 //
 
 import Foundation
+import CommonCrypto
 
 ///
 /// Extension that adds a few methods that are useful for the `DiskCache`.
@@ -30,13 +31,24 @@ extension String {
             return self
         }
         
-        let MD5Calculator = MD5(Array(data))
-        let MD5Data = MD5Calculator.calculate()
-        let MD5String = NSMutableString()
-        for c in MD5Data {
-            MD5String.appendFormat("%02x", c)
+        var digest = Data(count: Int(CC_MD5_DIGEST_LENGTH))
+        _ = digest.withUnsafeMutableBytes{ digestBytes -> UInt8 in
+            data.withUnsafeBytes { messageBytes -> UInt8 in
+                if let mb = messageBytes.baseAddress, let db = digestBytes.bindMemory(to: UInt8.self).baseAddress {
+                    CC_MD5(mb, CC_LONG(self.count), db)
+                }
+                return 0
+            }
         }
-        return MD5String as String
+        return digest.map { String(format: "%02hhx", $0) }.joined()
+        
+//        let MD5Calculator = MD5(Array(data))
+//        let MD5Data = MD5Calculator.calculate()
+//        let MD5String = NSMutableString()
+//        for c in MD5Data {
+//            MD5String.appendFormat("%02x", c)
+//        }
+//        return MD5String as String
     }
     
     /// Returns the path for the filename whose name is hold in this string.
