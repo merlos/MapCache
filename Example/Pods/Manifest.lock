@@ -1,0 +1,43 @@
+PODS:
+  - MapCache (0.9.1)
+  - Nimble (9.0.0)
+  - OHHTTPStubs/Core (8.0.0)
+  - OHHTTPStubs/Default (8.0.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (8.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (8.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (8.0.0)
+  - OHHTTPStubs/Swift (8.0.0):
+    - OHHTTPStubs/Default
+  - Quick (3.0.0)
+
+DEPENDENCIES:
+  - MapCache (from `../`)
+  - Nimble (~> 9.0)
+  - OHHTTPStubs/Swift (~> 8.0)
+  - Quick (~> 3.0)
+
+SPEC REPOS:
+  trunk:
+    - Nimble
+    - OHHTTPStubs
+    - Quick
+
+EXTERNAL SOURCES:
+  MapCache:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MapCache: ac46a9582d667a7ab6ebc8d8a6553d4bac8b52f4
+  Nimble: 3b4ec3fd40f1dc178058e0981107721c615643d8
+  OHHTTPStubs: 9cbce6364bec557cc3439aa6bb7514670d780881
+  Quick: 6d9559f40647bc4d510103842ef2fdd882d753e2
+
+PODFILE CHECKSUM: 41a15b91197df0b32d4d1babd819a23e3b927d4c
+
+COCOAPODS: 1.10.0
