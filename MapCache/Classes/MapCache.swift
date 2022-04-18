@@ -118,7 +118,7 @@ open class MapCache : MapCacheProtocol {
     ///
     /// - SeeAlso: `LoadTileMode`
     ///
-    public func loadTile(at path: MKTileOverlayPath, result: @escaping (Data?, Error?) -> Void) {
+    open func loadTile(at path: MKTileOverlayPath, result: @escaping (Data?, Error?) -> Void) {
         
         let key = cacheKey(forPath: path)
         
@@ -159,6 +159,88 @@ open class MapCache : MapCacheProtocol {
                 failure: {error in result(nil, error)},
                 success: {data in result(data, nil)})
         }
+    }
+    
+    /// Load cached tile identification information
+    /// - Parameter path: the tile path
+    /// - Returns: etag if present
+    open func loadETag(forPath path: MKTileOverlayPath) -> String? {
+        return nil
+    }
+    
+    /// Stores the identification information of the tile
+    /// - Parameter path: the tile path
+    /// - Parameter etag: the identification information of the tile， If nil will delete old information
+    open func saveETag(forPath path: MKTileOverlayPath, etag: String?) {
+    }
+    
+    /// Cache specified tiles
+    /// - Parameters:
+    ///   - path: the path of the tile to be cache
+    ///   - update: indicates to re-download from the server even if the cache already contains this tile
+    ///   - result: result is the closure that will be run once the tile or an error is received.
+    open func cacheTile(at path: MKTileOverlayPath, update: Bool, result: @escaping (_ size: Int, Error?) -> Void) {
+        
+        let key = cacheKey(forPath: path)
+        let exists = diskCache.exists(forKey: key)
+        
+        if !update && exists {
+            result(0, nil)
+            return
+        }
+        
+        print ("MapCache::cacheTileFromServer:: key=\(key)" )
+        let url = self.url(forTilePath: path)
+        var req = URLRequest(url: url)
+        if exists {
+            if let eTag = loadETag(forPath: path) {
+                req.addValue(eTag, forHTTPHeaderField: "If-None-Match")
+            }
+        }
+        
+        let task = URLSession.shared.dataTask(with: req) {(data, response, error) in
+            if error != nil {
+                print("!!! MapCache::cacheTileFromServer Error for url= \(url) \(error.debugDescription)")
+                result(0, error)
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse else {
+                print("!!! MapCache::cacheTileFromServer No data url= \(url)")
+                result(0, nil)
+                return
+            }
+            
+            if httpResponse.statusCode == 304 {
+                print("MapCache::cacheTileFromServer unmodified for url= \(url)")
+                result(0, nil)
+                return
+            }
+            
+            guard let data = data else {
+                print("!!! MapCache::cacheTileFromServer No data for url= \(url)")
+                result(0, nil)
+                return
+            }
+            
+            guard (200...299).contains(httpResponse.statusCode) else {
+                print("!!! MapCache::cacheTileFromServer statusCode != 2xx url= \(url)")
+                result(0, nil)
+                return
+            }
+            self.diskCache.setData(data, forKey: key)
+                       print ("MapCache::cacheTileFromServer:: Data received saved cacheKey=\(key)" )
+            var etag: String? = nil
+            if #available(iOS 13.0, *) {
+                etag = httpResponse.value(forHTTPHeaderField: "etag")
+            } else {
+                etag = httpResponse.allHeaderFields["Etag"] as? String
+            }
+            self.saveETag(forPath: path, etag: etag)
+            result(data.count, nil)
+        }
+        task.resume()
+
+
     }
     
     //TODO review why does it have two ways of retrieving the cache size.

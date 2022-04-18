@@ -212,6 +212,13 @@ open class DiskCache {
         })
     }
     
+    /// Determine if the tile has been cached
+    open func exists(forKey key: String) -> Bool {
+        let path = self.path(forKey: key)
+        let fileManager = FileManager.default
+        return fileManager.fileExists(atPath: path)
+    }
+    
     /// Calculates the size used by all the files in the cache.
     public func calculateDiskSize() -> UInt64 {
         let fileManager = FileManager.default
