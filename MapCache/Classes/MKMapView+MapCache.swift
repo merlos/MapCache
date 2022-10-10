@@ -19,10 +19,10 @@ extension MKMapView {
     ///
     /// - SeeAlso: `Readme`
     @discardableResult
-    public func useCache(_ cache: MapCacheProtocol) -> CachedTileOverlay {
+    public func useCache(_ cache: MapCacheProtocol, canReplaceMapContent: Bool = true) -> CachedTileOverlay {
 
         let tileServerOverlay = CachedTileOverlay(withCache: cache)
-        tileServerOverlay.canReplaceMapContent = true
+        tileServerOverlay.canReplaceMapContent = canReplaceMapContent
 
         // Don't set `maximumZ` when wanting "over zooming".
         // TileOverlay will stop trying in zoom levels beyond `maximumZ`.
