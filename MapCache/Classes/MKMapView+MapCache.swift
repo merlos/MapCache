@@ -16,6 +16,7 @@ extension MKMapView {
     /// Will tell the map to use the cache passed as parameter for getting the tiles.
     ///
     /// - Parameter cache: A cache that implements the `MapCacheProtocol`. Typically an instance of `MapCache`
+    /// - Parameter canReplaceMapContent: Does the overlay replace the default map? It can be used to add a tile layer with centain level of transparency.
     ///
     /// - SeeAlso: `Readme`
     @discardableResult
