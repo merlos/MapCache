@@ -33,6 +33,7 @@ MapCache is available through [CocoaPods](https://cocoapods.org). To install it,
 pod 'MapCache'
 ```
 
+
 ## How to use MapCache?
 In the view controller where you have a `MKMapView`, import `MapCache`:
 
