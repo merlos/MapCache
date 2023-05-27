@@ -16,19 +16,19 @@
     <a title="MapCache  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">MapCache 0.9.0 Docs</a> (100% documented)</p>
-        <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right">
+        <p><a href="index.html">MapCache 0.10.0 Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="img/gh.png" alt="GitHub"/>View on GitHub</a></p>
+        <div class="header-right">
           <form role="search" action="search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
           </form>
-        </p>
+        </div>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
         <a href="index.html">MapCache Reference</a>
-        <img id="carat" src="img/carat.png" />
+        <img id="carat" src="img/carat.png" alt=""/>
         MapCache  Reference
       </p>
     </div>
@@ -233,17 +233,21 @@
 </ul>
 <h2 id='installation' class='heading'>Installation</h2>
 
-<p>MapCache is available through <a href="https://cocoapods.org">CocoaPods</a>. To install
-it, simply add the following line to your <code>Podfile</code>:</p>
-<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'MapCache'</span>
+<p>MapCache is available through <a href="https://cocoapods.org">CocoaPods</a>. To install it, simply add the following line to your <code>Podfile</code>:</p>
+<pre class="highlight ruby"><code><span class="c1">#Podfile</span>
+<span class="n">pod</span> <span class="s1">'MapCache'</span>
+</code></pre>
+
+<p>Then in the folder where you have the <code>Podfile</code> run the command </p>
+<pre class="highlight shell"><code>pod <span class="nb">install</span>
 </code></pre>
 <h2 id='how-to-use-mapcache' class='heading'>How to use MapCache?</h2>
 
-<p>In the view controller where you have the <code>MKMapView</code> import <code><a href="Classes/MapCache.html">MapCache</a></code></p>
+<p>In the view controller where you have a <code>MKMapView</code>, import <code><a href="Classes/MapCache.html">MapCache</a></code>:</p>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">MapCache</span>
 </code></pre>
 
-<p>Then within the ViewController add</p>
+<p>Then, within the ViewController add:</p>
 <pre class="highlight swift"><code><span class="c1">// ViewController.swift</span>
 <span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
   <span class="kd">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">map</span><span class="p">:</span> <span class="kt">MKMapView</span><span class="o">!</span>
@@ -251,11 +255,11 @@ it, simply add the following line to your <code>Podfile</code>:</p>
   <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
 
-    <span class="o">...</span>
+    <span class="c1">//...</span>
 
     <span class="n">map</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="k">self</span>
 
-    <span class="o">...</span>
+    <span class="c1">//...</span>
 
     <span class="c1">// First setup the config of our cache. </span>
     <span class="c1">// The only thing we must provide is the url template of the tile server.</span>
@@ -270,11 +274,11 @@ it, simply add the following line to your <code>Podfile</code>:</p>
     <span class="c1">// cache </span>
     <span class="n">map</span><span class="o">.</span><span class="nf">useCache</span><span class="p">(</span><span class="n">mapCache</span><span class="p">)</span>
 
-    <span class="o">...</span>
+    <span class="c1">//...</span>
 <span class="p">}</span>
 </code></pre>
 
-<p>Finally, tell the map delegate to use <code>mapCacheRenderer</code></p>
+<p>Finally, tell the map delegate to use <code>mapCacheRenderer</code>:</p>
 <pre class="highlight swift"><code><span class="c1">//ViewController.swift</span>
 
 <span class="c1">// Assuming that ViewController is the delegate of the map</span>
@@ -287,12 +291,12 @@ it, simply add the following line to your <code>Podfile</code>:</p>
 
 </code></pre>
 
-<p>After setting up map cache browsed areas of the map will be kept on disk. If user browses again that area it will use the local version.</p>
+<p>After setting up the map cache, browsed areas of the map will be kept on disk. If the user browses again, that area it will use the local version.</p>
 
-<p>Note that in current version cache has not expiration date so if you need to get an updated version of the tiles you must call <code>clear()</code> which will wipe out the whole cache.</p>
+<p>Note that in the current version, the cache does not support expiration dates, so if you need to get an updated version of the tiles you must call <code>clear()</code> which will wipe out the whole cache.</p>
 <pre class="highlight swift"><code><span class="n">mapCache</span><span class="o">.</span><span class="nf">clear</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// do something after clear</span>
-  <span class="nf">print</span><span class="p">(</span><span class="s">"cache cleared!"</span><span class="p">)</span>
+    <span class="c1">// do something after clear</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"cache cleared!"</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre>
 
@@ -302,10 +306,10 @@ it, simply add the following line to your <code>Podfile</code>:</p>
 
 <p>You can take a look at the <a href="https://github.com/merlos/MapCache/tree/master/Example/MapCache"><strong>Example/ folder</strong></a> to see a complete implementation.</p>
 
-<p>A <a href="http://www.merlos.org/MapCache">Reference documentation</a> is also available.</p>
+<p><a href="http://www.merlos.org/MapCache">Reference documentation</a> is also available.</p>
 <h2 id='mapcache-configuration' class='heading'>MapCache configuration</h2>
 
-<p>Config map cache is pretty straight forward, typically you will need to set only <code>urlTemplate</code> and probably the <code>subdomains</code>.</p>
+<p>Configurating the map cache is pretty straight forward. Typically, you will only need to set <code>urlTemplate</code> and, optionally, the <code>subdomains</code>.</p>
 
 <p>These are the options:</p>
 <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">MapCacheConfig</span><span class="p">()</span>
@@ -350,25 +354,25 @@ it, simply add the following line to your <code>Podfile</code>:</p>
 
 </code></pre>
 
-<p>If you need to use MapCache in different controllers, to avoid issues just be sure to use the same values in the config.</p>
+<p>If you need to use MapCache in different controllers, be sure to use the same values in the config to avoid issues.</p>
 <h2 id='how-does-code-mapcache-code-work-behind-the-scenes' class='heading'>How does <code><a href="Classes/MapCache.html">MapCache</a></code> work behind the scenes</h2>
 
-<p>If you need to build on something top of MapCache read this. If not, you can ignore</p>
+<p>If you need to build something on top of MapCache, read the following.</p>
 
-<p>MapCache is a hack of <a href="https://developer.apple.com/documentation/mapkit">MapKit</a>, the map framework of Apple.</p>
+<p>MapCache is a hack of <a href="https://developer.apple.com/documentation/mapkit">MapKit</a>, the map framework from Apple, used on their iOS, macOS, tvOS, and watchOS platforms.</p>
 <h3 id='understanding-mapcache-bootstrap' class='heading'>Understanding MapCache bootstrap</h3>
 
-<p>As explained in <em>How to use MapCache?</em> section, in order to bootstrap MapCache we have to call this method</p>
+<p>As explained in <em>How to use MapCache?</em> section, in order to bootstrap MapCache, we have to call this method:</p>
 <pre class="highlight swift"><code><span class="n">map</span><span class="o">.</span><span class="nf">useCache</span><span class="p">(</span><span class="n">mapCache</span><span class="p">)</span>
 </code></pre>
 
-<p>Where map is an instance of <code>MKMapView</code>, the main class used to display a map in iOS. What MapCache does through the extension (<code>MKMapView+MapCache</code>) is to add a new method <code>useCache</code> that tells <code>MKMapView</code> to display in the map a new tile layer on top of the default layers.  Because of this while the tiles are loaded you may see  the names of the default Apple Maps.</p>
+<p>Where map is an instance of <code>MKMapView</code>, the main class used to display a map with MapKit. What MapCache does through the <code>MKMapView+MapCache</code> extension is to add a new method <code>useCache</code> that tells <code>MKMapView</code> to display a new tile layer on top of the default layers. Because of this, while the tiles are loaded you may see  the tiles of the default Apple Maps.</p>
 
 <p>This extension also adds a variable in the <code>MKMapView</code> to keep the cache config.</p>
 
-<p>A layer in the map is called <em>overlay</em> in the MapKit terminology. MapCache uses <a href="https://en.wikipedia.org/wiki/Tiled_web_map">tile based overlay</a>.  implemented in the class <code><a href="Classes/CachedTileOverlay.html">CachedTileOverlay</a></code> which is a subclass of <a href="https://developer.apple.com/documentation/mapkit/mktileoverlay">MKTileOverlay</a>. </p>
+<p>A layer in the map is called <em>overlay</em> in MapKit terminology. MapCache uses <a href="https://en.wikipedia.org/wiki/Tiled_web_map">tile based overlay</a> implemented in the class <code><a href="Classes/CachedTileOverlay.html">CachedTileOverlay</a></code>, which is a subclass of <a href="https://developer.apple.com/documentation/mapkit/mktileoverlay">MKTileOverlay</a>. </p>
 
-<p>Overlays, have associated <em>renderers</em> that are the actual classes that draw the content of an overlay in the screen. For example, there  are rendererers for points, lines, polygons, and tiles. When <code>MapView</code> needs to display an overlay it calls the delegate with the overlay it is going to render and you need to provide the renderer to use. In order to do that, We added a method <code>mapCacheRenderer</code> that just returns the default <a href="https://developer.apple.com/documentation/mapkit/mktileoverlay">MKTileOverlayRenderer</a> when the class of the overlay passed as argument is of the type <code><a href="Classes/CachedTileOverlay.html">CachedTileOverlay</a></code>.  That is why we need to add this code on the application in the delegate of the map view (<code>MKMapViewDelegate</code>) :</p>
+<p>Overlays have associated <em>renderers</em> that are the actual classes that draw the content of an overlay on the screen. For example, there are rendererers for points, lines, polygons, and tiles. When <code>MapView</code> needs to display an overlay, it calls the delegate with the overlay it is going to render and you need to provide the renderer to use. In order to do that, We added a <code>mapCacheRenderer</code> method that returns the default <a href="https://developer.apple.com/documentation/mapkit/mktileoverlay">MKTileOverlayRenderer</a> when the class of the overlay passed as the argument is of the type <code><a href="Classes/CachedTileOverlay.html">CachedTileOverlay</a></code>. That is why we need to add this code on the application in the delegate of the map view (<code>MKMapViewDelegate</code>) :</p>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">ViewController</span> <span class="p">:</span> <span class="kt">MKMapViewDelegate</span> <span class="p">{</span>
     <span class="kd">func</span> <span class="nf">mapView</span><span class="p">(</span><span class="n">_</span> <span class="nv">mapView</span><span class="p">:</span> <span class="kt">MKMapView</span><span class="p">,</span> <span class="n">rendererFor</span> <span class="nv">overlay</span><span class="p">:</span> <span class="kt">MKOverlay</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">MKOverlayRenderer</span> <span class="p">{</span>
         <span class="k">return</span> <span class="n">mapView</span><span class="o">.</span><span class="nf">mapCacheRenderer</span><span class="p">(</span><span class="nv">forOverlay</span><span class="p">:</span> <span class="n">overlay</span><span class="p">)</span>
@@ -377,35 +381,59 @@ it, simply add the following line to your <code>Podfile</code>:</p>
 </code></pre>
 <h3 id='code-cachedtileoverlay-code-and-code-mapcacheprotocol-code' class='heading'><code><a href="Classes/CachedTileOverlay.html">CachedTileOverlay</a></code> and <code><a href="Protocols/MapCacheProtocol.html">MapCacheProtocol</a></code></h3>
 
-<p>As mentioned earlier, <code><a href="Classes/CachedTileOverlay.html">CachedTileOverlay</a></code> is tile based layer that is implemented as a subclass of <a href="https://developer.apple.com/documentation/mapkit/mktileoverlay">MKTileOverlay</a>. Basically, the only thing that it does is to override two methods of the parent class:</p>
+<p>As mentioned earlier, <code><a href="Classes/CachedTileOverlay.html">CachedTileOverlay</a></code> is a tile based layer that is implemented as a subclass of <a href="https://developer.apple.com/documentation/mapkit/mktileoverlay">MKTileOverlay</a>. Basically, the only thing that it does is to override two methods of the parent class:</p>
 
 <ol>
 <li><p><code>func url(forTilePath path: MKTileOverlayPath) -&gt; URL</code>. The goal of this method is to return the URL of the tile. We need to overwrite it to be able to use the tile server of our preference.    </p></li>
 <li><p><code>func loadTile(at path: MKTileOverlayPath, result: @escaping (Data?, Error?) -&gt; Void)</code>. This method is the one that returns the actual Tile.</p></li>
 </ol>
 
-<p>If you take a look to the <a href="https://github.com/merlos/MapCache/blob/master/MapCache/Classes/CachedTileOverlay.swift">implementation of <code><a href="Classes/CachedTileOverlay.html">CachedTileOverlay</a></code></a> you will notice that it only forwards the request a method with the same signature of a variable called <code>mapCache</code> which is an instance of a class that implements  <code><a href="Protocols/MapCacheProtocol.html">MapCacheProtocol</a></code> </p>
-<pre class="highlight plaintext"><code>override public func url(forTilePath path: MKTileOverlayPath) -&gt; URL {`
-       return mapCache.url(forTilePath: path)
-   }
+<p>If you take a look at the <a href="https://github.com/merlos/MapCache/blob/master/MapCache/Classes/CachedTileOverlay.swift">implementation of <code><a href="Classes/CachedTileOverlay.html">CachedTileOverlay</a></code></a>, you will notice that it only forwards the request to the method with the same signature of a variable called <code>mapCache</code> which is an instance of a class that implements  <code><a href="Protocols/MapCacheProtocol.html">MapCacheProtocol</a></code> </p>
+<pre class="highlight swift"><code><span class="k">override</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">url</span><span class="p">(</span><span class="n">forTilePath</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">MKTileOverlayPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">URL</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">mapCache</span><span class="o">.</span><span class="nf">url</span><span class="p">(</span><span class="nv">forTilePath</span><span class="p">:</span> <span class="n">path</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre>
 
-<p>The <a href="https://github.com/merlos/MapCache/blob/master/MapCache/Classes/MapCacheProtocol.swift"><code>MapCacheProtocol definition</code></a> is pretty simple, it just requires to have a config variable instance of a <code><a href="Structs/MapCacheConfig.html">MapCacheConfig</a></code> and an implementation of the two methods that are called from <code><a href="Classes/CachedTileOverlay.html">CachedTileOverlay</a></code></p>
-<pre class="highlight plaintext"><code>public protocol MapCacheProtocol {
+<p>The <a href="https://github.com/merlos/MapCache/blob/master/MapCache/Classes/MapCacheProtocol.swift"><code>MapCacheProtocol definition</code></a> is pretty simple, as it just requires to have a config variable instance of a <code><a href="Structs/MapCacheConfig.html">MapCacheConfig</a></code> and an implementation of the two methods that are called from <code><a href="Classes/CachedTileOverlay.html">CachedTileOverlay</a></code>:</p>
+<pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">MapCacheProtocol</span> <span class="p">{</span>
 
-    var config: MapCacheConfig { get set }
+    <span class="k">var</span> <span class="nv">config</span><span class="p">:</span> <span class="kt">MapCacheConfig</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span>
 
-    func url(forTilePath path: MKTileOverlayPath) -&gt; URL
+    <span class="kd">func</span> <span class="nf">url</span><span class="p">(</span><span class="n">forTilePath</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">MKTileOverlayPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">URL</span>
 
-    func loadTile(at path: MKTileOverlayPath, result: @escaping (Data?, Error?) -&gt; Void)
+    <span class="kd">func</span> <span class="nf">loadTile</span><span class="p">(</span><span class="n">at</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">MKTileOverlayPath</span><span class="p">,</span> <span class="nv">result</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Data</span><span class="p">?,</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span>
+
+<span class="p">}</span>
 </code></pre>
 
-<p>If you need to create a custom implementation of the cache, you just need to create a class that implements this protocol and initialize the cache using  <code>map.useCache(myCustomCacheImplementationInstance)</code>. The implementation provided by the library is on the class named as  <code><a href="Classes/MapCache.html">MapCache</a></code>.</p>
+<p>If you need to create a custom implementation of the cache, you need to create a class that implements this protocol and initialize the cache using  <code>map.useCache(myCustomCacheImplementationInstance)</code>. The implementation provided by the library is on the <code><a href="Classes/MapCache.html">MapCache</a></code> class.</p>
 
-<p>Something that may be useful too is the <code><a href="Classes/DiskCache.html">DiskCache</a></code> class.</p>
+<p>Something that may also be useful is the <code><a href="Classes/DiskCache.html">DiskCache</a></code> class.</p>
 
 <p>If you need further information you can take a look at </p>
 <h3 id='a-href-http-www-merlos-org-mapcache-reference-documentation-of-mapcache-a' class='heading'><a href="http://www.merlos.org/MapCache/">Reference documentation of MapCache</a>.</h3>
+<h2 id='development' class='heading'>Development</h2>
+
+<p>Clone the repo</p>
+<pre class="highlight shell"><code>git clone https://github.com/merlos/MapCache
+</code></pre>
+
+<p>With Xcode Open the file <code>Example/MapCache.xcworkspace</code></p>
+
+<p>To check if the pod is ready to be released run the command in the root folder folder </p>
+<pre class="highlight shell"><code>pod lib lint MapCache.podspec
+</code></pre>
+<h3 id='generate-the-documentation' class='heading'>Generate the documentation</h3>
+
+<p>This project uses <a href="https://github.com/realm/jazzy">jazzy</a> for generating the <a href="http://www.merlos.org/MapCache/">reference documentation</a>)</p>
+
+<p>To install jazzt</p>
+<pre class="highlight plaintext"><code>gem install jazzy --verbose
+</code></pre>
+
+<p>In the root folder of the project run</p>
+<pre class="highlight shell"><code>jazzy
+</code></pre>
 <h2 id='you-may-also-like' class='heading'>You may also like</h2>
 
 <ul>
@@ -437,11 +465,10 @@ THE SOFTWARE.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external">merlos</a>. All rights reserved. (Last updated: 2020-10-04)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2023 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external noopener">merlos</a>. All rights reserved. (Last updated: 2023-05-27)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
     </div>
   </body>
-</div>
 </html>
