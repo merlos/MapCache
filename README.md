@@ -21,10 +21,6 @@ Current features:
 * Download a full region of the map (experimental)
 * Available [reference documentation](http://www.merlos.org/MapCache)
 
-What is coming:
- * Smart predownloading/caching: anticipate tiles that may be needed during network idle
- * Background cache updates downloads
- 
 
 ## Installation
 MapCache is available through [CocoaPods](https://cocoapods.org). To install it, simply add the following line to your `Podfile`:
