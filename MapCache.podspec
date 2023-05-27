@@ -2,7 +2,7 @@
 # MapCache
 #
 # MIT License
-# Copyright (c) 2019-2020 Juan M. Merlos @merlos
+# Copyright (c) 2019-2023 Juan M. Merlos @merlos
 #
 # Be sure to run `pod lib lint MapCache.podspec' to ensure this is a
 # valid spec before submitting.
@@ -13,7 +13,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MapCache'
-  s.version          = '0.9.0'
+  s.version          = '0.10.0'
   s.summary          = 'Map caching for iOS. Support offline maps in your app.'
   s.description      = <<-DESC
 Cache for iOS applications for supporting offline tile maps. Downloads and keeps tiles in disk as user browses the map. Also, it can download a complete area at all different zoom levels for a complete offline experience (beta).
@@ -29,7 +29,7 @@ DESC
   s.swift_version = '5.0'
   s.source_files = 'MapCache/Classes/**/*'
   s.ios.deployment_target = '11.0'
-  s.osx.deployment_target = '10.10'
+  s.osx.deployment_target = '10.13'
   # s.resource_bundles = {
   #   'MapCache' => ['MapCache/Assets/*.png']
   # }

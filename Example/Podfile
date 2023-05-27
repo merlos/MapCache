@@ -7,6 +7,6 @@ target 'MapCache_Example' do
     inherit! :search_paths
     pod 'OHHTTPStubs/Swift','~> 8.0.0'
     pod 'Quick', '~> 3.0.0'
-    pod 'Nimble', '~> 9.0.0-rc.3'
+    pod 'Nimble', '~> 9.2.0'
   end
 end
