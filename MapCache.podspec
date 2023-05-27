@@ -2,7 +2,7 @@
 # MapCache
 #
 # MIT License
-# Copyright (c) 2019-2020 Juan M. Merlos @merlos
+# Copyright (c) 2019-2023 Juan M. Merlos @merlos
 #
 # Be sure to run `pod lib lint MapCache.podspec' to ensure this is a
 # valid spec before submitting.
@@ -29,7 +29,7 @@ DESC
   s.swift_version = '5.0'
   s.source_files = 'MapCache/Classes/**/*'
   s.ios.deployment_target = '11.0'
-  s.osx.deployment_target = '10.10'
+  s.osx.deployment_target = '10.13'
   # s.resource_bundles = {
   #   'MapCache' => ['MapCache/Assets/*.png']
   # }
