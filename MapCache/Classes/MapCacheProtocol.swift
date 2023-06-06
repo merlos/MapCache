@@ -31,4 +31,11 @@ public protocol MapCacheProtocol {
     /// - SeeAlso [MapKit.MkTileOverlay](https://developer.apple.com/documentation/mapkit/mktileoverlay)
     func loadTile(at path: MKTileOverlayPath, result: @escaping (Data?, Error?) -> Void)
     
+    /// Cache specified tile
+    /// - Parameters:
+    ///   - path: the path of the tile to be cache
+    ///   - update: indicates to re-download from the server even if the cache already contains this tile
+    ///   - result: result is the closure that will be run once the tile or an error is received.
+    func cacheTile(at path: MKTileOverlayPath, update: Bool, result: @escaping (_ size: Int, Error?) -> Void)
+    
 }

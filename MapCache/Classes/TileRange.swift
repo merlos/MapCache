@@ -28,7 +28,7 @@ public enum TileRangeError: Error {
 public struct TileRange: Sequence {
     
     /// Zoom level.
-    var zoom: Zoom
+    public internal(set) var zoom: Zoom
     
     /// Min value of tile in X axis.
     var minTileX: TileNumber
@@ -84,6 +84,15 @@ public struct TileRange: Sequence {
     /// - SeeAlso: [IteratorProtocol](https://developer.apple.com/documentation/swift/iteratorprotocol)
     public func makeIterator() -> TileRangeIterator {
             return TileRangeIterator(self)
+    }
+    
+    /// Check tile are included in this area
+    /// - Parameter tile: Tile that need to be checked
+    /// - Returns: true If the tile is contained in this area
+    public func contains(_ tile: TileCoords) -> Bool {
+        return tile.zoom == zoom
+        && minTileX <= tile.tileX && tile.tileX <= maxTileX
+        && minTileY <= tile.tileY && tile.tileY <= maxTileY
     }
 }
 
