@@ -46,7 +46,7 @@ open class CachedTileOverlay : MKTileOverlay {
     /// When invoked it will load the tile using the standard OS implementation (if `useCache`is `false`)
     /// or from the cache (if `useCache` is `true`
     ///
-    override public func loadTile(at path: MKTileOverlayPath,
+    override open func loadTile(at path: MKTileOverlayPath,
                                   result: @escaping (Data?, Error?) -> Void) {
         if !self.useCache { // Use cache by use cache is not set.
             // print("loadTile:: not using cache")
