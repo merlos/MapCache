@@ -23,6 +23,13 @@ jobs:
         # xcrun instruments -s devices
     - name: Test
       run: |
-        set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/MapCache.xcworkspace -scheme MapCache-Example -sdk iphonesimulator13.7 -destination 'platform=iOS Simulator,name=iPhone 11' ONLY_ACTIVE_ARCH=NO | xcpretty
+        SIMULATOR_ID=$(xcrun simctl list devices available | awk -F '[()]' '/iPhone/ { print $2; exit }')
+        if [ -z "$SIMULATOR_ID" ]; then
+          echo "No available iPhone simulator found"
+          xcrun simctl list devices available
+          exit 1
+        fi
+
+        set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/MapCache.xcworkspace -scheme MapCache-Example -destination "id=$SIMULATOR_ID" ONLY_ACTIVE_ARCH=NO | xcpretty
         # TODO do not allow warnings
         pod lib lint --allow-warnings
