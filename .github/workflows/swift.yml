@@ -20,7 +20,7 @@ jobs:
       run: |
         xcodebuild -version
         xcodebuild -showsdks
-        xcrun instruments -s devices
+        # xcrun instruments -s devices
     - name: Test
       run: |
         set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/MapCache.xcworkspace -scheme MapCache-Example -sdk iphonesimulator13.7 -destination 'platform=iOS Simulator,name=iPhone 11' ONLY_ACTIVE_ARCH=NO | xcpretty
