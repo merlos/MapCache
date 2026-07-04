@@ -20,7 +20,7 @@ extension MKMapView {
     ///
     /// - SeeAlso: `Readme`
     @discardableResult
-    public func useCache(_ cache: MapCacheProtocol, canReplaceMapContent: Bool = true) -> CachedTileOverlay {
+    public func useCache(_ cache: MapCacheProtocol, canReplaceMapContent: Bool = true, overlayLevel: MKOverlayLevel = .aboveLabels) -> CachedTileOverlay {
 
         let tileServerOverlay = CachedTileOverlay(withCache: cache)
         tileServerOverlay.canReplaceMapContent = canReplaceMapContent
@@ -44,7 +44,7 @@ extension MKMapView {
             self.insertOverlay(tileServerOverlay, below: firstOverlay)
         }
         else {
-            self.addOverlay(tileServerOverlay, level: .aboveLabels)
+            self.addOverlay(tileServerOverlay, level: overlayLevel)
         }
         return tileServerOverlay
     }
