@@ -17,7 +17,7 @@ extension MKMapView {
     ///
     /// - Parameter cache: A cache that implements the `MapCacheProtocol`. Typically an instance of `MapCache`
     /// - Parameter canReplaceMapContent: Does the overlay replace the default map? It can be used to add a tile layer with centain level of transparency.
-    ///
+    /// - Parameter overlayLevel: The overlay level to use. Default is `.aboveLabels`. Other values: `.aboveRoads`, `.aboveLabels`. See `MKOverlayLevel` for up to date information.
     /// - SeeAlso: `Readme`
     @discardableResult
     public func useCache(_ cache: MapCacheProtocol, canReplaceMapContent: Bool = true, overlayLevel: MKOverlayLevel = .aboveLabels) -> CachedTileOverlay {
