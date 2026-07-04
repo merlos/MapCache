@@ -1,5 +1,6 @@
 // https://github.com/Quick/Quick
 
+import Foundation
 import Quick
 import Nimble
 import MapCache

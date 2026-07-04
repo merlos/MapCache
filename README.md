@@ -4,9 +4,7 @@
 </p>
 
 [![CI Status](https://travis-ci.com/merlos/MapCache.svg?branch=master)](https://travis-ci.org/github/merlos/MapCache)
-[![Version](https://img.shields.io/cocoapods/v/MapCache.svg?style=flat)](https://cocoapods.org/pods/MapCache)
-[![License](https://img.shields.io/cocoapods/l/MapCache.svg?style=flat)](https://cocoapods.org/pods/MapCache)
-[![Platform](https://img.shields.io/cocoapods/p/MapCache.svg?style=flat)](https://cocoapods.org/pods/MapCache)
+[![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](LICENSE)
 [![Documentation](https://www.merlos.org/MapCache/badge.svg)](http://merlos.org/MapCache)
 ![Swift](https://github.com/merlos/MapCache/workflows/Swift/badge.svg)
 
@@ -23,17 +21,13 @@ Current features:
 
 
 ## Installation
-MapCache is available through [CocoaPods](https://cocoapods.org). To install it, simply add the following line to your `Podfile`:
+MapCache is available through Swift Package Manager.
 
-```ruby
-#Podfile
-pod 'MapCache'
-```
-
-Then in the folder where you have the `Podfile` run the command 
-```shell
-pod install
-```
+In Xcode:
+1. Open your project.
+2. Go to File > Add Package Dependencies...
+3. Use the repository URL: `https://github.com/merlos/MapCache.git`
+4. Select the MapCache product and add it to your target.
 
 
 ## How to use MapCache?
@@ -240,10 +234,15 @@ git clone https://github.com/merlos/MapCache
 
 With Xcode Open the file `Example/MapCache.xcworkspace`
 
-To check if the pod is ready to be released run the command in the root folder folder 
+
+
+To run tests in the root folder run:
 
 ```shell
-pod lib lint MapCache.podspec
+#
+swift test
+# cleaning package 
+swift package clean && swift package resolve && swift test --parallel
 ```
 
 ### Generate the documentation

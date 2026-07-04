@@ -7,11 +7,13 @@
 //
 // https://github.com/Quick/Quick
 
+import Foundation
 import Quick
 import Nimble
 import MapCache
 import MapKit
 import OHHTTPStubs
+import OHHTTPStubsSwift
 
 class MapCacheTests: QuickSpec {
     
@@ -19,18 +21,18 @@ class MapCacheTests: QuickSpec {
         beforeSuite {
             // This stub returns as data the URL of the request
             stub(condition: isHost("localhost")) { request in
-                let stubData = request.url?.description.data(using: .utf8)
-              return OHHTTPStubsResponse(data: stubData!, statusCode:200, headers:nil)
+                let stubData = request.url?.description.data(using: String.Encoding.utf8)
+              return HTTPStubsResponse(data: stubData!, statusCode:200, headers:nil)
             }
             // This stub returns a 404 error
             stub(condition: isHost("brokenhost")) { request in
-                let stubData = request.url?.description.data(using: .utf8)
-              return OHHTTPStubsResponse(data: stubData!, statusCode:404, headers:nil)
+                let stubData = request.url?.description.data(using: String.Encoding.utf8)
+              return HTTPStubsResponse(data: stubData!, statusCode:404, headers:nil)
             }
         }
         
         afterSuite {
-        OHHTTPStubs.removeAllStubs()    
+        HTTPStubs.removeAllStubs()    
         }
             
         describe("MapCache") {
@@ -54,7 +56,7 @@ class MapCacheTests: QuickSpec {
                 cache.fetchTileFromServer(
                     at: path,
                     failure: {error in expect(false) == true},
-                    success: {data in expect(String(data: data, encoding: .utf8)) == cache.url(forTilePath: path).description} )
+                    success: {data in expect(String(data: data, encoding: String.Encoding.utf8)) == cache.url(forTilePath: path).description} )
             }
             
             it("can return error on fetch") {
