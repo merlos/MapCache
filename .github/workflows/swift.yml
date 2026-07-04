@@ -11,28 +11,14 @@ jobs:
     runs-on: macOS-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: install xpretty
-      run: gem install xcpretty
-    - name: install pods
-      run: |
-        cd Example
-        pod install
-        cd ..
+    - uses: actions/checkout@v4
     - name: environment info
       run: |
+        swift --version
         xcodebuild -version
-        xcodebuild -showsdks
-        # xcrun instruments -s devices
-    - name: Test
+    - name: Resolve package dependencies
       run: |
-        SIMULATOR_ID=$(xcrun simctl list devices available | awk -F '[()]' '/iPhone/ { print $2; exit }')
-        if [ -z "$SIMULATOR_ID" ]; then
-          echo "No available iPhone simulator found"
-          xcrun simctl list devices available
-          exit 1
-        fi
-
-        set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/MapCache.xcworkspace -scheme MapCache-Example -destination "id=$SIMULATOR_ID" ONLY_ACTIVE_ARCH=NO | xcpretty
-        # TODO do not allow warnings
-        pod lib lint --allow-warnings
+        swift package resolve
+    - name: Test package
+      run: |
+        swift test --parallel
