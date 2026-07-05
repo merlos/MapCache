@@ -19,15 +19,31 @@ class MapCacheTests: QuickSpec {
     
     override func spec() {
         beforeSuite {
-            // This stub returns as data the URL of the request
             stub(condition: isHost("localhost")) { request in
                 let stubData = request.url?.description.data(using: String.Encoding.utf8)
               return HTTPStubsResponse(data: stubData!, statusCode:200, headers:nil)
             }
-            // This stub returns a 404 error
             stub(condition: isHost("brokenhost")) { request in
                 let stubData = request.url?.description.data(using: String.Encoding.utf8)
               return HTTPStubsResponse(data: stubData!, statusCode:404, headers:nil)
+            }
+            stub(condition: isHost("etaghost-store")) { request in
+                let stubData = "tile-data".data(using: .utf8)
+                return HTTPStubsResponse(data: stubData!, statusCode: 200, headers: ["ETag": "abc123"])
+            }
+            stub(condition: isHost("etaghost-header")) { request in
+                let stubData = "data".data(using: .utf8)
+                return HTTPStubsResponse(data: stubData!, statusCode: 200, headers: nil)
+            }
+            stub(condition: isHost("etaghost-304")) { request in
+                return HTTPStubsResponse(data: Data(), statusCode: 304, headers: nil)
+            }
+            stub(condition: isHost("etaghost-orphan")) { request in
+                if request.value(forHTTPHeaderField: "If-None-Match") != nil {
+                    return HTTPStubsResponse(data: Data(), statusCode: 304, headers: nil)
+                }
+                let stubData = "fresh-data".data(using: .utf8)
+                return HTTPStubsResponse(data: stubData!, statusCode: 200, headers: ["ETag": "new-etag"])
             }
         }
         
@@ -60,7 +76,6 @@ class MapCacheTests: QuickSpec {
             }
             
             it("can return error on fetch") {
-                //Set a template url that returns error (in this case does not use https)
                 let urlTemplate2 = "http://brokenhost/notworking"
                 let config2 = MapCacheConfig(withUrlTemplate: urlTemplate2)
                 let cache2 = MapCache(withConfig: config2)
@@ -70,7 +85,145 @@ class MapCacheTests: QuickSpec {
                     failure: {error in expect(true) == true},
                     success: {data in expect(true) == false} )
             }
-              
+        }
+        
+        describe("ETag caching") {
+            func makeCache(host: String) -> (cache: MapCache, path: MKTileOverlayPath, key: String) {
+                let urlTemplate = "https://\(host)/{s}/{x}/{y}/{z}"
+                var config = MapCacheConfig(withUrlTemplate: urlTemplate)
+                config.subdomains = ["ok"]
+                let cache = MapCache(withConfig: config)
+                let path = MKTileOverlayPath(x: 1, y: 2, z: 3, contentScaleFactor: 1.0)
+                let key = cache.cacheKey(forPath: path)
+                return (cache, path, key)
+            }
+
+            let (cache, path, key) = makeCache(host: "etaghost-store")
+
+            it("has an etagCache") {
+                expect(cache.etagCache).toNot(beNil())
+                expect(cache.etagCache).to(beAKindOf(DiskCache.self))
+            }
+
+            it("saves ETag from 200 response") {
+                waitUntil { done in
+                    cache.fetchTileFromServer(
+                        at: path,
+                        failure: { error in
+                            expect(error).to(beNil())
+                            done()
+                        },
+                        success: { _ in
+                            var etagResult: String?
+                            cache.etagCache.fetchDataSync(forKey: key,
+                                failure: nil,
+                                success: { etagData in
+                                    etagResult = String(data: etagData, encoding: .utf8)
+                                })
+                            expect(etagResult) == "abc123"
+                            done()
+                        })
+                }
+            }
+
+            it("sends If-None-Match when ETag is cached") {
+                let (headerCache, headerPath, headerKey) = makeCache(host: "etaghost-header")
+                let expectedEtag = "xyz"
+
+                var capturedIfNoneMatch: String?
+                stub(condition: isHost("etaghost-header")) { request in
+                    capturedIfNoneMatch = request.value(forHTTPHeaderField: "If-None-Match")
+                    let stubData = "data".data(using: .utf8)
+                    return HTTPStubsResponse(data: stubData!, statusCode: 200, headers: nil)
+                }
+
+                headerCache.etagCache.setDataSync(expectedEtag.data(using: .utf8)!, forKey: headerKey)
+
+                waitUntil { done in
+                    headerCache.fetchTileFromServer(
+                        at: headerPath,
+                        failure: { _ in
+                            expect(capturedIfNoneMatch) == expectedEtag
+                            done()
+                        },
+                        success: { _ in
+                            expect(capturedIfNoneMatch) == expectedEtag
+                            done()
+                        })
+                }
+            }
+
+            it("returns cached data on 304") {
+                let (localCache, localPath, localKey) = makeCache(host: "etaghost-304")
+
+                let cachedTileData = "cached-tile-content".data(using: .utf8)!
+                localCache.diskCache.setDataSync(cachedTileData, forKey: localKey)
+                localCache.etagCache.setDataSync("etag-304".data(using: .utf8)!, forKey: localKey)
+
+                waitUntil { done in
+                    localCache.fetchTileFromServer(
+                        at: localPath,
+                        failure: { _ in
+                            expect(false).to(beTrue())
+                            done()
+                        },
+                        success: { data in
+                            expect(data) == cachedTileData
+                            done()
+                        })
+                }
+            }
+
+            it("re-fetches on 304 when cached data is missing") {
+                let (localCache, localPath, localKey) = makeCache(host: "etaghost-orphan")
+
+                localCache.etagCache.setDataSync("orphan-etag".data(using: .utf8)!, forKey: localKey)
+
+                waitUntil { done in
+                    localCache.fetchTileFromServer(
+                        at: localPath,
+                        failure: { _ in
+                            expect(false).to(beTrue())
+                            done()
+                        },
+                        success: { data in
+                            expect(String(data: data, encoding: .utf8)) == "fresh-data"
+                            var newEtag: String?
+                            localCache.etagCache.fetchDataSync(forKey: localKey,
+                                failure: nil,
+                                success: { etagData in
+                                    newEtag = String(data: etagData, encoding: .utf8)
+                                })
+                            expect(newEtag) == "new-etag"
+                            done()
+                        })
+                }
+            }
+
+            it("clear removes both caches") {
+                let (localCache, localPath, localKey) = makeCache(host: "localhost")
+
+                localCache.diskCache.setDataSync("some-data".data(using: .utf8)!, forKey: localKey)
+                localCache.etagCache.setDataSync("some-etag".data(using: .utf8)!, forKey: localKey)
+
+                waitUntil { done in
+                    localCache.clear {
+                        var diskData: Data?
+                        localCache.diskCache.fetchDataSync(forKey: localKey,
+                            failure: nil,
+                            success: { data in diskData = data })
+                        expect(diskData).to(beNil())
+
+                        var etagData: Data?
+                        localCache.etagCache.fetchDataSync(forKey: localKey,
+                            failure: nil,
+                            success: { data in etagData = data })
+                        expect(etagData).to(beNil())
+
+                        done()
+                    }
+                }
+            }
         }
     }
 }

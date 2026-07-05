@@ -25,6 +25,11 @@ open class MapCache : MapCacheProtocol {
     public var diskCache : DiskCache
     
     ///
+    /// It manages the physical storage of the ETags associated with the tiles
+    ///
+    public var etagCache : DiskCache
+    
+    ///
     /// Manages the queue of network requests for retrieving the tiles
     ///
     let operationQueue = OperationQueue()
@@ -37,6 +42,7 @@ open class MapCache : MapCacheProtocol {
     public init(withConfig config: MapCacheConfig ) {
         self.config = config
         diskCache = DiskCache(withName: config.cacheName, capacity: config.capacity)
+        etagCache = DiskCache(withName: "\(config.cacheName)-etags", capacity: UINT64_MAX)
     }
     
     ///
@@ -83,11 +89,27 @@ open class MapCache : MapCacheProtocol {
     /// - Parameter success: if the image is downloaded
     
     public func fetchTileFromServer(at path: MKTileOverlayPath,
+                             skipEtag: Bool = false,
                              failure fail: ((Error?) -> ())? = nil,
                              success succeed: @escaping (Data) -> ()) {
         let url = self.url(forTilePath: path)
+        let key = cacheKey(forPath: path)
         print ("MapCache::fetchTileFromServer() url=\(url)")
-        let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+        
+        var request = URLRequest(url: url)
+        
+        // Add If-None-Match header if we have a cached ETag
+        if !skipEtag {
+            etagCache.fetchDataSync(forKey: key,
+                failure: nil,
+                success: { etagData in
+                    if let etag = String(data: etagData, encoding: .utf8), !etag.isEmpty {
+                        request.setValue(etag, forHTTPHeaderField: "If-None-Match")
+                    }
+                })
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
             if error != nil {
                 print("!!! MapCache::fetchTileFromServer Error for url= \(url) \(error.debugDescription)")
                 fail!(error)
@@ -98,12 +120,50 @@ open class MapCache : MapCacheProtocol {
                 fail!(nil)
                 return
             }
-            guard let httpResponse = response as? HTTPURLResponse,
-            (200...299).contains(httpResponse.statusCode) else {
+            guard let httpResponse = response as? HTTPURLResponse else {
+                print("!!! MapCache::fetchTileFromServer Invalid response url= \(url)")
+                fail!(nil)
+                return
+            }
+            
+            // Handle 304 Not Modified — return cached data if available
+            if httpResponse.statusCode == 304 {
+                var cachedData: Data?
+                self.diskCache.fetchDataSync(forKey: key,
+                    failure: nil,
+                    success: { data in cachedData = data })
+                if let data = cachedData {
+                    print("MapCache::fetchTileFromServer 304 Not Modified url= \(url)")
+                    succeed(data)
+                    return
+                }
+                // Cached data was evicted but ETag survived — orphaned ETag
+                // Remove it and re-fetch without conditional headers
+                self.etagCache.removeData(withKey: key)
+                print("MapCache::fetchTileFromServer 304 but data evicted, re-fetching url= \(url)")
+                self.fetchTileFromServer(at: path, skipEtag: true,
+                    failure: { error in fail!(error) },
+                    success: { data in succeed(data) })
+                return
+            }
+            // Handle 2xx success
+            guard (200...299).contains(httpResponse.statusCode) else {
                 print("!!! MapCache::fetchTileFromServer statusCode != 2xx url= \(url)")
                 fail!(nil)
                 return
             }
+            
+            // 1. Save ETag from response headers
+            let etag = httpResponse.allHeaderFields.first {
+                ($0.key as? String)?.lowercased() == "etag"
+            }?.value as? String
+            if let etag = etag, let etagData = etag.data(using: .utf8) {
+                self.etagCache.setDataSync(etagData, forKey: key)
+            }
+            
+            // 2. Cache the tile data & return success
+            self.diskCache.setDataSync(data, forKey: key)
+            print("MapCache::fetchTileFromServer tile received saved cacheKey=\(key)")
             
             succeed(data)
         }
@@ -126,11 +186,11 @@ open class MapCache : MapCacheProtocol {
        // If it fails returns error to the caller.
         let tileFromServerFallback = { () -> () in
             print ("MapCache::tileFromServerFallback:: key=\(key)" )
-            self.fetchTileFromServer(at: path,
+            // we skip the ETag check here because we already tried it in the first attempt and it failed, so we want to force a fresh fetch from the server.
+            self.fetchTileFromServer(at: path, skipEtag: true,
                                 failure: {error in result(nil, error)},
                                 success: {data in
-                                    self.diskCache.setData(data, forKey: key)
-                                               print ("MapCache::fetchTileFromServer:: Data received saved cacheKey=\(key)" )
+                                               print ("MapCache::fetchTileFromServer:: Data received cacheKey=\(key)" )
                                     result(data, nil)})
         }
         
@@ -152,7 +212,9 @@ open class MapCache : MapCacheProtocol {
             fetchTileFromServer(at: path, failure: {error in tileFromCacheFallback()},
                                 success: {data in result(data, nil) })
         case .serverOnly:
-            fetchTileFromServer(at: path, failure: {error in result(nil, error)},
+            fetchTileFromServer(at: path, 
+                                skipEtag: true, // we want a fresh fetch from the server, so we skip the ETag check
+                                failure: {error in result(nil, error)},
                                 success: {data in result(data, nil)})
         case .cacheOnly:
             diskCache.fetchDataSync(forKey: key,
@@ -184,7 +246,9 @@ open class MapCache : MapCacheProtocol {
     /// - Parameter completition: code to run upon the cache is cleared.
     
     public func clear(completition: (() -> ())? ) {
-        diskCache.removeAllData(completition)
+        diskCache.removeAllData {
+            self.etagCache.removeAllData(completition)
+        }
     }
     
 }

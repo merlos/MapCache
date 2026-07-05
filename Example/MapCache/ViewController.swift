@@ -36,6 +36,16 @@ class ViewController: UIViewController {
         // func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer
         map.delegate = self
         
+        // Default strategy is .cacheThenServer which looks into the cache and if not available
+        // makes a request the server. This is more efficient, however, the cache may be outdated (if the cached tiles
+        // were updated in the server)
+        
+        // .serverThenCache always queries the server to check if the tile in the cache is the latest (using eTags)
+        // if the version is the same, then it is not downloaded, if it is different, it gets the latest version.
+        //
+        //
+        config.loadTileMode = .serverThenCache
+        
         // initialize the cache with our config
         mapCache = MapCache(withConfig: config)
         // See documentation to know more about config options
