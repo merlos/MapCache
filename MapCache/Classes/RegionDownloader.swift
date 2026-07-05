@@ -47,9 +47,25 @@ import MapKit
             return region.count - downloadedTiles
         }
     }
+    /// Maximum number of concurrent downloads. Default 30.
+    /// If you set this to a low number, the download will take longer.
+    /// If you set this to a high number, the download may fail due to too many concurrent downloads (e.g. 429 Too Many Requests).
+    /// The downloader will automatically try after timeout.
+    public var maxConcurrentDownloads: Int = 30
+
+    /// Timeout for the download in seconds. Default 10 seconds.
+    /// When the maximum number of concurrent downloads is reached, this is the time the downloader will wait for a download to finish before trying again.
+    /// The downloader will automatically try after timeout.
+    public var downloadTimeout: TimeInterval = 10.0
     
     /// The variable that actually keeps the count of the downloaded bytes.
     private var _downloadedBytes: UInt64 = 0
+    
+    
+
+
+    /// Indicates that the download has been paused due to too many concurrent downloads. The downloader will automatically try after timeout.
+    private var _stopped = false
     
     /// Total number of downloaded data bytes.
     public var downloadedBytes: UInt64 {
@@ -146,6 +162,7 @@ import MapKit
     
     /// Resets downloader counters.
     public func resetCounters() {
+        _stopped = false
         _downloadedBytes = 0
         _successfulTileDownloads = 0
         _failedTileDownloads = 0
@@ -158,11 +175,23 @@ import MapKit
         //Downloads stuff
         resetCounters()
         downloaderQueue.async {
+            /// Limit the number of tasks
+            let semaphore = DispatchSemaphore(value: self.maxConcurrentDownloads)
             for range: TileRange in self.region.tileRanges() ?? [] {
                 for tileCoords: TileCoords in range {
+                    if self._stopped {
+                        return
+                    }
+                    while semaphore.wait(timeout: DispatchTime(after: self.downloadTimeout)) == .timedOut {
+                        if self._stopped {
+                            return
+                        }
+                    }
+
                     ///Add to the download queue.
                     let mktileOverlayPath = MKTileOverlayPath(tileCoords: tileCoords)
-                    self.mapCache.loadTile(at: mktileOverlayPath, result: {data,error in
+                    self.mapCache.loadTile(at: mktileOverlayPath, result: { data, error in
+                        semaphore.signal()
                         if error != nil {
                             print(error?.localizedDescription ?? "Error downloading tile")
                             self._failedTileDownloads += 1
@@ -170,7 +199,8 @@ import MapKit
                             // so a retry can be performed
                         } else {
                             self._successfulTileDownloads += 1
-                            print("RegionDownloader:: Donwloaded zoom: \(tileCoords.zoom) (x:\(tileCoords.tileX),y:\(tileCoords.tileY)) \(self.downloadedTiles)/\(self.totalTilesToDownload) \(self.downloadedPercentage)%")
+                            self._downloadedBytes += UInt64(data?.count ?? 0)
+                            print("RegionDownloader:: Donwloaded zoom: \(tileCoords.zoom) (x:\(tileCoords.tileX),y:\(tileCoords.tileY), data.count: \(data?.count ?? 0)) \(self.downloadedTiles)/\(self.totalTilesToDownload) \(self.downloadedPercentage)%, bytes: \(self.downloadedBytes), average tile size: \(self.averageTileSizeBytes)")
                             
                         }
                         //check if needs to notify duet to percentage
@@ -191,9 +221,26 @@ import MapKit
         }
     }
     
+    /// Stop download.
+    public func stop() {
+        _stopped = true
+    }
+    
     /// Returns an estimation of the total number of bytes the whole region may occupy.
     /// Again, it is an estimation.
     public func estimateRegionByteSize() -> UInt64 {
         return RegionDownloader.defaultAverageTileSizeBytes * self.region.count
+    }
+}
+
+///
+/// Extension to DispatchTime to allow creating a time after a given time interval.
+/// - Parameter after: The time interval after which the new DispatchTime should be created.
+/// 
+public extension DispatchTime {
+
+    init(after: TimeInterval) {
+        print("DispatchTime.after: \(after) seconds")
+        self.init(uptimeNanoseconds:DispatchTime.now().uptimeNanoseconds + UInt64(after * 1_000_000_000))
     }
 }
