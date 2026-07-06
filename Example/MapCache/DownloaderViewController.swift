@@ -39,10 +39,25 @@ class DownloaderViewController: UIViewController {
         
         mapView.delegate = self
         
+        // (optional) 
+        // By default the cache folder is set to the caches folder of the application (which can be deleted by the OS if there is low disk space). 
+        // You can change it to any other folder.
+        // For example, you can set it to the application support folder, which is not deleted by the OS.
+        let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+        config.baseURL = appSupport
+        print("*** Cache base folder: \(config.baseURL?.path ?? "Not set")")
+        
+        // (optional) You can set the name of the cache  
+        // config.cacheName = "Downloads" # default "MapCache" Useful if you have different caches for different purposes.
+
         mapCache = MapCache(withConfig: config)
         _ = mapView.useCache(mapCache!)
         
-        //Initialize the region with any random value.
+
+        print("*** Actual path where the files are stored: \(mapCache?.diskCache.path ?? "No disk cache path")")
+       
+
+        // Initialize the region with any random value.
         region = TileCoordsRegion(topLeftLatitude: 10.0, topLeftLongitude: 10.0, bottomRightLatitude: 20.0, bottomRightLongitude: 20.0, minZoom: 1, maxZoom: 9)
     }
     
