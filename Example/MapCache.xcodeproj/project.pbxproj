@@ -21,6 +21,7 @@
 		895E71B322C2EA140006977C /* RegionDownloaderSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895E71B222C2EA140006977C /* RegionDownloaderSpecs.swift */; };
 		895E71B822CB13090006977C /* DownloaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895E71B722CB13090006977C /* DownloaderViewController.swift */; };
 		897DE7EE22976D7E0054A9A1 /* MapCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897DE7ED22976D7E0054A9A1 /* MapCacheTests.swift */; };
+		898B22162FFC4D750085039C /* CacheIndexSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B22152FFC4D750085039C /* CacheIndexSpecs.swift */; };
 		8992A46022AF2E7400C186CA /* TileCoordsSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8992A45F22AF2E7400C186CA /* TileCoordsSpecs.swift */; };
 		899A5FED23786422008BEC30 /* MapCacheConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899A5FEC23786422008BEC30 /* MapCacheConfigTests.swift */; };
 		A1B2C3D4E5F60000000000A2 /* MapCache in Frameworks */ = {isa = PBXBuildFile; productRef = A1B2C3D4E5F60000000000A1 /* MapCache */; };
@@ -64,6 +65,7 @@
 		895E71B222C2EA140006977C /* RegionDownloaderSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionDownloaderSpecs.swift; sourceTree = "<group>"; };
 		895E71B722CB13090006977C /* DownloaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloaderViewController.swift; sourceTree = "<group>"; };
 		897DE7ED22976D7E0054A9A1 /* MapCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCacheTests.swift; sourceTree = "<group>"; };
+		898B22152FFC4D750085039C /* CacheIndexSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheIndexSpecs.swift; sourceTree = "<group>"; };
 		8992A45F22AF2E7400C186CA /* TileCoordsSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileCoordsSpecs.swift; sourceTree = "<group>"; };
 		899A5FEC23786422008BEC30 /* MapCacheConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCacheConfigTests.swift; sourceTree = "<group>"; };
 		98B68CF07B3AC619DB7870E1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 		893072CA22A47D36008612A1 /* DiskCache */ = {
 			isa = PBXGroup;
 			children = (
+				898B22152FFC4D750085039C /* CacheIndexSpecs.swift */,
 				893072CB22A47E4A008612A1 /* DiskCacheSpecs.swift */,
 				893072CD22A47F06008612A1 /* String+DiskCacheSpecs.swift */,
 			);
@@ -321,6 +324,7 @@
 				899A5FED23786422008BEC30 /* MapCacheConfigTests.swift in Sources */,
 				895E71B322C2EA140006977C /* RegionDownloaderSpecs.swift in Sources */,
 				895E719E22B34F2A0006977C /* ZoomRangeSpecs.swift in Sources */,
+				898B22162FFC4D750085039C /* CacheIndexSpecs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

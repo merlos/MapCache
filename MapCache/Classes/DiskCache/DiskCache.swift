@@ -45,18 +45,16 @@ open class DiskCache {
     ///
     /// For example, a file may just contain 156 bytes of data (size listed in `ls` command), however its
     /// disk size is 4096, 1 volume block (as listed using `du -h`)
-    ///
-    /// This size is calculated each time
-    open var diskSize : UInt64 = 0
+    open var diskSize: UInt64 { index.totalSize }
     
-    /// This is the sum of the data sizes of the files within the `DiskCache`
-    ///
-    /// This size is calculated each time it is used
-    /// - Seealso: `diskSize`
-    
+    /// The sum of the data sizes of the files within the cache.
     open var fileSize: UInt64? {
         return try? FileManager.default.fileSizeForDirectory(at: folderURL)
     }
+    
+    /// In-memory index tracking all cached files, sorted by modification date.
+    /// Used by `controlCapacity()` for O(m) LRU eviction without filesystem scans.
+    private let index = CacheIndex()
     
     /// Maximum allowed cache disk allocated size for this `DiskCache``
     /// Defaults to unlimited capacity (`UINT64_MAX`)
@@ -91,7 +89,7 @@ open class DiskCache {
         }
         self.capacity = capacity
         cacheQueue.async(execute: {
-            self.diskSize = self.calculateDiskSize()
+            self.index.build(from: self.folderURL)
             self.controlCapacity()
         })
         //Log.diskcache.debug("folderURL=\(folderURL.absoluteString)")
@@ -113,23 +111,23 @@ open class DiskCache {
     
     /// Sets the data for the key synchronously.
     open func setDataSync(_ data: Data, forKey key: String) {
-        let filePath = path(forKey: key)
+        let filename = key.toMD5()
+        let filePath = folderURL.appendingPathComponent(filename).path
         Log.diskcache.debug("filePath: \(filePath) data count: \(data.count) key: \(key) diskBlocks:\(Double(data.count) / 4096.0)")
-        //If the file exists get the current file diskSize.
-        let fileURL = URL(fileURLWithPath: filePath)
-        do {
-            substract(diskSize: try fileURL.regularFileAllocatedDiskSize())
-        } catch {} //if file is not found do nothing
-        
+
+        index.remove(filename: filename)
+
         do {
             try data.write(to: URL(fileURLWithPath: filePath), options: Data.WritingOptions.atomicWrite)
         } catch {
             Log.diskcache.error("Failed to write key: \(key) filepath: \(filePath) \(error)")
+            return
         }
-        //Now add to the diskSize the file size
+
         var diskBlocks = Double(data.count) / 4096.0
         diskBlocks.round(.up)
-        diskSize += UInt64(diskBlocks * 4096.0)
+        let allocated = UInt64(diskBlocks * 4096.0)
+        index.add(filename: filename, size: allocated)
         self.controlCapacity()
     }
     
@@ -145,6 +143,7 @@ open class DiskCache {
             let data = try Data(contentsOf: URL(fileURLWithPath: path), options: Data.ReadingOptions())
             succeed(data)
             self.updateDiskAccessDate(atPath: path)
+            self.index.touch(filename: key.toMD5())
         } catch {
             if let block = fail {
                 block(error)
@@ -178,7 +177,7 @@ open class DiskCache {
                         Log.diskcache.error("Failed to remove path \(filePath) \(error)")
                     }
                 }
-                self.diskSize = self.calculateDiskSize()
+                self.index.removeAll()
                 Log.diskcache.debug("Size at the end \(self.diskSize)")
             } catch {
                 Log.diskcache.error("Failed to list directory \(error)")
@@ -208,8 +207,11 @@ open class DiskCache {
     open func updateAccessDate( _ getData: @autoclosure @escaping () -> Data?, key: String) {
         cacheQueue.async(execute: {
             let path = self.path(forKey: key)
+            let filename = key.toMD5()
             let fileManager = FileManager.default
-            if (!(fileManager.fileExists(atPath: path) && self.updateDiskAccessDate(atPath: path))){
+            if fileManager.fileExists(atPath: path) && self.updateDiskAccessDate(atPath: path) {
+                self.index.touch(filename: filename)
+            } else {
                 if let data = getData() {
                     self.setDataSync(data, forKey: key)
                 } else {
@@ -221,31 +223,16 @@ open class DiskCache {
     
     /// Calculates the size used by all the files in the cache.
     public func calculateDiskSize() -> UInt64 {
-        let fileManager = FileManager.default
-        var currentSize : UInt64 = 0
-        do {
-            currentSize = try fileManager.allocatedDiskSizeForDirectory(at: folderURL)
-        }
-        catch {
-            Log.diskcache.error("Failed to get diskSize of directory \(error)")
-        }
-        return currentSize
+        return index.build(from: folderURL)
     }
     
     // MARK: Private
     
     /// It checks if the capacity of the cache has been reached. If so, it removes the least recently used file (LRU).
     fileprivate func controlCapacity() {
-        if self.diskSize <= self.capacity { return }
-        
-        let fileManager = FileManager.default
-        let cachePath = self.path
-        fileManager.enumerateContentsOfDirectory(
-            atPath: cachePath,
-            orderedByProperty: URLResourceKey.contentModificationDateKey.rawValue, ascending: true) {
-                (URL : URL, _, stop : inout Bool) -> Void in
-                self.removeFile(atPath: URL.path)
-                stop = self.diskSize <= self.capacity
+        while index.totalSize > capacity, let oldest = index.popOldest() {
+            let filePath = folderURL.appendingPathComponent(oldest.filename).path
+            removeFile(atPath: filePath)
         }
     }
     /// Updates the time a file was accessed for the last time.
@@ -263,33 +250,20 @@ open class DiskCache {
     
     /// Removes a file syncrhonously.
     fileprivate func removeFile(atPath path: String) {
-        let fileManager = FileManager.default
+        let filename = URL(fileURLWithPath: path).lastPathComponent
         do {
-            let fileURL = URL(fileURLWithPath: path)
-            let fileSize = try fileURL.regularFileAllocatedDiskSize()
-            try fileManager.removeItem(atPath: path)
-            substract(diskSize: fileSize)
+            try FileManager.default.removeItem(atPath: path)
         } catch {
             if isNoSuchFileError(error) {
                 Log.diskcache.error("Failed to remove file. File not found \(error)")
             } else {
-                Log.diskcache.error("Failed to remove file. Size or other error \(error)")
+                Log.diskcache.error("Failed to remove file \(error)")
             }
         }
+        index.remove(filename: filename)
     }
     
-    /// Substracts from the cachesize  the disk size passed as parameter.
-    /// Logs an error message if the amount to be substracted is larger than the current used disk space.
-    ///
-    /// - Parameter diskSize: disksize to be deducted
-    fileprivate func substract(diskSize : UInt64) {
-        if (self.diskSize >= diskSize) {
-            self.diskSize -= diskSize
-        } else {
-            Log.diskcache.error("diskSize (\(self.diskSize)) is smaller than diskSize to substract (\(diskSize))")
-            self.diskSize = 0
-        }
-    }
+
 }
 
 /// Error when there is not a file.
