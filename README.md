@@ -134,7 +134,8 @@ config.cacheName = "Carto"
 
 
 // Max zoom supported by the tile server
-// Default value is 19
+// Default value is 19 
+// Max value accepted is 25
 config.maximumZ = 21
 
 // Minimum zoom can also be set.
@@ -149,6 +150,21 @@ config.maximumZ = 21
 // Each time a tile is retrieved from the cache it is updated the value of last time used.
 // Default value of the capacity is unlimited.
 config.capacity = 200 * 1024 * 1024 // 200 Megabytes
+
+
+// Optional custom base URL for the cache directory.
+// By default, the cache is stored in the system temporary `cachesDirectory` (NSCachesDirectory),
+// which the system may purge at any time.
+//
+// Set `baseURL` to a permanent directory such as `applicationSupportDirectory` to keep
+// cache data across app restarts and system cache purges.
+//
+// Example: Store cache in the app's Application Support folder (permanent):
+// let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+// config.baseURL = appSupport.appendingPathComponent("MapCacheTiles", isDirectory: true)
+//
+// Default is `nil`, which uses the system temporary cache directory.
+config.baseURL = nil
 
 
 ```
