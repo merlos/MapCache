@@ -45,7 +45,10 @@ class ViewController: UIViewController {
         //
         //
         config.loadTileMode = .serverThenCache
-        
+    
+        // Set the capacity (in bytes), this limits the 
+        // maximum size of the cache. When the cache exceeds this size, the least recently used tiles are deleted.
+        config.capacity = 100_000_000 //100 MB
 
         // initialize the cache with our config
         mapCache = MapCache(withConfig: config)
