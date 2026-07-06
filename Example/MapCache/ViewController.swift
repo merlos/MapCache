@@ -46,10 +46,15 @@ class ViewController: UIViewController {
         //
         config.loadTileMode = .serverThenCache
         
+
         // initialize the cache with our config
         mapCache = MapCache(withConfig: config)
         // See documentation to know more about config options
         
+        /// Where is the cache stored? By default it is stored in the caches folder of the application (which can be deleted by the OS if there is low disk space). 
+        /// See `DownloaderViewController` for an example of how to change the cache folder to the application support folder, which is not deleted by the OS.
+        print("*** Actual path where the files are stored: \(mapCache?.diskCache.path ?? "No disk cache path")")
+       
         
         // We tell our MKMapView to use the cache
         // useCache(:) is part of MapCache extension.
