@@ -26,27 +26,27 @@ struct Log {
     }
 
     func trace(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
-        logger.log(level: .debug, "\((file as NSString).lastPathComponent):\(line) \(Self.baseName(function)) \(message)")
+        logger.log(level: .debug, "\((file as NSString).lastPathComponent)[\(line)]::\(Self.baseName(function)) -- \(message)")
     }
 
     func debug(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
-        logger.log(level: .debug, "\((file as NSString).lastPathComponent):\(line) \(Self.baseName(function)) \(message)")
+        logger.log(level: .debug, "\((file as NSString).lastPathComponent)[\(line)]::\(Self.baseName(function)) -- \(message)")
     }
 
     func info(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
-        logger.log(level: .info, "\((file as NSString).lastPathComponent):\(line) \(Self.baseName(function)) \(message)")
+        logger.log(level: .info, "\((file as NSString).lastPathComponent)[\(line)]::\(Self.baseName(function)) -- \(message)")
     }
 
     func notice(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
-        logger.log(level: .default, "\((file as NSString).lastPathComponent):\(line) \(Self.baseName(function)) \(message)")
+        logger.log(level: .default, "\((file as NSString).lastPathComponent)[\(line)]::\(Self.baseName(function)) -- \(message)")
     }
 
     func error(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
-        logger.log(level: .error, "\((file as NSString).lastPathComponent):\(line) \(Self.baseName(function)) \(message)")
+        logger.log(level: .error, "\((file as NSString).lastPathComponent)[\(line)]::\(Self.baseName(function)) -- \(message)")
     }
 
     func fault(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
-        logger.log(level: .fault, "\((file as NSString).lastPathComponent):\(line) \(Self.baseName(function)) \(message)")
+        logger.log(level: .fault, "\((file as NSString).lastPathComponent)[\(line)]::\(Self.baseName(function)) -- \(message)")
     }
 }
 
