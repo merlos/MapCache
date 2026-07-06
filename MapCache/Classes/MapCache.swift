@@ -57,12 +57,12 @@ open class MapCache : MapCacheProtocol {
     /// - SeeAlso: MapCacheConfig.roundRoubinSubdomain()
     
     public func url(forTilePath path: MKTileOverlayPath) -> URL {
-        //print("CachedTileOverlay:: url() urlTemplate: \(urlTemplate)")
+        //Log.cache.debug("url() urlTemplate: \(urlTemplate)")
         var urlString = config.urlTemplate.replacingOccurrences(of: "{z}", with: String(path.z))
         urlString = urlString.replacingOccurrences(of: "{x}", with: String(path.x))
         urlString = urlString.replacingOccurrences(of: "{y}", with: String(path.y))
         urlString = urlString.replacingOccurrences(of: "{s}", with: config.roundRobinSubdomain() ?? "")
-        Log.debug(message: "MapCache::url() urlString: \(urlString)")
+        Log.cache.debug("url() urlString: \(urlString)")
         return URL(string: urlString)!
     }
     
@@ -94,7 +94,7 @@ open class MapCache : MapCacheProtocol {
                              success succeed: @escaping (Data) -> ()) {
         let url = self.url(forTilePath: path)
         let key = cacheKey(forPath: path)
-        print ("MapCache::fetchTileFromServer() url=\(url)")
+        Log.cache.debug("fetchTileFromServer() url=\(url)")
         
         var request = URLRequest(url: url)
         
@@ -111,17 +111,17 @@ open class MapCache : MapCacheProtocol {
         
         let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
             if error != nil {
-                print("!!! MapCache::fetchTileFromServer Error for url= \(url) \(error.debugDescription)")
+                Log.cache.error("fetchTileFromServer Error for url= \(url) \(error.debugDescription)")
                 fail!(error)
                 return
             }
             guard let data = data else {
-                print("!!! MapCache::fetchTileFromServer No data for url= \(url)")
+                Log.cache.error("fetchTileFromServer No data for url= \(url)")
                 fail!(nil)
                 return
             }
             guard let httpResponse = response as? HTTPURLResponse else {
-                print("!!! MapCache::fetchTileFromServer Invalid response url= \(url)")
+                Log.cache.error("fetchTileFromServer Invalid response url= \(url)")
                 fail!(nil)
                 return
             }
@@ -133,14 +133,14 @@ open class MapCache : MapCacheProtocol {
                     failure: nil,
                     success: { data in cachedData = data })
                 if let data = cachedData {
-                    print("MapCache::fetchTileFromServer 304 Not Modified url= \(url)")
+                    Log.cache.info("fetchTileFromServer 304 Not Modified url= \(url)")
                     succeed(data)
                     return
                 }
                 // Cached data was evicted but ETag survived — orphaned ETag
                 // Remove it and re-fetch without conditional headers
                 self.etagCache.removeData(withKey: key)
-                print("MapCache::fetchTileFromServer 304 but data evicted, re-fetching url= \(url)")
+                Log.cache.notice("fetchTileFromServer 304 but data evicted, re-fetching url= \(url)")
                 self.fetchTileFromServer(at: path, skipEtag: true,
                     failure: { error in fail!(error) },
                     success: { data in succeed(data) })
@@ -148,7 +148,7 @@ open class MapCache : MapCacheProtocol {
             }
             // Handle 2xx success
             guard (200...299).contains(httpResponse.statusCode) else {
-                print("!!! MapCache::fetchTileFromServer statusCode != 2xx url= \(url)")
+                Log.cache.error("fetchTileFromServer statusCode != 2xx url= \(url)")
                 fail!(nil)
                 return
             }
@@ -163,7 +163,7 @@ open class MapCache : MapCacheProtocol {
             
             // 2. Cache the tile data & return success
             self.diskCache.setDataSync(data, forKey: key)
-            print("MapCache::fetchTileFromServer tile received saved cacheKey=\(key)")
+            Log.cache.info("fetchTileFromServer tile received saved cacheKey=\(key)")
             
             succeed(data)
         }
@@ -185,12 +185,12 @@ open class MapCache : MapCacheProtocol {
        // Tries to load the tile from the server.
        // If it fails returns error to the caller.
         let tileFromServerFallback = { () -> () in
-            print ("MapCache::tileFromServerFallback:: key=\(key)" )
+            Log.cache.debug("tileFromServerFallback:: key=\(key)")
             // we skip the ETag check here because we already tried it in the first attempt and it failed, so we want to force a fresh fetch from the server.
             self.fetchTileFromServer(at: path, skipEtag: true,
                                 failure: {error in result(nil, error)},
                                 success: {data in
-                                               print ("MapCache::fetchTileFromServer:: Data received cacheKey=\(key)" )
+                                               Log.cache.debug("fetchTileFromServer:: Data received cacheKey=\(key)")
                                     result(data, nil)})
         }
         

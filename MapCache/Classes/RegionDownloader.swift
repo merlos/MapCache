@@ -193,14 +193,14 @@ import MapKit
                     self.mapCache.loadTile(at: mktileOverlayPath, result: { data, error in
                         semaphore.signal()
                         if error != nil {
-                            print(error?.localizedDescription ?? "Error downloading tile")
+                            Log.downloader.error("\(error?.localizedDescription ?? "Error downloading tile")")
                             self._failedTileDownloads += 1
                             // TODO add to an array of tiles not downloaded
                             // so a retry can be performed
                         } else {
                             self._successfulTileDownloads += 1
                             self._downloadedBytes += UInt64(data?.count ?? 0)
-                            print("RegionDownloader:: Donwloaded zoom: \(tileCoords.zoom) (x:\(tileCoords.tileX),y:\(tileCoords.tileY), data.count: \(data?.count ?? 0)) \(self.downloadedTiles)/\(self.totalTilesToDownload) \(self.downloadedPercentage)%, bytes: \(self.downloadedBytes), average tile size: \(self.averageTileSizeBytes)")
+                            Log.downloader.debug("Donwloaded zoom: \(tileCoords.zoom) (x:\(tileCoords.tileX),y:\(tileCoords.tileY), data.count: \(data?.count ?? 0)) \(self.downloadedTiles)/\(self.totalTilesToDownload) \(self.downloadedPercentage)%, bytes: \(self.downloadedBytes), average tile size: \(self.averageTileSizeBytes)")
                             
                         }
                         //check if needs to notify duet to percentage
@@ -240,7 +240,7 @@ import MapKit
 public extension DispatchTime {
 
     init(after: TimeInterval) {
-        print("DispatchTime.after: \(after) seconds")
+        Log.downloader.trace("DispatchTime.after: \(after) seconds")
         self.init(uptimeNanoseconds:DispatchTime.now().uptimeNanoseconds + UInt64(after * 1_000_000_000))
     }
 }
