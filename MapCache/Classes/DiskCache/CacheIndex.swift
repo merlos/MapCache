@@ -66,6 +66,10 @@ open class CacheIndex {
     /// Mapping from filename to index in `entries`.
     private var entryMap: [String: Int] = [:]
 
+    /// Serializes all mutations so `touch` from any thread is safe with respect
+    /// to `controlCapacity()` running on `cacheQueue`.
+    private let lock = NSRecursiveLock()
+
     public init() {}
 
     /// Builds the index by enumerating the filesystem directory.
@@ -79,6 +83,8 @@ open class CacheIndex {
     /// - Returns: The total allocated size of all files found.
     @discardableResult
     open func build(from directoryURL: URL) -> UInt64 {
+        lock.lock()
+        defer { lock.unlock() }
         entries = []
         entryMap = [:]
         totalSize = 0
@@ -118,6 +124,8 @@ open class CacheIndex {
     ///   - size: Allocated disk size in bytes.
     ///   - modificationDate: File modification date. Pass `nil` to use the current date.
     open func add(filename: String, size: UInt64, modificationDate: Date? = nil) {
+        lock.lock()
+        defer { lock.unlock() }
         let date = modificationDate ?? Date()
         remove(filename: filename)
 
@@ -138,6 +146,8 @@ open class CacheIndex {
     ///   - filename: MD5 filename of the cached file.
     ///   - modificationDate: New modification date. Pass `nil` to use the current date.
     open func touch(filename: String, modificationDate: Date? = nil) {
+        lock.lock()
+        defer { lock.unlock() }
         guard let idx = entryMap[filename] else { return }
         let date = modificationDate ?? Date()
         entries[idx].modificationDate = date
@@ -152,6 +162,8 @@ open class CacheIndex {
     ///
     /// - Parameter filename: MD5 filename of the cached file to remove.
     open func remove(filename: String) {
+        lock.lock()
+        defer { lock.unlock() }
         guard let idx = entryMap[filename] else { return }
         totalSize -= entries[idx].size
         entries.remove(at: idx)
@@ -163,6 +175,8 @@ open class CacheIndex {
 
     /// Removes all entries from the index and resets `totalSize` to zero.
     open func removeAll() {
+        lock.lock()
+        defer { lock.unlock() }
         entries = []
         entryMap = [:]
         totalSize = 0
@@ -172,6 +186,8 @@ open class CacheIndex {
     ///
     /// - Returns: The entry with the smallest `modificationDate`, or `nil` if the index is empty.
     open func popOldest() -> Entry? {
+        lock.lock()
+        defer { lock.unlock() }
         guard let oldest = oldest else { return nil }
         remove(filename: oldest.filename)
         return oldest
@@ -179,7 +195,7 @@ open class CacheIndex {
 
     /// Rebuilds the filename→index mapping from the sorted entries array.
     private func rebuildEntryMap() {
-        entryMap.removeAll(keepingCapacity: true)
+        entryMap = [:]
         for (i, entry) in entries.enumerated() {
             entryMap[entry.filename] = i
         }
