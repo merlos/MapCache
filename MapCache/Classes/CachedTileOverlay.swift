@@ -38,7 +38,7 @@ open class CachedTileOverlay : MKTileOverlay {
     /// - SeeAlso: `MapCache`, `MapCacheConfig`
     ///
     override public func url(forTilePath path: MKTileOverlayPath) -> URL {
-        //Log.cache.debug("url() urlTemplate: \(urlTemplate)")
+        //Log.cache.debug("urlTemplate: \(urlTemplate)")
         return mapCache.url(forTilePath: path)
     }
     
