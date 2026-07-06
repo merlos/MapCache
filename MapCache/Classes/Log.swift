@@ -5,12 +5,11 @@
 //  Created by merlos on 02/06/2019.
 //
 
-
 import Foundation
 import os
 
 ///
-/// Thin wrapper around os.Logger that automatically captures file and line numbers.
+/// Thin wrapper around os.Logger that automatically captures file, function and line numbers.
 ///
 struct Log {
     let logger: Logger
@@ -19,28 +18,35 @@ struct Log {
         logger = Logger(subsystem: subsystem, category: category)
     }
 
-    func trace(_ message: String, file: String = #file, line: Int = #line) {
-        logger.log(level: .debug, "\((file as NSString).lastPathComponent):\(line) \(message)")
+    private static func baseName(_ function: String) -> String {
+        if let parenIndex = function.firstIndex(of: "(") {
+            return String(function[..<parenIndex])
+        }
+        return function
     }
 
-    func debug(_ message: String, file: String = #file, line: Int = #line) {
-        logger.log(level: .debug, "\((file as NSString).lastPathComponent):\(line) \(message)")
+    func trace(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
+        logger.log(level: .debug, "\((file as NSString).lastPathComponent):\(line) \(Self.baseName(function)) \(message)")
     }
 
-    func info(_ message: String, file: String = #file, line: Int = #line) {
-        logger.log(level: .info, "\((file as NSString).lastPathComponent):\(line) \(message)")
+    func debug(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
+        logger.log(level: .debug, "\((file as NSString).lastPathComponent):\(line) \(Self.baseName(function)) \(message)")
     }
 
-    func notice(_ message: String, file: String = #file, line: Int = #line) {
-        logger.log(level: .default, "\((file as NSString).lastPathComponent):\(line) \(message)")
+    func info(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
+        logger.log(level: .info, "\((file as NSString).lastPathComponent):\(line) \(Self.baseName(function)) \(message)")
     }
 
-    func error(_ message: String, file: String = #file, line: Int = #line) {
-        logger.log(level: .error, "\((file as NSString).lastPathComponent):\(line) \(message)")
+    func notice(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
+        logger.log(level: .default, "\((file as NSString).lastPathComponent):\(line) \(Self.baseName(function)) \(message)")
     }
 
-    func fault(_ message: String, file: String = #file, line: Int = #line) {
-        logger.log(level: .fault, "\((file as NSString).lastPathComponent):\(line) \(message)")
+    func error(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
+        logger.log(level: .error, "\((file as NSString).lastPathComponent):\(line) \(Self.baseName(function)) \(message)")
+    }
+
+    func fault(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
+        logger.log(level: .fault, "\((file as NSString).lastPathComponent):\(line) \(Self.baseName(function)) \(message)")
     }
 }
 
