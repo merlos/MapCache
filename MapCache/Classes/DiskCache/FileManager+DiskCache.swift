@@ -69,7 +69,7 @@ extension FileManager {
             }
             
         } catch {
-            Log.error(message: "Failed to list directory", error: error)
+            Log.diskcache.error("Failed to list directory \(error)")
         }
     }
     

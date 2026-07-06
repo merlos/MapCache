@@ -4,81 +4,84 @@
 //
 //  Created by merlos on 02/06/2019.
 //
-// Based on Haneke' Log File
-// https://github.com/Haneke/HanekeSwift/blob/master/Haneke/Log.swift
-//
-
 
 import Foundation
+import os
 
 ///
-/// For logging messages on console.
+/// Thin wrapper around os.Logger that automatically captures file, function and line numbers.
 ///
-/// The log format is `<tag><Level> <message> [with error <error>]`:
-/// Examples:
+/// Usage:
 /// ```
-///   [MapCache][DEBUG] Welcome to MapCache
-///   [MapCache][ERROR] Could not download file with error Unknown address
+///   Log.cache.debug("my debug message")
+///   // prints: MapCache.swift[42]::myMethod -- my debug message
 ///
+///   Log.cache.error("tile not found with error \(error)")
+///   // prints: MapCache.swift[99]::fetchTile -- tile not found with error ...
+///
+///   Log.diskcache.info("cache size calculated")
+///   // prints: DiskCache.swift[55]::calculateDiskSize -- cache size calculated
+///
+///   Log.downloader.trace("network request started")
+///   // prints: RegionDownloader.swift[77]::start -- network request started
 /// ```
 ///
-///
-public struct Log {
-    
-    /// The tag [MapCache]
-    fileprivate static let tag = "[MapCache]"
-    
-    /// Log Levels
-    fileprivate enum Level : String {
-        /// `[Debug]` For displaying messages useful during development.
-        case Debug = "[DEBUG]"
-        /// `[ERROR]`For displaying messages of bad situations, very, very bad situations.
-        case Error = "[ERROR]"
+struct Log {
+    let logger: Logger
+
+    init(subsystem: String, category: String) {
+        logger = Logger(subsystem: subsystem, category: category)
     }
-    
-    ///
-    /// The actual method that prints.
-    /// - Parameter level: log level to show
-    /// - Parameter message: message to show
-    /// - Parameter error: error to show if any on addition to the message. Uses the pattern `{message} with error {error}`
-    fileprivate static func log(_ level: Level, _ message: @autoclosure () -> String, _ error: Error? = nil) {
-        if let error = error {
-            print("\(tag)\(level.rawValue) \(message()) with error \(error)")
-        } else {
-            print("\(tag)\(level.rawValue) \(message())")
+
+    private static func baseName(_ function: String) -> String {
+        if let parenIndex = function.firstIndex(of: "(") {
+            return String(function[..<parenIndex])
         }
+        return function
     }
-    
-    ///
-    /// For displaying messages. Useful during development of this package.
-    ///
-    /// Example:
-    /// ```
-    /// Log.debug("Hello world") // prints: [MapCache][DEBUG] Hello word
-    /// ```
-    ///
-    /// These messages are displayed only if DEBUG is defined.
-    /// - Parameter message: message to display
-    /// - Parameter error: error to display if any.
-    static func debug(message: @autoclosure () -> String, error: Error? = nil) {
-        #if DEBUG
-        log(.Debug, message(), error)
-        #endif
-    }
-    
-    ///
-    /// These messages are displayed independently of the debug mode.
-    /// Used  to provide useful information on exceptional situations to library users.
-    /// Example:
-    /// ```
-    /// Log.error("Could not download tile", error) // prints: [MapCache][ERROR] Could not download tile with error No internet connection.
-    /// ```
-    ///
-    /// - Parameter message: message to display
-    /// - Parameter error: error to display
 
-    static func error(message: @autoclosure () -> String, error: Error? = nil) {
-        log(.Error, message(), error)
+    /// Log at `.debug` level. Extremely verbose, not persisted, development only.
+    func trace(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
+        logger.log(level: .debug, "\((file as NSString).lastPathComponent)[\(line)]::\(Self.baseName(function)) -- \(message)")
     }
-    
+
+    /// Log at `.debug` level. Not persisted, useful during development.
+    func debug(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
+        logger.log(level: .debug, "\((file as NSString).lastPathComponent)[\(line)]::\(Self.baseName(function)) -- \(message)")
+    }
+
+    /// Log at `.info` level. Persisted in the log archive, useful for important state changes.
+    func info(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
+        logger.log(level: .info, "\((file as NSString).lastPathComponent)[\(line)]::\(Self.baseName(function)) -- \(message)")
+    }
+
+    /// Log at `.default` level. Noteworthy events that are not errors.
+    func notice(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
+        logger.log(level: .default, "\((file as NSString).lastPathComponent)[\(line)]::\(Self.baseName(function)) -- \(message)")
+    }
+
+    /// Log at `.error` level. Recoverable errors that should be investigated.
+    func error(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
+        logger.log(level: .error, "\((file as NSString).lastPathComponent)[\(line)]::\(Self.baseName(function)) -- \(message)")
+    }
+
+    /// Log at `.fault` level. Critical failures that may impact app stability.
+    func fault(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
+        logger.log(level: .fault, "\((file as NSString).lastPathComponent)[\(line)]::\(Self.baseName(function)) -- \(message)")
+    }
+}
+
+///
+/// Pre-configured loggers for each MapCache subsystem category.
+///
+extension Log {
+
+    /// Cache operations (tile fetching, URL building, ETag handling)
+    static let cache = Log(subsystem: "org.merlos.mapcache", category: "cache")
+
+    /// Disk storage operations (read/write/eviction)
+    static let diskcache = Log(subsystem: "org.merlos.mapcache", category: "diskcache")
+
+    /// Region downloader operations
+    static let downloader = Log(subsystem: "org.merlos.mapcache", category: "downloader")
 }

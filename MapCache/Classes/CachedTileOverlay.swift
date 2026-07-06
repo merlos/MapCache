@@ -38,7 +38,7 @@ open class CachedTileOverlay : MKTileOverlay {
     /// - SeeAlso: `MapCache`, `MapCacheConfig`
     ///
     override public func url(forTilePath path: MKTileOverlayPath) -> URL {
-        //print("CachedTileOverlay:: url() urlTemplate: \(urlTemplate)")
+        //Log.cache.debug("urlTemplate: \(urlTemplate)")
         return mapCache.url(forTilePath: path)
     }
     
@@ -49,7 +49,7 @@ open class CachedTileOverlay : MKTileOverlay {
     override open func loadTile(at path: MKTileOverlayPath,
                                   result: @escaping (Data?, Error?) -> Void) {
         if !self.useCache { // Use cache by use cache is not set.
-            // print("loadTile:: not using cache")
+            //Log.cache.debug("loadTile not using cache")
             return super.loadTile(at: path, result: result)
         } else {
             return mapCache.loadTile(at: path, result: result)
