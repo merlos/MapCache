@@ -16,8 +16,11 @@ import Foundation
 ///
 open class DiskCache {
     
-    /// Gets the root base folder to be used.
-    open class func baseURL() -> URL {
+    /// Gets the default root base folder used when no custom `baseURL` is provided.
+    /// Uses the system `cachesDirectory` (temporary, may be purged by the system).
+    ///
+    /// - SeeAlso: `init(withName:capacity:baseURL:)`
+    open class func defaultBaseURL() -> URL {
         // where should you put your files
         // https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW28
         let cachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
@@ -75,8 +78,12 @@ open class DiskCache {
     /// Constructor
     /// - Parameter withName: Name of the cache, will be the subfolder name too.
     /// - Parameter capacity: capacity of the cache in bytes. Defaults to virutally unlimited capacity (`UINT64_MAX`)
-    public init(withName cacheName: String, capacity: UInt64 = UINT64_MAX) {
-        folderURL = DiskCache.baseURL().appendingPathComponent(cacheName, isDirectory: true)
+    /// - Parameter baseURL: Custom root URL for the cache. If `nil`, uses `DiskCache.defaultBaseURL()`.
+    ///   Set this to a permanent directory (e.g. `applicationSupportDirectory`) to persist
+    ///   cache data across app restarts and system cache purges.
+    public init(withName cacheName: String, capacity: UInt64 = UINT64_MAX, baseURL: URL? = nil) {
+        let root = baseURL ?? DiskCache.defaultBaseURL()
+        folderURL = root.appendingPathComponent(cacheName, isDirectory: true)
         do {
             try FileManager.default.createDirectory(at: self.folderURL, withIntermediateDirectories: true, attributes: nil)
         } catch {

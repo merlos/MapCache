@@ -73,6 +73,22 @@ public struct MapCacheConfig  {
     public var capacity: UInt64 = UINT64_MAX
     
     ///
+    /// Optional custom base URL for the cache directory.
+    ///
+    /// When set, overrides the default temporary `NSCachesDirectory/DiskCache/` path.
+    /// Useful for permanent storage, for example pointing to `applicationSupportDirectory`.
+    ///
+    /// Default is `nil`, which uses the default temporary cache location (`DiskCache.defaultBaseURL()`).
+    ///
+    /// Example usage:
+    /// ```swift
+    /// let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+    /// config.baseURL = appSupport.appendingPathComponent("MapCacheTiles", isDirectory: true)
+    /// ```
+    ///
+    public var baseURL: URL? = nil
+    
+    ///
     /// Tile size of the tile. Default is 256x256
     ///
     public var tileSize: CGSize = CGSize(width: 256, height: 256)

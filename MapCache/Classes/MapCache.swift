@@ -41,8 +41,8 @@ open class MapCache : MapCacheProtocol {
     ///
     public init(withConfig config: MapCacheConfig ) {
         self.config = config
-        diskCache = DiskCache(withName: config.cacheName, capacity: config.capacity)
-        etagCache = DiskCache(withName: "\(config.cacheName)-etags", capacity: UINT64_MAX)
+        diskCache = DiskCache(withName: config.cacheName, capacity: config.capacity, baseURL: config.baseURL)
+        etagCache = DiskCache(withName: "\(config.cacheName)-etags", capacity: UINT64_MAX, baseURL: config.baseURL)
     }
     
     ///

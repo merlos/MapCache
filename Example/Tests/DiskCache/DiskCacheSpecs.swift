@@ -61,7 +61,7 @@ class DiskCacheSpecs: QuickSpec {
             
             beforeEach {
                 cacheName = cacheBaseName + String(Int.random(in: 1..<100000000))
-                try! FileManager.default.removeItem(at: DiskCache.baseURL())
+                try! FileManager.default.removeItem(at: DiskCache.defaultBaseURL())
                 diskCache = DiskCache(withName: cacheName)
                 expect(diskCache.diskSize).to(equal(0))
             }
@@ -174,6 +174,94 @@ class DiskCacheSpecs: QuickSpec {
                 expect(diskCache.calculateDiskSize()).toEventually(equal(0))
             }
             
+        }
+        
+        describe("DiskCache with custom baseURL") {
+            
+            let customBaseName = "customBaseCache"
+            var customBaseURL: URL!
+            var customDiskCache: DiskCache!
+            
+            beforeEach {
+                let tempDir = FileManager.default.temporaryDirectory
+                customBaseURL = tempDir.appendingPathComponent("MapCacheTests_\(Int.random(in: 1..<100000000))", isDirectory: true)
+                try? FileManager.default.removeItem(at: customBaseURL)
+                customDiskCache = DiskCache(withName: customBaseName, baseURL: customBaseURL)
+            }
+            
+            afterEach {
+                customDiskCache.removeCache()
+                try? FileManager.default.removeItem(at: customBaseURL)
+            }
+            
+            it("stores data in the custom baseURL directory") {
+                let expectedFolder = customBaseURL.appendingPathComponent(customBaseName, isDirectory: true)
+                var isDir: ObjCBool = false
+                let exists = FileManager.default.fileExists(atPath: expectedFolder.path, isDirectory: &isDir)
+                expect(exists) == true
+                expect(isDir.boolValue) == true
+            }
+            
+            it("places folderURL under the custom baseURL") {
+                let expected = customBaseURL.appendingPathComponent(customBaseName, isDirectory: true)
+                expect(customDiskCache.folderURL.path).to(beginWith(expected.path))
+            }
+            
+            it("can write and read data with custom baseURL") {
+                let key = "customKey"
+                let data = "customData".data(using: .utf8)!
+                customDiskCache.setDataSync(data, forKey: key)
+                
+                var result: Data?
+                customDiskCache.fetchDataSync(forKey: key, failure: nil, success: {
+                    result = $0
+                })
+                expect(result).toEventually(equal(data))
+            }
+            
+            it("is independent from caches with different baseURLs") {
+                let key = "sharedKey"
+                let data = "dataForCustom".data(using: .utf8)!
+                customDiskCache.setDataSync(data, forKey: key)
+                
+                let defaultDiskCache = DiskCache(withName: customBaseName)
+                defer { defaultDiskCache.removeCache() }
+                
+                var result: Data?
+                defaultDiskCache.fetchDataSync(forKey: key, failure: { _ in }, success: {
+                    result = $0
+                })
+                // The default cache should NOT have the data written to the custom cache
+                expect(result).toEventually(beNil())
+            }
+        }
+        
+        describe("MapCache with custom baseURL") {
+            it("creates disk caches under the custom baseURL") {
+                let tempDir = FileManager.default.temporaryDirectory
+                let customBase = tempDir.appendingPathComponent("MapCacheIntegration_\(Int.random(in: 1..<100000000))", isDirectory: true)
+                try? FileManager.default.removeItem(at: customBase)
+                defer { try? FileManager.default.removeItem(at: customBase) }
+                
+                var config = MapCacheConfig()
+                config.cacheName = "IntegrationTest"
+                config.baseURL = customBase
+                let mapCache = MapCache(withConfig: config)
+                defer {
+                    mapCache.diskCache.removeCache()
+                    mapCache.etagCache.removeCache()
+                }
+                
+                let expectedDisk = customBase.appendingPathComponent("IntegrationTest", isDirectory: true)
+                let expectedEtag = customBase.appendingPathComponent("IntegrationTest-etags", isDirectory: true)
+                
+                var isDir: ObjCBool = false
+                expect(FileManager.default.fileExists(atPath: expectedDisk.path, isDirectory: &isDir)) == true
+                expect(isDir.boolValue) == true
+                
+                expect(FileManager.default.fileExists(atPath: expectedEtag.path, isDirectory: &isDir)) == true
+                expect(isDir.boolValue) == true
+            }
         }
     }
 }
