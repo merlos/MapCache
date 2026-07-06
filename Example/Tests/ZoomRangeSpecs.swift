@@ -24,10 +24,10 @@ class ZoomRangeSpecs: QuickSpec {
             }
             
             it("does not init with invalid zooms") {
-                let z1 = ZoomRange(20,2)
+                let z1 = ZoomRange(30,2)
                 expect(z1).to(beNil())
                 
-                let z2 = ZoomRange(2,20)
+                let z2 = ZoomRange(2,30)
                 expect(z2).to(beNil())
             }
             

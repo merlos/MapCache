@@ -132,7 +132,7 @@ class TileRegionSpecs: QuickSpec {
                                 zoom: TileCoords.minZoom)
                 let bR = TileCoords(latitude: TileCoords.minLatitude,
                                 longitude: TileCoords.maxLongitude,
-                                zoom: TileCoords.maxZoom)
+                                zoom: 19) // default max zoom level
                 let world = TileCoordsRegion(topLeft: tL!, bottomRight: bR!)!
                 // count = 1 + 4 + 16 + 64 + ... 4^zoom ... 4^19
                 expect(world.count).to(equal(366503875925))

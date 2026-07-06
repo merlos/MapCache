@@ -47,13 +47,13 @@ class TileCoordsSpecs: QuickSpec {
                 // For the initializer with a tileCoord, the only way to get nil
                 // is to set an invalid zoom
                 let tileCoordsOk = TileCoords(latitude: lat, longitude: lon, zoom: zoom)!
-                let tileCoords4 = TileCoords(tileCoordsOk, zoom: 20)
+                let tileCoords4 = TileCoords(tileCoordsOk, zoom: 30)
                 expect(tileCoords4).to(beNil())
             }
             it ("can validate max and mins") {
                 //zoom
                 try! TileCoords.validate(zoom: 0)
-                expect { try TileCoords.validate(zoom: 20)}.to(throwError())
+                expect { try TileCoords.validate(zoom: 30)}.to(throwError())
                 //Tiles
                 try! TileCoords.validate(tile: 1, forZoom: 10)
                 expect { try TileCoords.validate(tile: 1024, forZoom: 10)}.to(throwError())

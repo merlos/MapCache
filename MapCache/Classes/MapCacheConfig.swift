@@ -43,9 +43,10 @@ public struct MapCacheConfig  {
     ///
     /// Tiles with a z zoom beyond `maximumZ` supported by the tile server will return a HTTP 404 error.
     ///
-    /// Values vary from server to server. For example OpenStreetMap supports 19, but  OpenCycleMap supports 22
+    /// Values vary from server to server. For example OpenStreetMap supports 19, but OpenCycleMap supports 22.
+    /// The maximum value that can be set is `TileCoords.maxZoom` (25).
     ///
-    /// Default value: 19. If 0 or negative is set iOS default value (i.e. 21)
+    /// Default value: 19. If 0 or negative is set iOS default value (i.e. 21).
     ///
     /// - SeeAlso:  [OpenStreetMap Wiki Slippy map tilenames](https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames)
     ///

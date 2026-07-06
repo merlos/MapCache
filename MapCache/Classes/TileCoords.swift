@@ -9,7 +9,7 @@ import Foundation
 
 /// An alias for UInt8. Used to indicate that the variable is holding a zoom value.
 ///
-/// Notice that Zoom shoul have only values between 0 and 19.
+/// Notice that Zoom shoul have only values between 0 and 25.
 /// - SeeAlso: TileCoords
 public typealias Zoom = UInt8
 
@@ -19,8 +19,8 @@ public typealias TileNumber = UInt64
 
 /// Errors for Zoom.
 public enum ZoomError: Error {
-    /// Zoom largest value is 19.
-    case largerThan19
+    /// Zoom value exceeds the maximum allowed.
+    case exceedsMaximum
 }
 
 /// Errors for a latitude.
@@ -52,7 +52,7 @@ public enum TileError: Error {
 /// The max latitude that can be converted to tiles is +85.0511 and the minimum
 ///  is -85.0511 (see https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames).
 ///
-/// Zoom level (z) range is from 0 to 19.
+/// Zoom level (z) range is from 0 to 25.
 ///
 /// The earth is represented by a square that is divided in small pieces (tiles).
 /// The number of tiles depends on the zoom value and is equal to: 2^z x 2^z
@@ -93,8 +93,8 @@ open class TileCoords {
     static let minLongitude : Double = -180.0
     
     
-    /// Max zoom supported in tile servers (19)
-    static let maxZoom : Zoom = 19
+    /// Max zoom supported in tile servers (25)
+    static let maxZoom : Zoom = 25
     
     /// Min zoom supported (0)
     static let minZoom : Zoom = 0
@@ -131,7 +131,7 @@ open class TileCoords {
     /// Throws ZoomError if is greater than maxZoom
     static public func validate(zoom: Zoom) throws -> Void {
         if zoom > maxZoom {
-            throw ZoomError.largerThan19
+            throw ZoomError.exceedsMaximum
         }
     }
     
