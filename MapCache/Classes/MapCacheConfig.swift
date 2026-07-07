@@ -64,12 +64,14 @@ public struct MapCacheConfig  {
     /// Name of the cache
     /// A folder will be created with this name all files will be stored in that folder
     ///
+    /// This is useful if you want to have different caches for different purposes as well as use the same MapCache in different parts of your application.
+    /// 
     /// Default value "MapCache"
     public var cacheName: String = "MapCache"
     
     ///
-    /// Cache capacity in bytes
-    ///
+    /// Cache capacity in bytes. When the cache exceeds this size, the least recently used tiles are deleted.
+    /// By default is infinite (i.e. UINT64_MAX). 
     public var capacity: UInt64 = UINT64_MAX
     
     ///
