@@ -58,6 +58,19 @@ class MapCacheTests: QuickSpec {
             let cache = MapCache(withConfig: config)
             let path = MKTileOverlayPath(x: 1, y: 2, z: 3, contentScaleFactor: 1.0)
             
+            it("reports fileSize via diskCache") {
+                let key = cache.cacheKey(forPath: path)
+                let data = "1234567890".data(using: .utf8)!
+                expect(cache.fileSize).toEventually(equal(0))
+                cache.diskCache.setDataSync(data, forKey: key)
+                expect(cache.fileSize).toEventually(equal(10))
+                expect(cache.fileSize).to(equal(cache.diskCache.fileSize))
+            }
+            
+            it("reports diskSize via diskCache") {
+                expect(cache.diskSize).to(equal(cache.diskCache.diskSize))
+            }
+            
             it("can create the tile url") {
                 let url = cache.url(forTilePath: path)
                 expect(url.absoluteString) == "https://localhost/ok/1/2/3"
