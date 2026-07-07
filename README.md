@@ -83,10 +83,13 @@ extension ViewController : MKMapViewDelegate {
 }
 
 ```
-After setting up the map cache, browsed areas of the map will be kept on disk. If the user browses again, that area it will use the local version.
+After setting up the map cache, browsed areas of the map will be kept on disk. If the user browses again, that area it will use the local version without querying the server for that tile anymore. 
 
-Note that in the current version, the cache does not support expiration dates, so if you need to get an updated version of the tiles you must call `clear()` which will wipe out the whole cache.
+This may cause the tiles to be outdated if they change in the server. An alternative mode of working is to always query the server asking if there is a new tile and download it if so, or using the cached one if there were no changes. This can be done by setting the `config.loadTileMode = .serverThenCache`. See [LoadTileMode](https://www.merlos.org/MapCache/Enums/LoadTileMode.html) and [MapCacheConfig](https://www.merlos.org/MapCache/Structs/MapCacheConfig.html)
 
+
+
+To empty the cache data:
 ```swift
 mapCache.clear() {
     // do something after clear
@@ -97,7 +100,7 @@ mapCache.clear() {
 To get current cache size:
 
 ```swift
-mapCache.calculateDiskSize()
+mapCache.diskSize
 ```
 
 You can take a look at the [**Example/ folder**](https://github.com/merlos/MapCache/tree/master/Example/MapCache) to see a complete implementation.
@@ -165,6 +168,14 @@ config.capacity = 200 * 1024 * 1024 // 200 Megabytes
 // Default is `nil`, which uses the system temporary cache directory.
 config.baseURL = nil
 
+// Sets the behavior of the cache:
+
+// 1. .cacheThenServer (default): checks if the tile is in the cache, if not gets it from the server
+// 2. .serverThenCache: always checks with the server. If the tile is in the cache it is downloaded only if a new version is available. 
+// 3. .cacheOnly: The offline mode. Does not produce traffic.
+// 4. .serverOnly: does not fallback to cache. Mostly for downloading
+ 
+config.loadTileMode = .cacheThenServer
 
 ```
 
