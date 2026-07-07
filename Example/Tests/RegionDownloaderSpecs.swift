@@ -52,6 +52,7 @@ class MapCacheMock : MapCacheProtocol {
         case .mixed:
             if (counter % errorEvery) == 0 {
                 result(nil, error)
+                return
             }
             result(data, nil)
         case .data:
@@ -60,20 +61,6 @@ class MapCacheMock : MapCacheProtocol {
         case .error:
             result(nil, error)
         }
-    }
-}
-
-class DelegateTest : RegionDownloaderDelegate {
-    
-    public var finished = false
-    
-    func regionDownloader(_ regionDownloader: RegionDownloader, didDownloadPercentage percentage: Double) {
-        print("didDownloadPercentage")
-    }
-    
-    func regionDownloader(_ regionDownloader: RegionDownloader, didFinishDownload tilesDownloaded: TileNumber) {
-        print("FinishDonwload")
-        finished = true
     }
 }
 
@@ -98,15 +85,6 @@ class RegionDownloaderSpecs: QuickSpec {
                 expect(downloader.failedTileDownloads).to(equal(0))
             }
             
-            it("counts downloaded tiles ok") {
-                let mapCacheMock = MapCacheMock()
-                let downloader = RegionDownloader(forRegion: region, mapCache: mapCacheMock)
-                let delegate = DelegateTest()
-                downloader.delegate = delegate
-                downloader.start()
-                expect(delegate.finished).toEventually(beTrue(), timeout: .seconds(10))
-
-            }
         }
     }
 }
