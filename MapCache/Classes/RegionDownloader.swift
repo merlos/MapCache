@@ -66,6 +66,9 @@ import MapKit
 
     /// Indicates that the download has been paused due to too many concurrent downloads. The downloader will automatically try after timeout.
     private var _stopped = false
+
+    /// Tracks already processed tiles to avoid double-counting on resume.
+    private var _processedTileKeys: Set<String> = []
     
     /// Total number of downloaded data bytes.
     public var downloadedBytes: UInt64 {
@@ -168,20 +171,42 @@ import MapKit
         _failedTileDownloads = 0
         lastPercentageNotified = 0.0
         nextPercentageToNotify = incrementInPercentageNotification
+        _processedTileKeys.removeAll()
     }
     
     /// Starts download.
     public func start() {
-        //Downloads stuff
         resetCounters()
+        downloadLoop()
+    }
+
+    /// Resumes a paused download without resetting counters.
+    public func resume() {
+        guard _stopped else { return }
+        _stopped = false
+        downloadLoop(isResume: true)
+    }
+
+    /// Stop download.
+    public func stop() {
+        _stopped = true
+    }
+
+    private func downloadLoop(isResume: Bool = false) {
         downloaderQueue.async {
-            self.delegate?.regionDownloader(self, willStartDownloading: self.totalTilesToDownload, region: self.region, mapCache: self.mapCache)
-            /// Limit the number of tasks
+            if !isResume {
+                self.delegate?.regionDownloader(self, willStartDownloading: self.totalTilesToDownload, region: self.region, mapCache: self.mapCache)
+            }
             let semaphore = DispatchSemaphore(value: self.maxConcurrentDownloads)
             for range: TileRange in self.region.tileRanges() ?? [] {
                 for tileCoords: TileCoords in range {
                     if self._stopped {
                         return
+                    }
+                    // Skip already processed tiles (relevant on resume)
+                    let key = "\(tileCoords.zoom)-\(tileCoords.tileX)-\(tileCoords.tileY)"
+                    if self._processedTileKeys.contains(key) {
+                        continue
                     }
                     while semaphore.wait(timeout: DispatchTime(after: self.downloadTimeout)) == .timedOut {
                         if self._stopped {
@@ -189,32 +214,28 @@ import MapKit
                         }
                     }
 
-                    ///Add to the download queue.
                     let mktileOverlayPath = MKTileOverlayPath(tileCoords: tileCoords)
                     self.mapCache.loadTile(at: mktileOverlayPath, result: { data, error in
                         semaphore.signal()
+                        let key = "\(tileCoords.zoom)-\(tileCoords.tileX)-\(tileCoords.tileY)"
+                        guard !self._processedTileKeys.contains(key) else { return }
+                        self._processedTileKeys.insert(key)
+
                         if error != nil {
                             Log.downloader.error("\(error?.localizedDescription ?? "Error downloading tile")")
                             self._failedTileDownloads += 1
                             self.delegate?.regionDownloader(self, didFailToDownloadTileAt: tileCoords, error: error!)
-                            // TODO add to an array of tiles not downloaded
-                            // so a retry can be performed
                         } else {
                             self._successfulTileDownloads += 1
                             self._downloadedBytes += UInt64(data?.count ?? 0)
                             self.delegate?.regionDownloader(self, didDownloadTileAt: tileCoords, dataSize: data?.count ?? 0)
                             Log.downloader.debug("Donwloaded zoom: \(tileCoords.zoom) (x:\(tileCoords.tileX),y:\(tileCoords.tileY), data.count: \(data?.count ?? 0)) \(self.downloadedTiles)/\(self.totalTilesToDownload) \(self.downloadedPercentage)%, bytes: \(self.downloadedBytes), average tile size: \(self.averageTileSizeBytes)")
-                            
                         }
-                        //check if needs to notify duet to percentage
                         if self.downloadedPercentage > self.nextPercentageToNotify {
-                            //Update status variables
                             self.lastPercentageNotified = self.nextPercentageToNotify
                             self.nextPercentageToNotify += self.incrementInPercentageNotification
-                            //call the delegate
                             self.delegate?.regionDownloader(self, didDownloadPercentage: self.downloadedPercentage)
                         }
-                        //Did we finish download
                         if self.downloadedTiles == self.totalTilesToDownload {
                             self.delegate?.regionDownloader(self, didFinishDownload: self.downloadedTiles)
                         }
@@ -222,11 +243,6 @@ import MapKit
                 }
             }
         }
-    }
-    
-    /// Stop download.
-    public func stop() {
-        _stopped = true
     }
     
     /// Returns an estimation of the total number of bytes the whole region may occupy.
