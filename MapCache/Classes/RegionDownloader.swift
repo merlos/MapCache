@@ -175,6 +175,7 @@ import MapKit
         //Downloads stuff
         resetCounters()
         downloaderQueue.async {
+            self.delegate?.regionDownloader(self, willStartDownloading: self.totalTilesToDownload, region: self.region, mapCache: self.mapCache)
             /// Limit the number of tasks
             let semaphore = DispatchSemaphore(value: self.maxConcurrentDownloads)
             for range: TileRange in self.region.tileRanges() ?? [] {
@@ -195,11 +196,13 @@ import MapKit
                         if error != nil {
                             Log.downloader.error("\(error?.localizedDescription ?? "Error downloading tile")")
                             self._failedTileDownloads += 1
+                            self.delegate?.regionDownloader(self, didFailToDownloadTileAt: tileCoords, error: error!)
                             // TODO add to an array of tiles not downloaded
                             // so a retry can be performed
                         } else {
                             self._successfulTileDownloads += 1
                             self._downloadedBytes += UInt64(data?.count ?? 0)
+                            self.delegate?.regionDownloader(self, didDownloadTileAt: tileCoords, dataSize: data?.count ?? 0)
                             Log.downloader.debug("Donwloaded zoom: \(tileCoords.zoom) (x:\(tileCoords.tileX),y:\(tileCoords.tileY), data.count: \(data?.count ?? 0)) \(self.downloadedTiles)/\(self.totalTilesToDownload) \(self.downloadedPercentage)%, bytes: \(self.downloadedBytes), average tile size: \(self.averageTileSizeBytes)")
                             
                         }
