@@ -3,7 +3,6 @@
 <p><div style="text-align:center"><img src="https://github.com/merlos/MapCache/raw/master/images/MapCache.png"></div>
 </p>
 
-[![CI Status](https://travis-ci.com/merlos/MapCache.svg?branch=master)](https://travis-ci.org/github/merlos/MapCache)
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](LICENSE)
 [![Documentation](https://www.merlos.org/MapCache/badge.svg)](http://merlos.org/MapCache)
 ![Swift](https://github.com/merlos/MapCache/workflows/Swift/badge.svg)
