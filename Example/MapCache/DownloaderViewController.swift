@@ -21,6 +21,15 @@ class DownloaderViewController: UIViewController {
     
     @IBOutlet weak var downloadButton: UIButton!
     
+    /// Label that displays the download progress.
+    var statusLabel: UILabel!
+    
+    /// Pause button to stop the download.
+    var pauseButton: UIButton!
+    
+    /// Current downloader instance.
+    var regionDownloader: RegionDownloader?
+    
     /// region to download.
     var region : TileCoordsRegion?
     
@@ -57,20 +66,58 @@ class DownloaderViewController: UIViewController {
         print("*** Actual path where the files are stored: \(mapCache?.diskCache.path ?? "No disk cache path")")
        
 
-        // Initialize the region with any random value.
+        // Initialize region from current map view and slider default zoom.
         region = TileCoordsRegion(topLeftLatitude: 10.0, topLeftLongitude: 10.0, bottomRightLatitude: 20.0, bottomRightLongitude: 20.0, minZoom: 1, maxZoom: 9)
+        slider.value = 10
+        updateRegion()
+        
+        // Setup status label for download progress
+        statusLabel = UILabel(frame: CGRect(x: 0, y: progressView.frame.minY - 20, width: view.frame.width, height: 18))
+        statusLabel.textAlignment = .center
+        statusLabel.font = .systemFont(ofSize: 13)
+        statusLabel.textColor = .darkGray
+        statusLabel.text = ""
+        view.addSubview(statusLabel)
+        
+        // Setup pause button below the slider, right-aligned
+        let sliderFrame = view.convert(slider.frame, from: slider.superview)
+        pauseButton = UIButton(type: .system)
+        pauseButton.frame = CGRect(x: view.frame.width - 100, y: sliderFrame.maxY - 50, width: 60, height: 28)
+        pauseButton.setTitle("Pause", for: .normal)
+        pauseButton.backgroundColor = .systemBlue
+        pauseButton.setTitleColor(.white, for: .normal)
+        pauseButton.layer.cornerRadius = 6
+        pauseButton.titleLabel?.font = .systemFont(ofSize: 13)
+        pauseButton.addTarget(self, action: #selector(togglePause), for: .touchUpInside)
+        pauseButton.isHidden = true
+        view.addSubview(pauseButton)
     }
     
     
     /// Activated when download region button is pressed
     @IBAction func downloadRegion(_ sender: Any) {
         print("Download Region Pressed!")
-        
 
         let downloader = RegionDownloader(forRegion: region!, mapCache: mapCache!)
-        let delegate = self
-        downloader.delegate = delegate
+        downloader.delegate = self
+        regionDownloader = downloader
+        pauseButton.setTitle("Pause", for: .normal)
+        pauseButton.isHidden = false
         downloader.start()
+    }
+
+    /// Toggles between pause and resume.
+    @objc func togglePause() {
+        guard let downloader = regionDownloader else { return }
+        if pauseButton.title(for: .normal) == "Pause" {
+            downloader.stop()
+            pauseButton.setTitle("Resume", for: .normal)
+            statusLabel.text = "Download paused"
+        } else {
+            downloader.resume()
+            pauseButton.setTitle("Pause", for: .normal)
+            statusLabel.text = "Resuming download..."
+        }
     }
     
     /// Slider changed its value
@@ -123,19 +170,36 @@ extension DownloaderViewController : MKMapViewDelegate {
 }
 
 extension DownloaderViewController : RegionDownloaderDelegate {
-    
+
     func regionDownloader(_ regionDownloader: RegionDownloader, didDownloadPercentage percentage: Double) {
          DispatchQueue.main.async {
             self.progressView.progress = Float(percentage / 100.0)
         }
-        
     }
-    
+
     func regionDownloader(_ regionDownloader: RegionDownloader, didFinishDownload tilesDownloaded: TileNumber) {
         DispatchQueue.main.async {
             self.progressView.progress = 1.0
+            self.statusLabel.text = "Downloaded: \(regionDownloader.successfulTileDownloads)/\(regionDownloader.totalTilesToDownload) tiles | Failed: \(regionDownloader.failedTileDownloads)"
+            self.pauseButton.isHidden = true
         }
     }
-    
-    
+
+    func regionDownloader(_ regionDownloader: RegionDownloader, willStartDownloading totalTiles: TileNumber, region: TileCoordsRegion, mapCache: MapCacheProtocol) {
+        DispatchQueue.main.async {
+            self.statusLabel.text = "Starting download of \(totalTiles) tiles..."
+        }
+    }
+
+    func regionDownloader(_ regionDownloader: RegionDownloader, didDownloadTileAt tileCoords: TileCoords, dataSize: Int) {
+        DispatchQueue.main.async {
+            self.statusLabel.text = "Downloaded: \(regionDownloader.successfulTileDownloads)/\(regionDownloader.totalTilesToDownload) tiles | Failed: \(regionDownloader.failedTileDownloads)"
+        }
+    }
+
+    func regionDownloader(_ regionDownloader: RegionDownloader, didFailToDownloadTileAt tileCoords: TileCoords, error: Error) {
+        DispatchQueue.main.async {
+            self.statusLabel.text = "Downloaded: \(regionDownloader.successfulTileDownloads)/\(regionDownloader.totalTilesToDownload) tiles | Failed: \(regionDownloader.failedTileDownloads)"
+        }
+    }
 }

@@ -71,11 +71,6 @@
                BlueprintName = "MapCache_Tests"
                ReferencedContainer = "container:MapCache.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "MapCacheTests2">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>
