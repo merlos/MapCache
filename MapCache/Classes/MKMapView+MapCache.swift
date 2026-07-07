@@ -25,12 +25,6 @@ extension MKMapView {
         let tileServerOverlay = CachedTileOverlay(withCache: cache)
         tileServerOverlay.canReplaceMapContent = canReplaceMapContent
 
-        // Don't set `maximumZ` when wanting "over zooming".
-        // TileOverlay will stop trying in zoom levels beyond `maximumZ`.
-        // Our custom renderer `CachedTileOverlayZoomRenderer` will catch these "over zooms".
-        if !cache.config.overZoomMaximumZ && cache.config.maximumZ > 0 {
-            tileServerOverlay.maximumZ = cache.config.maximumZ
-        }
         if cache.config.maximumZ > 0 {
             tileServerOverlay.maximumZ = cache.config.maximumZ
         }
