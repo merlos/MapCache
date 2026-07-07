@@ -58,6 +58,28 @@ class MapCacheTests: QuickSpec {
             let cache = MapCache(withConfig: config)
             let path = MKTileOverlayPath(x: 1, y: 2, z: 3, contentScaleFactor: 1.0)
             
+            it("reports fileSize via diskCache") {
+                // createa a new empty cache
+                let sizeName = "fileSizeTest_\(Int.random(in: 1..<100000000))"
+                var sizeConfig = MapCacheConfig(withUrlTemplate: urlTemplate)
+                sizeConfig.cacheName = sizeName
+                sizeConfig.subdomains = ["ok"]
+                let sizeCache = MapCache(withConfig: sizeConfig)
+                defer { sizeCache.diskCache.removeCache() }
+                // check is empty
+                expect(sizeCache.fileSize).toEventually(equal(0))
+                // Add 10 bytes of data
+                let data = "1234567890".data(using: .utf8)!
+                sizeCache.diskCache.setDataSync(data, forKey: "test")
+                // check it was added
+                expect(sizeCache.fileSize).toEventually(equal(10))
+                expect(sizeCache.fileSize).to(equal(sizeCache.diskCache.fileSize))
+            }
+            
+            it("reports diskSize via diskCache") {
+                expect(cache.diskSize).to(equal(cache.diskCache.diskSize))
+            }
+            
             it("can create the tile url") {
                 let url = cache.url(forTilePath: path)
                 expect(url.absoluteString) == "https://localhost/ok/1/2/3"
@@ -201,7 +223,7 @@ class MapCacheTests: QuickSpec {
             }
 
             it("clear removes both caches") {
-                let (localCache, localPath, localKey) = makeCache(host: "localhost")
+                let (localCache, _, localKey) = makeCache(host: "localhost")
 
                 localCache.diskCache.setDataSync("some-data".data(using: .utf8)!, forKey: localKey)
                 localCache.etagCache.setDataSync("some-etag".data(using: .utf8)!, forKey: localKey)

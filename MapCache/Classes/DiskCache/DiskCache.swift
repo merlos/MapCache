@@ -222,6 +222,7 @@ open class DiskCache {
     }
     
     /// Calculates the size used by all the files in the cache.
+    @available(*, deprecated, renamed: "diskSize")
     public func calculateDiskSize() -> UInt64 {
         return index.build(from: folderURL)
     }

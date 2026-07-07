@@ -223,18 +223,17 @@ open class MapCache : MapCacheProtocol {
         }
     }
     
-    //TODO review why does it have two ways of retrieving the cache size.
-    
-    /// Currently size of the cache
-    public var diskSize: UInt64 {
-        get  {
-            return diskCache.diskSize
-        }
+    /// Logical data size of the cache (sum of file data sizes, not allocated blocks).
+    public var fileSize: UInt64? {
+        return diskCache.fileSize
     }
     
-    /// Calculates the disk space allocated in dis for the cache
-    /// 
-    /// - SeeAlso: DiskCache
+    /// Currently allocated size of the cache (disk blocks).
+    public var diskSize: UInt64 {
+        return diskCache.diskSize
+    }
+    
+    @available(*, deprecated, renamed: "diskSize")
     public func calculateDiskSize() -> UInt64 {
         return diskCache.calculateDiskSize()
     }

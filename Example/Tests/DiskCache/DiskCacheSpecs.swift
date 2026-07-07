@@ -90,14 +90,12 @@ class DiskCacheSpecs: QuickSpec {
             }
             
             it("keeps track of its disk size") {
-                let diskSize = diskCache.calculateDiskSize()
-                expect(diskSize) == 0
                 expect(diskCache.diskSize).to(equal(0))
                 diskCache.setDataSync(data1!, forKey: filename1)
                 // Note that 1 file ad minimum uses 4096 bytes in disk which is the
                 // block size.
                 // The actual content is only 10 bytes.
-                expect(diskCache.calculateDiskSize()).toEventually(equal(4096))
+                expect(diskCache.diskSize).toEventually(equal(4096))
             }
             
             it("keeps track of its file size") {
@@ -135,7 +133,7 @@ class DiskCacheSpecs: QuickSpec {
                 let filePath = diskCache.path(forKey: weird1)
                 expect(FileManager.default.fileExists(atPath: filePath)).to(equal(true))
                
-                expect(diskCache.calculateDiskSize()).to(equal(4096))
+                expect(diskCache.diskSize).to(equal(4096))
                 
                 var result: Data?
                 diskCache.fetchDataSync(forKey: weird1, failure: nil, success: {
@@ -171,7 +169,7 @@ class DiskCacheSpecs: QuickSpec {
                 diskCache.setDataSync(data1!, forKey: longFileName)
                 expect(diskCache.diskSize).to(equal(8192))
                 diskCache.removeAllData({})
-                expect(diskCache.calculateDiskSize()).toEventually(equal(0))
+                expect(diskCache.diskSize).toEventually(equal(0))
             }
             
         }
