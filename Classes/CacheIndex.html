@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CacheIndex Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/CacheIndex" class="dashAnchor"></a>
+    <a title="CacheIndex Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="../img/gh.png" alt="GitHub"/>View on GitHub</a></p>
+        <div class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Index</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        <a href="../Classes.html">Classes</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        MapCache.CacheIndex Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CacheIndex.html">CacheIndex</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CacheIndex/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DiskCache.html">DiskCache</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HashBase.html">HashBase</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MD5.html">MD5</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MapCache.html">MapCache</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegionDownloader.html">RegionDownloader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TileCoords.html">TileCoords</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TileCoordsRegion.html">TileCoordsRegion</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/LatitudeError.html">LatitudeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LoadTileMode.html">LoadTileMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LongitudeError.html">LongitudeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TileError.html">TileError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TileRangeError.html">TileRangeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ZoomError.html">ZoomError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/DispatchTime.html">DispatchTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/FileManager.html">FileManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKMapView.html">MKMapView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKZoomScale.html">MKZoomScale</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSMutableData.html">NSMutableData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache1loiySbSo8NSNumberC_ADtF">&lt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache12arrayOfBytes5value6lengthSays5UInt8VGx_SiSgtlF">arrayOfBytes(value:length:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache17isNoSuchFileError33_FC193A7AE40E49CC84DE49A3128B2975LLySbs0G0_pSgF">isNoSuchFileError(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache10rotateLeft1v1ns6UInt32VAF_AFtF">rotateLeft(v:n:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache18sliceToUInt32ArrayySays0E0VGs0F5SliceVys5UInt8VGF">sliceToUInt32Array(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/MapCacheProtocol.html">MapCacheProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RegionDownloaderDelegate.html">RegionDownloaderDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/BytesSequence.html">BytesSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Log.html">Log</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MapCacheConfig.html">MapCacheConfig</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TileRange.html">TileRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TileRangeIterator.html">TileRangeIterator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomRange.html">ZoomRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomableTile.html">ZoomableTile</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>CacheIndex</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">CacheIndex</span></code></pre>
+
+                </div>
+              </div>
+            <p>In-memory sorted index of cache entries.</p>
+
+<p>Maintains entries sorted by modification date ascending (oldest first).
+Provides O(log n) insertion via sort-after-append, O(1) lookup by filename,
+and O(n) removal with index shift. All mutations update <code>totalSize</code> atomically.</p>
+
+<p>This class is intentionally standalone so multiple <code><a href="../Classes/DiskCache.html">DiskCache</a></code> instances or
+other consumers can share the same indexing logic without coupling to file I/O.</p>
+<h1 id='usage' class='heading'>Usage</h1>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">index</span> <span class="o">=</span> <span class="kt">CacheIndex</span><span class="p">()</span>
+
+<span class="c1">// Build from filesystem</span>
+<span class="n">index</span><span class="o">.</span><span class="nf">build</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">cacheURL</span><span class="p">)</span>
+
+<span class="c1">// Track a new file</span>
+<span class="n">index</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="nv">filename</span><span class="p">:</span> <span class="s">"abc123"</span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="mi">4096</span><span class="p">)</span>
+
+<span class="c1">// Mark a file as recently accessed (moves it to the end of the sorted order)</span>
+<span class="n">index</span><span class="o">.</span><span class="nf">touch</span><span class="p">(</span><span class="nv">filename</span><span class="p">:</span> <span class="s">"abc123"</span><span class="p">)</span>
+
+<span class="c1">// Evict the oldest file</span>
+<span class="k">if</span> <span class="k">let</span> <span class="nv">entry</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="nf">popOldest</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">try</span><span class="p">?</span> <span class="kt">FileManager</span><span class="o">.</span><span class="k">default</span><span class="o">.</span><span class="nf">removeItem</span><span class="p">(</span><span class="nv">at</span><span class="p">:</span> <span class="n">cacheURL</span><span class="o">.</span><span class="nf">appendingPathComponent</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">filename</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="c1">// Remove a specific file</span>
+<span class="n">index</span><span class="o">.</span><span class="nf">remove</span><span class="p">(</span><span class="nv">filename</span><span class="p">:</span> <span class="s">"abc123"</span><span class="p">)</span>
+</code></pre>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0B5IndexC5EntryV"></a>
+                    <a name="//apple_ref/swift/Struct/Entry" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0B5IndexC5EntryV">Entry</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A single entry in the cache index.</p>
+
+                        <a href="../Classes/CacheIndex/Entry.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Entry</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0B5IndexC9totalSizes6UInt64Vvp"></a>
+                    <a name="//apple_ref/swift/Property/totalSize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0B5IndexC9totalSizes6UInt64Vvp">totalSize</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Total allocated disk size of all tracked entries, in bytes.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">totalSize</span><span class="p">:</span> <span class="kt">UInt64</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0B5IndexC5countSivp"></a>
+                    <a name="//apple_ref/swift/Property/count" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0B5IndexC5countSivp">count</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Number of entries in the index.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0B5IndexC7isEmptySbvp"></a>
+                    <a name="//apple_ref/swift/Property/isEmpty" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0B5IndexC7isEmptySbvp">isEmpty</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether the index contains no entries.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">isEmpty</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0B5IndexC6oldestAC5EntryVSgvp"></a>
+                    <a name="//apple_ref/swift/Property/oldest" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0B5IndexC6oldestAC5EntryVSgvp">oldest</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The oldest entry (smallest <code>modificationDate</code>), or <code>nil</code> if the index is empty.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">oldest</span><span class="p">:</span> <span class="kt"><a href="../Classes/CacheIndex/Entry.html">Entry</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0B5IndexC7entries33_24B166C44011CB8E1D4654D0EBAFA23CLLSayAC5EntryVGvp"></a>
+                    <a name="//apple_ref/swift/Property/entries" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0B5IndexC7entries33_24B166C44011CB8E1D4654D0EBAFA23CLLSayAC5EntryVGvp">entries</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>All entries sorted by modification date ascending.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">entries</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/CacheIndex/Entry.html">Entry</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0B5IndexC05entryA033_24B166C44011CB8E1D4654D0EBAFA23CLLSDySSSiGvp"></a>
+                    <a name="//apple_ref/swift/Property/entryMap" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0B5IndexC05entryA033_24B166C44011CB8E1D4654D0EBAFA23CLLSDySSSiGvp">entryMap</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Mapping from filename to index in <code><a href="../Classes/CacheIndex.html#/s:8MapCache0B5IndexC7entries33_24B166C44011CB8E1D4654D0EBAFA23CLLSayAC5EntryVGvp">entries</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">entryMap</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0B5IndexC4lock33_24B166C44011CB8E1D4654D0EBAFA23CLLSo15NSRecursiveLockCvp"></a>
+                    <a name="//apple_ref/swift/Property/lock" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0B5IndexC4lock33_24B166C44011CB8E1D4654D0EBAFA23CLLSo15NSRecursiveLockCvp">lock</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Serializes all mutations so <code>touch</code> from any thread is safe with respect
+to <code>controlCapacity()</code> running on <code>cacheQueue</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">let</span> <span class="nv">lock</span><span class="p">:</span> <span class="kt">NSRecursiveLock</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0B5IndexCACycfc"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0B5IndexCACycfc">init()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0B5IndexC5build4froms6UInt64V10Foundation3URLV_tF"></a>
+                    <a name="//apple_ref/swift/Method/build(from:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0B5IndexC5build4froms6UInt64V10Foundation3URLV_tF">build(from:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds the index by enumerating the filesystem directory.</p>
+
+<p>Discards any existing index state and replaces it with the contents of
+the directory. Each file&rsquo;s allocated size and modification date are read
+via the resource keys <code>isRegularFileKey</code>, <code>fileAllocatedSizeKey</code>, and
+<code>contentModificationDateKey</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">build</span><span class="p">(</span><span class="n">from</span> <span class="nv">directoryURL</span><span class="p">:</span> <span class="kt">URL</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UInt64</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>directoryURL</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The cache directory URL to enumerate.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The total allocated size of all files found.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0B5IndexC3add8filename4size16modificationDateySS_s6UInt64V10Foundation0H0VSgtF"></a>
+                    <a name="//apple_ref/swift/Method/add(filename:size:modificationDate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0B5IndexC3add8filename4size16modificationDateySS_s6UInt64V10Foundation0H0VSgtF">add(filename:<wbr>size:<wbr>modificationDate:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Inserts or replaces an entry in the index.</p>
+
+<p>If an entry with the same <code>filename</code> already exists, it is removed first.
+The entry&rsquo;s modification date defaults to the current date when <code>nil</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="nv">filename</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">size</span><span class="p">:</span> <span class="kt">UInt64</span><span class="p">,</span> <span class="nv">modificationDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>filename</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>MD5 filename of the cached file.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>size</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Allocated disk size in bytes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>modificationDate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>File modification date. Pass <code>nil</code> to use the current date.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0B5IndexC5touch8filename16modificationDateySS_10Foundation0G0VSgtF"></a>
+                    <a name="//apple_ref/swift/Method/touch(filename:modificationDate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0B5IndexC5touch8filename16modificationDateySS_10Foundation0G0VSgtF">touch(filename:<wbr>modificationDate:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Updates the modification date of an existing entry.</p>
+
+<p>Does nothing if no entry with the given <code>filename</code> exists.
+The modification date defaults to the current date when <code>nil</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">touch</span><span class="p">(</span><span class="nv">filename</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">modificationDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>filename</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>MD5 filename of the cached file.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>modificationDate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>New modification date. Pass <code>nil</code> to use the current date.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0B5IndexC6remove8filenameySS_tF"></a>
+                    <a name="//apple_ref/swift/Method/remove(filename:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0B5IndexC6remove8filenameySS_tF">remove(filename:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes an entry from the index by filename.</p>
+
+<p>Does nothing and does not produce an error if the filename is not in the index.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">remove</span><span class="p">(</span><span class="nv">filename</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>filename</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>MD5 filename of the cached file to remove.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0B5IndexC9removeAllyyF"></a>
+                    <a name="//apple_ref/swift/Method/removeAll()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0B5IndexC9removeAllyyF">removeAll()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes all entries from the index and resets <code><a href="../Classes/CacheIndex.html#/s:8MapCache0B5IndexC9totalSizes6UInt64Vvp">totalSize</a></code> to zero.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">removeAll</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0B5IndexC9popOldestAC5EntryVSgyF"></a>
+                    <a name="//apple_ref/swift/Method/popOldest()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0B5IndexC9popOldestAC5EntryVSgyF">popOldest()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes and returns the oldest entry.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">popOldest</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/CacheIndex/Entry.html">Entry</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The entry with the smallest <code>modificationDate</code>, or <code>nil</code> if the index is empty.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache0B5IndexC012rebuildEntryA033_24B166C44011CB8E1D4654D0EBAFA23CLLyyF"></a>
+                    <a name="//apple_ref/swift/Method/rebuildEntryMap()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache0B5IndexC012rebuildEntryA033_24B166C44011CB8E1D4654D0EBAFA23CLLyyF">rebuildEntryMap()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Rebuilds the filename→index mapping from the sorted entries array.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">rebuildEntryMap</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2026 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2026-07-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>

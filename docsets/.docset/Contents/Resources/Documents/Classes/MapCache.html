@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MapCache Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/MapCache" class="dashAnchor"></a>
+    <a title="MapCache Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="../img/gh.png" alt="GitHub"/>View on GitHub</a></p>
+        <div class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Index</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        <a href="../Classes.html">Classes</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        MapCache.MapCache Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CacheIndex.html">CacheIndex</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CacheIndex/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DiskCache.html">DiskCache</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HashBase.html">HashBase</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MD5.html">MD5</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MapCache.html">MapCache</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegionDownloader.html">RegionDownloader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TileCoords.html">TileCoords</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TileCoordsRegion.html">TileCoordsRegion</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/LatitudeError.html">LatitudeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LoadTileMode.html">LoadTileMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LongitudeError.html">LongitudeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TileError.html">TileError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TileRangeError.html">TileRangeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ZoomError.html">ZoomError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/DispatchTime.html">DispatchTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/FileManager.html">FileManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKMapView.html">MKMapView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKZoomScale.html">MKZoomScale</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSMutableData.html">NSMutableData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache1loiySbSo8NSNumberC_ADtF">&lt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache12arrayOfBytes5value6lengthSays5UInt8VGx_SiSgtlF">arrayOfBytes(value:length:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache17isNoSuchFileError33_FC193A7AE40E49CC84DE49A3128B2975LLySbs0G0_pSgF">isNoSuchFileError(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache10rotateLeft1v1ns6UInt32VAF_AFtF">rotateLeft(v:n:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache18sliceToUInt32ArrayySays0E0VGs0F5SliceVys5UInt8VGF">sliceToUInt32Array(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/MapCacheProtocol.html">MapCacheProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RegionDownloaderDelegate.html">RegionDownloaderDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/BytesSequence.html">BytesSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Log.html">Log</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MapCacheConfig.html">MapCacheConfig</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TileRange.html">TileRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TileRangeIterator.html">TileRangeIterator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomRange.html">ZoomRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomableTile.html">ZoomableTile</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>MapCache</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">MapCache</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/MapCacheProtocol.html">MapCacheProtocol</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>This is the main implementation of the MapCacheProtocol, the actual cache</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCacheAAC6configAA0aB6ConfigVvp"></a>
+                    <a name="//apple_ref/swift/Property/config" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCacheAAC6configAA0aB6ConfigVvp">config</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Cofiguration that will be used to set up the behavior of the <code>MapCache</code> instance</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">config</span><span class="p">:</span> <span class="kt"><a href="../Structs/MapCacheConfig.html">MapCacheConfig</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCacheAAC04diskB0AA04DiskB0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/diskCache" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCacheAAC04diskB0AA04DiskB0Cvp">diskCache</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>It manages the physical storage of the tile images in the device</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">diskCache</span><span class="p">:</span> <span class="kt"><a href="../Classes/DiskCache.html">DiskCache</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCacheAAC04etagB0AA04DiskB0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/etagCache" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCacheAAC04etagB0AA04DiskB0Cvp">etagCache</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>It manages the physical storage of the ETags associated with the tiles</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">etagCache</span><span class="p">:</span> <span class="kt"><a href="../Classes/DiskCache.html">DiskCache</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCacheAAC14operationQueueSo011NSOperationD0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/operationQueue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCacheAAC14operationQueueSo011NSOperationD0Cvp">operationQueue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Manages the queue of network requests for retrieving the tiles</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">operationQueue</span><span class="p">:</span> <span class="kt">OperationQueue</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCacheAAC10withConfigAbA0abD0V_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(withConfig:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCacheAAC10withConfigAbA0abD0V_tcfc">init(withConfig:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Constructor. It sets the <code><a href="../Classes/MapCache.html#/s:8MapCacheAAC6configAA0aB6ConfigVvp">config</a></code> variable and initializes the <code><a href="../Classes/MapCache.html#/s:8MapCacheAAC04diskB0AA04DiskB0Cvp">diskCache</a></code> with the name and capacity set in the config.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">withConfig</span> <span class="nv">config</span><span class="p">:</span> <span class="kt"><a href="../Structs/MapCacheConfig.html">MapCacheConfig</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCacheAAC3url11forTilePath10Foundation3URLVSo013MKTileOverlayF0a_tF"></a>
+                    <a name="//apple_ref/swift/Method/url(forTilePath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCacheAAC3url11forTilePath10Foundation3URLVSo013MKTileOverlayF0a_tF">url(forTilePath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the URL for a tile.</p>
+
+<p>Basically replaces in <code>config.urlTemplate</code> the substrings <code>{z}</code>,<code>{x}</code>, <code>{y}</code>
+with the values of the <code>forTilePath</code>
+If <code>{s}</code> is defined in the template, it aplies the Round Robin algorithm.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p>MapCacheConfig.roundRoubinSubdomain()</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">url</span><span class="p">(</span><span class="n">forTilePath</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">MKTileOverlayPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">URL</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>forTilePath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>is the path for the tile in (x, y, z) tile coordinates.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCacheAAC8cacheKey7forPathSSSo013MKTileOverlayF0a_tF"></a>
+                    <a name="//apple_ref/swift/Method/cacheKey(forPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCacheAAC8cacheKey7forPathSSSo013MKTileOverlayF0a_tF">cacheKey(forPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>For the path passed as argument it creates a unique key to be used in <code><a href="../Classes/DiskCache.html">DiskCache</a></code>.</p>
+
+<p>The output is a string that has the following format <code>{config.urlTemplate}-{x}-{y}-{z}</code> where:</p>
+
+<ul>
+<li>config.urlTemplate is the template url template and</li>
+<li><p>x, y and z are the coords of the path</p></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">cacheKey</span><span class="p">(</span><span class="n">forPath</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">MKTileOverlayPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>forPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>is the path of the tile you want the cache</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCacheAAC19fetchTileFromServer2at8skipEtag7failure7successySo17MKTileOverlayPatha_Sbys5Error_pSgcSgy10Foundation4DataVctF"></a>
+                    <a name="//apple_ref/swift/Method/fetchTileFromServer(at:skipEtag:failure:success:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCacheAAC19fetchTileFromServer2at8skipEtag7failure7successySo17MKTileOverlayPatha_Sbys5Error_pSgcSgy10Foundation4DataVctF">fetchTileFromServer(at:<wbr>skipEtag:<wbr>failure:<wbr>success:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Fetches tile from server.
+It resolves the url for the tile at the path. Then it tries to download the tile image from the server. If everything goes ok it
+and updates the image in <code><a href="../Classes/MapCache.html#/s:8MapCacheAAC04diskB0AA04DiskB0Cvp">diskCache</a></code> and returns the received <code>Data</code>  through the  <code>sucess</code> closure.
+If something goes wrong it invokes the <code>failure</code>closure  passing the <code>error</code>returned by the system.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">fetchTileFromServer</span><span class="p">(</span><span class="n">at</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">MKTileOverlayPath</span><span class="p">,</span>
+                         <span class="nv">skipEtag</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+                         <span class="n">failure</span> <span class="nv">fail</span><span class="p">:</span> <span class="p">((</span><span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="p">())?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                         <span class="n">success</span> <span class="nv">succeed</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>at</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Path for the tile</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>failure</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>if the tile cannot be retrieved from the server this closure is called</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>success</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>if the image is downloaded</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCacheAAC8loadTile2at6resultySo17MKTileOverlayPatha_y10Foundation4DataVSg_s5Error_pSgtctF"></a>
+                    <a name="//apple_ref/swift/Method/loadTile(at:result:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCacheAAC8loadTile2at6resultySo17MKTileOverlayPatha_y10Foundation4DataVSg_s5Error_pSgtctF">loadTile(at:<wbr>result:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the tile to be displayed on the overlay.
+The strategy used to retrieve the tile (i.e. from network or from the <code><a href="../Classes/MapCache.html#/s:8MapCacheAAC04diskB0AA04DiskB0Cvp">diskCache</a></code>) depends on the <code>config.loadTileMode</code>.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p><code><a href="../Enums/LoadTileMode.html">LoadTileMode</a></code></p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">loadTile</span><span class="p">(</span><span class="n">at</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">MKTileOverlayPath</span><span class="p">,</span> <span class="nv">result</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Data</span><span class="p">?,</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCacheAAC8fileSizes6UInt64VSgvp"></a>
+                    <a name="//apple_ref/swift/Property/fileSize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCacheAAC8fileSizes6UInt64VSgvp">fileSize</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Logical data size of the cache (sum of file data sizes, not allocated blocks).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fileSize</span><span class="p">:</span> <span class="kt">UInt64</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCacheAAC8diskSizes6UInt64Vvp"></a>
+                    <a name="//apple_ref/swift/Property/diskSize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCacheAAC8diskSizes6UInt64Vvp">diskSize</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Currently allocated size of the cache (disk blocks).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">diskSize</span><span class="p">:</span> <span class="kt">UInt64</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCacheAAC17calculateDiskSizes6UInt64VyF"></a>
+                    <a name="//apple_ref/swift/Method/calculateDiskSize()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCacheAAC17calculateDiskSizes6UInt64VyF">calculateDiskSize()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">calculateDiskSize</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UInt64</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCacheAAC5clear12completitionyyycSg_tF"></a>
+                    <a name="//apple_ref/swift/Method/clear(completition:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCacheAAC5clear12completitionyyycSg_tF">clear(completition:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Clears the cache.
+Removes all files in the <code><a href="../Classes/MapCache.html#/s:8MapCacheAAC04diskB0AA04DiskB0Cvp">diskCache</a></code>
+As it may take some time to remove all files it calls the completition closure upon finishing the removal.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">clear</span><span class="p">(</span><span class="nv">completition</span><span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="p">())?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completition</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>code to run upon the cache is cleared.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2026 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2026-07-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>

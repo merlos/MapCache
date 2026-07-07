@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>DiskCache Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/DiskCache" class="dashAnchor"></a>
+    <a title="DiskCache Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">MapCache 0.10.0 Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="../img/gh.png" alt="GitHub"/>View on GitHub</a></p>
+        <div class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">MapCache Reference</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        DiskCache Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DiskCache.html">DiskCache</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HashBase.html">HashBase</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MD5.html">MD5</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MapCache.html">MapCache</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegionDownloader.html">RegionDownloader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TileCoords.html">TileCoords</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TileCoordsRegion.html">TileCoordsRegion</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/LatitudeError.html">LatitudeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LoadTileMode.html">LoadTileMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LongitudeError.html">LongitudeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TileError.html">TileError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TileRangeError.html">TileRangeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ZoomError.html">ZoomError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/FileManager.html">FileManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKMapView.html">MKMapView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKZoomScale.html">MKZoomScale</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSMutableData.html">NSMutableData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache1loiySbSo8NSNumberC_ADtF">&lt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache12arrayOfBytes5value6lengthSays5UInt8VGx_SiSgtlF">arrayOfBytes(value:length:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache17isNoSuchFileError33_FC193A7AE40E49CC84DE49A3128B2975LLySbs0G0_pSgF">isNoSuchFileError(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache10rotateLeft1v1ns6UInt32VAF_AFtF">rotateLeft(v:n:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache18sliceToUInt32ArrayySays0E0VGs0F5SliceVys5UInt8VGF">sliceToUInt32Array(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/MapCacheProtocol.html">MapCacheProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RegionDownloaderDelegate.html">RegionDownloaderDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/BytesSequence.html">BytesSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Log.html">Log</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Log/Level.html">– Level</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MapCacheConfig.html">MapCacheConfig</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TileRange.html">TileRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TileRangeIterator.html">TileRangeIterator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomRange.html">ZoomRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomableTile.html">ZoomableTile</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>DiskCache</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">DiskCache</span></code></pre>
+
+                </div>
+              </div>
+            <p>A specialized cache for storing data in disk.
+Based on <a href="https://github.com/Haneke/HanekeSwift">Haneke Disk Cache</a> and customized for the MapCache project.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C7baseURL10Foundation0E0VyFZ"></a>
+                    <a name="//apple_ref/swift/Method/baseURL()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C7baseURL10Foundation0E0VyFZ">baseURL()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Gets the root base folder to be used.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">baseURL</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">URL</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C9folderURL10Foundation0E0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/folderURL" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C9folderURL10Foundation0E0Vvp">folderURL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>URL of the physical folder of the Cache in the file system.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">folderURL</span><span class="p">:</span> <span class="kt">URL</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C4pathSSvp"></a>
+                    <a name="//apple_ref/swift/Property/path" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C4pathSSvp">path</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A shortcut for <code>folderURL.path</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C8diskSizes6UInt64Vvp"></a>
+                    <a name="//apple_ref/swift/Property/diskSize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C8diskSizes6UInt64Vvp">diskSize</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sum of the allocated size in disk for the cache expressed in bytes.</p>
+
+<p>Note that, this size is the actual disk allocation. It is equivalent with the amount of bytes
+that would become available on the volume if the directory is deleted.</p>
+
+<p>For example, a file may just contain 156 bytes of data (size listed in <code>ls</code> command), however its
+disk size is 4096, 1 volume block (as listed using <code>du -h</code>)</p>
+
+<p>This size is calculated each time</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">diskSize</span><span class="p">:</span> <span class="kt">UInt64</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C8fileSizes6UInt64VSgvp"></a>
+                    <a name="//apple_ref/swift/Property/fileSize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C8fileSizes6UInt64VSgvp">fileSize</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is the sum of the data sizes of the files within the <code>DiskCache</code></p>
+
+<p>This size is calculated each time it is used</p>
+<div class="aside aside-seealso">
+    <p class="aside-title">Seealso</p>
+    <code><a href="../Classes/DiskCache.html#/s:8MapCache04DiskB0C8diskSizes6UInt64Vvp">diskSize</a></code>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">fileSize</span><span class="p">:</span> <span class="kt">UInt64</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C8capacitys6UInt64Vvp"></a>
+                    <a name="//apple_ref/swift/Property/capacity" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C8capacitys6UInt64Vvp">capacity</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Maximum allowed cache disk allocated size for this <code>DiskCache</code><code>
+Defaults to unlimited capacity (</code>UINT64_MAX`)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">capacity</span><span class="p">:</span> <span class="kt">UInt64</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C10cacheQueueSo17OS_dispatch_queueCvp"></a>
+                    <a name="//apple_ref/swift/Property/cacheQueue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C10cacheQueueSo17OS_dispatch_queueCvp">cacheQueue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Queue for making async operations.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">lazy</span> <span class="k">var</span> <span class="nv">cacheQueue</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C8withName8capacityACSS_s6UInt64Vtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(withName:capacity:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C8withName8capacityACSS_s6UInt64Vtcfc">init(withName:<wbr>capacity:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Constructor</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">withName</span> <span class="nv">cacheName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">capacity</span><span class="p">:</span> <span class="kt">UInt64</span> <span class="o">=</span> <span class="kt">UINT64_MAX</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>withName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Name of the cache, will be the subfolder name too.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>capacity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>capacity of the cache in bytes. Defaults to virutally unlimited capacity (<code>UINT64_MAX</code>)</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C4path6forKeyS2S_tF"></a>
+                    <a name="//apple_ref/swift/Method/path(forKey:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C4path6forKeyS2S_tF">path(forKey:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the path for key.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">path</span><span class="p">(</span><span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C7setData_6forKeyy10Foundation0E0V_SStF"></a>
+                    <a name="//apple_ref/swift/Method/setData(_:forKey:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C7setData_6forKeyy10Foundation0E0V_SStF">setData(_:<wbr>forKey:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the data for the key asyncronously.
+Use this function for writing into the cache.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">setData</span><span class="p">(</span><span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C11setDataSync_6forKeyy10Foundation0E0V_SStF"></a>
+                    <a name="//apple_ref/swift/Method/setDataSync(_:forKey:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C11setDataSync_6forKeyy10Foundation0E0V_SStF">setDataSync(_:<wbr>forKey:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the data for the key synchronously.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">setDataSync</span><span class="p">(</span><span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C13fetchDataSync6forKey7failure7successySS_ys5Error_pSgcSgy10Foundation0E0VctF"></a>
+                    <a name="//apple_ref/swift/Method/fetchDataSync(forKey:failure:success:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C13fetchDataSync6forKey7failure7successySS_ys5Error_pSgcSgy10Foundation0E0VctF">fetchDataSync(forKey:<wbr>failure:<wbr>success:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Fetches the image data from storage synchronously.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">fetchDataSync</span><span class="p">(</span><span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">failure</span> <span class="nv">fail</span><span class="p">:</span> <span class="p">((</span><span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="p">())?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">success</span> <span class="nv">succeed</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>forKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Key within the cache</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>failure</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>closure to be run in case of error</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>success</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>closure to be run once the data is ready</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C10removeData7withKeyySS_tF"></a>
+                    <a name="//apple_ref/swift/Method/removeData(withKey:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C10removeData7withKeyySS_tF">removeData(withKey:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes asynchronously the data from the diskcache for the key passed as argument.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">removeData</span><span class="p">(</span><span class="n">withKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>withKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>key to be removed</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C13removeAllDatayyyycSgF"></a>
+                    <a name="//apple_ref/swift/Method/removeAllData(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C13removeAllDatayyyycSgF">removeAllData(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes asynchronously all data from the cache.
+Calls completition closure once the task is done.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">removeAllData</span><span class="p">(</span><span class="n">_</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="p">())?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completition</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>closure run once all the files are deleted from the cache</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C06removeB0yyF"></a>
+                    <a name="//apple_ref/swift/Method/removeCache()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C06removeB0yyF">removeCache()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes the cache from the system.
+This method not only removes the data, it also removes the cache folder.</p>
+
+<p>Do not call any method after removing the cache, create a new instance instead.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">removeCache</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C16updateAccessDate_3keyy10Foundation4DataVSgyXA_SStF"></a>
+                    <a name="//apple_ref/swift/Method/updateAccessDate(_:key:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C16updateAccessDate_3keyy10Foundation4DataVSgyXA_SStF">updateAccessDate(_:<wbr>key:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asynchronously updates the access date of a file.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">updateAccessDate</span><span class="p">(</span><span class="n">_</span> <span class="nv">getData</span><span class="p">:</span> <span class="kd">@autoclosure</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Data</span><span class="p">?,</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C09calculateC4Sizes6UInt64VyF"></a>
+                    <a name="//apple_ref/swift/Method/calculateDiskSize()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C09calculateC4Sizes6UInt64VyF">calculateDiskSize()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Calculates the size used by all the files in the cache.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">calculateDiskSize</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UInt64</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Private"></a>
+                <a name="//apple_ref/swift/Section/Private" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Private"></a>
+                  <h3 class="section-name"><span>Private</span>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C15controlCapacity33_FC193A7AE40E49CC84DE49A3128B2975LLyyF"></a>
+                    <a name="//apple_ref/swift/Method/controlCapacity()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C15controlCapacity33_FC193A7AE40E49CC84DE49A3128B2975LLyyF">controlCapacity()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>It checks if the capacity of the cache has been reached. If so, it removes the least recently used file (LRU).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">fileprivate</span> <span class="kd">func</span> <span class="nf">controlCapacity</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C06updateC10AccessDate33_FC193A7AE40E49CC84DE49A3128B2975LL6atPathSbSS_tF"></a>
+                    <a name="//apple_ref/swift/Method/updateDiskAccessDate(atPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C06updateC10AccessDate33_FC193A7AE40E49CC84DE49A3128B2975LL6atPathSbSS_tF">updateDiskAccessDate(atPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Updates the time a file was accessed for the last time.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">fileprivate</span> <span class="kd">func</span> <span class="nf">updateDiskAccessDate</span><span class="p">(</span><span class="n">atPath</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C10removeFile33_FC193A7AE40E49CC84DE49A3128B2975LL6atPathySS_tF"></a>
+                    <a name="//apple_ref/swift/Method/removeFile(atPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C10removeFile33_FC193A7AE40E49CC84DE49A3128B2975LL6atPathySS_tF">removeFile(atPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes a file syncrhonously.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">fileprivate</span> <span class="kd">func</span> <span class="nf">removeFile</span><span class="p">(</span><span class="n">atPath</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache04DiskB0C9substract33_FC193A7AE40E49CC84DE49A3128B2975LL8diskSizeys6UInt64V_tF"></a>
+                    <a name="//apple_ref/swift/Method/substract(diskSize:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache04DiskB0C9substract33_FC193A7AE40E49CC84DE49A3128B2975LL8diskSizeys6UInt64V_tF">substract(diskSize:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Substracts from the cachesize  the disk size passed as parameter.
+Logs an error message if the amount to be substracted is larger than the current used disk space.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">fileprivate</span> <span class="kd">func</span> <span class="nf">substract</span><span class="p">(</span><span class="nv">diskSize</span><span class="p">:</span> <span class="kt">UInt64</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>diskSize</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>disksize to be deducted</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2023 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external noopener">merlos</a>. All rights reserved. (Last updated: 2023-05-27)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>

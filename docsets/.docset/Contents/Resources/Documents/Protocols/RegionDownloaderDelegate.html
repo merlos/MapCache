@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RegionDownloaderDelegate Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/RegionDownloaderDelegate" class="dashAnchor"></a>
+    <a title="RegionDownloaderDelegate Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="../img/gh.png" alt="GitHub"/>View on GitHub</a></p>
+        <div class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Index</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        <a href="../Protocols.html">Protocols</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        MapCache.RegionDownloaderDelegate Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CacheIndex.html">CacheIndex</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CacheIndex/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DiskCache.html">DiskCache</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HashBase.html">HashBase</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MD5.html">MD5</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MapCache.html">MapCache</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegionDownloader.html">RegionDownloader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TileCoords.html">TileCoords</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TileCoordsRegion.html">TileCoordsRegion</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/LatitudeError.html">LatitudeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LoadTileMode.html">LoadTileMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LongitudeError.html">LongitudeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TileError.html">TileError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TileRangeError.html">TileRangeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ZoomError.html">ZoomError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/DispatchTime.html">DispatchTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/FileManager.html">FileManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKMapView.html">MKMapView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKZoomScale.html">MKZoomScale</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSMutableData.html">NSMutableData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache1loiySbSo8NSNumberC_ADtF">&lt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache12arrayOfBytes5value6lengthSays5UInt8VGx_SiSgtlF">arrayOfBytes(value:length:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache17isNoSuchFileError33_FC193A7AE40E49CC84DE49A3128B2975LLySbs0G0_pSgF">isNoSuchFileError(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache10rotateLeft1v1ns6UInt32VAF_AFtF">rotateLeft(v:n:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache18sliceToUInt32ArrayySays0E0VGs0F5SliceVys5UInt8VGF">sliceToUInt32Array(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/MapCacheProtocol.html">MapCacheProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RegionDownloaderDelegate.html">RegionDownloaderDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/BytesSequence.html">BytesSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Log.html">Log</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MapCacheConfig.html">MapCacheConfig</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TileRange.html">TileRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TileRangeIterator.html">TileRangeIterator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomRange.html">ZoomRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomableTile.html">ZoomableTile</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>RegionDownloaderDelegate</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RegionDownloaderDelegate</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+
+                </div>
+              </div>
+            <p><code>RegionDownloaderDelegate</code> provides callbacks for monitoring the progress of a tile region download.</p>
+
+<p>Conform to this protocol to receive notifications about download progress, individual tile results,
+and lifecycle events. All methods have default empty implementations provided via a protocol extension,
+making each callback optional — implement only the ones you need.</p>
+<h1 id='usage-example' class='heading'>Usage Example</h1>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MyViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="kt">RegionDownloaderDelegate</span> <span class="p">{</span>
+
+    <span class="kd">func</span> <span class="nf">startDownload</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">downloader</span> <span class="o">=</span> <span class="kt">RegionDownloader</span><span class="p">(</span><span class="nv">forRegion</span><span class="p">:</span> <span class="n">region</span><span class="p">,</span> <span class="nv">mapCache</span><span class="p">:</span> <span class="n">cache</span><span class="p">)</span>
+        <span class="n">downloader</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="k">self</span>
+        <span class="n">downloader</span><span class="o">.</span><span class="nf">start</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Update a progress bar on percentage changes.</span>
+    <span class="kd">func</span> <span class="nf">regionDownloader</span><span class="p">(</span><span class="n">_</span> <span class="nv">downloader</span><span class="p">:</span> <span class="kt">RegionDownloader</span><span class="p">,</span> <span class="n">didDownloadPercentage</span> <span class="nv">percentage</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">DispatchQueue</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="k">async</span> <span class="p">{</span>
+            <span class="k">self</span><span class="o">.</span><span class="n">progressView</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="kt">Float</span><span class="p">(</span><span class="n">percentage</span> <span class="o">/</span> <span class="mf">100.0</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Show final counts when done.</span>
+    <span class="kd">func</span> <span class="nf">regionDownloader</span><span class="p">(</span><span class="n">_</span> <span class="nv">downloader</span><span class="p">:</span> <span class="kt">RegionDownloader</span><span class="p">,</span> <span class="n">didFinishDownload</span> <span class="nv">tilesDownloaded</span><span class="p">:</span> <span class="kt">TileNumber</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">DispatchQueue</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="k">async</span> <span class="p">{</span>
+            <span class="k">self</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"Done: </span><span class="se">\(</span><span class="n">tilesDownloaded</span><span class="se">)</span><span class="s"> tiles"</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache24RegionDownloaderDelegateP06regionD0_21didDownloadPercentageyAA0cD0C_SdtF"></a>
+                    <a name="//apple_ref/swift/Method/regionDownloader(_:didDownloadPercentage:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache24RegionDownloaderDelegateP06regionD0_21didDownloadPercentageyAA0cD0C_SdtF">regionDownloader(_:<wbr>didDownloadPercentage:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called each time the overall download percentage crosses the notification threshold
+(controlled by <code><a href="../Classes/RegionDownloader.html#/s:8MapCache16RegionDownloaderC33incrementInPercentageNotificationSdvp">RegionDownloader.incrementInPercentageNotification</a></code>).</p>
+
+<p>This is the main progress callback. It is not called for every tile — only when the
+downloaded percentage surpasses the next multiple of <code>incrementInPercentageNotification</code>.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">regionDownloader</span><span class="p">(</span><span class="n">_</span> <span class="nv">regionDownloader</span><span class="p">:</span> <span class="kt"><a href="../Classes/RegionDownloader.html">RegionDownloader</a></span><span class="p">,</span> <span class="n">didDownloadPercentage</span> <span class="nv">percentage</span><span class="p">:</span> <span class="kt">Double</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>regionDownloader</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code><a href="../Classes/RegionDownloader.html">RegionDownloader</a></code> instance that triggered the callback.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>percentage</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The current download percentage (0.0 – 100.0).</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache24RegionDownloaderDelegateP06regionD0_17didFinishDownloadyAA0cD0C_s6UInt64VtF"></a>
+                    <a name="//apple_ref/swift/Method/regionDownloader(_:didFinishDownload:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache24RegionDownloaderDelegateP06regionD0_17didFinishDownloadyAA0cD0C_s6UInt64VtF">regionDownloader(_:<wbr>didFinishDownload:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when all tiles in the region have been processed (successfully downloaded or failed).</p>
+
+<p>This is the terminal callback. After this, no further delegate calls will be made
+unless <code>start()</code> is called again.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">regionDownloader</span><span class="p">(</span><span class="n">_</span> <span class="nv">regionDownloader</span><span class="p">:</span> <span class="kt"><a href="../Classes/RegionDownloader.html">RegionDownloader</a></span><span class="p">,</span> <span class="n">didFinishDownload</span> <span class="nv">tilesDownloaded</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>regionDownloader</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code><a href="../Classes/RegionDownloader.html">RegionDownloader</a></code> instance that triggered the callback.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tilesDownloaded</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The total number of tiles processed (<code>successfulTileDownloads + failedTileDownloads</code>).</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache24RegionDownloaderDelegateP06regionD0_20willStartDownloading0F003mapB0yAA0cD0C_s6UInt64VAA010TileCoordsC0CAA0aB8Protocol_ptF"></a>
+                    <a name="//apple_ref/swift/Method/regionDownloader(_:willStartDownloading:region:mapCache:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache24RegionDownloaderDelegateP06regionD0_20willStartDownloading0F003mapB0yAA0cD0C_s6UInt64VAA010TileCoordsC0CAA0aB8Protocol_ptF">regionDownloader(_:<wbr>willStartDownloading:<wbr>region:<wbr>mapCache:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called once before the download loop begins.</p>
+
+<p>Use this to prepare the UI, reset state, or log the start of a download.</p>
+<h1 id='example' class='heading'>Example</h1>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">regionDownloader</span><span class="p">(</span><span class="n">_</span> <span class="nv">downloader</span><span class="p">:</span> <span class="kt">RegionDownloader</span><span class="p">,</span> <span class="n">willStartDownloading</span> <span class="nv">totalTiles</span><span class="p">:</span> <span class="kt">TileNumber</span><span class="p">,</span> <span class="nv">region</span><span class="p">:</span> <span class="kt">TileCoordsRegion</span><span class="p">,</span> <span class="nv">mapCache</span><span class="p">:</span> <span class="kt">MapCacheProtocol</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Starting download of </span><span class="se">\(</span><span class="n">totalTiles</span><span class="se">)</span><span class="s"> tiles at zoom </span><span class="se">\(</span><span class="n">region</span><span class="o">.</span><span class="n">zoomRange</span><span class="o">.</span><span class="n">min</span><span class="se">)</span><span class="s">–</span><span class="se">\(</span><span class="n">region</span><span class="o">.</span><span class="n">zoomRange</span><span class="o">.</span><span class="n">max</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">regionDownloader</span><span class="p">(</span><span class="n">_</span> <span class="nv">regionDownloader</span><span class="p">:</span> <span class="kt"><a href="../Classes/RegionDownloader.html">RegionDownloader</a></span><span class="p">,</span> <span class="n">willStartDownloading</span> <span class="nv">totalTiles</span><span class="p">:</span> <span class="kt"><a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a></span><span class="p">,</span> <span class="nv">region</span><span class="p">:</span> <span class="kt"><a href="../Classes/TileCoordsRegion.html">TileCoordsRegion</a></span><span class="p">,</span> <span class="nv">mapCache</span><span class="p">:</span> <span class="kt"><a href="../Protocols/MapCacheProtocol.html">MapCacheProtocol</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>regionDownloader</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code><a href="../Classes/RegionDownloader.html">RegionDownloader</a></code> instance that triggered the callback.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>totalTiles</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The total number of tiles that will be attempted.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>region</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code><a href="../Classes/TileCoordsRegion.html">TileCoordsRegion</a></code> being downloaded.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mapCache</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code><a href="../Protocols/MapCacheProtocol.html">MapCacheProtocol</a></code> instance used to fetch and store tiles.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache24RegionDownloaderDelegateP06regionD0_17didDownloadTileAt8dataSizeyAA0cD0C_AA0I6CoordsCSitF"></a>
+                    <a name="//apple_ref/swift/Method/regionDownloader(_:didDownloadTileAt:dataSize:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache24RegionDownloaderDelegateP06regionD0_17didDownloadTileAt8dataSizeyAA0cD0C_AA0I6CoordsCSitF">regionDownloader(_:<wbr>didDownloadTileAt:<wbr>dataSize:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called each time a tile is successfully downloaded and cached.</p>
+
+<p>This can fire hundreds or thousands of times. Avoid performing expensive work here;
+if you need to update the UI, dispatch to the main queue.</p>
+<h1 id='example' class='heading'>Example</h1>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">regionDownloader</span><span class="p">(</span><span class="n">_</span> <span class="nv">downloader</span><span class="p">:</span> <span class="kt">RegionDownloader</span><span class="p">,</span> <span class="n">didDownloadTileAt</span> <span class="nv">tileCoords</span><span class="p">:</span> <span class="kt">TileCoords</span><span class="p">,</span> <span class="nv">dataSize</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"✓ Tile z:</span><span class="se">\(</span><span class="n">tileCoords</span><span class="o">.</span><span class="n">zoom</span><span class="se">)</span><span class="s"> x:</span><span class="se">\(</span><span class="n">tileCoords</span><span class="o">.</span><span class="n">tileX</span><span class="se">)</span><span class="s"> y:</span><span class="se">\(</span><span class="n">tileCoords</span><span class="o">.</span><span class="n">tileY</span><span class="se">)</span><span class="s"> — </span><span class="se">\(</span><span class="n">dataSize</span><span class="se">)</span><span class="s"> bytes"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">regionDownloader</span><span class="p">(</span><span class="n">_</span> <span class="nv">regionDownloader</span><span class="p">:</span> <span class="kt"><a href="../Classes/RegionDownloader.html">RegionDownloader</a></span><span class="p">,</span> <span class="n">didDownloadTileAt</span> <span class="nv">tileCoords</span><span class="p">:</span> <span class="kt"><a href="../Classes/TileCoords.html">TileCoords</a></span><span class="p">,</span> <span class="nv">dataSize</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>regionDownloader</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code><a href="../Classes/RegionDownloader.html">RegionDownloader</a></code> instance that triggered the callback.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tileCoords</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The coordinates (zoom, x, y) of the successfully downloaded tile.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataSize</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The size of the tile data in bytes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache24RegionDownloaderDelegateP06regionD0_23didFailToDownloadTileAt5erroryAA0cD0C_AA0K6CoordsCs5Error_ptF"></a>
+                    <a name="//apple_ref/swift/Method/regionDownloader(_:didFailToDownloadTileAt:error:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache24RegionDownloaderDelegateP06regionD0_23didFailToDownloadTileAt5erroryAA0cD0C_AA0K6CoordsCs5Error_ptF">regionDownloader(_:<wbr>didFailToDownloadTileAt:<wbr>error:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called each time a tile fails to download.</p>
+
+<p>This can fire hundreds or thousands of times. Avoid performing expensive work here;
+if you need to update the UI, dispatch to the main queue.</p>
+<h1 id='example' class='heading'>Example</h1>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">regionDownloader</span><span class="p">(</span><span class="n">_</span> <span class="nv">downloader</span><span class="p">:</span> <span class="kt">RegionDownloader</span><span class="p">,</span> <span class="n">didFailToDownloadTileAt</span> <span class="nv">tileCoords</span><span class="p">:</span> <span class="kt">TileCoords</span><span class="p">,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"✗ Tile z:</span><span class="se">\(</span><span class="n">tileCoords</span><span class="o">.</span><span class="n">zoom</span><span class="se">)</span><span class="s"> x:</span><span class="se">\(</span><span class="n">tileCoords</span><span class="o">.</span><span class="n">tileX</span><span class="se">)</span><span class="s"> y:</span><span class="se">\(</span><span class="n">tileCoords</span><span class="o">.</span><span class="n">tileY</span><span class="se">)</span><span class="s"> – </span><span class="se">\(</span><span class="n">error</span><span class="o">.</span><span class="n">localizedDescription</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">regionDownloader</span><span class="p">(</span><span class="n">_</span> <span class="nv">regionDownloader</span><span class="p">:</span> <span class="kt"><a href="../Classes/RegionDownloader.html">RegionDownloader</a></span><span class="p">,</span> <span class="n">didFailToDownloadTileAt</span> <span class="nv">tileCoords</span><span class="p">:</span> <span class="kt"><a href="../Classes/TileCoords.html">TileCoords</a></span><span class="p">,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>regionDownloader</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code><a href="../Classes/RegionDownloader.html">RegionDownloader</a></code> instance that triggered the callback.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tileCoords</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The coordinates (zoom, x, y) of the tile that failed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The error returned by the cache or network layer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2026 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2026-07-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>

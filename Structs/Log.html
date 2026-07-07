@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Log Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/Log" class="dashAnchor"></a>
+    <a title="Log Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/merlos/MapCache"><img src="../img/gh.png" alt="GitHub"/>View on GitHub</a></p>
+        <div class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </div>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Index</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        <a href="../Structs.html">Structures</a>
+        <img id="carat" src="../img/carat.png" alt=""/>
+        MapCache.Log Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CacheIndex.html">CacheIndex</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CacheIndex/Entry.html">– Entry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlay.html">CachedTileOverlay</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CachedTileOverlayRenderer.html">CachedTileOverlayRenderer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DiskCache.html">DiskCache</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HashBase.html">HashBase</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MD5.html">MD5</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MapCache.html">MapCache</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegionDownloader.html">RegionDownloader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TileCoords.html">TileCoords</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TileCoordsRegion.html">TileCoordsRegion</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/LatitudeError.html">LatitudeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LoadTileMode.html">LoadTileMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LongitudeError.html">LongitudeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TileError.html">TileError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TileRangeError.html">TileRangeError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ZoomError.html">ZoomError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/DispatchTime.html">DispatchTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/FileManager.html">FileManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKMapView.html">MKMapView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKTileOverlayPath.html">MKTileOverlayPath</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MKZoomScale.html">MKZoomScale</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSMutableData.html">NSMutableData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache1loiySbSo8NSNumberC_ADtF">&lt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache12arrayOfBytes5value6lengthSays5UInt8VGx_SiSgtlF">arrayOfBytes(value:length:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache17isNoSuchFileError33_FC193A7AE40E49CC84DE49A3128B2975LLySbs0G0_pSgF">isNoSuchFileError(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache10rotateLeft1v1ns6UInt32VAF_AFtF">rotateLeft(v:n:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:8MapCache18sliceToUInt32ArrayySays0E0VGs0F5SliceVys5UInt8VGF">sliceToUInt32Array(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/MapCacheProtocol.html">MapCacheProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RegionDownloaderDelegate.html">RegionDownloaderDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/BytesSequence.html">BytesSequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Log.html">Log</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MapCacheConfig.html">MapCacheConfig</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TileRange.html">TileRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TileRangeIterator.html">TileRangeIterator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomRange.html">ZoomRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomRangeIterator.html">ZoomRangeIterator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ZoomableTile.html">ZoomableTile</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MapCache10TileNumbera">TileNumber</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:8MapCache4Zooma">Zoom</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Log</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">Log</span></code></pre>
+
+                </div>
+              </div>
+            <p>Thin wrapper around os.Logger that automatically captures file, function and line numbers.</p>
+
+<p>Usage:</p>
+<pre class="highlight swift"><code>  <span class="kt">Log</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="nf">debug</span><span class="p">(</span><span class="s">"my debug message"</span><span class="p">)</span>
+  <span class="c1">// prints: MapCache.swift[42]::myMethod -- my debug message</span>
+
+  <span class="kt">Log</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="nf">error</span><span class="p">(</span><span class="s">"tile not found with error </span><span class="se">\(</span><span class="n">error</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+  <span class="c1">// prints: MapCache.swift[99]::fetchTile -- tile not found with error ...</span>
+
+  <span class="kt">Log</span><span class="o">.</span><span class="n">diskcache</span><span class="o">.</span><span class="nf">info</span><span class="p">(</span><span class="s">"cache size calculated"</span><span class="p">)</span>
+  <span class="c1">// prints: DiskCache.swift[55]::calculateDiskSize -- cache size calculated</span>
+
+  <span class="kt">Log</span><span class="o">.</span><span class="n">downloader</span><span class="o">.</span><span class="nf">trace</span><span class="p">(</span><span class="s">"network request started"</span><span class="p">)</span>
+  <span class="c1">// prints: RegionDownloader.swift[77]::start -- network request started</span>
+</code></pre>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache3LogV6logger2os6LoggerVvp"></a>
+                    <a name="//apple_ref/swift/Property/logger" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache3LogV6logger2os6LoggerVvp">logger</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">logger</span><span class="p">:</span> <span class="kt">Logger</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache3LogV9subsystem8categoryACSS_SStcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(subsystem:category:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache3LogV9subsystem8categoryACSS_SStcfc">init(subsystem:<wbr>category:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">subsystem</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">category</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache3LogV8baseName33_B0EB5F66C57FF526BB04701F7376DD27LLyS2SFZ"></a>
+                    <a name="//apple_ref/swift/Method/baseName(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache3LogV8baseName33_B0EB5F66C57FF526BB04701F7376DD27LLyS2SFZ">baseName(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">baseName</span><span class="p">(</span><span class="n">_</span> <span class="nv">function</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache3LogV5trace_4file8function4lineySS_S2SSitF"></a>
+                    <a name="//apple_ref/swift/Method/trace(_:file:function:line:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache3LogV5trace_4file8function4lineySS_S2SSitF">trace(_:<wbr>file:<wbr>function:<wbr>line:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Log at <code>.debug</code> level. Extremely verbose, not persisted, development only.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">trace</span><span class="p">(</span><span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#file</span><span class="p">,</span> <span class="nv">function</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#function</span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kd">#line</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache3LogV5debug_4file8function4lineySS_S2SSitF"></a>
+                    <a name="//apple_ref/swift/Method/debug(_:file:function:line:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache3LogV5debug_4file8function4lineySS_S2SSitF">debug(_:<wbr>file:<wbr>function:<wbr>line:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Log at <code>.debug</code> level. Not persisted, useful during development.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">debug</span><span class="p">(</span><span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#file</span><span class="p">,</span> <span class="nv">function</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#function</span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kd">#line</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache3LogV4info_4file8function4lineySS_S2SSitF"></a>
+                    <a name="//apple_ref/swift/Method/info(_:file:function:line:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache3LogV4info_4file8function4lineySS_S2SSitF">info(_:<wbr>file:<wbr>function:<wbr>line:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Log at <code>.info</code> level. Persisted in the log archive, useful for important state changes.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">info</span><span class="p">(</span><span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#file</span><span class="p">,</span> <span class="nv">function</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#function</span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kd">#line</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache3LogV6notice_4file8function4lineySS_S2SSitF"></a>
+                    <a name="//apple_ref/swift/Method/notice(_:file:function:line:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache3LogV6notice_4file8function4lineySS_S2SSitF">notice(_:<wbr>file:<wbr>function:<wbr>line:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Log at <code>.default</code> level. Noteworthy events that are not errors.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">notice</span><span class="p">(</span><span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#file</span><span class="p">,</span> <span class="nv">function</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#function</span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kd">#line</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache3LogV5error_4file8function4lineySS_S2SSitF"></a>
+                    <a name="//apple_ref/swift/Method/error(_:file:function:line:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache3LogV5error_4file8function4lineySS_S2SSitF">error(_:<wbr>file:<wbr>function:<wbr>line:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Log at <code>.error</code> level. Recoverable errors that should be investigated.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">error</span><span class="p">(</span><span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#file</span><span class="p">,</span> <span class="nv">function</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#function</span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kd">#line</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache3LogV5fault_4file8function4lineySS_S2SSitF"></a>
+                    <a name="//apple_ref/swift/Method/fault(_:file:function:line:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache3LogV5fault_4file8function4lineySS_S2SSitF">fault(_:<wbr>file:<wbr>function:<wbr>line:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Log at <code>.fault</code> level. Critical failures that may impact app stability.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">fault</span><span class="p">(</span><span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">file</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#file</span><span class="p">,</span> <span class="nv">function</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kd">#function</span><span class="p">,</span> <span class="nv">line</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kd">#line</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache3LogV5cacheACvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/cache" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache3LogV5cacheACvpZ">cache</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Cache operations (tile fetching, URL building, ETag handling)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="k">let</span> <span class="nv">cache</span><span class="p">:</span> <span class="kt">Log</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache3LogV9diskcacheACvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/diskcache" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache3LogV9diskcacheACvpZ">diskcache</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Disk storage operations (read/write/eviction)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="k">let</span> <span class="nv">diskcache</span><span class="p">:</span> <span class="kt">Log</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8MapCache3LogV10downloaderACvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/downloader" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8MapCache3LogV10downloaderACvpZ">downloader</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Region downloader operations</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">static</span> <span class="k">let</span> <span class="nv">downloader</span><span class="p">:</span> <span class="kt">Log</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2026 <a class="link" href="https://github.com/merlos/MapCache" target="_blank" rel="external noopener"></a>. All rights reserved. (Last updated: 2026-07-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.15.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>
