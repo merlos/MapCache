@@ -295,7 +295,7 @@ It will generate the html in `docs/`
 
 ## License - MIT
 
-Copyright (c) 2019-2020 Juan M. Merlos [@merlos](http://twitter.com/merlos) and contributors.
+Copyright (c) 2019-2026 Juan M. Merlos [@merlos](http://twitter.com/merlos) and contributors.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
